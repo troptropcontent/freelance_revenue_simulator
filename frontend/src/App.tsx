@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <h1>🚧 Simuca 🚧</h1>
+      <h1>🚧 Simuca Staging 🚧</h1>
     </>
   )
 }

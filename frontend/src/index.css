@@ -11,6 +11,7 @@
   --color-grey: #C7C8CC;
   --color-grey-dark: #B4B4B8;
   --color-background: #FAF9FA;
+  --color-white: white;
   --main-nav-background-color: #378CE7;
   --main-section-background-color: #67C6E3;
   --who-we-are-section-background-color: #DFF5FF;
@@ -29,11 +30,13 @@
   --spacing-small: 1rem;
   --spacing-medium: 2rem;
   --spacing-large: 4rem;
+  --spacing-none: 0;
 
   /* Border radius */
   --border-radius-small: 0.5rem;
   --border-radius-medium: 1rem;
   --border-radius-large: 2rem;
+  --border-radius-none: 0;
 }
 
 body {

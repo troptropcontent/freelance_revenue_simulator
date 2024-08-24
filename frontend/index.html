@@ -7,7 +7,59 @@
     <title>Simuca</title>
   </head>
   <body>
-    <div id="root"></div>
+    <nav id="main_nav">
+      <a href="/" class="main_nav-logo">Simuca</a>
+      <ul class="main_nav-list">
+        <li><a href="#root">Le simulateur</a></li>
+        <li><a href="#who_we_are">Qui sommes nous ?</a></li>
+        <li><button class="button">Recevoir la newsletter</button></li>
+      </ul>
+    </nav>
+    <section id="simulator_section">
+      <header class="simulator_section-header">
+        <h1 class="heading-1">Simulateur de revenue d'activités Freelance</h1>
+        <p>
+          Découvrez combien vous pourriez gagner en fonction de vos differentes activités.
+        </p>
+        <aside id="simulator_section-sponsors">
+          <div id="simulator_section-sponsor-logo">
+            <p>SPONSOR</p>
+          </div>
+          <p id="simulator_section-sponsor-text">
+            Ce similateur est propulsé par *SPONSOR*
+          </p>
+          <a href="#" class="button button--grey" id="simulator_section-sponsor-link">
+            En savoir plus
+          </a>
+        </aside>
+      </header>
+      <article id="root"></article>
+    </section>
+    <section id="who_we_are_section">
+      <h2 id="who_we_are_section_title">Qui sommes nous ?</h2>
+      <div class="who_we_are_article_photo_container" id="who_we_are_section_article_1_photo">
+        <img class="who_we_are_section_article_photo" src="/tom.jpg" alt="">
+      </div>
+    
+      <h3 id="who_we_are_section_article_1_title" class="who_we_are_section_article_title">Tom Ecrepont</h3>
+      <p id="who_we_are_section_article_1_text" class="who_we_are_section_article_text">Entrepreneur et developeur freelance. Spécialisé dans la creation d'outils sur mesure et l'automatisation de process</p>
+      <div class="who_we_are_section_article_link" id="who_we_are_section_article_1_link">
+        <a href="#" class="button button--grey">
+          Le contacter sur Linkedin
+        </a>
+      </div>
+          <div class="who_we_are_article_photo_container" id="who_we_are_section_article_2_photo">
+            <img class="who_we_are_section_article_photo" src="/pierre.jpg" alt="">
+          </div>
+      <h3 id="who_we_are_section_article_2_title" class="who_we_are_section_article_title">Pierre Guilbaud</h3>
+      <p id="who_we_are_section_article_2_text" class="who_we_are_section_article_text">Pierre est co-fondateur de Marketing Flow et Freelance Growth for Good</p>
+          <div class="who_we_are_section_article_link" id="who_we_are_section_article_2_link">
+            <a href="#" class="button button--grey">
+              Découvrir sa newsletter
+            </a>
+          </div>
+    </section>
+    </section>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

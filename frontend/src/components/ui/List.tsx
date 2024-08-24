@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { Box } from "./Box";
 
 const Root = (props: Omit<Parameters<typeof Box>[0], "as" | "flex" | "flexDirection">) => {

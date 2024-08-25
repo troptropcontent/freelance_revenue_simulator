@@ -4,6 +4,7 @@ import { Heading } from './components/ui/Heading'
 import { List } from './components/ui/List';
 import { Text } from './components/ui/Text';
 import { Box } from './components/ui/Box';
+import Theme from './components/Theme';
 
 const MainLayout = styled.div`
   display: grid;
@@ -38,6 +39,7 @@ const MainLayout = styled.div`
 function App() {
 
   return (
+    <Theme>
     <MainLayout>
       <Heading as="h2" align="center" id="activities_title">Mes activités</Heading>
       <List.Root gap="large" id="activities_list" background='background' borderRadius={"medium"} padding={'medium'}>
@@ -56,6 +58,7 @@ function App() {
         </Text>
       </Box>
     </MainLayout>
+    </Theme>
   )
 }
 

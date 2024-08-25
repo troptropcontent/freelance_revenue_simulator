@@ -27,6 +27,17 @@ const PaddingKeys = {
 
 type Padding = SpacingsType<Spacing, keyof typeof PaddingKeys>;
 
+const BorderRadiusKeys = {
+  topLeft: "border-top-left-radius",
+  topRight: "border-top-right-radius",
+  bottomLeft: "border-bottom-left-radius",
+  bottomRight: "border-bottom-right-radius",
+} as const;
+
+type BorderRadius = SpacingsType<keyof Tokens["borderRadius"], keyof typeof BorderRadiusKeys>;
+
+type BackgroundColor = RecursiveKeyOf<Tokens["color"]["background"]>;
+
 const cssVariable = (tokenId: TokenId) => {
     return `var(--${tokenId.split('.').join('-')})`;
 }
@@ -51,8 +62,21 @@ const createPaddingStyle = (padding: Padding) => {
   }).join("");
 }
 
+const createBorderRadiusStyle = (borderRadius: BorderRadius) => {
+  if (typeof borderRadius === "string") {
+    const tokenId = `borderRadius.${borderRadius}` as TokenId;
+    return `border-radius: ${cssVariable(tokenId)};`
+  }
+
+  return Object.entries(borderRadius).map(([key, value]) => {
+    const tokenId = `borderRadius.${value}` as TokenId;
+    return `${BorderRadiusKeys[key as keyof typeof BorderRadiusKeys]}: ${cssVariable(tokenId)};`
+  }).join("");
+}
+
 const cssVariables = (theme: Tokens) => {
     return createCssVar(theme).join(';');
 }
 
 export { cssVariables, cssVariable, createPaddingStyle, createBorderRadiusStyle };
+export type { RecursiveKeyOf, Padding, BorderRadius, Spacing, BackgroundColor };

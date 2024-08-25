@@ -1,4 +1,4 @@
-import { createPaddingStyle, cssVariable, cssVariables, Padding } from './helper';
+import { BorderRadius, createBorderRadiusStyle, createPaddingStyle, cssVariable, cssVariables, Padding } from './helper';
 import { Tokens } from './tokens';
 
 test('cssVariables', () => {
@@ -203,9 +203,38 @@ describe("createPaddingStyle", () => {
         },
     ]
     scenarios.forEach((scenario) => {
-        const testName = JSON.stringify(scenario.padding)
-        test(`With ${testName} as argument, it should return ${scenario.expected === "" ? "an empty string" : scenario.expected}`, () => {
+        const testName = `With ${JSON.stringify(scenario.padding)} as argument, it should return ${scenario.expected === "" ? "an empty string" : scenario.expected}`
+        
+        test(testName, () => {
             const result = createPaddingStyle(scenario.padding)
+            expect(result).toBe(scenario.expected)
+        })
+    })
+})
+
+describe("createBorderRadiusStyle", () => {
+    const scenarios: {
+        borderRadius: BorderRadius
+        expected: string
+    }[] = [
+        {
+            borderRadius: "xs",
+            expected: "border-radius: var(--borderRadius-xs);"
+        },
+        {
+            borderRadius: {bottomLeft: "xs", bottomRight: "sm", topLeft: "md", topRight: "lg"},
+            expected: "border-bottom-left-radius: var(--borderRadius-xs);border-bottom-right-radius: var(--borderRadius-sm);border-top-left-radius: var(--borderRadius-md);border-top-right-radius: var(--borderRadius-lg);"
+        },
+        {
+            borderRadius: {},
+            expected: ""
+        },
+    ]
+    scenarios.forEach((scenario) => {
+        const testName = `With ${JSON.stringify(scenario.borderRadius)} as argument, it should return ${scenario.expected === "" ? "an empty string" : scenario.expected}`
+        
+        test(testName, () => {
+            const result = createBorderRadiusStyle(scenario.borderRadius)
             expect(result).toBe(scenario.expected)
         })
     })

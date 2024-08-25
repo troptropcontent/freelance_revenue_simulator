@@ -10,6 +10,23 @@ type RecursiveKeyOf<TObj extends object> = {
 
 type TokenId = RecursiveKeyOf<Tokens>;
 
+type SpacingsType<T, Keys extends string> = T | {
+  [key in Keys]?: T;
+};
+
+type Spacing = keyof Tokens["spacing"];
+
+const PaddingKeys = {
+  top: "padding-block-start",
+  right: "padding-inline-end",
+  bottom: "padding-block-end",
+  left: "padding-inline-start",
+  inline: "padding-inline",
+  block: "padding-block",
+} as const;
+
+type Padding = SpacingsType<Spacing, keyof typeof PaddingKeys>;
+
 const cssVariable = (tokenId: TokenId) => {
     return `var(--${tokenId.split('.').join('-')})`;
 }
@@ -22,8 +39,20 @@ const createCssVar = (themeObject: object, prefix: string = ""): string[] =>
       return `${varName}:${value}`;
 });
 
+const createPaddingStyle = (padding: Padding) => {
+  if (typeof padding === "string") {
+    const tokenId = `spacing.${padding}` as TokenId;
+    return `padding: ${cssVariable(tokenId)};`
+  }
+
+  return Object.entries(padding).map(([key, value]) => {
+    const tokenId = `spacing.${value}` as TokenId;
+    return `${PaddingKeys[key as keyof typeof PaddingKeys]}: ${cssVariable(tokenId)};`
+  }).join("");
+}
+
 const cssVariables = (theme: Tokens) => {
     return createCssVar(theme).join(';');
 }
 
-export { cssVariables, cssVariable };
+export { cssVariables, cssVariable, createPaddingStyle, createBorderRadiusStyle };

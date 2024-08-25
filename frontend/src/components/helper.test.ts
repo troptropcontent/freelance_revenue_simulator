@@ -1,4 +1,4 @@
-import { cssVariable, cssVariables } from './helper';
+import { createPaddingStyle, cssVariable, cssVariables, Padding } from './helper';
 import { Tokens } from './tokens';
 
 test('cssVariables', () => {
@@ -170,4 +170,43 @@ test('cssVariables', () => {
 test("cssVariable", () => {
     const result = cssVariable("color.background.blue.dark")
     expect(result).toBe("var(--color-background-blue-dark)") 
+})
+
+describe("createPaddingStyle", () => {
+    const scenarios: {
+        padding: Padding
+        expected: string
+    }[] = [
+        {
+            padding: {top: "xs"},
+            expected: "padding-block-start: var(--spacing-xs);"
+        },
+        {
+            padding: {bottom: "sm"},
+            expected: "padding-block-end: var(--spacing-sm);"
+        },
+        {
+            padding: {inline: "md"},
+            expected: "padding-inline: var(--spacing-md);"
+        },
+        {
+            padding: "xl",
+            expected: "padding: var(--spacing-xl);"
+        },
+        {
+            padding: {top: "xs", bottom: "sm", inline: "md", block: "lg"},
+            expected: "padding-block-start: var(--spacing-xs);padding-block-end: var(--spacing-sm);padding-inline: var(--spacing-md);padding-block: var(--spacing-lg);"
+        },
+        {
+            padding: {},
+            expected: ""
+        },
+    ]
+    scenarios.forEach((scenario) => {
+        const testName = JSON.stringify(scenario.padding)
+        test(`With ${testName} as argument, it should return ${scenario.expected === "" ? "an empty string" : scenario.expected}`, () => {
+            const result = createPaddingStyle(scenario.padding)
+            expect(result).toBe(scenario.expected)
+        })
+    })
 })

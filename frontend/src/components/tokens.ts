@@ -12,6 +12,8 @@ interface Tokens {
             red: Color;
             yellow: Color;
             orange: Color;
+            grey: Color;
+            white: string;
         };
         text: {
             primary: Color;

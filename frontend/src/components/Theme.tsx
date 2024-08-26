@@ -29,6 +29,12 @@ const theme: DefaultTheme = {
                 medium: "#FFA500",
                 dark: "#FFA500",
             },
+            grey: {
+                light: "#FAF9FA",
+                medium: "#C7C8CC",
+                dark: "#B4B4B8",
+            },
+            white: "#FFFFFF",
         },
         text: {
             primary: {

@@ -79,4 +79,4 @@ const cssVariables = (theme: Tokens) => {
 }
 
 export { cssVariables, cssVariable, createPaddingStyle, createBorderRadiusStyle };
-export type { RecursiveKeyOf, Padding, BorderRadius, Spacing, BackgroundColor };
+export type { RecursiveKeyOf, Padding, BorderRadius, Spacing, BackgroundColor, TokenId };

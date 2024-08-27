@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --main-nav-height: 64px;
-  
+
   /* Colors */
-  --color-primary: #F4A261;
-  --color-secondary: #E76F51;
-  --color-tertiary: #E9C46A;
-  --color-grey-light: #E3E1D9;
-  --color-grey: #C7C8CC;
-  --color-grey-dark: #B4B4B8;
-  --color-background: #FAF9FA;
+  --color-primary: #f4a261;
+  --color-secondary: #e76f51;
+  --color-tertiary: #e9c46a;
+  --color-grey-light: #e3e1d9;
+  --color-grey: #c7c8cc;
+  --color-grey-dark: #b4b4b8;
+  --color-background: #faf9fa;
   --color-white: white;
-  --main-nav-background-color: #378CE7;
-  --main-section-background-color: #67C6E3;
-  --who-we-are-section-background-color: #DFF5FF;
+  --main-nav-background-color: #378ce7;
+  --main-section-background-color: #67c6e3;
+  --who-we-are-section-background-color: #dff5ff;
 
   /* Fonts */
-  --font-family: 'Merriweather', serif;
-  --font-family-heading: 'Work Sans', sans-serif;
+  --font-family: "Merriweather", serif;
+  --font-family-heading: "Work Sans", sans-serif;
 
   /* Font sizes */
   --font-size-small: 1rem;
@@ -81,7 +81,6 @@ body {
   color: var(--color-secondary);
 }
 
-
 .main_nav-logo {
   margin-block: auto;
   text-decoration: none;
@@ -92,7 +91,7 @@ body {
 
 .main_nav-logo:visited {
   color: inherit;
-} 
+}
 
 #simulator_section {
   background-color: var(--color-background);
@@ -115,9 +114,9 @@ body {
   width: fit-content;
   display: grid;
   gap: var(--spacing-small);
-  grid-template-areas: 
-            "logo text text"
-            "logo link link";
+  grid-template-areas:
+    "logo text text"
+    "logo link link";
 }
 
 #simulator_section-sponsor-logo {
@@ -147,12 +146,12 @@ body {
   padding-block-end: var(--spacing-medium);
   padding-inline: var(--spacing-medium);
   display: grid;
-  grid-template-areas:  
-  "title title"
-  "article_1_photo article_2_photo"
-                        "article_1_title article_2_title"
-                        "article_1_text article_2_text"
-                        "article_1_link article_2_link";
+  grid-template-areas:
+    "title title"
+    "article_1_photo article_2_photo"
+    "article_1_title article_2_title"
+    "article_1_text article_2_text"
+    "article_1_link article_2_link";
 }
 
 #who_we_are_section_title {
@@ -209,7 +208,7 @@ body {
   width: 145px;
   object-fit: cover;
   margin-inline: auto;
-  background: #378CE7;
+  background: #378ce7;
   border-radius: var(--border-radius-medium);
 }
 
@@ -247,7 +246,6 @@ body {
   background-color: white;
 }
 
-
 /* Fonts */
 
 body {
@@ -255,7 +253,12 @@ body {
   font-size: var(--font-size-small);
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-family-heading);
   font-size: var(--font-size-medium);
   margin-block: 0;
@@ -320,7 +323,9 @@ p {
   align-items: center;
 }
 
-.loader, .loader:before, .loader:after {
+.loader,
+.loader:before,
+.loader:after {
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
@@ -337,7 +342,7 @@ p {
 }
 .loader:before,
 .loader:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
 }
@@ -350,8 +355,12 @@ p {
 }
 
 @keyframes bblFadInOut {
-  0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
-  40% { box-shadow: 0 2.5em 0 0 }
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
 }
-    
-

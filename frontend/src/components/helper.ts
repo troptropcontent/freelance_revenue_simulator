@@ -1,18 +1,21 @@
 import { Tokens } from "./tokens";
 
 type RecursiveKeyOf<TObj extends object> = {
-    [TKey in keyof TObj & (string | number)]:
-      TObj[TKey] extends any[] ? `${TKey}` :
-      TObj[TKey] extends object
-        ? `${TKey}.${RecursiveKeyOf<TObj[TKey]>}`
-        : `${TKey}`;
-  }[keyof TObj & (string | number)];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [TKey in keyof TObj & (string | number)]: TObj[TKey] extends any[]
+    ? `${TKey}`
+    : TObj[TKey] extends object
+      ? `${TKey}.${RecursiveKeyOf<TObj[TKey]>}`
+      : `${TKey}`;
+}[keyof TObj & (string | number)];
 
 type TokenId = RecursiveKeyOf<Tokens>;
 
-type SpacingsType<T, Keys extends string> = T | {
-  [key in Keys]?: T;
-};
+type SpacingsType<T, Keys extends string> =
+  | T
+  | {
+      [key in Keys]?: T;
+    };
 
 type Spacing = keyof Tokens["spacing"];
 
@@ -34,49 +37,67 @@ const BorderRadiusKeys = {
   bottomRight: "border-bottom-right-radius",
 } as const;
 
-type BorderRadius = SpacingsType<keyof Tokens["borderRadius"], keyof typeof BorderRadiusKeys>;
+type BorderRadius = SpacingsType<
+  keyof Tokens["borderRadius"],
+  keyof typeof BorderRadiusKeys
+>;
 
 type BackgroundColor = RecursiveKeyOf<Tokens["color"]["background"]>;
 
 const cssVariable = (tokenId: TokenId) => {
-    return `var(--${tokenId.split('.').join('-')})`;
-}
+  return `var(--${tokenId.split(".").join("-")})`;
+};
 
 const createCssVar = (themeObject: object, prefix: string = ""): string[] =>
-    Object.entries(themeObject).flatMap(([key, value]) => {
-      const varName = prefix == "" ? `--${key}` : `${prefix}-${key}`;
-      if (typeof value === 'object')
-        return createCssVar(value, varName);
-      return `${varName}:${value}`;
-});
+  Object.entries(themeObject).flatMap(([key, value]) => {
+    const varName = prefix == "" ? `--${key}` : `${prefix}-${key}`;
+    if (typeof value === "object") return createCssVar(value, varName);
+    return `${varName}:${value}`;
+  });
 
 const createPaddingStyle = (padding: Padding) => {
   if (typeof padding === "string") {
     const tokenId = `spacing.${padding}` as TokenId;
-    return `padding: ${cssVariable(tokenId)};`
+    return `padding: ${cssVariable(tokenId)};`;
   }
 
-  return Object.entries(padding).map(([key, value]) => {
-    const tokenId = `spacing.${value}` as TokenId;
-    return `${PaddingKeys[key as keyof typeof PaddingKeys]}: ${cssVariable(tokenId)};`
-  }).join("");
-}
+  return Object.entries(padding)
+    .map(([key, value]) => {
+      const tokenId = `spacing.${value}` as TokenId;
+      return `${PaddingKeys[key as keyof typeof PaddingKeys]}: ${cssVariable(tokenId)};`;
+    })
+    .join("");
+};
 
 const createBorderRadiusStyle = (borderRadius: BorderRadius) => {
   if (typeof borderRadius === "string") {
     const tokenId = `borderRadius.${borderRadius}` as TokenId;
-    return `border-radius: ${cssVariable(tokenId)};`
+    return `border-radius: ${cssVariable(tokenId)};`;
   }
 
-  return Object.entries(borderRadius).map(([key, value]) => {
-    const tokenId = `borderRadius.${value}` as TokenId;
-    return `${BorderRadiusKeys[key as keyof typeof BorderRadiusKeys]}: ${cssVariable(tokenId)};`
-  }).join("");
-}
+  return Object.entries(borderRadius)
+    .map(([key, value]) => {
+      const tokenId = `borderRadius.${value}` as TokenId;
+      return `${BorderRadiusKeys[key as keyof typeof BorderRadiusKeys]}: ${cssVariable(tokenId)};`;
+    })
+    .join("");
+};
 
 const cssVariables = (theme: Tokens) => {
-    return createCssVar(theme).join(';');
-}
+  return createCssVar(theme).join(";");
+};
 
-export { cssVariables, cssVariable, createPaddingStyle, createBorderRadiusStyle };
-export type { RecursiveKeyOf, Padding, BorderRadius, Spacing, BackgroundColor, TokenId };
+export {
+  cssVariables,
+  cssVariable,
+  createPaddingStyle,
+  createBorderRadiusStyle,
+};
+export type {
+  RecursiveKeyOf,
+  Padding,
+  BorderRadius,
+  Spacing,
+  BackgroundColor,
+  TokenId,
+};

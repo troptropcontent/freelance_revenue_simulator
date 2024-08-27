@@ -30,6 +30,12 @@ test('cssVariables', () => {
                     medium: "#FFA500",
                     dark: "#FFA500",
                 },
+                grey: {
+                    light: "#808080",
+                    medium: "#808080",
+                    dark: "#808080",
+                },
+                white: "#FFFFFF",
             },
             text: {
                 primary: {

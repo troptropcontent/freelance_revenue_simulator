@@ -42,7 +42,7 @@ function App() {
     <Theme>
     <MainLayout>
       <Heading as="h2" align="center" id="activities_title">Mes activités</Heading>
-      <List.Root gap="lg" id="activities_list" background='grey.light' borderRadius="md" padding={'medium'}>
+      <List.Root gap="lg" id="activities_list" background='grey.light' borderRadius="md" padding="md">
         {[1, 2, 3, 4, 5].map((item) => (
           <List.Item key={item} padding="lg" background='white' borderRadius="sm">
             <Text>

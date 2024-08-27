@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import './App.css'
 import { Heading } from './components/ui/Heading'
 import { List } from './components/ui/List';
 import { Text } from './components/ui/Text';
 import { Box } from './components/ui/Box';
+import Theme from './components/Theme';
 
 const MainLayout = styled.div`
   display: grid;
   gap: var(--spacing-medium);
   padding-inline: var(--spacing-medium);
+  padding-block: var(--spacing-large);
   grid-template-areas:
     "activities_title results_title"
     "activities_section results_section";
@@ -38,11 +39,12 @@ const MainLayout = styled.div`
 function App() {
 
   return (
+    <Theme>
     <MainLayout>
       <Heading as="h2" align="center" id="activities_title">Mes activités</Heading>
-      <List.Root gap="large" id="activities_list" background='background' borderRadius={"medium"} padding={'medium'}>
+      <List.Root gap="lg" id="activities_list" background='grey.light' borderRadius="md" padding="md">
         {[1, 2, 3, 4, 5].map((item) => (
-          <List.Item key={item} padding={'large'} background='white'>
+          <List.Item key={item} padding="lg" background='white' borderRadius="sm">
             <Text>
               Activité {item}
             </Text>
@@ -50,12 +52,13 @@ function App() {
         ))}
       </List.Root>
       <Heading as="h2" align="center" id="results_title">Résultats</Heading>
-      <Box background='background' borderRadius={"medium"} flex flexDirection="column" justifyContent="center" alignItems="center">
+      <Box background='grey.light' borderRadius="md" flex flexDirection="column" justifyContent="center" alignItems="center">
         <Text>
           Résultats
         </Text>
       </Box>
     </MainLayout>
+    </Theme>
   )
 }
 

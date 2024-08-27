@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import styled from "styled-components";
-import { BuildPaddingStyle, Padding } from "./utils";
+import { BuildPaddingStyle, Padding } from "./helpers";
 
 type HeadingProps = {
   as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

@@ -1,8 +1,6 @@
 import { CSSProperties } from "react";
 import styled from "styled-components";
-import { BorderRadius, BuildBorderRadiusStyle, BuildPaddingStyle, Padding } from "./utils";
-
-// TODO: Refacto to use Theme
+import { BackgroundColor, BorderRadius, createBorderRadiusStyle, createPaddingStyle, cssVariable, Padding, Spacing } from "../helper";
 
 type BoxProps = {
     as?: React.ElementType;
@@ -12,9 +10,9 @@ type BoxProps = {
     flexDirection?: CSSProperties["flexDirection"];
     justifyContent?: CSSProperties["justifyContent"];
     alignItems?: CSSProperties["alignItems"];
-    gap?: "small" | "medium" | "large" | "none";
+    gap?: Spacing;
     padding?: Padding;
-    background?: "primary" | "secondary" | "tertiary" | "grey-light" | "grey" | "grey-dark" | "background" | "white";
+    background?: BackgroundColor;
     borderRadius?: BorderRadius;
 } 
 
@@ -22,7 +20,7 @@ const BoxTag = ({
     as = "div",
     children,
     id,
-}: Omit<BoxProps, "flex">) => {
+}: {as: React.ElementType, children: React.ReactNode, id?: string}) => {
     const Tag = as;
     return <Tag id={id}>{children}</Tag>
 }
@@ -43,9 +41,9 @@ const StyledBox = styled(BoxTag)<{
     ${props => props.$justifyContent && `justify-content: ${props.$justifyContent};`}
     ${props => props.$alignItems && `align-items: ${props.$alignItems};`}
     ${props => props.$gap && `gap: var(--spacing-${props.$gap});`}
-    ${props => props.$padding && BuildPaddingStyle(props.$padding)}
-    ${props => props.$background && `background-color: var(--color-${props.$background});`}
-    ${props => props.$borderRadius && BuildBorderRadiusStyle(props.$borderRadius)}
+    ${props => props.$padding && createPaddingStyle(props.$padding)}
+    ${props => props.$background && `background-color: ${cssVariable(`color.background.${props.$background}`)};`}
+    ${props => props.$borderRadius && createBorderRadiusStyle(props.$borderRadius)}
 `;
 
 const Box = ({

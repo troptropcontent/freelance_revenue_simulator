@@ -8,20 +8,27 @@ type HeadingProps = {
   align?: CSSProperties["textAlign"];
   padding?: Padding;
   id?: string;
-}
+};
 
 const HeadingTag = ({ as, children, id }: Omit<HeadingProps, "align">) => {
   const Tag = as;
-  return <Tag id={id}>{children}</Tag>
-}
+  return <Tag id={id}>{children}</Tag>;
+};
 
-const StyledHeading = styled(HeadingTag)<{ $align: CSSProperties["textAlign"], $padding?: Padding }>`
-  ${props => props.$align && `text-align: ${props.$align};`}
-  ${props => props.$padding && BuildPaddingStyle(props.$padding)}
+const StyledHeading = styled(HeadingTag)<{
+  $align: CSSProperties["textAlign"];
+  $padding?: Padding;
+}>`
+  ${(props) => props.$align && `text-align: ${props.$align};`}
+  ${(props) => props.$padding && BuildPaddingStyle(props.$padding)}
 `;
 
 const Heading = ({ as, children, align, id, padding }: HeadingProps) => {
-  return <StyledHeading as={as} $align={align} $padding={padding} id={id}>{children}</StyledHeading>
-}
+  return (
+    <StyledHeading as={as} $align={align} $padding={padding} id={id}>
+      {children}
+    </StyledHeading>
+  );
+};
 
 export { Heading };

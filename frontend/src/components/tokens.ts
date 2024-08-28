@@ -14,6 +14,7 @@ interface Tokens {
       orange: Color;
       grey: Color;
       white: string;
+      brand: Color;
     };
     text: {
       primary: Color;
@@ -26,6 +27,7 @@ interface Tokens {
       red: Color;
       yellow: Color;
       orange: Color;
+      brand: Color;
     };
   };
   fonts: {

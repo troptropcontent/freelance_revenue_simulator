@@ -39,6 +39,11 @@ const theme: DefaultTheme = {
         dark: "#B4B4B8",
       },
       white: "#FFFFFF",
+      brand: {
+        light: "#FFEAC5",
+        medium: "#f4a261",
+        dark: "#e76f51",
+      },
     },
     text: {
       primary: {
@@ -82,6 +87,11 @@ const theme: DefaultTheme = {
         light: "#FFA500",
         medium: "#FFA500",
         dark: "#FFA500",
+      },
+      brand: {
+        light: "#FFEAC5",
+        medium: "#f4a261",
+        dark: "#e76f51",
       },
     },
   },

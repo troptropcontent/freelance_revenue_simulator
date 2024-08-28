@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Heading } from "./components/ui/Heading";
-import { List } from "./components/ui/List";
 import { Text } from "./components/ui/Text";
 import { Box } from "./components/ui/Box";
 import Theme from "./components/Theme";
 import { Formik } from "formik";
+import { Accordion } from "./components/ui";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -70,6 +70,17 @@ const initialValues: FormValues = {
   admin: undefined,
 };
 
+const ActivitiesTranslations: Record<keyof FormValues, string> = {
+  freelance_daily_rate: "Mission freelance facturée au TJM",
+  freelance_on_delivery: "Mission freelance facturée au livrable",
+  consulting: "Consulting",
+  sponsorship: "Media & Sponsoring",
+  side_project: "Side business",
+  training: "Formation",
+  digital_product: "Produits digitaux",
+  admin: "Gestion",
+};
+
 function App() {
   return (
     <Theme>
@@ -81,22 +92,25 @@ function App() {
           <Heading as="h2" align="center" id="results_title">
             Résultats
           </Heading>
-          <List.Root
-            gap="lg"
-            id="activities_list"
-            background="grey.light"
-            borderRadius="md"
-            padding="md"
-          >
-            <List.Item
-              key={1}
-              padding="lg"
-              background="white"
-              borderRadius="sm"
-            >
-              <Text>Activité A</Text>
-            </List.Item>
-          </List.Root>
+          <Box background="grey.light" padding="lg" borderRadius="md">
+            <Accordion.Root type="single" collapsible gap="md">
+              {Object.entries(initialValues).map(([key, value]) => {
+                if (typeof value === "object") {
+                  return (
+                    <Accordion.Item
+                      title={ActivitiesTranslations[key as keyof FormValues]}
+                      value={key}
+                      key={key}
+                    >
+                      <Box padding="md">
+                        <Text>Input pour {key}</Text>
+                      </Box>
+                    </Accordion.Item>
+                  );
+                }
+              })}
+            </Accordion.Root>
+          </Box>
           <Box
             background="grey.light"
             borderRadius="md"

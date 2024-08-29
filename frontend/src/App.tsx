@@ -60,7 +60,7 @@ export type FormValues = {
 };
 
 const initialValues: FormValues = {
-  freelance_daily_rate: { rate: 0, quantity: 0, enjoyment_rate: 0 },
+  freelance_daily_rate: { rate: 250, quantity: 1, enjoyment_rate: 5 },
   freelance_on_delivery: undefined,
   consulting: undefined,
   sponsorship: undefined,

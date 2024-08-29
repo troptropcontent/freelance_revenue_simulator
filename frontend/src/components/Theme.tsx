@@ -57,9 +57,9 @@ const theme: DefaultTheme = {
         dark: "#000000",
       },
       muted: {
-        light: "#000000",
-        medium: "#000000",
-        dark: "#000000",
+        light: "#E3E1D9",
+        medium: "#C7C8CC",
+        dark: "#B4B4B8",
       },
     },
     border: {

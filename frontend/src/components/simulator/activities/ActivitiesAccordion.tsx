@@ -1,18 +1,24 @@
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
 import { Accordion } from "src/components/ui/Accordion";
-import { Box } from "src/components/ui/Box";
-import { Text } from "src/components/ui/Text";
+import { FreelanceDailyRate } from "src/components/simulator/activities/FreelanceDailyRate";
+import { FreelanceOnDelivery } from "src/components/simulator/activities/FreelanceOnDelivery";
+import { Consulting } from "src/components/simulator/activities/Consulting";
+import { Sponsorship } from "src/components/simulator/activities/Sponsorship";
+import { SideProject } from "src/components/simulator/activities/SideProject";
+import { Training } from "src/components/simulator/activities/Training";
+import { DigitalProduct } from "src/components/simulator/activities/DigitalProduct";
+import { Admin } from "src/components/simulator/activities/Admin";
 
-const ActivitiesTranslations: Record<keyof FormValues, string> = {
-  freelance_daily_rate: "Mission freelance facturée au TJM",
-  freelance_on_delivery: "Mission freelance facturée au livrable",
-  consulting: "Consulting",
-  sponsorship: "Media & Sponsoring",
-  side_project: "Side business",
-  training: "Formation",
-  digital_product: "Produits digitaux",
-  admin: "Gestion",
+const ActivitiesComponents: Record<keyof FormValues, React.FC> = {
+  freelance_daily_rate: FreelanceDailyRate,
+  freelance_on_delivery: FreelanceOnDelivery,
+  consulting: Consulting,
+  sponsorship: Sponsorship,
+  side_project: SideProject,
+  training: Training,
+  digital_product: DigitalProduct,
+  admin: Admin,
 };
 
 const ActivitiesAccordion = () => {
@@ -22,19 +28,9 @@ const ActivitiesAccordion = () => {
     <Accordion.Root type="single" collapsible gap="md">
       {Object.entries(values).map(([key, value]) => {
         if (typeof value === "object") {
-          return (
-            <Accordion.Item
-              title={ActivitiesTranslations[key as keyof FormValues]}
-              value={key}
-              key={key}
-            >
-              <Box padding="md">
-                <Text>
-                  Input pour '{ActivitiesTranslations[key as keyof FormValues]}'
-                </Text>
-              </Box>
-            </Accordion.Item>
-          );
+          const ActivityComponent =
+            ActivitiesComponents[key as keyof FormValues];
+          return <ActivityComponent key={key} />;
         }
       })}
     </Accordion.Root>

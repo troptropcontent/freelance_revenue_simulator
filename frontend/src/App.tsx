@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Heading } from "./components/ui/Heading";
-import { Text } from "./components/ui/Text";
-import { Box } from "./components/ui/Box";
-import Theme from "./components/Theme";
+import { Heading } from "src/components/ui/Heading";
+import { Text } from "src/components/ui/Text";
+import { Box } from "src/components/ui/Box";
+import Theme from "src/components/Theme";
 import { Formik } from "formik";
-import { Accordion } from "./components/ui";
+import { ActivitiesAccordion } from "src/components/simulator/activities/ActivitiesAccordion";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -14,7 +14,7 @@ const StyledForm = styled.form`
   grid-template-columns: 1fr 1fr;
 `;
 
-type FormValues = {
+export type FormValues = {
   freelance_daily_rate?: {
     rate: number;
     quantity: number;
@@ -70,17 +70,6 @@ const initialValues: FormValues = {
   admin: undefined,
 };
 
-const ActivitiesTranslations: Record<keyof FormValues, string> = {
-  freelance_daily_rate: "Mission freelance facturée au TJM",
-  freelance_on_delivery: "Mission freelance facturée au livrable",
-  consulting: "Consulting",
-  sponsorship: "Media & Sponsoring",
-  side_project: "Side business",
-  training: "Formation",
-  digital_product: "Produits digitaux",
-  admin: "Gestion",
-};
-
 function App() {
   return (
     <Theme>
@@ -93,23 +82,7 @@ function App() {
             Résultats
           </Heading>
           <Box background="grey.light" padding="lg" borderRadius="md">
-            <Accordion.Root type="single" collapsible gap="md">
-              {Object.entries(initialValues).map(([key, value]) => {
-                if (typeof value === "object") {
-                  return (
-                    <Accordion.Item
-                      title={ActivitiesTranslations[key as keyof FormValues]}
-                      value={key}
-                      key={key}
-                    >
-                      <Box padding="md">
-                        <Text>Input pour {key}</Text>
-                      </Box>
-                    </Accordion.Item>
-                  );
-                }
-              })}
-            </Accordion.Root>
+            <ActivitiesAccordion />
           </Box>
           <Box
             background="grey.light"

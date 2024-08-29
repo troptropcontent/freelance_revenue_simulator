@@ -44,6 +44,8 @@ type BorderRadius = SpacingsType<
 
 type BackgroundColor = RecursiveKeyOf<Tokens["color"]["background"]>;
 
+type TextColor = RecursiveKeyOf<Tokens["color"]["text"]>;
+
 const cssVariable = (tokenId: TokenId) => {
   return `var(--${tokenId.split(".").join("-")})`;
 };
@@ -100,4 +102,5 @@ export type {
   Spacing,
   BackgroundColor,
   TokenId,
+  TextColor,
 };

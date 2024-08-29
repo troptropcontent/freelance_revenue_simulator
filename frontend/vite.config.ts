@@ -8,4 +8,9 @@ export default defineConfig({
     port: 3001,
     host: "127.0.0.1",
   },
+  resolve: {
+    alias: {
+      src: "/src",
+    },
+  },
 });

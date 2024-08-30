@@ -43,6 +43,7 @@ test("cssVariables", () => {
           dark: "#808080",
         },
         white: "#FFFFFF",
+        black: "0%, 0%, 0%",
         brand: {
           light: "#FFEAC5",
           medium: "#f4a261",
@@ -65,6 +66,7 @@ test("cssVariables", () => {
           medium: "#000000",
           dark: "#000000",
         },
+        white: "#FFFFFF",
       },
       border: {
         blue: {
@@ -148,6 +150,7 @@ test("cssVariables", () => {
     "--color-background-grey-medium:#808080",
     "--color-background-grey-dark:#808080",
     "--color-background-white:#FFFFFF",
+    "--color-background-black:0%, 0%, 0%",
     "--color-background-brand-light:#FFEAC5",
     "--color-background-brand-medium:#f4a261",
     "--color-background-brand-dark:#e76f51",
@@ -160,6 +163,7 @@ test("cssVariables", () => {
     "--color-text-muted-light:#000000",
     "--color-text-muted-medium:#000000",
     "--color-text-muted-dark:#000000",
+    "--color-text-white:#FFFFFF",
     "--color-border-blue-light:#0000FF",
     "--color-border-blue-medium:#0000FF",
     "--color-border-blue-dark:#0000FF",

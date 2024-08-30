@@ -108,7 +108,7 @@ const Dialog = ({ children, trigger, title, description }: DialogProps) => {
               <Cross2Icon />
             </Button>
           </PrimitiveDialog.Close>
-          <Text size="xs" color="muted.medium" className="DialogDescription">
+          <Text size="xs" className="DialogDescription">
             {description}
           </Text>
           <Box className="DialogContent">{children({ setOpen })}</Box>

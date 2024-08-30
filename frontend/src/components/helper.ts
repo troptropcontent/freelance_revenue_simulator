@@ -44,6 +44,11 @@ type BorderRadius = SpacingsType<
 
 type BackgroundColor = RecursiveKeyOf<Tokens["color"]["background"]>;
 
+type ButtonColor = Exclude<
+  keyof Tokens["color"]["background"],
+  "white" | "black"
+>;
+
 type TextColor = RecursiveKeyOf<Tokens["color"]["text"]>;
 
 const cssVariable = (tokenId: TokenId) => {
@@ -103,4 +108,5 @@ export type {
   BackgroundColor,
   TokenId,
   TextColor,
+  ButtonColor,
 };

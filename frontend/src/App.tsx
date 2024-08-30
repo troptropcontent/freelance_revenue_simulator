@@ -5,6 +5,8 @@ import { Box } from "src/components/ui/Box";
 import Theme from "src/components/Theme";
 import { Formik } from "formik";
 import { ActivitiesAccordion } from "src/components/simulator/activities/ActivitiesAccordion";
+import { Dialog } from "src/components/ui/Dialog";
+import { Button } from "./components/ui/Button";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -81,8 +83,28 @@ function App() {
           <Heading as="h2" align="center" id="results_title">
             Résultats
           </Heading>
-          <Box background="grey.light" padding="lg" borderRadius="md">
+          <Box
+            background="grey.light"
+            padding="lg"
+            borderRadius="md"
+            flex
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            gap="sm"
+          >
             <ActivitiesAccordion />
+            <Dialog
+              title="Ajouter une activité"
+              description="Ajouter une activité à la liste de vos activités pour determiner avec précision vos résultats annuels."
+              trigger={<Button>Ajouter une activité</Button>}
+            >
+              {({ setOpen }) => (
+                <Button onClick={() => setOpen(false)}>
+                  Ajouter une activité
+                </Button>
+              )}
+            </Dialog>
           </Box>
           <Box
             background="grey.light"

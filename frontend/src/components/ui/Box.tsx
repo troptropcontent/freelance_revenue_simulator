@@ -77,7 +77,7 @@ const Box = ({
   borderRadius,
   background,
   ...props
-}: BoxProps & React.ComponentPropsWithoutRef<React.ElementType>) => {
+}: BoxProps & React.ComponentProps<React.ElementType>) => {
   return (
     <StyledBox
       as={as}

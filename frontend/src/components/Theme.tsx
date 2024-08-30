@@ -39,6 +39,7 @@ const theme: DefaultTheme = {
         dark: "#B4B4B8",
       },
       white: "#FFFFFF",
+      black: "0%, 0%, 0%",
       brand: {
         light: "#FFEAC5",
         medium: "#f4a261",
@@ -61,6 +62,7 @@ const theme: DefaultTheme = {
         medium: "#C7C8CC",
         dark: "#B4B4B8",
       },
+      white: "#FFFFFF",
     },
     border: {
       blue: {

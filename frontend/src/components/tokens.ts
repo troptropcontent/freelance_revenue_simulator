@@ -14,12 +14,14 @@ interface Tokens {
       orange: Color;
       grey: Color;
       white: string;
+      black: string;
       brand: Color;
     };
     text: {
       primary: Color;
       secondary: Color;
       muted: Color;
+      white: string;
     };
     border: {
       blue: Color;

@@ -5,6 +5,8 @@ import { Box } from "src/components/ui/Box";
 import Theme from "src/components/Theme";
 import { Formik } from "formik";
 import { ActivitiesAccordion } from "src/components/simulator/activities/ActivitiesAccordion";
+import { ActivitiesModal } from "src/components/simulator/activities/ActivitiesModal";
+import { Activities } from "./components/simulator/constants";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -15,65 +17,44 @@ const StyledForm = styled.form`
 `;
 
 export type FormValues = {
-  freelance_daily_rate?: {
-    rate: number;
-    quantity: number;
-    enjoyment_rate: number;
-  };
-  freelance_on_delivery?: {
-    rate: number;
-    quantity: number;
-    average_time_spent: number;
-    enjoyment_rate: number;
-  };
-  consulting?: {
-    rate: number;
-    quantity: number;
-    enjoyment_rate: number;
-  };
-  sponsorship?: {
-    rate: number;
-    quantity: number;
-    average_time_spent: number;
-    enjoyment_rate: number;
-  };
-  side_project?: {
-    revenue: number;
-    average_time_spent: number;
-    enjoyment_rate: number;
-  };
-  training?: {
-    rate: number;
-    quantity: number;
-    average_time_spent: number;
-    enjoyment_rate: number;
-  };
-  digital_product?: {
-    revenue: number;
-    quantity: number;
-    average_time_spent: number;
-    enjoyment_rate: number;
-  };
-  admin?: {
-    average_time_spent: number;
-  };
+  [key in keyof typeof Activities]?: (typeof Activities)[key]["defaultValue"];
 };
 
 const initialValues: FormValues = {
-  freelance_daily_rate: { rate: 250, quantity: 1, enjoyment_rate: 5 },
-  freelance_on_delivery: undefined,
-  consulting: undefined,
-  sponsorship: undefined,
-  side_project: undefined,
-  training: undefined,
-  digital_product: undefined,
-  admin: undefined,
+  freelance_daily_rate: Activities.freelance_daily_rate.displayInInitialValues
+    ? Activities.freelance_daily_rate.defaultValue
+    : undefined,
+  freelance_on_delivery: Activities.freelance_on_delivery.displayInInitialValues
+    ? Activities.freelance_on_delivery.defaultValue
+    : undefined,
+  consulting: Activities.consulting.displayInInitialValues
+    ? Activities.consulting.defaultValue
+    : undefined,
+  sponsorship: Activities.sponsorship.displayInInitialValues
+    ? Activities.sponsorship.defaultValue
+    : undefined,
+  side_project: Activities.side_project.displayInInitialValues
+    ? Activities.side_project.defaultValue
+    : undefined,
+  training: Activities.training.displayInInitialValues
+    ? Activities.training.defaultValue
+    : undefined,
+  digital_product: Activities.digital_product.displayInInitialValues
+    ? Activities.digital_product.defaultValue
+    : undefined,
+  admin: Activities.admin.displayInInitialValues
+    ? Activities.admin.defaultValue
+    : undefined,
 };
 
 function App() {
   return (
     <Theme>
-      <Formik initialValues={initialValues} onSubmit={() => {}}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={() => {}}
+        enableReinitialize
+      >
         <StyledForm>
           <Heading as="h2" align="center" id="activities_title">
             Mes activités
@@ -81,8 +62,18 @@ function App() {
           <Heading as="h2" align="center" id="results_title">
             Résultats
           </Heading>
-          <Box background="grey.light" padding="lg" borderRadius="md">
+          <Box
+            background="grey.light"
+            padding="lg"
+            borderRadius="md"
+            flex
+            flexDirection="column"
+            gap="md"
+          >
             <ActivitiesAccordion />
+            <Box flex flexDirection="column">
+              <ActivitiesModal />
+            </Box>
           </Box>
           <Box
             background="grey.light"

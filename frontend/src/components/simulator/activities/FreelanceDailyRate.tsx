@@ -1,10 +1,11 @@
 import { Range } from "src/components/ui/formik/Range";
-import { BaseActivity } from "./BaseActivity";
+import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
+import { Activities } from "src/components/simulator/constants";
 
 const FreelanceDailyRate = () => {
   return (
     <BaseActivity
-      title="Mission de freelance facturée à la journée"
+      title={Activities.freelance_daily_rate.label}
       identifier="freelance_daily_rate"
     >
       <Range
@@ -22,6 +23,7 @@ const FreelanceDailyRate = () => {
         min={0}
         max={30}
         step={1}
+        unit="/ mois"
       />
       <Range
         name="freelance_daily_rate.enjoyment_rate"

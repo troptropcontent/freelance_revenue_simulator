@@ -1,6 +1,7 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
 import { Activities } from "src/components/simulator/constants";
+import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 
 const FreelanceDailyRate = () => {
   return (
@@ -25,14 +26,7 @@ const FreelanceDailyRate = () => {
         step={1}
         unit="/ mois"
       />
-      <Range
-        name="freelance_daily_rate.enjoyment_rate"
-        label="Niveau de stimulation"
-        hint="A titre indicatif, 1 pour un travail sans intérêt, 5 pour un travail passionnant."
-        min={0}
-        max={5}
-        step={1}
-      />
+      <EnjoymentRateInput name="freelance_daily_rate.enjoyment_rate" />
     </BaseActivity>
   );
 };

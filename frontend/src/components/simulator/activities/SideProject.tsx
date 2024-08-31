@@ -1,6 +1,7 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
 import { Activities } from "src/components/simulator/constants";
+import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 
 const SideProject = () => {
   return (
@@ -18,12 +19,7 @@ const SideProject = () => {
         label="Temps alloué"
         unit="jours / semaine"
       />
-      <Range
-        name="side_project.enjoyment_rate"
-        label="Niveau de kiff"
-        max={5}
-        unit="/ 5"
-      />
+      <EnjoymentRateInput name="side_project.enjoyment_rate" />
     </BaseActivity>
   );
 };

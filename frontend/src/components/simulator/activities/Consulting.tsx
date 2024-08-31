@@ -1,6 +1,7 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
 import { Activities } from "src/components/simulator/constants";
+import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 
 const Consulting = () => {
   return (
@@ -11,12 +12,7 @@ const Consulting = () => {
         label="Nombre d'heures facturées"
         unit="h / mois"
       />
-      <Range
-        name="consulting.enjoyment_rate"
-        label="Niveau de kiff"
-        max={5}
-        unit="/ 5"
-      />
+      <EnjoymentRateInput name="consulting.enjoyment_rate" />
     </BaseActivity>
   );
 };

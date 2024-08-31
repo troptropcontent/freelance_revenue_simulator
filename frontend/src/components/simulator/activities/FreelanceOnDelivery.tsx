@@ -1,6 +1,7 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
 import { Activities } from "src/components/simulator/constants";
+import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 
 const FreelanceOnDelivery = () => {
   return (
@@ -23,12 +24,7 @@ const FreelanceOnDelivery = () => {
         label="Temps passé par mission"
         unit="jours"
       />
-      <Range
-        name="freelance_on_delivery.enjoyment_rate"
-        label="Niveau de kiff"
-        max={5}
-        unit="/ 5"
-      />
+      <EnjoymentRateInput name="freelance_on_delivery.enjoyment_rate" />
     </BaseActivity>
   );
 };

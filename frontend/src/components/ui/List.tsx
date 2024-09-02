@@ -1,12 +1,16 @@
-import { Box } from "./Box";
+import { Box } from "src/components/ui/Box";
 
-const Root = (
-  props: Omit<Parameters<typeof Box>[0], "as" | "flex" | "flexDirection">,
-) => {
+type RootProps = Omit<
+  React.ComponentProps<typeof Box>,
+  "as" | "flex" | "flexDirection"
+>;
+
+const Root = (props: RootProps) => {
   return <Box as="ul" flex flexDirection="column" {...props} />;
 };
 
-const Item = (props: Omit<Parameters<typeof Box>[0], "as">) => {
+type ItemProps = Omit<React.ComponentProps<typeof Box>, "as">;
+const Item = (props: ItemProps) => {
   return <Box as="li" {...props} />;
 };
 

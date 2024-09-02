@@ -5,8 +5,19 @@ import { EnjoymentRateInput } from "src/components/simulator/activities/private/
 
 const Consulting = () => {
   return (
-    <BaseActivity title={Activities.consulting.label} identifier="consulting">
-      <Range name="consulting.rate" label="Tarif horaire" unit="€ / h" />
+    <BaseActivity
+      title={Activities.consulting.label}
+      identifier="consulting"
+      description={Activities.consulting.description}
+    >
+      <Range
+        name="consulting.rate"
+        label="Tarif horaire"
+        unit="€ / h"
+        min={0}
+        max={1000}
+        step={50}
+      />
       <Range
         name="consulting.quantity"
         label="Nombre d'heures facturées"

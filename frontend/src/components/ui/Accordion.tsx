@@ -3,6 +3,8 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { forwardRef } from "react";
 import styled from "styled-components";
 import { cssVariable, Spacing } from "../helper";
+import { Text } from "./Text";
+import { Box } from "./Box";
 
 const AccordionRoot = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
@@ -54,6 +56,7 @@ const StyledRoot = styled(AccordionRoot)`
     color: var(--violet-11);
     box-shadow: 0 1px 0 ${() => cssVariable("color.background.grey.dark")};
     background-color: white;
+    padding: ${() => cssVariable("spacing.md")};
 
     &:hover {
       background-color: ${() => cssVariable("color.background.brand.light")};
@@ -103,7 +106,9 @@ const StyledRoot = styled(AccordionRoot)`
 
 const AccordionItem = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & {
+    description?: string;
+  }
 >((props, forwardedRef) => (
   <AccordionPrimitive.Item
     {...props}
@@ -112,7 +117,14 @@ const AccordionItem = forwardRef<
   >
     <AccordionPrimitive.Header className="AccordionHeader">
       <AccordionPrimitive.Trigger className="AccordionTrigger">
-        {props.title}
+        <Box flex flexDirection="column" gap="sm">
+          <Text>{props.title}</Text>
+          {props.description && (
+            <Text size="xs" color="muted.dark">
+              {props.description}
+            </Text>
+          )}
+        </Box>
         <ChevronDownIcon aria-hidden />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

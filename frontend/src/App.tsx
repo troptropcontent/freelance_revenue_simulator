@@ -64,7 +64,7 @@ function App() {
       >
         <StyledForm>
           <Heading as="h2" align="center" id="activities_title">
-            Mes activités
+            Mon portfolio d'activités
           </Heading>
           <Heading as="h2" align="center" id="results_title">
             Résultats

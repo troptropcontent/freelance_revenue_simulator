@@ -10,7 +10,10 @@ import { Training } from "src/components/simulator/activities/Training";
 import { DigitalProduct } from "src/components/simulator/activities/DigitalProduct";
 import { Admin } from "src/components/simulator/activities/Admin";
 
-const ActivitiesComponents: Record<keyof FormValues, React.FC> = {
+const ActivitiesComponents: Record<
+  Exclude<keyof FormValues, "weeks_off">,
+  React.FC
+> = {
   freelance_daily_rate: FreelanceDailyRate,
   freelance_on_delivery: FreelanceOnDelivery,
   consulting: Consulting,
@@ -29,7 +32,7 @@ const ActivitiesAccordion = () => {
       {Object.entries(values).map(([key, value]) => {
         if (typeof value === "object") {
           const ActivityComponent =
-            ActivitiesComponents[key as keyof FormValues];
+            ActivitiesComponents[key as Exclude<keyof FormValues, "weeks_off">];
           return <ActivityComponent key={key} />;
         }
       })}

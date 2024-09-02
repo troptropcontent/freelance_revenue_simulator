@@ -14,6 +14,9 @@ const Sponsorship = () => {
         name="sponsorship.rate"
         label="Tarif par contenu sponsorisé"
         unit="€ / contenu"
+        min={100}
+        max={10000}
+        step={50}
       />
       <Range
         name="sponsorship.quantity"
@@ -23,6 +26,9 @@ const Sponsorship = () => {
       <Range
         name="sponsorship.average_time_spent"
         label="Temps passé par contenu sponsorisé"
+        min={0}
+        max={10}
+        step={0.5}
         unit="jours"
       />
       <EnjoymentRateInput name="sponsorship.enjoyment_rate" />

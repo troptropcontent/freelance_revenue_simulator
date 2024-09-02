@@ -19,6 +19,9 @@ const SideProject = () => {
         name="side_project.average_time_spent"
         label="Temps alloué"
         unit="jours / semaine"
+        min={0}
+        max={20}
+        step={0.5}
       />
       <EnjoymentRateInput name="side_project.enjoyment_rate" />
     </BaseActivity>

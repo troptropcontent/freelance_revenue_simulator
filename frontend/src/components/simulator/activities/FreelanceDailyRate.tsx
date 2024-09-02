@@ -15,7 +15,7 @@ const FreelanceDailyRate = () => {
         label="Tarif Journalier Moyen (TJM)"
         hint="(i) Débutant : 250€ - Intermédiaire : 500€ - Pro 750€ - Expert : 1000€."
         unit="€"
-        min={200}
+        min={100}
         max={2000}
         step={50}
       />
@@ -23,9 +23,9 @@ const FreelanceDailyRate = () => {
         name="freelance_daily_rate.quantity"
         label="Nombre de jours facturés"
         min={0}
-        max={30}
-        step={1}
-        unit="/ mois"
+        max={5}
+        step={0.5}
+        unit="/ semaines"
       />
       <EnjoymentRateInput name="freelance_daily_rate.enjoyment_rate" />
     </BaseActivity>

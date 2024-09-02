@@ -10,7 +10,14 @@ const Consulting = () => {
       identifier="consulting"
       description={Activities.consulting.description}
     >
-      <Range name="consulting.rate" label="Tarif horaire" unit="€ / h" />
+      <Range
+        name="consulting.rate"
+        label="Tarif horaire"
+        unit="€ / h"
+        min={0}
+        max={1000}
+        step={50}
+      />
       <Range
         name="consulting.quantity"
         label="Nombre d'heures facturées"

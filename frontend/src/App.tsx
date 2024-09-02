@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { Heading } from "src/components/ui/Heading";
-import { Text } from "src/components/ui/Text";
 import { Box } from "src/components/ui/Box";
 import Theme from "src/components/Theme";
 import { Formik } from "formik";
 import { ActivitiesAccordion } from "src/components/simulator/activities/ActivitiesAccordion";
 import { ActivitiesModal } from "src/components/simulator/activities/ActivitiesModal";
-import { Activities } from "./components/simulator/constants";
+import {
+  Activities,
+  AverageWorkingConditions,
+} from "./components/simulator/constants";
+import ResultsDetails from "./components/simulator/results/ResultsDetails";
+import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -18,6 +22,8 @@ const StyledForm = styled.form`
 
 export type FormValues = {
   [key in keyof typeof Activities]?: (typeof Activities)[key]["defaultValue"];
+} & {
+  weeks_off: number;
 };
 
 const initialValues: FormValues = {
@@ -45,6 +51,7 @@ const initialValues: FormValues = {
   admin: Activities.admin.displayInInitialValues
     ? Activities.admin.defaultValue
     : undefined,
+  weeks_off: AverageWorkingConditions.weeksOffPerYear,
 };
 
 function App() {
@@ -71,19 +78,20 @@ function App() {
             gap="md"
           >
             <ActivitiesAccordion />
-            <Box flex flexDirection="column">
+            <Box flex flexDirection="column-reverse" grow>
               <ActivitiesModal />
             </Box>
           </Box>
           <Box
             background="grey.light"
             borderRadius="md"
+            padding="lg"
             flex
             flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
+            gap="lg"
           >
-            <Text>Résultats</Text>
+            <ResultsCharts />
+            <ResultsDetails />
           </Box>
         </StyledForm>
       </Formik>

@@ -53,7 +53,7 @@ const Activities: {
   };
   digital_product: DefaultActivity & {
     defaultValue: {
-      revenue: number;
+      rate: number;
       quantity: number;
       average_time_spent: number;
       enjoyment_rate: number;
@@ -133,7 +133,7 @@ const Activities: {
     label: "Digital Product",
     description: "Template, ebook, mini formation, etc.",
     defaultValue: {
-      revenue: 100,
+      rate: 100,
       quantity: 1,
       average_time_spent: 1,
       enjoyment_rate: 1,
@@ -150,4 +150,13 @@ const Activities: {
   },
 } as const;
 
-export { Activities };
+const AverageWorkingConditions = {
+  weeksPerYear: 52,
+  weeksOffPerYear: 0,
+  daysOffPerWeek: 2,
+  daysWorkedPerWeek: 5,
+  hoursWorkedPerDay: 7,
+  averageWorkedDaysPerWeek: 4.33,
+} as const;
+
+export { Activities, AverageWorkingConditions };

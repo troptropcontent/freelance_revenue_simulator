@@ -22,6 +22,7 @@ type BoxProps = {
   padding?: Padding;
   background?: BackgroundColor;
   borderRadius?: BorderRadius;
+  grow?: boolean;
 };
 
 const BoxTag = ({
@@ -46,6 +47,7 @@ const StyledBox = styled(BoxTag)<{
   $padding?: Padding;
   $background?: BoxProps["background"];
   $borderRadius?: BoxProps["borderRadius"];
+  $grow?: boolean;
 }>`
   ${(props) =>
     props.as === "ul" && `list-style-type: none; padding: 0; margin: 0;`}
@@ -62,6 +64,7 @@ const StyledBox = styled(BoxTag)<{
     `background-color: ${cssVariable(`color.background.${props.$background}`)};`}
     ${(props) =>
     props.$borderRadius && createBorderRadiusStyle(props.$borderRadius)}
+  ${(props) => props.$grow && `flex-grow: 1;`}
 `;
 
 const Box = ({
@@ -76,6 +79,7 @@ const Box = ({
   padding,
   borderRadius,
   background,
+  grow,
   ...props
 }: BoxProps & React.ComponentProps<React.ElementType>) => {
   return (
@@ -89,6 +93,7 @@ const Box = ({
       $padding={padding}
       $background={background}
       $borderRadius={borderRadius}
+      $grow={grow}
       id={id}
       {...props}
     >

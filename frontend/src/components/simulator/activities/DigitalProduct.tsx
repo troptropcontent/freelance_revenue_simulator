@@ -8,8 +8,9 @@ const DigitalProduct = () => {
     <BaseActivity
       title={Activities.digital_product.label}
       identifier="digital_product"
+      description={Activities.digital_product.description}
     >
-      <Range name="digital_product.rate" label="Tarif par produit" unit="€" />
+      <Range name="digital_product.rate" label="Tarif du produit" unit="€" />
       <Range
         name="digital_product.quantity"
         label="Nombre de produits digitaux vendus"

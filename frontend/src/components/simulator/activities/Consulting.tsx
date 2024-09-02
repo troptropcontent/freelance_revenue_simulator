@@ -5,7 +5,11 @@ import { EnjoymentRateInput } from "src/components/simulator/activities/private/
 
 const Consulting = () => {
   return (
-    <BaseActivity title={Activities.consulting.label} identifier="consulting">
+    <BaseActivity
+      title={Activities.consulting.label}
+      identifier="consulting"
+      description={Activities.consulting.description}
+    >
       <Range name="consulting.rate" label="Tarif horaire" unit="€ / h" />
       <Range
         name="consulting.quantity"

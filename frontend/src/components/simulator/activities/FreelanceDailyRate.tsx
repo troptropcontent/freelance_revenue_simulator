@@ -7,12 +7,13 @@ const FreelanceDailyRate = () => {
   return (
     <BaseActivity
       title={Activities.freelance_daily_rate.label}
+      description={Activities.freelance_daily_rate.description}
       identifier="freelance_daily_rate"
     >
       <Range
         name="freelance_daily_rate.rate"
         label="Tarif Journalier Moyen (TJM)"
-        hint="A titre indicatif, 250€ pour un débutant, 500€ pour un intermédiaire, 750€ pour un pro, 1000€ pour un expert."
+        hint="(i) Débutant : 250€ - Intermédiaire : 500€ - Pro 750€ - Expert : 1000€."
         unit="€"
         min={200}
         max={2000}
@@ -20,7 +21,7 @@ const FreelanceDailyRate = () => {
       />
       <Range
         name="freelance_daily_rate.quantity"
-        label="Nombre de missions par mois"
+        label="Nombre de jours facturés"
         min={0}
         max={30}
         step={1}

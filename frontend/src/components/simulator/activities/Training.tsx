@@ -5,7 +5,11 @@ import { EnjoymentRateInput } from "src/components/simulator/activities/private/
 
 const Training = () => {
   return (
-    <BaseActivity title={Activities.training.label} identifier="training">
+    <BaseActivity
+      title={Activities.training.label}
+      identifier="training"
+      description={Activities.training.description}
+    >
       <Range name="training.rate" label="Tarif" unit="€ / formation" />
       <Range
         name="training.quantity"
@@ -14,7 +18,7 @@ const Training = () => {
       />
       <Range
         name="training.average_time_spent"
-        label="Temps alloué"
+        label="Temps alloué par formation"
         unit="jours / semaine"
       />
       <EnjoymentRateInput name="training.enjoyment_rate" />

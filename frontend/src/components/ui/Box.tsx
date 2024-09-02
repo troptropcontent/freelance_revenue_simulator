@@ -11,9 +11,8 @@ import {
 } from "../helper";
 
 type BoxProps = {
-  as?: React.ElementType;
+  as?: "div" | "span" | "ul" | "ol" | "li";
   children: React.ReactNode;
-  id?: string;
   flex?: boolean;
   flexDirection?: CSSProperties["flexDirection"];
   justifyContent?: CSSProperties["justifyContent"];
@@ -30,7 +29,7 @@ const BoxTag = ({
   children,
   id,
 }: {
-  as: React.ElementType;
+  as?: NonNullable<BoxProps["as"]>;
   children: React.ReactNode;
   id?: string;
 }) => {
@@ -70,7 +69,6 @@ const StyledBox = styled(BoxTag)<{
 const Box = ({
   as = "div",
   children,
-  id,
   flex,
   flexDirection,
   justifyContent,
@@ -81,7 +79,7 @@ const Box = ({
   background,
   grow,
   ...props
-}: BoxProps & React.ComponentProps<React.ElementType>) => {
+}: BoxProps & React.ComponentProps<NonNullable<BoxProps["as"]>>) => {
   return (
     <StyledBox
       as={as}
@@ -94,7 +92,6 @@ const Box = ({
       $background={background}
       $borderRadius={borderRadius}
       $grow={grow}
-      id={id}
       {...props}
     >
       {children}

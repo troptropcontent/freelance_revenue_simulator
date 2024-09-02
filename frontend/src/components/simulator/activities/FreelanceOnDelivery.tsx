@@ -8,6 +8,7 @@ const FreelanceOnDelivery = () => {
     <BaseActivity
       title={Activities.freelance_on_delivery.label}
       identifier="freelance_on_delivery"
+      description={Activities.freelance_on_delivery.description}
     >
       <Range
         name="freelance_on_delivery.rate"
@@ -16,7 +17,7 @@ const FreelanceOnDelivery = () => {
       />
       <Range
         name="freelance_on_delivery.quantity"
-        label="Nombre de missions"
+        label="Nombre de missions facturées"
         unit="/ mois"
       />
       <Range

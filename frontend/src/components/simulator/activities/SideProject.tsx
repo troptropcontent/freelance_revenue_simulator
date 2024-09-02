@@ -8,10 +8,11 @@ const SideProject = () => {
     <BaseActivity
       title={Activities.side_project.label}
       identifier="side_project"
+      description={Activities.side_project.description}
     >
       <Range
         name="side_project.revenue"
-        label="Revenu mensuel"
+        label="Chiffres d'affaires moyen"
         unit="€ / mois"
       />
       <Range

@@ -5,7 +5,11 @@ import { EnjoymentRateInput } from "src/components/simulator/activities/private/
 
 const Sponsorship = () => {
   return (
-    <BaseActivity title={Activities.sponsorship.label} identifier="sponsorship">
+    <BaseActivity
+      title={Activities.sponsorship.label}
+      identifier="sponsorship"
+      description={Activities.sponsorship.description}
+    >
       <Range
         name="sponsorship.rate"
         label="Tarif par contenu sponsorisé"
@@ -13,7 +17,7 @@ const Sponsorship = () => {
       />
       <Range
         name="sponsorship.quantity"
-        label="Nombre de contenu sponsorisé"
+        label="Nombre de contenus sponsorisés"
         unit="/ mois"
       />
       <Range

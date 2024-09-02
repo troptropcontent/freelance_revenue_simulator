@@ -116,6 +116,7 @@ body {
   gap: var(--spacing-small);
   grid-template-areas:
     "logo text text"
+    "logo offer offer"
     "logo link link";
 }
 
@@ -128,6 +129,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-block: auto;
 }
 
 #simulator_section-sponsor-link {
@@ -139,6 +141,10 @@ body {
 #simulator_section-sponsor-text {
   margin-block: auto;
   grid-area: text;
+}
+
+#simulator_section-sponsor-offer {
+  grid-area: offer;
 }
 
 #who_we_are_section {

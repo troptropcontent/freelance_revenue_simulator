@@ -31,17 +31,17 @@ const Range = ({
 
   return (
     <Box flex flexDirection="column" gap="md">
-      <StyledLabel htmlFor={name}>
+      <Box flex flexDirection="column" gap="xs">
+        <StyledLabel htmlFor={name}>
         <Text>{label + ":"}</Text>
         <Box as="span">
           {[value, unit].filter((v) => v !== undefined).join(" ")}
         </Box>
       </StyledLabel>
-      {hint && (
         <Text size="xs" color="muted.medium">
           {hint}
         </Text>
-      )}
+      </Box>
       <Field name={name} type="range" value={value} {...props} />
     </Box>
   );

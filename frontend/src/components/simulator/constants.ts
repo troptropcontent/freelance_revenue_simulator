@@ -78,7 +78,7 @@ const Activities: {
   freelance_on_delivery: {
     label: "Mission freelance facturée au livrable.",
     description:
-      "Mission freelance que vous facturez à la livraison du projet.",
+      "Audit, Stratégie, Contenus, etc.",
     defaultValue: {
       rate: 100,
       quantity: 1,

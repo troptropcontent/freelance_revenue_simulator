@@ -1,36 +1,56 @@
 import { List } from "src/components/ui/List";
-import { useAnnualTurnover, useAvailableTimePerWeek } from "./hooks";
+import { useWorkedWeekAnalysis, useRevenueAnalysis } from "./hooks";
 import { Text } from "src/components/ui/Text";
-import { AverageWorkingConditions } from "../constants";
 
 const ResultsDetails = () => {
-  const annualTurnover = useAnnualTurnover();
-  const availableTimePerWeek = useAvailableTimePerWeek();
+  const { annualTurnover } = useRevenueAnalysis();
+  const { daysWorkedPerWeek, daysAvailablePerWeek } = useWorkedWeekAnalysis();
+  const data = [
+    {
+      label: "CA annuel total",
+      value: annualTurnover.toLocaleString("fr-FR", {
+        style: "currency",
+        currency: "EUR",
+      }),
+    },
+    {
+      label: "CA mensuel",
+      value: (annualTurnover / 12).toLocaleString("fr-FR", {
+        style: "currency",
+        currency: "EUR",
+      }),
+    },
+    {
+      label: "Temps consacré à mes activités par semaine",
+      value:
+        daysWorkedPerWeek.toLocaleString("fr-FR", {
+          maximumFractionDigits: 1,
+        }) + " jours",
+    },
+    {
+      label: "Temps disponible par semaine",
+      value:
+        daysAvailablePerWeek.toLocaleString("fr-FR", {
+          maximumFractionDigits: 1,
+        }) + " jours",
+    },
+  ];
+
   return (
-    <List.Root>
-      <List.Item flex flexDirection="row" justifyContent="space-between">
-        <Text>CA annuel total :</Text>
-        <data>{Math.round(annualTurnover)} €</data>
-      </List.Item>
-      <List.Item flex flexDirection="row" justifyContent="space-between">
-        <Text>CA mensuel :</Text>
-        <data>{Math.round(annualTurnover / 12)} €</data>
-      </List.Item>
-      <List.Item flex flexDirection="row" justifyContent="space-between">
-        <Text>Temps consacré à mes activités par semaine :</Text>
-        <data>
-          {Math.round(
-            (AverageWorkingConditions.daysWorkedPerWeek -
-              availableTimePerWeek) *
-              10,
-          ) / 10}
-          jours
-        </data>
-      </List.Item>
-      <List.Item flex flexDirection="row" justifyContent="space-between">
-        <Text>Temps disponible par semaine :</Text>
-        <data>{Math.round(availableTimePerWeek * 10) / 10} jours</data>
-      </List.Item>
+    <List.Root grow gap="sm">
+      {data.map((item) => (
+        <List.Item
+          flex
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Text>{item.label} :</Text>
+          <Text size="md">
+            <data>{item.value}</data>
+          </Text>
+        </List.Item>
+      ))}
     </List.Root>
   );
 };

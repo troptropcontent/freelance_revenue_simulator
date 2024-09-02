@@ -10,6 +10,7 @@ import {
   AverageWorkingConditions,
 } from "./components/simulator/constants";
 import ResultsDetails from "./components/simulator/results/ResultsDetails";
+import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -77,16 +78,19 @@ function App() {
             gap="md"
           >
             <ActivitiesAccordion />
-            <Box flex flexDirection="column">
+            <Box flex flexDirection="column-reverse" grow>
               <ActivitiesModal />
             </Box>
           </Box>
           <Box
             background="grey.light"
             borderRadius="md"
+            padding="lg"
             flex
             flexDirection="column"
+            gap="lg"
           >
+            <ResultsCharts />
             <ResultsDetails />
           </Box>
         </StyledForm>

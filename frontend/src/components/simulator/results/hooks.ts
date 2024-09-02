@@ -6,7 +6,8 @@ import {
 } from "src/components/simulator/constants";
 import { computeAnnualTurnover } from "./utils";
 
-const useAnnualTurnover = () => {
+// TODO: use a useMemo here to avoid recomputing the values if the form values didn't change
+const useRevenueAnalysis = () => {
   const { values } = useFormikContext<FormValues>();
   const annualTurnoverPerActivities: {
     [key in Exclude<keyof typeof Activities, "admin">]: number;
@@ -29,13 +30,16 @@ const useAnnualTurnover = () => {
     ),
   };
 
-  return Object.values(annualTurnoverPerActivities).reduce((acc, value) => {
-    acc += value;
-    return acc;
-  }, 0);
+  const annualTurnover = Object.values(annualTurnoverPerActivities).reduce(
+    (acc, curr) => acc + curr,
+    0,
+  );
+
+  return { annualTurnoverPerActivities, annualTurnover };
 };
 
-const useAvailableTimePerWeek = () => {
+// TODO: use a useMemo here to avoid recomputing the values if the form values didn't change
+const useWorkedWeekAnalysis = () => {
   const {
     values: {
       freelance_daily_rate,
@@ -48,6 +52,7 @@ const useAvailableTimePerWeek = () => {
       admin,
     },
   } = useFormikContext<FormValues>();
+
   const daysUsedPerWeekPerActivities: {
     [key in keyof typeof Activities]: number;
   } = {
@@ -66,13 +71,22 @@ const useAvailableTimePerWeek = () => {
     side_project: side_project ? side_project.average_time_spent : 0,
     training: training ? training.quantity / 4 / 7 : 0,
     digital_product: digital_product ? digital_product.quantity / 4 / 7 : 0,
-    admin: admin ? admin.average_time_spent : 0,
+    admin: admin?.average_time_spent ?? 0,
   };
 
-  return Object.values(daysUsedPerWeekPerActivities).reduce((acc, value) => {
-    acc -= value;
-    return acc;
-  }, AverageWorkingConditions.daysWorkedPerWeek);
+  const daysWorkedPerWeek = Object.values(daysUsedPerWeekPerActivities).reduce(
+    (acc, curr) => acc + curr,
+    0,
+  );
+
+  const daysAvailablePerWeek =
+    AverageWorkingConditions.daysWorkedPerWeek - daysWorkedPerWeek;
+
+  return {
+    daysUsedPerWeekPerActivities,
+    daysAvailablePerWeek,
+    daysWorkedPerWeek,
+  };
 };
 
-export { useAnnualTurnover, useAvailableTimePerWeek };
+export { useRevenueAnalysis, useWorkedWeekAnalysis };

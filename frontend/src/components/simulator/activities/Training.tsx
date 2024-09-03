@@ -23,7 +23,7 @@ const Training = () => {
         label="Nombre de formations"
         unit="/ mois"
         min={0}
-        max={100} 
+        max={100}
       />
       <Range
         name="training.average_time_spent"

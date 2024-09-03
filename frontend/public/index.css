@@ -21,6 +21,7 @@
   --font-family-heading: "Work Sans", sans-serif;
 
   /* Font sizes */
+  --font-size-x-small: 0.75rem;
   --font-size-small: 1rem;
   --font-size-medium: 1.5rem;
   --font-size-large: 2rem;
@@ -66,6 +67,7 @@ body {
   justify-content: space-between;
   padding: 0;
   margin: 0;
+  margin-inline-start: var(--spacing-medium);
   align-items: center;
 }
 
@@ -116,9 +118,19 @@ body {
   display: grid;
   gap: var(--spacing-small);
   grid-template-areas:
+    "logo"
+    "text"
+    "offer"
+    "link";
+}
+
+@media only screen and (min-width: 600px) {
+  #simulator_section-sponsors {
+  grid-template-areas:
     "logo text text"
     "logo offer offer"
     "logo link link";
+}
 }
 
 #simulator_section-sponsor-logo {
@@ -131,6 +143,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-block: auto;
+  margin-inline: auto;
 }
 
 #simulator_section-sponsor-link {
@@ -154,11 +167,15 @@ body {
   padding-inline: var(--spacing-medium);
   display: grid;
   grid-template-areas:
-    "title title"
-    "article_1_photo article_2_photo"
-    "article_1_title article_2_title"
-    "article_1_text article_2_text"
-    "article_1_link article_2_link";
+    "title"
+    "article_1_photo"
+    "article_1_title"
+    "article_1_text"
+    "article_1_link"
+    "article_2_photo"
+    "article_2_title"
+    "article_2_text"
+    "article_2_link";
 }
 
 #who_we_are_section_title {
@@ -167,42 +184,35 @@ body {
 
 #who_we_are_section_article_1_photo {
   grid-area: article_1_photo;
-  margin-inline-end: var(--spacing-small);
 }
 
 #who_we_are_section_article_1_title {
   grid-area: article_1_title;
-  margin-inline-end: var(--spacing-small);
 }
 
 #who_we_are_section_article_1_text {
   grid-area: article_1_text;
-  margin-inline-end: var(--spacing-small);
 }
 
 #who_we_are_section_article_1_link {
   grid-area: article_1_link;
-  margin-inline-end: var(--spacing-small);
 }
 
 #who_we_are_section_article_2_photo {
   grid-area: article_2_photo;
-  margin-inline-start: var(--spacing-small);
+  margin-block-start: var(--spacing-medium);
 }
 
 #who_we_are_section_article_2_title {
   grid-area: article_2_title;
-  margin-inline-start: var(--spacing-small);
 }
 
 #who_we_are_section_article_2_text {
   grid-area: article_2_text;
-  margin-inline-start: var(--spacing-small);
 }
 
 #who_we_are_section_article_2_link {
   grid-area: article_2_link;
-  margin-inline-start: var(--spacing-small);
 }
 
 #who_we_are_section #who_we_are_section_title {
@@ -249,6 +259,49 @@ body {
   justify-content: center;
 }
 
+@media only screen and (min-width: 600px) {
+  #who_we_are_section {
+    grid-template-areas:
+      "title title"
+      "article_1_photo article_2_photo"
+      "article_1_title article_2_title"
+      "article_1_text article_2_text"
+      "article_1_link article_2_link";
+  }
+
+  #who_we_are_section_article_1_photo {
+    margin-inline-end: var(--spacing-small);
+  }
+
+  #who_we_are_section_article_1_title {
+    margin-inline-end: var(--spacing-small);
+  }
+
+  #who_we_are_section_article_1_text {
+    margin-inline-end: var(--spacing-small);
+  }
+
+  #who_we_are_section_article_1_link {
+    margin-inline-end: var(--spacing-small);
+  }
+
+  #who_we_are_section_article_2_photo {
+    margin-inline-start: var(--spacing-small);
+  }
+
+  #who_we_are_section_article_2_title {
+    margin-inline-start: var(--spacing-small);
+  }
+
+  #who_we_are_section_article_2_text {
+    margin-inline-start: var(--spacing-small);
+  }
+
+  #who_we_are_section_article_2_link {
+    margin-inline-start: var(--spacing-small);
+  }
+}
+
 #root {
   background-color: white;
 }
@@ -257,7 +310,7 @@ body {
 
 body {
   font-family: var(--font-family);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-x-small);
 }
 
 h1,
@@ -267,12 +320,29 @@ h4,
 h5,
 h6 {
   font-family: var(--font-family-heading);
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-small);
   margin-block: 0;
 }
 
 p {
   margin-block: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    font-size: var(--font-size-small);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-medium);
+    margin-block: 0;
+  }
 }
 
 /* Buttons */

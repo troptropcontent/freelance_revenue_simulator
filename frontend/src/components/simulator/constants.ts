@@ -69,7 +69,7 @@ const Activities: {
     label: "Mission freelance facturée au TJM",
     description: "Mission freelance que vous facturez au temps passé.",
     defaultValue: {
-      rate: 100,
+      rate: 150,
       quantity: 1,
       enjoyment_rate: 1,
     },
@@ -77,8 +77,7 @@ const Activities: {
   },
   freelance_on_delivery: {
     label: "Mission freelance facturée au livrable.",
-    description:
-      "Audit, Stratégie, Contenus, etc.",
+    description: "Audit, Stratégie, Contenus, etc.",
     defaultValue: {
       rate: 100,
       quantity: 1,

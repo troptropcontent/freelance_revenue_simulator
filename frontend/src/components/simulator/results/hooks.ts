@@ -15,6 +15,7 @@ const useRevenueAnalysis = () => {
     freelance_daily_rate: computeAnnualTurnover(
       values.freelance_daily_rate,
       values.weeks_off,
+      true,
     ),
     freelance_on_delivery: computeAnnualTurnover(
       values.freelance_on_delivery,

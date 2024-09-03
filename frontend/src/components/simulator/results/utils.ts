@@ -8,13 +8,20 @@ const computeAnnualTurnover = (
       }
     | undefined,
   weeks_off: number,
+  isQuantityPerWeek: boolean = false,
 ) => {
-  return input_values === undefined
-    ? 0
+  if (input_values === undefined) {
+    return 0;
+  }
+
+  return isQuantityPerWeek
+    ? input_values.rate *
+        input_values.quantity *
+        AverageWorkingConditions.weeksPerYear
     : input_values.rate *
         input_values.quantity *
         ((AverageWorkingConditions.weeksPerYear - weeks_off) /
-          AverageWorkingConditions.averageWorkedDaysPerWeek);
+      AverageWorkingConditions.averageWorkedDaysPerWeek)
 };
 
 export { computeAnnualTurnover };

@@ -21,7 +21,7 @@ const computeAnnualTurnover = (
     : input_values.rate *
         input_values.quantity *
         ((AverageWorkingConditions.weeksPerYear - weeks_off) /
-      AverageWorkingConditions.averageWorkedDaysPerWeek)
+          AverageWorkingConditions.averageWorkedDaysPerWeek);
 };
 
 export { computeAnnualTurnover };

@@ -17,7 +17,33 @@ const StyledForm = styled.form`
   padding-block: var(--spacing-large);
   display: grid;
   gap: var(--spacing-large);
-  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "activities_title"
+    "activities"
+    "results_title"
+    "results";
+
+  #activities_title {
+    grid-area: activities_title;
+  }
+
+  #results_title {
+    grid-area: results_title;
+  }
+
+  #activities {
+    grid-area: activities;
+  }
+
+  #results {
+    grid-area: results;
+  }
+
+  @media only screen and (min-width: 600px) {
+    grid-template-areas:
+      "activities_title results_title"
+      "activities results"
+  }
 `;
 
 export type FormValues = {
@@ -76,6 +102,7 @@ function App() {
             flex
             flexDirection="column"
             gap="md"
+            id="activities"
           >
             <ActivitiesAccordion />
             <Box flex flexDirection="column-reverse" grow>
@@ -89,6 +116,7 @@ function App() {
             flex
             flexDirection="column"
             gap="lg"
+            id="results"
           >
             <ResultsCharts />
             <ResultsDetails />

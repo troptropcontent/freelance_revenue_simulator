@@ -126,11 +126,11 @@ body {
 
 @media only screen and (min-width: 600px) {
   #simulator_section-sponsors {
-  grid-template-areas:
-    "logo text text"
-    "logo offer offer"
-    "logo link link";
-}
+    grid-template-areas:
+      "logo text text"
+      "logo offer offer"
+      "logo link link";
+  }
 }
 
 #simulator_section-sponsor-logo {

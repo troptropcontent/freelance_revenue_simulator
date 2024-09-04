@@ -30,7 +30,6 @@ const StyledRoot = styled(AccordionRoot)`
     border-radius: ${() => cssVariable("borderRadius.md")};
 
     overflow: hidden;
-    margin-top: 1px;
 
     &:focus-within {
       position: relative;
@@ -45,15 +44,10 @@ const StyledRoot = styled(AccordionRoot)`
   .AccordionTrigger {
     font-family: inherit;
     background-color: transparent;
-    padding: 0 20px;
-    height: 45px;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 15px;
-    line-height: 1;
-    color: var(--violet-11);
     box-shadow: 0 1px 0 ${() => cssVariable("color.background.grey.dark")};
     background-color: white;
     padding: ${() => cssVariable("spacing.md")};
@@ -72,8 +66,6 @@ const StyledRoot = styled(AccordionRoot)`
   }
 
   .AccordionContent {
-    overflow: hidden;
-    font-size: 15px;
     background-color: ${() => cssVariable("color.background.white")};
   }
 

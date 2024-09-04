@@ -40,9 +40,10 @@ const StyledForm = styled.form`
   }
 
   @media only screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       "activities_title results_title"
-      "activities results"
+      "activities results";
   }
 `;
 
@@ -109,17 +110,9 @@ function App() {
               <ActivitiesModal />
             </Box>
           </Box>
-          <Box
-            background="grey.light"
-            borderRadius="md"
-            padding="lg"
-            flex
-            flexDirection="column"
-            gap="lg"
-            id="results"
-          >
-            <ResultsCharts />
+          <Box flex flexDirection="column" gap="lg" id="results">
             <ResultsDetails />
+            <ResultsCharts />
           </Box>
         </StyledForm>
       </Formik>

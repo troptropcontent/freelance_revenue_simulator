@@ -5,19 +5,22 @@ import { ChartColors } from "src/components/simulator/results/charts/private/con
 import { formatLegendLabelDays } from "src/components/simulator/results/charts/private/helpers";
 import { prepareData } from "src/components/simulator/results/charts/private/utils";
 const WeeksChart = () => {
-  const { daysUsedPerWeekPerActivities, daysAvailablePerWeek } = useWorkedWeekAnalysis();
+  const { daysUsedPerWeekPerActivities, daysAvailablePerWeek } =
+    useWorkedWeekAnalysis();
 
   const baseData = prepareData(daysUsedPerWeekPerActivities);
 
-  const dataWithAvailableTime = daysAvailablePerWeek > 0 ? [
-    ...baseData,
-    {
-      id: "available",
-        value: daysAvailablePerWeek,
-        name: "Temps disponible",
-      },
-    ]
-    : baseData;
+  const dataWithAvailableTime =
+    daysAvailablePerWeek > 0
+      ? [
+          ...baseData,
+          {
+            id: "available",
+            value: daysAvailablePerWeek,
+            name: "Temps disponible",
+          },
+        ]
+      : baseData;
 
   console.log({ dataWithAvailableTime });
 

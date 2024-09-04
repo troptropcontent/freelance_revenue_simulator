@@ -1,0 +1,46 @@
+{
+  "fr": {
+    "translation": {
+      "simulator": {
+        "activities": {
+          "freelance_daily_rate": {
+            "label": "Mission freelance facturée au TJM",
+            "description": "Mission freelance que vous facturez au temps passé."
+          },
+          "freelance_on_delivery": {
+            "label": "Mission freelance facturée au livrable.",
+            "description": "Audit, Stratégie, Contenus, etc."
+          },
+          "consulting": {
+            "label": "Consulting",
+            "description": "Coaching, mentoring, etc."
+          },
+          "sponsorship": {
+            "label": "Sponsorship & Media",
+            "description": "Newsletter, épisode de podcast, post réseaux sociaux, etc."
+          },
+          "side_project": {
+            "label": "Side Project",
+            "description": "Communauté, agence, saas, etc."
+          },
+          "training": {
+            "label": "Training",
+            "description": "Bootcamp, formation école, formation en ligne, etc."
+          },
+          "digital_product": {
+            "label": "Digital Product",
+            "description": "Template, ebook, mini formation, etc."
+          },
+          "admin": {
+            "label": "Admin",
+            "description": "Admin, vente, personal branding, etc."
+          },
+          "available_time": {
+            "label": "Temps disponible",
+            "description": "Temps disponible pour travailler sur d'autres missions."
+          }
+        }
+      }
+    }
+  }
+}

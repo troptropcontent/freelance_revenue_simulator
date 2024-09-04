@@ -37,13 +37,20 @@ const ResultsDetails = () => {
   ];
 
   return (
-    <List.Root grow gap="sm">
+    <List.Root
+      grow
+      gap="sm"
+      background="grey.light"
+      borderRadius="md"
+      padding="lg"
+    >
       {data.map((item) => (
         <List.Item
           flex
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
+          key={item.label}
         >
           <Text>{item.label} :</Text>
           <Text size="md">

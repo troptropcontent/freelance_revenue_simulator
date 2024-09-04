@@ -10,7 +10,7 @@ const RevenueChart = () => {
   const data = prepareData(annualTurnoverPerActivities);
 
   return (
-    <ResponsiveContainer width={400} height={400}>
+    <ResponsiveContainer width="100%" height={400}>
       <PieChart width={400} height={400}>
         <Pie
           dataKey="value"

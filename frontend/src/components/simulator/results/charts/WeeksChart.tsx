@@ -7,21 +7,32 @@ import { prepareData } from "src/components/simulator/results/charts/private/uti
 const WeeksChart = () => {
   const { daysUsedPerWeekPerActivities, daysAvailablePerWeek } = useWorkedWeekAnalysis();
 
-  const data = prepareData({...daysUsedPerWeekPerActivities, availableTime: daysAvailablePerWeek});
+  const baseData = prepareData(daysUsedPerWeekPerActivities);
+
+  const dataWithAvailableTime = daysAvailablePerWeek > 0 ? [
+    ...baseData,
+    {
+      id: "available",
+        value: daysAvailablePerWeek,
+        name: "Temps disponible",
+      },
+    ]
+    : baseData;
+
+  console.log({ dataWithAvailableTime });
 
   return (
-    <ResponsiveContainer width={400} height={400}>
+    <ResponsiveContainer width="100%" height={400}>
       <PieChart width={400} height={400}>
         <Pie
           dataKey="value"
           isAnimationActive={false}
-          data={data}
-          fill="#8884d8"
+          data={dataWithAvailableTime}
           outerRadius={150}
           labelLine={false}
           label={CustomizedLabel}
         >
-          {data.map((_, index) => (
+          {dataWithAvailableTime.map((_, index) => (
             <Cell
               key={`cell-${index}`}
               fill={ChartColors[index % ChartColors.length]}

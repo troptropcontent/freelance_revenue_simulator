@@ -57,11 +57,6 @@ const Activities: {
       enjoyment_rate: number;
     };
   };
-  admin: DefaultActivity & {
-    defaultValue: {
-      average_time_spent: number;
-    };
-  };
 } = {
   freelance_daily_rate: {
     defaultValue: {
@@ -123,12 +118,6 @@ const Activities: {
     },
     displayInInitialValues: false,
   },
-  admin: {
-    defaultValue: {
-      average_time_spent: 1,
-    },
-    displayInInitialValues: false,
-  },
 } as const;
 
 const AverageWorkingConditions = {
@@ -138,6 +127,7 @@ const AverageWorkingConditions = {
   daysWorkedPerWeek: 5,
   hoursWorkedPerDay: 7,
   averageWorkedDaysPerWeek: 4.33,
+  timeSpentOnAdminTasksPerWeek: 0.5,
 } as const;
 
 export { Activities, AverageWorkingConditions };

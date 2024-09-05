@@ -14,20 +14,29 @@ const useRevenueAnalysis = () => {
   } = {
     freelance_daily_rate: computeAnnualTurnover(
       values.freelance_daily_rate,
-      values.weeks_off,
+      values.general_info.weeks_off,
       true,
     ),
     freelance_on_delivery: computeAnnualTurnover(
       values.freelance_on_delivery,
-      values.weeks_off,
+      values.general_info.weeks_off,
     ),
-    consulting: computeAnnualTurnover(values.consulting, values.weeks_off),
-    sponsorship: computeAnnualTurnover(values.sponsorship, values.weeks_off),
+    consulting: computeAnnualTurnover(
+      values.consulting,
+      values.general_info.weeks_off,
+    ),
+    sponsorship: computeAnnualTurnover(
+      values.sponsorship,
+      values.general_info.weeks_off,
+    ),
     side_project: values.side_project ? values.side_project.revenue * 12 : 0,
-    training: computeAnnualTurnover(values.training, values.weeks_off),
+    training: computeAnnualTurnover(
+      values.training,
+      values.general_info.weeks_off,
+    ),
     digital_product: computeAnnualTurnover(
       values.digital_product,
-      values.weeks_off,
+      values.general_info.weeks_off,
     ),
   };
 
@@ -50,41 +59,46 @@ const useWorkedWeekAnalysis = () => {
       side_project,
       training,
       digital_product,
-      admin,
+      general_info,
     },
   } = useFormikContext<FormValues>();
 
-  const daysUsedPerWeekPerActivities: {
-    [key in keyof typeof Activities]: number;
+  const daysUsedPerWeek: {
+    activities: {
+      [key in Exclude<keyof typeof Activities, "admin">]: number;
+    };
+    admin: number;
   } = {
-    freelance_daily_rate: freelance_daily_rate
-      ? freelance_daily_rate.quantity
-      : 0,
-    freelance_on_delivery: freelance_on_delivery
-      ? freelance_on_delivery.average_time_spent *
-        freelance_on_delivery.quantity *
-        4
-      : 0,
-    consulting: consulting ? consulting.quantity / 4 / 7 : 0,
-    sponsorship: sponsorship
-      ? (sponsorship.quantity * sponsorship.average_time_spent) / 4
-      : 0,
-    side_project: side_project ? side_project.average_time_spent : 0,
-    training: training ? training.quantity / 4 / 7 : 0,
-    digital_product: digital_product ? digital_product.quantity / 4 / 7 : 0,
-    admin: admin?.average_time_spent ?? 0,
+    activities: {
+      freelance_daily_rate: freelance_daily_rate
+        ? freelance_daily_rate.quantity
+        : 0,
+      freelance_on_delivery: freelance_on_delivery
+        ? freelance_on_delivery.average_time_spent *
+          freelance_on_delivery.quantity *
+          4
+        : 0,
+      consulting: consulting ? consulting.quantity / 4 / 7 : 0,
+      sponsorship: sponsorship
+        ? (sponsorship.quantity * sponsorship.average_time_spent) / 4
+        : 0,
+      side_project: side_project ? side_project.average_time_spent : 0,
+      training: training ? training.quantity / 4 / 7 : 0,
+      digital_product: digital_product ? digital_product.quantity / 4 / 7 : 0,
+    },
+    admin: general_info.time_spent_on_admin_tasks,
   };
 
-  const daysWorkedPerWeek = Object.values(daysUsedPerWeekPerActivities).reduce(
+  const daysWorkedPerWeek = Object.values(daysUsedPerWeek.activities).reduce(
     (acc, curr) => acc + curr,
-    0,
+    general_info.time_spent_on_admin_tasks,
   );
 
   const daysAvailablePerWeek =
     AverageWorkingConditions.daysWorkedPerWeek - daysWorkedPerWeek;
 
   return {
-    daysUsedPerWeekPerActivities,
+    daysUsedPerWeek,
     daysAvailablePerWeek,
     daysWorkedPerWeek,
   };

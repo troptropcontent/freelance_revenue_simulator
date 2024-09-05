@@ -10,10 +10,10 @@ const GeneralInfo = () => {
     <BaseActivity
       title={t("simulator.activities.general_info.label")}
       description={t("simulator.activities.general_info.description")}
-      identifier="general_info"
+      identifier="general_informations"
     >
       <Range
-        name="general_info.weeks_off"
+        name="general_informations.weeks_off"
         label={t("simulator.activities.general_info.inputs.weeks_off.label")}
         valueFormater={(value) =>
           t("simulator.activities.general_info.inputs.weeks_off.unit", {
@@ -23,7 +23,7 @@ const GeneralInfo = () => {
         max={AverageWorkingConditions.weeksPerYear}
       />
       <Range
-        name="general_info.time_spent_on_admin_tasks"
+        name="general_informations.time_spent_on_admin_tasks"
         label={t(
           "simulator.activities.general_info.inputs.time_spent_on_admin_tasks.label",
         )}

@@ -13,7 +13,7 @@ const useRevenueChartData = (): {
 }[] => {
   const { t } = useTranslation();
   const { annualTurnoverPerActivities } = useRevenueAnalysis();
-  const { values } = useFormikContext<FormValues>();
+  const { values: { activities } } = useFormikContext<FormValues>();
   const data: {
     id: string;
     value: number;
@@ -22,7 +22,7 @@ const useRevenueChartData = (): {
 
   return Object.entries(annualTurnoverPerActivities).reduce(
     (previousValue, [id, value]) => {
-      return values[id as keyof FormValues] === undefined
+      return activities[id as keyof typeof activities] === undefined
         ? previousValue
         : [
             ...previousValue,
@@ -46,7 +46,7 @@ const useTimeChartData = (): {
 }[] => {
   const { t } = useTranslation();
   const { daysUsedPerWeek, daysAvailablePerWeek } = useWorkedWeekAnalysis();
-  const { values } = useFormikContext<FormValues>();
+  const { values: { activities } } = useFormikContext<FormValues>();
 
   let baseData: {
     id: string;
@@ -69,7 +69,7 @@ const useTimeChartData = (): {
   baseData = Object.entries(daysUsedPerWeek.activities).reduce(
     (previousValue, [id, value]) => {
       const key = id as keyof typeof daysUsedPerWeek.activities;
-      return values[key] === undefined
+      return activities[key] === undefined
         ? previousValue
         : [
             ...previousValue,
@@ -86,8 +86,6 @@ const useTimeChartData = (): {
     },
     baseData,
   );
-
-  console.log({ baseData });
 
   return daysAvailablePerWeek > 0
     ? [

@@ -13,7 +13,7 @@ const Consulting = () => {
       description={t("simulator.activities.consulting.description")}
     >
       <Range
-        name="consulting.rate"
+        name="activities.consulting.rate"
         label={t("simulator.activities.consulting.inputs.rate.label")}
         valueFormater={(value) =>
           t("simulator.activities.consulting.inputs.rate.unit", { value })
@@ -23,13 +23,13 @@ const Consulting = () => {
         step={50}
       />
       <Range
-        name="consulting.quantity"
+        name="activities.consulting.quantity"
         label={t("simulator.activities.consulting.inputs.quantity.label")}
         valueFormater={(value) =>
           t("common.value_with_unit.per_month", { value })
         }
       />
-      <EnjoymentRateInput name="consulting.enjoyment_rate" />
+      <EnjoymentRateInput name="activities.consulting.enjoyment_rate" />
     </BaseActivity>
   );
 };

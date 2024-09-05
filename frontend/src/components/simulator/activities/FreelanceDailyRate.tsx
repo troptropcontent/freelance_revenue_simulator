@@ -13,7 +13,7 @@ const FreelanceDailyRate = () => {
       identifier="freelance_daily_rate"
     >
       <Range
-        name="freelance_daily_rate.rate"
+        name="activities.freelance_daily_rate.rate"
         label={t("simulator.activities.freelance_daily_rate.inputs.rate.label")}
         hint={t("simulator.activities.freelance_daily_rate.inputs.rate.hint")}
         valueFormater={(value) =>
@@ -26,7 +26,7 @@ const FreelanceDailyRate = () => {
         step={50}
       />
       <Range
-        name="freelance_daily_rate.quantity"
+        name="activities.freelance_daily_rate.quantity"
         label={t(
           "simulator.activities.freelance_daily_rate.inputs.quantity.label",
         )}
@@ -39,7 +39,7 @@ const FreelanceDailyRate = () => {
           })
         }
       />
-      <EnjoymentRateInput name="freelance_daily_rate.enjoyment_rate" />
+      <EnjoymentRateInput name="activities.freelance_daily_rate.enjoyment_rate" />
     </BaseActivity>
   );
 };

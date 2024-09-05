@@ -13,7 +13,7 @@ const Training = () => {
       description={t("simulator.activities.training.description")}
     >
       <Range
-        name="training.rate"
+        name="activities.training.rate"
         label={t("simulator.activities.training.inputs.rate.label")}
         valueFormater={(value) =>
           t("simulator.activities.training.inputs.rate.unit", { value })
@@ -23,7 +23,7 @@ const Training = () => {
         step={50}
       />
       <Range
-        name="training.quantity"
+        name="activities.training.quantity"
         label={t("simulator.activities.training.inputs.quantity.label")}
         valueFormater={(value) =>
           t("simulator.activities.training.inputs.quantity.unit", { value })
@@ -32,7 +32,7 @@ const Training = () => {
         max={100}
       />
       <Range
-        name="training.average_time_spent"
+        name="activities.training.average_time_spent"
         label={t(
           "simulator.activities.training.inputs.average_time_spent.label",
         )}
@@ -45,7 +45,7 @@ const Training = () => {
         max={20}
         step={0.5}
       />
-      <EnjoymentRateInput name="training.enjoyment_rate" />
+      <EnjoymentRateInput name="activities.training.enjoyment_rate" />
     </BaseActivity>
   );
 };

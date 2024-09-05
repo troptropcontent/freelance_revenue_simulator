@@ -1,34 +1,46 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
-import { Activities } from "src/components/simulator/constants";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
+import { useTranslation } from "react-i18next";
 
 const Training = () => {
+  const { t } = useTranslation();
+
   return (
     <BaseActivity
-      title={Activities.training.label}
+      title={t("simulator.activities.training.label")}
       identifier="training"
-      description={Activities.training.description}
+      description={t("simulator.activities.training.description")}
     >
       <Range
         name="training.rate"
-        label="Tarif"
-        unit="€ / formation"
+        label={t("simulator.activities.training.inputs.rate.label")}
+        valueFormater={(value) =>
+          t("simulator.activities.training.inputs.rate.unit", { value })
+        }
         min={0}
         max={10000}
         step={50}
       />
       <Range
         name="training.quantity"
-        label="Nombre de formations"
-        unit="/ mois"
+        label={t("simulator.activities.training.inputs.quantity.label")}
+        valueFormater={(value) =>
+          t("simulator.activities.training.inputs.quantity.unit", { value })
+        }
         min={0}
         max={100}
       />
       <Range
         name="training.average_time_spent"
-        label="Temps alloué par formation"
-        unit="jours / semaine"
+        label={t(
+          "simulator.activities.training.inputs.average_time_spent.label",
+        )}
+        valueFormater={(value) =>
+          t("common.value_with_unit.number_of_days_per_week", {
+            count: value,
+          })
+        }
         min={0}
         max={20}
         step={0.5}

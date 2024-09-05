@@ -1,43 +1,168 @@
 {
   "fr": {
     "translation": {
+      "common": {
+        "value_with_unit": {
+          "number_of_days_one": "{{count}} jour",
+          "number_of_days_other": "{{count}} jours",
+          "number_of_days_per_week_one": "{{count}} jour / semaine",
+          "number_of_days_per_week_other": "{{count}} jours / semaine",
+          "per_month": "{{value}} / mois"
+        },
+        "currency": {
+          "EUR": "{{value, currency(currency: 'EUR')}}"
+        }
+      },
       "simulator": {
         "activities": {
+          "title": "Mon portfolio d'activités",
+          "shared_inputs": {
+            "enjoyment_rate": {
+              "label": "Niveau de kiff",
+              "hint": "(i) 0 = alimentaire - 5 = c'est que du bonheur."
+            }
+          },
           "freelance_daily_rate": {
             "label": "Mission freelance facturée au TJM",
-            "description": "Mission freelance que vous facturez au temps passé."
+            "description": "Mission freelance que vous facturez au temps passé.",
+            "inputs": {
+              "rate": {
+                "label": "Tarif Journalier Moyen (TJM)",
+                "hint": "(i) Débutant : 250€ - Intermédiaire : 500€ - Pro 750€ - Expert : 1000€."
+              },
+              "quantity": {
+                "label": "Nombre de jours facturés",
+                "unit": "{{value}} / semaines"
+              }
+            }
           },
           "freelance_on_delivery": {
             "label": "Mission freelance facturée au livrable.",
-            "description": "Audit, Stratégie, Contenus, etc."
+            "description": "Audit, Stratégie, Contenus, etc.",
+            "inputs": {
+              "rate": {
+                "label": "Tarif moyen d'une mission",
+                "unit": "{{value}} € / mission"
+              },
+              "quantity": {
+                "label": "Nombre de missions facturées"
+              },
+              "average_time_spent": {
+                "label": "Temps alloué par mission"
+              }
+            }
           },
           "consulting": {
             "label": "Consulting",
-            "description": "Coaching, mentoring, etc."
+            "description": "Coaching, mentoring, etc.",
+            "inputs": {
+              "rate": {
+                "label": "Tarif horaire",
+                "unit": "{{value}} € / heure"
+              },
+              "quantity": {
+                "label": "Nombre d'heures facturées"
+              }
+            }
           },
           "sponsorship": {
             "label": "Sponsorship & Media",
-            "description": "Newsletter, épisode de podcast, post réseaux sociaux, etc."
+            "description": "Newsletter, épisode de podcast, post réseaux sociaux, etc.",
+            "inputs": {
+              "rate": {
+                "label": "Tarif par contenu sponsorisé",
+                "unit": "{{value}} € / contenu"
+              },
+              "quantity": {
+                "label": "Nombre de contenus sponsorisés"
+              },
+              "average_time_spent": {
+                "label": "Temps passé par contenu sponsorisé"
+              }
+            }
           },
           "side_project": {
             "label": "Side Project",
-            "description": "Communauté, agence, saas, etc."
+            "description": "Communauté, agence, saas, etc.",
+            "inputs": {
+              "revenue": {
+                "label": "Chiffres d'affaires moyen",
+                "unit": "{{value}} € / mois"
+              },
+              "average_time_spent": {
+                "label": "Temps alloué"
+              }
+            }
           },
           "training": {
             "label": "Training",
-            "description": "Bootcamp, formation école, formation en ligne, etc."
+            "description": "Bootcamp, formation école, formation en ligne, etc.",
+            "inputs": {
+              "rate": {
+                "label": "Tarif",
+                "unit": "{{value}} € / formation"
+              },
+              "quantity": {
+                "label": "Nombre de formations",
+                "unit": "{{value}} € / formation"
+              },
+              "average_time_spent": {
+                "label": "Temps alloué par formation"
+              }
+            }
           },
           "digital_product": {
             "label": "Digital Product",
-            "description": "Template, ebook, mini formation, etc."
+            "description": "Template, ebook, mini formation, etc.",
+            "inputs": {
+              "rate": {
+                "label": "Tarif du produit"
+              },
+              "quantity": {
+                "label": "Nombre de produits digitaux vendus"
+              },
+              "average_time_spent": {
+                "label": "Temps alloué"
+              }
+            }
           },
           "admin": {
             "label": "Admin",
-            "description": "Admin, vente, personal branding, etc."
+            "description": "Admin, vente, personal branding, etc.",
+            "inputs": {
+              "rate": {
+                "label": "Temps alloué"
+              }
+            }
           },
           "available_time": {
             "label": "Temps disponible",
             "description": "Temps disponible pour travailler sur d'autres missions."
+          }
+        },
+        "results": {
+          "title": "Résultats",
+          "details": {
+            "total_annual_earnings": {
+              "label": "CA annuel total :"
+            },
+            "total_monthly_earnings": {
+              "label": "CA mensuel :"
+            },
+            "worked_days_per_weeks": {
+              "label": "Temps consacré à mes activités par semaine :"
+            },
+            "available_days_per_week": {
+              "label": "Temps disponible par semaine :"
+            }
+          },
+          "charts": {
+            "value": {
+              "title": "Valeur"
+            },
+            "days": {
+              "title": "Jours"
+            }
           }
         }
       }

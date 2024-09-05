@@ -1,5 +1,5 @@
 import { computeAnnualTurnover } from "./utils";
-import { AverageWorkingConditions } from "../constants";
+import { AverageWorkingConditions } from "../../constants";
 
 describe("computeAnnualTurnover", () => {
   [
@@ -23,22 +23,17 @@ describe("computeAnnualTurnover", () => {
     },
     {
       test_name:
-        "when quantity is per week, should be equal to rate * quantity * 4 * (number of weeks in a year - number of weeks off per year)",
+        "when quantity is per week, should be equal to rate * quantity * (number of weeks in a year - number of weeks off per year)",
       values: {
         input_values: {
-          rate: 100,
-          quantity: 20,
+          rate: 1000,
+          quantity: 2,
           enjoyment_rate: 0.8,
         },
         weeks_off: 2,
         isQuantityPerWeek: true,
       },
-      expected:
-        100 *
-        20 *
-        4 *
-        ((AverageWorkingConditions.weeksPerYear - 2) /
-          AverageWorkingConditions.averageWorkedDaysPerWeek),
+      expected: 1000 * 2 * (AverageWorkingConditions.weeksPerYear - 2),
     },
     {
       test_name: "should return 0 if the freelance daily rate is undefined",

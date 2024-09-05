@@ -1,6 +1,4 @@
 type DefaultActivity = {
-  label: string;
-  description: string;
   displayInInitialValues: boolean;
   defaultValue: object;
 };
@@ -66,8 +64,6 @@ const Activities: {
   };
 } = {
   freelance_daily_rate: {
-    label: "Mission freelance facturée au TJM",
-    description: "Mission freelance que vous facturez au temps passé.",
     defaultValue: {
       rate: 150,
       quantity: 1,
@@ -76,8 +72,6 @@ const Activities: {
     displayInInitialValues: true,
   },
   freelance_on_delivery: {
-    label: "Mission freelance facturée au livrable.",
-    description: "Audit, Stratégie, Contenus, etc.",
     defaultValue: {
       rate: 100,
       quantity: 1,
@@ -87,8 +81,6 @@ const Activities: {
     displayInInitialValues: false,
   },
   consulting: {
-    label: "Consulting",
-    description: "Coaching, mentoring, etc.",
     defaultValue: {
       rate: 100,
       quantity: 1,
@@ -97,8 +89,6 @@ const Activities: {
     displayInInitialValues: false,
   },
   sponsorship: {
-    label: "Sponsorship & Media",
-    description: "Newsletter, épisode de podcast, post réseaux sociaux, etc.",
     defaultValue: {
       rate: 100,
       quantity: 1,
@@ -108,8 +98,6 @@ const Activities: {
     displayInInitialValues: false,
   },
   side_project: {
-    label: "Side Project",
-    description: "Communauté, agence, saas, etc.",
     defaultValue: {
       revenue: 100,
       average_time_spent: 1,
@@ -118,8 +106,6 @@ const Activities: {
     displayInInitialValues: false,
   },
   training: {
-    label: "Training",
-    description: "Bootcamp, formation école, formation en ligne, etc.",
     defaultValue: {
       rate: 100,
       quantity: 1,
@@ -129,8 +115,6 @@ const Activities: {
     displayInInitialValues: false,
   },
   digital_product: {
-    label: "Digital Product",
-    description: "Template, ebook, mini formation, etc.",
     defaultValue: {
       rate: 100,
       quantity: 1,
@@ -140,8 +124,6 @@ const Activities: {
     displayInInitialValues: false,
   },
   admin: {
-    label: "Admin",
-    description: "Admin, vente, personal branding, etc.",
     defaultValue: {
       average_time_spent: 1,
     },

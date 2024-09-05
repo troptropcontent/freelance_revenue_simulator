@@ -1,13 +1,10 @@
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
-import { useRevenueAnalysis } from "src/components/simulator/results/hooks";
 import { CustomizedLabel } from "src/components/simulator/results/charts/CustomLabel";
 import { ChartColors } from "src/components/simulator/results/charts/private/constants";
-import { formatLegendLabelCurrency } from "src/components/simulator/results/charts/private/helpers";
-import { prepareData } from "src/components/simulator/results/charts/private/utils";
-const RevenueChart = () => {
-  const { annualTurnoverPerActivities } = useRevenueAnalysis();
 
-  const data = prepareData(annualTurnoverPerActivities);
+import { useRevenueChartData } from "./private/hooks";
+const RevenueChart = () => {
+  const data = useRevenueChartData();
 
   return (
     <ResponsiveContainer width="100%" height={400}>
@@ -20,19 +17,16 @@ const RevenueChart = () => {
           labelLine={false}
           label={CustomizedLabel}
         >
-          {data.map((_, index) => (
-            <Cell
-              key={`cell-${index}`}
-              fill={ChartColors[index % ChartColors.length]}
-            />
-          ))}
+          {data.map((_, index) => {
+            return (
+              <Cell
+                key={`cell-${index}`}
+                fill={ChartColors[index % ChartColors.length]}
+              />
+            );
+          })}
         </Pie>
-        <Legend
-          layout="vertical"
-          verticalAlign="bottom"
-          align="center"
-          formatter={formatLegendLabelCurrency}
-        />
+        <Legend layout="vertical" verticalAlign="bottom" align="center" />
       </PieChart>
     </ResponsiveContainer>
   );

@@ -1,31 +1,43 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
-import { Activities } from "src/components/simulator/constants";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
+import { useTranslation } from "react-i18next";
 
 const FreelanceDailyRate = () => {
+  const { t } = useTranslation();
+
   return (
     <BaseActivity
-      title={Activities.freelance_daily_rate.label}
-      description={Activities.freelance_daily_rate.description}
+      title={t("simulator.activities.freelance_daily_rate.label")}
+      description={t("simulator.activities.freelance_daily_rate.description")}
       identifier="freelance_daily_rate"
     >
       <Range
         name="freelance_daily_rate.rate"
-        label="Tarif Journalier Moyen (TJM)"
-        hint="(i) Débutant : 250€ - Intermédiaire : 500€ - Pro 750€ - Expert : 1000€."
-        unit="€"
+        label={t("simulator.activities.freelance_daily_rate.inputs.rate.label")}
+        hint={t("simulator.activities.freelance_daily_rate.inputs.rate.hint")}
+        valueFormater={(value) =>
+          t("common.currency.EUR", {
+            value,
+          })
+        }
         min={100}
         max={2000}
         step={50}
       />
       <Range
         name="freelance_daily_rate.quantity"
-        label="Nombre de jours facturés"
+        label={t(
+          "simulator.activities.freelance_daily_rate.inputs.quantity.label",
+        )}
         min={0}
         max={5}
         step={0.5}
-        unit="/ semaines"
+        valueFormater={(value) =>
+          t("simulator.activities.freelance_daily_rate.inputs.quantity.unit", {
+            value,
+          })
+        }
       />
       <EnjoymentRateInput name="freelance_daily_rate.enjoyment_rate" />
     </BaseActivity>

@@ -11,6 +11,7 @@ import {
 } from "./components/simulator/constants";
 import ResultsDetails from "./components/simulator/results/ResultsDetails";
 import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
+import { useTranslation } from "react-i18next";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -82,6 +83,7 @@ const initialValues: FormValues = {
 };
 
 function App() {
+  const { t } = useTranslation();
   return (
     <Theme>
       <Formik
@@ -91,10 +93,10 @@ function App() {
       >
         <StyledForm>
           <Heading as="h2" align="center" id="activities_title">
-            Mon portfolio d'activités
+            {t("simulator.activities.title")}
           </Heading>
           <Heading as="h2" align="center" id="results_title">
-            Résultats
+            {t("simulator.results.title")}
           </Heading>
           <Box
             background="grey.light"

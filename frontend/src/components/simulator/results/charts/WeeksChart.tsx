@@ -1,28 +1,9 @@
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
-import { useWorkedWeekAnalysis } from "src/components/simulator/results/hooks";
 import { CustomizedLabel } from "src/components/simulator/results/charts/CustomLabel";
 import { ChartColors } from "src/components/simulator/results/charts/private/constants";
-import { formatLegendLabelDays } from "src/components/simulator/results/charts/private/helpers";
-import { prepareData } from "src/components/simulator/results/charts/private/utils";
+import { useTimeChartData } from "./private/hooks";
 const WeeksChart = () => {
-  const { daysUsedPerWeekPerActivities, daysAvailablePerWeek } =
-    useWorkedWeekAnalysis();
-
-  const baseData = prepareData(daysUsedPerWeekPerActivities);
-
-  const dataWithAvailableTime =
-    daysAvailablePerWeek > 0
-      ? [
-          ...baseData,
-          {
-            id: "available",
-            value: daysAvailablePerWeek,
-            name: "Temps disponible",
-          },
-        ]
-      : baseData;
-
-  console.log({ dataWithAvailableTime });
+  const data = useTimeChartData();
 
   return (
     <ResponsiveContainer width="100%" height={400}>
@@ -30,24 +11,19 @@ const WeeksChart = () => {
         <Pie
           dataKey="value"
           isAnimationActive={false}
-          data={dataWithAvailableTime}
+          data={data}
           outerRadius={150}
           labelLine={false}
           label={CustomizedLabel}
         >
-          {dataWithAvailableTime.map((_, index) => (
+          {data.map((_, index) => (
             <Cell
               key={`cell-${index}`}
               fill={ChartColors[index % ChartColors.length]}
             />
           ))}
         </Pie>
-        <Legend
-          layout="vertical"
-          verticalAlign="bottom"
-          align="center"
-          formatter={formatLegendLabelDays}
-        />
+        <Legend layout="vertical" verticalAlign="bottom" align="center" />
       </PieChart>
     </ResponsiveContainer>
   );

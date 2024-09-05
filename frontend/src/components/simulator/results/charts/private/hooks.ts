@@ -45,18 +45,31 @@ const useTimeChartData = (): {
   name: string;
 }[] => {
   const { t } = useTranslation();
-  const { daysUsedPerWeekPerActivities, daysAvailablePerWeek } =
-    useWorkedWeekAnalysis();
+  const { daysUsedPerWeek, daysAvailablePerWeek } = useWorkedWeekAnalysis();
   const { values } = useFormikContext<FormValues>();
+
   let baseData: {
     id: string;
     value: number;
     name: string;
-  }[] = [];
+  }[] = [
+    {
+      id: "admin",
+      value: daysUsedPerWeek.admin,
+      name:
+        t(
+          `simulator.activities.general_info.inputs.time_spent_on_admin_tasks.label`,
+        ) +
+        ` (${t("common.value_with_unit.number_of_days", {
+          count: daysUsedPerWeek.admin,
+        })})`,
+    },
+  ];
 
-  baseData = Object.entries(daysUsedPerWeekPerActivities).reduce(
+  baseData = Object.entries(daysUsedPerWeek.activities).reduce(
     (previousValue, [id, value]) => {
-      return values[id as keyof FormValues] === undefined
+      const key = id as keyof typeof daysUsedPerWeek.activities;
+      return values[key] === undefined
         ? previousValue
         : [
             ...previousValue,
@@ -73,6 +86,8 @@ const useTimeChartData = (): {
     },
     baseData,
   );
+
+  console.log({ baseData });
 
   return daysAvailablePerWeek > 0
     ? [

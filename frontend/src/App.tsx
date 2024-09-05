@@ -51,7 +51,10 @@ const StyledForm = styled.form`
 export type FormValues = {
   [key in keyof typeof Activities]?: (typeof Activities)[key]["defaultValue"];
 } & {
-  weeks_off: number;
+  general_info: {
+    weeks_off: number;
+    time_spent_on_admin_tasks: number;
+  };
 };
 
 const initialValues: FormValues = {
@@ -76,10 +79,11 @@ const initialValues: FormValues = {
   digital_product: Activities.digital_product.displayInInitialValues
     ? Activities.digital_product.defaultValue
     : undefined,
-  admin: Activities.admin.displayInInitialValues
-    ? Activities.admin.defaultValue
-    : undefined,
-  weeks_off: AverageWorkingConditions.weeksOffPerYear,
+  general_info: {
+    weeks_off: AverageWorkingConditions.weeksOffPerYear,
+    time_spent_on_admin_tasks:
+      AverageWorkingConditions.timeSpentOnAdminTasksPerWeek,
+  },
 };
 
 function App() {

@@ -22,6 +22,20 @@
               "hint": "(i) 0 = alimentaire - 5 = c'est que du bonheur."
             }
           },
+          "general_info": {
+            "label": "Informations générales",
+            "description": "Nombres de semaines de congés et de jours passés sur les tâches administratives.",
+            "inputs": {
+              "weeks_off": {
+                "label": "Semaines de congés",
+                "unit_one": "{{count}} semaine",
+                "unit_other": "{{count}} semaines"
+              },
+              "time_spent_on_admin_tasks": {
+                "label": "Temps passé sur les tâches administratives"
+              }
+            }
+          },
           "freelance_daily_rate": {
             "label": "Mission freelance facturée au TJM",
             "description": "Mission freelance que vous facturez au temps passé.",

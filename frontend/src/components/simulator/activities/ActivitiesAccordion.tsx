@@ -8,12 +8,9 @@ import { Sponsorship } from "src/components/simulator/activities/Sponsorship";
 import { SideProject } from "src/components/simulator/activities/SideProject";
 import { Training } from "src/components/simulator/activities/Training";
 import { DigitalProduct } from "src/components/simulator/activities/DigitalProduct";
-import { Admin } from "src/components/simulator/activities/Admin";
+import { GeneralInfo } from "./GeneralInfo";
 
-const ActivitiesComponents: Record<
-  Exclude<keyof FormValues, "weeks_off">,
-  React.FC
-> = {
+const ActivitiesComponents: Record<keyof FormValues, React.FC> = {
   freelance_daily_rate: FreelanceDailyRate,
   freelance_on_delivery: FreelanceOnDelivery,
   consulting: Consulting,
@@ -21,7 +18,7 @@ const ActivitiesComponents: Record<
   side_project: SideProject,
   training: Training,
   digital_product: DigitalProduct,
-  admin: Admin,
+  general_info: GeneralInfo,
 };
 
 const ActivitiesAccordion = () => {
@@ -29,10 +26,13 @@ const ActivitiesAccordion = () => {
 
   return (
     <Accordion.Root type="single" collapsible gap="md">
+      <GeneralInfo />
       {Object.entries(values).map(([key, value]) => {
-        if (typeof value === "object") {
+        if (typeof value === "object" && key !== "general_info") {
           const ActivityComponent =
-            ActivitiesComponents[key as Exclude<keyof FormValues, "weeks_off">];
+            ActivitiesComponents[
+              key as Exclude<keyof FormValues, "general_info">
+            ];
           return <ActivityComponent key={key} />;
         }
       })}

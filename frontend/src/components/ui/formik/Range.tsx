@@ -64,18 +64,18 @@ const Range = ({
   name,
   label,
   hint,
-  unit,
   max = 100,
   min = 0,
   step = 1,
+  valueFormater,
 }: {
   name: string;
   label: string;
   hint?: string;
-  unit?: string;
   max?: number;
   min?: number;
   step?: number;
+  valueFormater?: (value: number) => string;
 }) => {
   const { values, setFieldValue } = useFormikContext<
     Record<string, unknown> | undefined
@@ -94,7 +94,7 @@ const Range = ({
         <StyledLabel htmlFor={name}>
           <Text>{label + ":"}</Text>
           <Box as="span">
-            {[value, unit].filter((v) => v !== undefined).join(" ")}
+            {valueFormater ? valueFormater(valueNumber) : value}
           </Box>
         </StyledLabel>
         <Text size="xs" color="muted.medium">

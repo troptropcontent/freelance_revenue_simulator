@@ -1,37 +1,53 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
-import { Activities } from "src/components/simulator/constants";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
+import { useTranslation } from "react-i18next";
 
 const FreelanceOnDelivery = () => {
+  const { t } = useTranslation();
+
   return (
     <BaseActivity
-      title={Activities.freelance_on_delivery.label}
+      title={t("simulator.activities.freelance_on_delivery.label")}
       identifier="freelance_on_delivery"
-      description={Activities.freelance_on_delivery.description}
+      description={t("simulator.activities.freelance_on_delivery.description")}
     >
       <Range
         name="freelance_on_delivery.rate"
-        label="Tarif moyen d'une mission"
-        unit="€ / mission"
+        label={t(
+          "simulator.activities.freelance_on_delivery.inputs.rate.label",
+        )}
+        valueFormater={(value) =>
+          t("simulator.activities.freelance_on_delivery.inputs.rate.unit", {
+            value,
+          })
+        }
         min={100}
         max={50000}
         step={50}
       />
       <Range
         name="freelance_on_delivery.quantity"
-        label="Nombre de missions facturées"
+        label={t(
+          "simulator.activities.freelance_on_delivery.inputs.quantity.label",
+        )}
         min={0}
         max={50}
-        unit="/ mois"
+        valueFormater={(value) =>
+          t("common.value_with_unit.per_month", { value })
+        }
       />
       <Range
         name="freelance_on_delivery.average_time_spent"
-        label="Temps passé par mission"
+        label={t(
+          "simulator.activities.freelance_on_delivery.inputs.average_time_spent.label",
+        )}
         min={0}
         max={20}
         step={0.5}
-        unit="jours"
+        valueFormater={(value) =>
+          t("common.value_with_unit.number_of_days", { count: value })
+        }
       />
       <EnjoymentRateInput name="freelance_on_delivery.enjoyment_rate" />
     </BaseActivity>

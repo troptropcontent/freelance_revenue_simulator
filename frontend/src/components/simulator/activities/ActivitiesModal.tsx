@@ -7,9 +7,12 @@ import { Activities } from "../constants";
 import { Text } from "src/components/ui/Text";
 import { Box } from "src/components/ui/Box";
 import { PlusIcon } from "@radix-ui/react-icons";
+import { useTranslation } from "react-i18next";
 
 const ActivitiesModal = () => {
   const { values, setFieldValue } = useFormikContext<FormValues>();
+  const { t } = useTranslation();
+
   const availableActivities = Object.entries(values).reduce(
     (acc, [key, value]) => {
       if (value === undefined) {
@@ -19,7 +22,7 @@ const ActivitiesModal = () => {
     },
     [] as (keyof FormValues)[],
   );
-  console.log({ availableActivities });
+
   return (
     <Dialog
       title="Ajouter une activité"
@@ -43,9 +46,9 @@ const ActivitiesModal = () => {
               justifyContent="space-between"
             >
               <Box as="span">
-                <Text>{Activities[key as keyof typeof Activities].label}</Text>
+                <Text>{t(`simulator.activities.${key}.label`)}</Text>
                 <Text size="xs" color="muted.medium">
-                  {Activities[key as keyof typeof Activities].description}
+                  {t(`simulator.activities.${key}.description`)}
                 </Text>
               </Box>
               <Button color="grey">

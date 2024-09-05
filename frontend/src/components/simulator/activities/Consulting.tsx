@@ -1,27 +1,33 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
-import { Activities } from "src/components/simulator/constants";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
+import { useTranslation } from "react-i18next";
 
 const Consulting = () => {
+  const { t } = useTranslation();
+
   return (
     <BaseActivity
-      title={Activities.consulting.label}
+      title={t("simulator.activities.consulting.label")}
       identifier="consulting"
-      description={Activities.consulting.description}
+      description={t("simulator.activities.consulting.description")}
     >
       <Range
         name="consulting.rate"
-        label="Tarif horaire"
-        unit="€ / h"
+        label={t("simulator.activities.consulting.inputs.rate.label")}
+        valueFormater={(value) =>
+          t("simulator.activities.consulting.inputs.rate.unit", { value })
+        }
         min={0}
         max={1000}
         step={50}
       />
       <Range
         name="consulting.quantity"
-        label="Nombre d'heures facturées"
-        unit="h / mois"
+        label={t("simulator.activities.consulting.inputs.quantity.label")}
+        valueFormater={(value) =>
+          t("common.value_with_unit.per_month", { value })
+        }
       />
       <EnjoymentRateInput name="consulting.enjoyment_rate" />
     </BaseActivity>

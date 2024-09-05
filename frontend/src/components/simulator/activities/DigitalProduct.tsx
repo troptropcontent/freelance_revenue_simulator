@@ -1,35 +1,42 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
-import { Activities } from "src/components/simulator/constants";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
+import { useTranslation } from "react-i18next";
 
 const DigitalProduct = () => {
+  const { t } = useTranslation();
   return (
     <BaseActivity
-      title={Activities.digital_product.label}
+      title={t("simulator.activities.digital_product.label")}
       identifier="digital_product"
-      description={Activities.digital_product.description}
+      description={t("simulator.activities.digital_product.description")}
     >
       <Range
         name="digital_product.rate"
-        label="Tarif du produit"
-        unit="€"
+        label={t("simulator.activities.digital_product.inputs.rate.label")}
+        valueFormater={(value) => t("common.currency.EUR", { value })}
         min={0}
         max={10000}
         step={50}
       />
       <Range
         name="digital_product.quantity"
-        label="Nombre de produits digitaux vendus"
-        unit="/ mois"
+        label={t("simulator.activities.digital_product.inputs.quantity.label")}
+        valueFormater={(value) =>
+          t("common.value_with_unit.per_month", { value })
+        }
         min={0}
         max={1000}
         step={10}
       />
       <Range
         name="digital_product.average_time_spent"
-        label="Temps alloué"
-        unit="jours / semaine"
+        label={t(
+          "simulator.activities.digital_product.inputs.average_time_spent.label",
+        )}
+        valueFormater={(value) =>
+          t("common.value_with_unit.number_of_days_per_week", { count: value })
+        }
         min={0}
         max={20}
         step={0.5}

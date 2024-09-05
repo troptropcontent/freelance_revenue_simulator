@@ -58,7 +58,7 @@ const useWorkedWeekAnalysis = () => {
     [key in keyof typeof Activities]: number;
   } = {
     freelance_daily_rate: freelance_daily_rate
-      ? freelance_daily_rate.quantity / 4
+      ? freelance_daily_rate.quantity
       : 0,
     freelance_on_delivery: freelance_on_delivery
       ? freelance_on_delivery.average_time_spent *

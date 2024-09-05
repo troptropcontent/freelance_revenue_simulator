@@ -200,7 +200,6 @@ body {
 
 #who_we_are_section_article_2_photo {
   grid-area: article_2_photo;
-  margin-block-start: var(--spacing-medium);
 }
 
 #who_we_are_section_article_2_title {

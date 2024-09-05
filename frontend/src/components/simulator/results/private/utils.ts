@@ -1,4 +1,4 @@
-import { AverageWorkingConditions } from "../constants";
+import { AverageWorkingConditions } from "../../constants";
 
 const computeAnnualTurnover = (
   input_values:
@@ -17,7 +17,7 @@ const computeAnnualTurnover = (
   return isQuantityPerWeek
     ? input_values.rate *
         input_values.quantity *
-        AverageWorkingConditions.weeksPerYear
+        (AverageWorkingConditions.weeksPerYear - weeks_off)
     : input_values.rate *
         input_values.quantity *
         ((AverageWorkingConditions.weeksPerYear - weeks_off) /

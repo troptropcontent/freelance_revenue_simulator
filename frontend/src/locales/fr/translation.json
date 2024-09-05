@@ -3,11 +3,11 @@
     "translation": {
       "common": {
         "value_with_unit": {
-          "number_of_days_one": "{{count}} jour",
-          "number_of_days_other": "{{count}} jours",
-          "number_of_days_per_week_one": "{{count}} jour / semaine",
-          "number_of_days_per_week_other": "{{count}} jours / semaine",
-          "per_month": "{{value}} / mois"
+          "number_of_days_one": "{{count, number(maximumFractionDigits: 2)}} jour",
+          "number_of_days_other": "{{count, number(maximumFractionDigits: 2)}} jours",
+          "number_of_days_per_week_one": "{{count, number(maximumFractionDigits: 2)}} jour / semaine",
+          "number_of_days_per_week_other": "{{count, number(maximumFractionDigits: 2)}} jours / semaine",
+          "per_month": "{{value, number(maximumFractionDigits: 2)}} / mois"
         },
         "currency": {
           "EUR": "{{value, currency(currency: 'EUR')}}"

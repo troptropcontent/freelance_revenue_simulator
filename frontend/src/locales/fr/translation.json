@@ -16,6 +16,15 @@
       "simulator": {
         "activities": {
           "title": "Mon portfolio d'activités",
+          "empty_state": {
+            "title": "Aucune activité selectionnée",
+            "description": "Commencer à simuler vos revenus en ajoutant une activité via le bouton ci dessous"
+          },
+          "modal": {
+            "title": "Ajouter une activité",
+            "description": "Ajouter une activité à la liste de vos activités pour determiner avec précision vos résultats annuels.",
+            "button": "Ajouter une activité"
+          },
           "shared_inputs": {
             "enjoyment_rate": {
               "label": "Niveau de kiff",
@@ -172,7 +181,9 @@
           },
           "charts": {
             "value": {
-              "title": "Valeur"
+              "title": "Valeur",
+              "no_data_title": "Aucune donnée à afficher",
+              "no_data_description": "Ajoutez au moins une activité pour voir le graphique"
             },
             "days": {
               "title": "Jours"

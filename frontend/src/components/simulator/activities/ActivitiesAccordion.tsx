@@ -9,6 +9,8 @@ import { SideProject } from "src/components/simulator/activities/SideProject";
 import { Training } from "src/components/simulator/activities/Training";
 import { DigitalProduct } from "src/components/simulator/activities/DigitalProduct";
 import { GeneralInfo } from "./GeneralInfo";
+import { List } from "src/components/ui/List";
+import { useTranslation } from "react-i18next";
 
 const ActivitiesComponents: Record<keyof FormValues["activities"], React.FC> = {
   freelance_daily_rate: FreelanceDailyRate,
@@ -17,22 +19,38 @@ const ActivitiesComponents: Record<keyof FormValues["activities"], React.FC> = {
   sponsorship: Sponsorship,
   side_project: SideProject,
   training: Training,
-  digital_product: DigitalProduct
+  digital_product: DigitalProduct,
 };
 
 const ActivitiesAccordion = () => {
-  const { values: { activities } } = useFormikContext<FormValues>();
+  const {
+    values: { activities },
+  } = useFormikContext<FormValues>();
+
+  const { t } = useTranslation();
 
   return (
-    <Accordion.Root type="single" collapsible gap="md">
+    <Accordion.Root type="single" collapsible gap="md" grow>
       <GeneralInfo />
-      {Object.entries(activities).map(([key, value]) => {
-        if (typeof value === "object") {
-          const ActivityComponent =
-            ActivitiesComponents[key as keyof FormValues["activities"]];
-          return <ActivityComponent key={key} />;
-        }
-      })}
+      <List.Root
+        emptyState={{
+          title: t("simulator.activities.empty_state.title"),
+          description: t("simulator.activities.empty_state.description"),
+        }}
+        grow
+      >
+        {Object.entries(activities).map(([key, value]) => {
+          if (typeof value === "object") {
+            const ActivityComponent =
+              ActivitiesComponents[key as keyof FormValues["activities"]];
+            return (
+              <List.Item key={key}>
+                <ActivityComponent />
+              </List.Item>
+            );
+          }
+        })}
+      </List.Root>
     </Accordion.Root>
   );
 };

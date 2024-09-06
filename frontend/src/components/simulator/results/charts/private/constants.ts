@@ -11,6 +11,8 @@ const ChartColors = [
   "#fcffac", // lightest
 ] as const;
 
+const ChartHeight = 400;
+
 const RADIAN = Math.PI / 180;
 
-export { ChartColors, RADIAN };
+export { ChartColors, RADIAN, ChartHeight };

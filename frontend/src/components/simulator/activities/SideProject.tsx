@@ -13,14 +13,14 @@ const SideProject = () => {
       description={t("simulator.activities.side_project.description")}
     >
       <Range
-        name="side_project.revenue"
+        name="activities.side_project.revenue"
         label={t("simulator.activities.side_project.inputs.revenue.label")}
         valueFormater={(value) =>
           t("simulator.activities.side_project.inputs.revenue.unit", { value })
         }
       />
       <Range
-        name="side_project.average_time_spent"
+        name="activities.side_project.average_time_spent"
         label={t(
           "simulator.activities.side_project.inputs.average_time_spent.label",
         )}
@@ -31,7 +31,7 @@ const SideProject = () => {
         max={20}
         step={0.5}
       />
-      <EnjoymentRateInput name="side_project.enjoyment_rate" />
+      <EnjoymentRateInput name="activities.side_project.enjoyment_rate" />
     </BaseActivity>
   );
 };

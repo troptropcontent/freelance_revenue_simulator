@@ -12,7 +12,7 @@ const DigitalProduct = () => {
       description={t("simulator.activities.digital_product.description")}
     >
       <Range
-        name="digital_product.rate"
+        name="activities.digital_product.rate"
         label={t("simulator.activities.digital_product.inputs.rate.label")}
         valueFormater={(value) => t("common.currency.EUR", { value })}
         min={0}
@@ -20,7 +20,7 @@ const DigitalProduct = () => {
         step={50}
       />
       <Range
-        name="digital_product.quantity"
+        name="activities.digital_product.quantity"
         label={t("simulator.activities.digital_product.inputs.quantity.label")}
         valueFormater={(value) =>
           t("common.value_with_unit.per_month", { value })
@@ -30,7 +30,7 @@ const DigitalProduct = () => {
         step={10}
       />
       <Range
-        name="digital_product.average_time_spent"
+        name="activities.digital_product.average_time_spent"
         label={t(
           "simulator.activities.digital_product.inputs.average_time_spent.label",
         )}
@@ -41,7 +41,7 @@ const DigitalProduct = () => {
         max={20}
         step={0.5}
       />
-      <EnjoymentRateInput name="digital_product.enjoyment_rate" />
+      <EnjoymentRateInput name="activities.digital_product.enjoyment_rate" />
     </BaseActivity>
   );
 };

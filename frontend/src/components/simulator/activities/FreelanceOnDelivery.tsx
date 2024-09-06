@@ -13,7 +13,7 @@ const FreelanceOnDelivery = () => {
       description={t("simulator.activities.freelance_on_delivery.description")}
     >
       <Range
-        name="freelance_on_delivery.rate"
+        name="activities.freelance_on_delivery.rate"
         label={t(
           "simulator.activities.freelance_on_delivery.inputs.rate.label",
         )}
@@ -27,7 +27,7 @@ const FreelanceOnDelivery = () => {
         step={50}
       />
       <Range
-        name="freelance_on_delivery.quantity"
+        name="activities.freelance_on_delivery.quantity"
         label={t(
           "simulator.activities.freelance_on_delivery.inputs.quantity.label",
         )}
@@ -38,7 +38,7 @@ const FreelanceOnDelivery = () => {
         }
       />
       <Range
-        name="freelance_on_delivery.average_time_spent"
+        name="activities.freelance_on_delivery.average_time_spent"
         label={t(
           "simulator.activities.freelance_on_delivery.inputs.average_time_spent.label",
         )}
@@ -49,7 +49,7 @@ const FreelanceOnDelivery = () => {
           t("common.value_with_unit.number_of_days", { count: value })
         }
       />
-      <EnjoymentRateInput name="freelance_on_delivery.enjoyment_rate" />
+      <EnjoymentRateInput name="activities.freelance_on_delivery.enjoyment_rate" />
     </BaseActivity>
   );
 };

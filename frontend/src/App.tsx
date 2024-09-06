@@ -49,37 +49,42 @@ const StyledForm = styled.form`
 `;
 
 export type FormValues = {
-  [key in keyof typeof Activities]?: (typeof Activities)[key]["defaultValue"];
+  activities: {
+    [key in keyof typeof Activities]?: (typeof Activities)[key]["defaultValue"];
+  };
 } & {
-  general_info: {
+  general_informations: {
     weeks_off: number;
     time_spent_on_admin_tasks: number;
   };
 };
 
 const initialValues: FormValues = {
-  freelance_daily_rate: Activities.freelance_daily_rate.displayInInitialValues
-    ? Activities.freelance_daily_rate.defaultValue
-    : undefined,
-  freelance_on_delivery: Activities.freelance_on_delivery.displayInInitialValues
-    ? Activities.freelance_on_delivery.defaultValue
-    : undefined,
-  consulting: Activities.consulting.displayInInitialValues
-    ? Activities.consulting.defaultValue
-    : undefined,
-  sponsorship: Activities.sponsorship.displayInInitialValues
-    ? Activities.sponsorship.defaultValue
-    : undefined,
-  side_project: Activities.side_project.displayInInitialValues
-    ? Activities.side_project.defaultValue
-    : undefined,
-  training: Activities.training.displayInInitialValues
-    ? Activities.training.defaultValue
-    : undefined,
-  digital_product: Activities.digital_product.displayInInitialValues
-    ? Activities.digital_product.defaultValue
-    : undefined,
-  general_info: {
+  activities: {
+    freelance_daily_rate: Activities.freelance_daily_rate.displayInInitialValues
+      ? Activities.freelance_daily_rate.defaultValue
+      : undefined,
+    freelance_on_delivery: Activities.freelance_on_delivery
+      .displayInInitialValues
+      ? Activities.freelance_on_delivery.defaultValue
+      : undefined,
+    consulting: Activities.consulting.displayInInitialValues
+      ? Activities.consulting.defaultValue
+      : undefined,
+    sponsorship: Activities.sponsorship.displayInInitialValues
+      ? Activities.sponsorship.defaultValue
+      : undefined,
+    side_project: Activities.side_project.displayInInitialValues
+      ? Activities.side_project.defaultValue
+      : undefined,
+    training: Activities.training.displayInInitialValues
+      ? Activities.training.defaultValue
+      : undefined,
+    digital_product: Activities.digital_product.displayInInitialValues
+      ? Activities.digital_product.defaultValue
+      : undefined,
+  },
+  general_informations: {
     weeks_off: AverageWorkingConditions.weeksOffPerYear,
     time_spent_on_admin_tasks:
       AverageWorkingConditions.timeSpentOnAdminTasksPerWeek,

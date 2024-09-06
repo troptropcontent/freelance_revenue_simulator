@@ -10,7 +10,7 @@ const BaseActivity = ({
 }: {
   title: string;
   description?: string;
-  identifier: keyof FormValues;
+  identifier: keyof FormValues["activities"] | "general_informations";
   children: React.ReactNode;
 }) => {
   return (

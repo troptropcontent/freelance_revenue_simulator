@@ -8,36 +8,37 @@ import { computeAnnualTurnover } from "./utils";
 
 // TODO: use a useMemo here to avoid recomputing the values if the form values didn't change
 const useRevenueAnalysis = () => {
-  const { values } = useFormikContext<FormValues>();
+  const {
+    values: {
+      general_informations: { weeks_off },
+      activities: {
+        consulting,
+        freelance_daily_rate,
+        freelance_on_delivery,
+        sponsorship,
+        side_project,
+        training,
+        digital_product,
+      },
+    },
+  } = useFormikContext<FormValues>();
   const annualTurnoverPerActivities: {
-    [key in Exclude<keyof typeof Activities, "admin">]: number;
+    [key in keyof FormValues["activities"]]: number;
   } = {
     freelance_daily_rate: computeAnnualTurnover(
-      values.freelance_daily_rate,
-      values.general_info.weeks_off,
+      freelance_daily_rate,
+      weeks_off,
       true,
     ),
     freelance_on_delivery: computeAnnualTurnover(
-      values.freelance_on_delivery,
-      values.general_info.weeks_off,
+      freelance_on_delivery,
+      weeks_off,
     ),
-    consulting: computeAnnualTurnover(
-      values.consulting,
-      values.general_info.weeks_off,
-    ),
-    sponsorship: computeAnnualTurnover(
-      values.sponsorship,
-      values.general_info.weeks_off,
-    ),
-    side_project: values.side_project ? values.side_project.revenue * 12 : 0,
-    training: computeAnnualTurnover(
-      values.training,
-      values.general_info.weeks_off,
-    ),
-    digital_product: computeAnnualTurnover(
-      values.digital_product,
-      values.general_info.weeks_off,
-    ),
+    consulting: computeAnnualTurnover(consulting, weeks_off),
+    sponsorship: computeAnnualTurnover(sponsorship, weeks_off),
+    side_project: side_project ? side_project.revenue * 12 : 0,
+    training: computeAnnualTurnover(training, weeks_off),
+    digital_product: computeAnnualTurnover(digital_product, weeks_off),
   };
 
   const annualTurnover = Object.values(annualTurnoverPerActivities).reduce(
@@ -52,14 +53,16 @@ const useRevenueAnalysis = () => {
 const useWorkedWeekAnalysis = () => {
   const {
     values: {
-      freelance_daily_rate,
-      freelance_on_delivery,
-      consulting,
-      sponsorship,
-      side_project,
-      training,
-      digital_product,
-      general_info,
+      activities: {
+        freelance_daily_rate,
+        freelance_on_delivery,
+        consulting,
+        sponsorship,
+        side_project,
+        training,
+        digital_product,
+      },
+      general_informations: { time_spent_on_admin_tasks },
     },
   } = useFormikContext<FormValues>();
 
@@ -86,12 +89,12 @@ const useWorkedWeekAnalysis = () => {
       training: training ? training.quantity / 4 / 7 : 0,
       digital_product: digital_product ? digital_product.quantity / 4 / 7 : 0,
     },
-    admin: general_info.time_spent_on_admin_tasks,
+    admin: time_spent_on_admin_tasks,
   };
 
   const daysWorkedPerWeek = Object.values(daysUsedPerWeek.activities).reduce(
     (acc, curr) => acc + curr,
-    general_info.time_spent_on_admin_tasks,
+    time_spent_on_admin_tasks,
   );
 
   const daysAvailablePerWeek =

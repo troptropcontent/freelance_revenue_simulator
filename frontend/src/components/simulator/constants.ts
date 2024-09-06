@@ -64,7 +64,7 @@ const Activities: {
       quantity: 1,
       enjoyment_rate: 1,
     },
-    displayInInitialValues: true,
+    displayInInitialValues: false,
   },
   freelance_on_delivery: {
     defaultValue: {

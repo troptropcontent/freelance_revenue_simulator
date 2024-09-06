@@ -10,24 +10,24 @@ import { PlusIcon } from "@radix-ui/react-icons";
 import { useTranslation } from "react-i18next";
 
 const ActivitiesModal = () => {
-  const { values, setFieldValue } = useFormikContext<FormValues>();
+  const {
+    values: { activities },
+    setFieldValue,
+  } = useFormikContext<FormValues>();
   const { t } = useTranslation();
 
-  const availableActivities = Object.entries(values).reduce(
-    (acc, [key, value]) => {
-      if (value === undefined) {
-        acc.push(key as keyof FormValues);
-      }
-      return acc;
-    },
-    [] as (keyof FormValues)[],
-  );
+  const availableActivities: (keyof FormValues["activities"])[] = [];
+  Object.entries(activities).forEach(([key, value]) => {
+    if (value === undefined) {
+      availableActivities.push(key as keyof FormValues["activities"]);
+    }
+  });
 
   return (
     <Dialog
-      title="Ajouter une activité"
-      description="Ajouter une activité à la liste de vos activités pour determiner avec précision vos résultats annuels."
-      trigger={<Button>Ajouter une activité</Button>}
+      title={t("simulator.activities.modal.title")}
+      description={t("simulator.activities.modal.description")}
+      trigger={<Button>{t("simulator.activities.modal.button")}</Button>}
     >
       {({ setOpen }) => (
         <List.Root gap="md" padding={{ top: "md" }}>
@@ -36,7 +36,7 @@ const ActivitiesModal = () => {
               key={key}
               onClick={() => {
                 setFieldValue(
-                  key,
+                  `activities.${key}`,
                   Activities[key as keyof typeof Activities].defaultValue,
                 );
                 setOpen(false);

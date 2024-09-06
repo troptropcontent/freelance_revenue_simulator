@@ -13,7 +13,9 @@ const useRevenueChartData = (): {
 }[] => {
   const { t } = useTranslation();
   const { annualTurnoverPerActivities } = useRevenueAnalysis();
-  const { values: { activities } } = useFormikContext<FormValues>();
+  const {
+    values: { activities },
+  } = useFormikContext<FormValues>();
   const data: {
     id: string;
     value: number;
@@ -46,7 +48,9 @@ const useTimeChartData = (): {
 }[] => {
   const { t } = useTranslation();
   const { daysUsedPerWeek, daysAvailablePerWeek } = useWorkedWeekAnalysis();
-  const { values: { activities } } = useFormikContext<FormValues>();
+  const {
+    values: { activities },
+  } = useFormikContext<FormValues>();
 
   let baseData: {
     id: string;

@@ -10,6 +10,7 @@ const AccordionRoot = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> & {
     gap?: Spacing;
+    grow?: boolean;
   }
 >((props, forwardedRef) => (
   <AccordionPrimitive.Root {...props} ref={forwardedRef} />
@@ -25,6 +26,7 @@ const StyledRoot = styled(AccordionRoot)`
   display: flex;
   flex-direction: column;
   gap: ${({ gap }) => gap && cssVariable(`spacing.${gap}`)};
+  ${({ grow }) => grow && "flex-grow: 1;"}
 
   .AccordionItem {
     border-radius: ${() => cssVariable("borderRadius.md")};

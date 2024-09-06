@@ -117,7 +117,7 @@ function App() {
             id="activities"
           >
             <ActivitiesAccordion />
-            <Box flex flexDirection="column-reverse" grow>
+            <Box flex flexDirection="column">
               <ActivitiesModal />
             </Box>
           </Box>

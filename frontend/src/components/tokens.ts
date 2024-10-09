@@ -7,6 +7,8 @@ interface Color {
 interface Tokens {
   color: {
     background: {
+      success: Color;
+      neutral: Color;
       blue: Color;
       green: Color;
       red: Color;
@@ -14,7 +16,20 @@ interface Tokens {
       orange: Color;
       grey: Color;
       white: string;
-      black: string;
+      black: {
+        a1: string;
+        a2: string;
+        a3: string;
+        a4: string;
+        a5: string;
+        a6: string;
+        a7: string;
+        a8: string;
+        a9: string;
+        a10: string;
+        a11: string;
+        a12: string;
+      };
       brand: Color;
     };
     text: {

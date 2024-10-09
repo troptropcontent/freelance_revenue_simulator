@@ -15,6 +15,20 @@
       },
       "simulator": {
         "activities": {
+          "kinds": {
+            "freelancing": {
+              "title": "🤝 Clients",
+              "description": "Activités dédiées à des clients : missions, offre de conseil ou créations de contenus sponsoring."
+            },
+            "entrepreneurial_project": {
+              "title": "🚀 Projet entrepreneurial",
+              "description": "Activité dédiée à la création d’un projet de type start-up, communauté, agence, collectif, SAAS, formation, produit digital..."
+            },
+            "unbilled_activity": {
+              "title": "😎 Temps non facturé",
+              "description": "Activités pour le plaisir ou nécessaires, n’étant pas rémunérées."
+            }
+          },
           "title": "Mon portfolio d'activités",
           "empty_state": {
             "title": "Aucune activité selectionnée",

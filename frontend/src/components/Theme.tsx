@@ -8,25 +8,35 @@ import { cssVariables } from "./helper";
 const theme: DefaultTheme = {
   color: {
     background: {
+      success: {
+        light: "#99F5D1", // Lighter shade of 29ECA3
+        medium: "#29ECA3", // The given medium green-blue
+        dark: "#17B57D", // Darker shade of 29ECA3
+      },
+      neutral: {
+        light: "#FBFAFC", // Lighter shade of F8F6FA
+        medium: "#F8F6FA", // The given medium neutral
+        dark: "#E3DFE8", // Darker shade of F8F6FA
+      },
       blue: {
-        light: "#0000FF",
-        medium: "#0000FF",
-        dark: "#0000FF",
+        light: "#E6F1FB", // Lighter shade of CAE0F7
+        medium: "#CAE0F7", // The given medium blue
+        dark: "#87B9E4", // Darker shade of CAE0F7
+      },
+      yellow: {
+        light: "#FBE7B3", // Lighter shade of F8D470
+        medium: "#F8D470", // The given medium yellow
+        dark: "#F0B441", // Darker shade of F8D470
       },
       green: {
-        light: "#00FF00",
-        medium: "#00FF00",
-        dark: "#00FF00",
+        light: "#F1FBCD", // Lighter shade of E3F588
+        medium: "#E3F588", // The given medium green
+        dark: "#B5D737", // Darker shade of E3F588
       },
       red: {
         light: "#FF0000",
         medium: "#FF0000",
         dark: "#FF0000",
-      },
-      yellow: {
-        light: "#FFFF00",
-        medium: "#FFFF00",
-        dark: "#FFFF00",
       },
       orange: {
         light: "#FFA500",
@@ -34,12 +44,25 @@ const theme: DefaultTheme = {
         dark: "#FFA500",
       },
       grey: {
-        light: "#FAF9FA",
+        light: "#D4D4D4",
         medium: "#C7C8CC",
         dark: "#B4B4B8",
       },
       white: "#FFFFFF",
-      black: "0%, 0%, 0%",
+      black: {
+        a1: "#0000000d",
+        a2: "#0000001a",
+        a3: "#00000026",
+        a4: "#0003",
+        a5: "#0000004d",
+        a6: "#0006",
+        a7: "#00000080",
+        a8: "#0009",
+        a9: "#000000b3",
+        a10: "#000c",
+        a11: "#000000e6",
+        a12: "#000000f2",
+      },
       brand: {
         light: "#FFEAC5",
         medium: "#f4a261",

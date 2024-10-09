@@ -1,15 +1,15 @@
 import { Range } from "src/components/ui/formik/Range";
-import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
+import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
 
-const Training = () => {
+const Admin = () => {
   const { t } = useTranslation();
 
   return (
     <BaseActivity
       title={t("simulator.activities.training.label")}
-      identifier="training"
+      identifier="admin"
       description={t("simulator.activities.training.description")}
     >
       <Range
@@ -50,4 +50,4 @@ const Training = () => {
   );
 };
 
-export { Training };
+export { Admin };

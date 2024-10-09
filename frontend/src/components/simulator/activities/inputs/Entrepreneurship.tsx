@@ -1,14 +1,14 @@
 import { Range } from "src/components/ui/formik/Range";
-import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
+import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
 
-const DigitalProduct = () => {
+const Entrepreneurship = () => {
   const { t } = useTranslation();
   return (
     <BaseActivity
       title={t("simulator.activities.digital_product.label")}
-      identifier="digital_product"
+      identifier="entrepreneurship"
       description={t("simulator.activities.digital_product.description")}
     >
       <Range
@@ -46,4 +46,4 @@ const DigitalProduct = () => {
   );
 };
 
-export { DigitalProduct };
+export { Entrepreneurship };

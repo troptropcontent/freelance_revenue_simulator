@@ -9,7 +9,14 @@
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh/freelance_revenue_simulator,target=/home/vscode/.ssh,type=bind,consistency=cached"
 	],
 	"runArgs": ["--env-file",".devcontainer/.env"],
-	"postCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh"
+	"postCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"esbenp.prettier-vscode"
+			]
+		}
+	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

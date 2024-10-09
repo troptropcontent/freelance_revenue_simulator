@@ -3,14 +3,11 @@ import { Heading } from "src/components/ui/Heading";
 import { Box } from "src/components/ui/Box";
 import Theme from "src/components/Theme";
 import { Formik } from "formik";
-import { ActivitiesAccordion } from "src/components/simulator/activities/ActivitiesAccordion";
-import { ActivitiesModal } from "src/components/simulator/activities/ActivitiesModal";
+import { ActivitiesList } from "src/components/simulator/activities/ActivitiesList";
 import {
   Activities,
   AverageWorkingConditions,
 } from "./components/simulator/constants";
-import ResultsDetails from "./components/simulator/results/ResultsDetails";
-import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 import { useTranslation } from "react-i18next";
 
 const StyledForm = styled.form`
@@ -48,43 +45,58 @@ const StyledForm = styled.form`
   }
 `;
 
+export type ActivityTypes = keyof typeof Activities;
+
 export type FormValues = {
   activities: {
-    [key in keyof typeof Activities]?: (typeof Activities)[key]["defaultValue"];
-  };
-} & {
-  general_informations: {
+    [ActivityType in ActivityTypes]: {
+      type: `${ActivityType}`;
+    } & {
+      values?: (typeof Activities)[ActivityType]["initial_values"];
+    };
+  }[keyof typeof Activities][];
+  config: {
     weeks_off: number;
     time_spent_on_admin_tasks: number;
+    side_projects?: {
+      average_time_spent: number;
+      enjoyment_rate: number;
+    };
   };
 };
 
 const initialValues: FormValues = {
-  activities: {
-    freelance_daily_rate: Activities.freelance_daily_rate.displayInInitialValues
-      ? Activities.freelance_daily_rate.defaultValue
-      : undefined,
-    freelance_on_delivery: Activities.freelance_on_delivery
-      .displayInInitialValues
-      ? Activities.freelance_on_delivery.defaultValue
-      : undefined,
-    consulting: Activities.consulting.displayInInitialValues
-      ? Activities.consulting.defaultValue
-      : undefined,
-    sponsorship: Activities.sponsorship.displayInInitialValues
-      ? Activities.sponsorship.defaultValue
-      : undefined,
-    side_project: Activities.side_project.displayInInitialValues
-      ? Activities.side_project.defaultValue
-      : undefined,
-    training: Activities.training.displayInInitialValues
-      ? Activities.training.defaultValue
-      : undefined,
-    digital_product: Activities.digital_product.displayInInitialValues
-      ? Activities.digital_product.defaultValue
-      : undefined,
-  },
-  general_informations: {
+  activities: [
+    {
+      type: "freelance_daily_rate",
+      values: Activities.freelance_daily_rate.initial_values,
+    },
+    {
+      type: "freelance_on_delivery",
+      values: Activities.freelance_on_delivery.initial_values,
+    },
+    {
+      type: "consulting",
+      values: Activities.consulting.initial_values,
+    },
+    {
+      type: "sponsorship",
+      values: Activities.sponsorship.initial_values,
+    },
+    {
+      type: "entrepreneurship",
+      values: Activities.entrepreneurship.initial_values,
+    },
+    {
+      type: "side_project",
+      values: Activities.side_project.initial_values,
+    },
+    {
+      type: "admin",
+      values: Activities.admin.initial_values,
+    },
+  ],
+  config: {
     weeks_off: AverageWorkingConditions.weeksOffPerYear,
     time_spent_on_admin_tasks:
       AverageWorkingConditions.timeSpentOnAdminTasksPerWeek,
@@ -107,23 +119,8 @@ function App() {
           <Heading as="h2" align="center" id="results_title">
             {t("simulator.results.title")}
           </Heading>
-          <Box
-            background="grey.light"
-            padding="lg"
-            borderRadius="md"
-            flex
-            flexDirection="column"
-            gap="md"
-            id="activities"
-          >
-            <ActivitiesAccordion />
-            <Box flex flexDirection="column">
-              <ActivitiesModal />
-            </Box>
-          </Box>
-          <Box flex flexDirection="column" gap="lg" id="results">
-            <ResultsDetails />
-            <ResultsCharts />
+          <Box flex flexDirection="column" gap="md" id="activities">
+            <ActivitiesList />
           </Box>
         </StyledForm>
       </Formik>

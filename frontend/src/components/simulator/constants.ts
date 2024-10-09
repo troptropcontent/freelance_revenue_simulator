@@ -1,122 +1,121 @@
-type DefaultActivity = {
-  displayInInitialValues: boolean;
-  defaultValue: object;
+const ActivityKinds = [
+  "freelancing",
+  "entrepeunarial_project",
+  "unbilled_activity",
+] as const;
+
+type BaseActivity = {
+  kind: (typeof ActivityKinds)[number];
 };
 
 const Activities: {
-  freelance_daily_rate: DefaultActivity & {
-    defaultValue: {
+  freelance_daily_rate: BaseActivity & {
+    initial_values: {
       rate: number;
       quantity: number;
       enjoyment_rate: number;
     };
   };
-  freelance_on_delivery: DefaultActivity & {
-    defaultValue: {
-      rate: number;
-      quantity: number;
-      average_time_spent: number;
-      enjoyment_rate: number;
-    };
-  };
-  consulting: DefaultActivity & {
-    defaultValue: {
-      rate: number;
-      quantity: number;
-      enjoyment_rate: number;
-    };
-  };
-  sponsorship: DefaultActivity & {
-    defaultValue: {
+  freelance_on_delivery: BaseActivity & {
+    initial_values: {
       rate: number;
       quantity: number;
       average_time_spent: number;
       enjoyment_rate: number;
     };
   };
-  side_project: DefaultActivity & {
-    defaultValue: {
+  consulting: BaseActivity & {
+    initial_values: {
+      rate: number;
+      quantity: number;
+      enjoyment_rate: number;
+    };
+  };
+  sponsorship: BaseActivity & {
+    initial_values: {
+      rate: number;
+      quantity: number;
+      average_time_spent: number;
+      enjoyment_rate: number;
+    };
+  };
+  entrepreneurship: BaseActivity & {
+    initial_values: {
+      rate: number;
+      quantity: number;
+      average_time_spent: number;
+      enjoyment_rate: number;
+    };
+  };
+  side_project: BaseActivity & {
+    initial_values: {
       revenue: number;
       average_time_spent: number;
       enjoyment_rate: number;
     };
   };
-  training: DefaultActivity & {
-    defaultValue: {
-      rate: number;
-      quantity: number;
+  admin: BaseActivity & {
+    initial_values: {
       average_time_spent: number;
-      enjoyment_rate: number;
-    };
-  };
-  digital_product: DefaultActivity & {
-    defaultValue: {
-      rate: number;
-      quantity: number;
-      average_time_spent: number;
-      enjoyment_rate: number;
     };
   };
 } = {
   freelance_daily_rate: {
-    defaultValue: {
+    kind: "freelancing",
+    initial_values: {
       rate: 150,
       quantity: 1,
       enjoyment_rate: 1,
     },
-    displayInInitialValues: false,
   },
   freelance_on_delivery: {
-    defaultValue: {
+    kind: "freelancing",
+    initial_values: {
       rate: 100,
       quantity: 1,
       average_time_spent: 1,
       enjoyment_rate: 1,
     },
-    displayInInitialValues: false,
   },
   consulting: {
-    defaultValue: {
+    kind: "freelancing",
+    initial_values: {
       rate: 100,
       quantity: 1,
       enjoyment_rate: 1,
     },
-    displayInInitialValues: false,
   },
   sponsorship: {
-    defaultValue: {
+    kind: "freelancing",
+    initial_values: {
       rate: 100,
       quantity: 1,
       average_time_spent: 1,
       enjoyment_rate: 1,
     },
-    displayInInitialValues: false,
+  },
+  entrepreneurship: {
+    kind: "entrepeunarial_project",
+    initial_values: {
+      rate: 100,
+      quantity: 1,
+      average_time_spent: 1,
+      enjoyment_rate: 1,
+    },
   },
   side_project: {
-    defaultValue: {
+    kind: "unbilled_activity",
+    initial_values: {
       revenue: 100,
       average_time_spent: 1,
       enjoyment_rate: 1,
     },
-    displayInInitialValues: false,
   },
-  training: {
-    defaultValue: {
-      rate: 100,
-      quantity: 1,
-      average_time_spent: 1,
-      enjoyment_rate: 1,
+  admin: {
+    kind: "unbilled_activity",
+    initial_values: {
+      average_time_spent: 0,
     },
-    displayInInitialValues: false,
-  },
-  digital_product: {
-    defaultValue: {
-      rate: 100,
-      quantity: 1,
-      average_time_spent: 1,
-      enjoyment_rate: 1,
-    },
-    displayInInitialValues: false,
   },
 } as const;
 
@@ -130,4 +129,4 @@ const AverageWorkingConditions = {
   timeSpentOnAdminTasksPerWeek: 0.5,
 } as const;
 
-export { Activities, AverageWorkingConditions };
+export { Activities, ActivityKinds, AverageWorkingConditions };

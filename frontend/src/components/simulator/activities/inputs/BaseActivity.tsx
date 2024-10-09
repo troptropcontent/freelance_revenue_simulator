@@ -1,4 +1,4 @@
-import { FormValues } from "src/App";
+import { ActivityTypes } from "src/App";
 import { Accordion } from "src/components/ui";
 import { Box } from "src/components/ui/Box";
 
@@ -10,7 +10,7 @@ const BaseActivity = ({
 }: {
   title: string;
   description?: string;
-  identifier: keyof FormValues["activities"] | "general_informations";
+  identifier: string;
   children: React.ReactNode;
 }) => {
   return (

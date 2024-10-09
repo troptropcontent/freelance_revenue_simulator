@@ -1,5 +1,5 @@
 import { Range } from "src/components/ui/formik/Range";
-import { BaseActivity } from "src/components/simulator/activities/BaseActivity";
+import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
 

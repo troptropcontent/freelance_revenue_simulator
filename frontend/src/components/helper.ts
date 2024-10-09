@@ -30,6 +30,17 @@ const PaddingKeys = {
 
 type Padding = SpacingsType<Spacing, keyof typeof PaddingKeys>;
 
+const MarginKeys = {
+  top: "margin-block-start",
+  right: "margin-inline-end",
+  bottom: "margin-block-end",
+  left: "margin-inline-start",
+  inline: "margin-inline",
+  block: "margin-block",
+} as const;
+
+type Margin = SpacingsType<Spacing, keyof typeof MarginKeys>;
+
 const BorderRadiusKeys = {
   topLeft: "border-top-left-radius",
   topRight: "border-top-right-radius",
@@ -76,6 +87,18 @@ const createPaddingStyle = (padding: Padding) => {
     .join("");
 };
 
+const createMarginStyle = (margin: Margin) => {
+  if (typeof margin === "string") {
+    return `margin: ${cssVariable(`spacing.${margin}`)};`;
+  }
+
+  return Object.entries(margin)
+    .map(([key, value]) => {
+      return `${MarginKeys[key as keyof typeof PaddingKeys]}: ${cssVariable(`spacing.${value}`)};`;
+    })
+    .join("");
+};
+
 const createBorderRadiusStyle = (borderRadius: BorderRadius) => {
   if (typeof borderRadius === "string") {
     const tokenId = `borderRadius.${borderRadius}` as TokenId;
@@ -98,11 +121,13 @@ export {
   cssVariables,
   cssVariable,
   createPaddingStyle,
+  createMarginStyle,
   createBorderRadiusStyle,
 };
 export type {
   RecursiveKeyOf,
   Padding,
+  Margin,
   BorderRadius,
   Spacing,
   BackgroundColor,

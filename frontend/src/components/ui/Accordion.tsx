@@ -14,10 +14,15 @@ import { Box } from "./Box";
 import Switch from "./Switch";
 import { Separator } from "./Separator";
 
-const AccordionContext = createContext<{
-  setValue: Dispatch<SetStateAction<string[]>>;
-  value: string[];
-} | null>(null);
+type AccordionContextType = React.ComponentProps<
+  typeof AccordionPrimitive.Root
+> & {
+  setValue: (
+    newValue: React.ComponentProps<typeof AccordionPrimitive.Root>["value"],
+  ) => void;
+};
+
+const AccordionContext = createContext<AccordionContextType | null>(null);
 
 const AccordionRoot = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
@@ -26,10 +31,12 @@ const AccordionRoot = forwardRef<
     grow?: boolean;
   }
 >((props, forwardedRef) => {
-  const [value, setValue] = useState<string[]>([]);
+  const [value, setValue] = useState<
+    React.ComponentProps<typeof AccordionPrimitive.Root>["value"]
+  >(props.value);
 
   return (
-    <AccordionContext.Provider value={{ setValue, value }}>
+    <AccordionContext.Provider value={{ ...props, value: value, setValue }}>
       <AccordionPrimitive.Root {...props} value={value} ref={forwardedRef} />
     </AccordionContext.Provider>
   );
@@ -107,6 +114,46 @@ const AccordionItem = forwardRef<
   if (accordionContext == null) {
     throw new Error("AccordionItem must be used within a AccordionRoot");
   }
+
+  const handleAddValue = (value: string) => {
+    if (accordionContext.type == "single") {
+      console.log("Setting value: ", value);
+      accordionContext.setValue(value);
+    } else {
+      accordionContext.setValue(
+        accordionContext.value ? [...accordionContext.value, value] : [value],
+      );
+    }
+  };
+
+  const handleRemoveValue = (value: string) => {
+    if (accordionContext.type == "single") {
+      accordionContext.setValue(undefined);
+    } else {
+      accordionContext.setValue(
+        accordionContext.value
+          ? accordionContext.value.filter((identifier) => identifier != value)
+          : [],
+      );
+    }
+  };
+
+  const isItemChecked = () => {
+    if (accordionContext.type == "single") {
+      return accordionContext.value == props.value;
+    } else {
+      return accordionContext.value
+        ? accordionContext.value.includes(props.value)
+        : false;
+    }
+  };
+
+  console.log({
+    i: isItemChecked(),
+    v: accordionContext.value,
+    p: props.value,
+  });
+
   return (
     <AccordionPrimitive.Item
       {...props}
@@ -123,18 +170,12 @@ const AccordionItem = forwardRef<
           )}
         </Box>
         <Switch
+          checked={isItemChecked()}
           onCheckedChange={(checked) => {
             if (checked) {
-              accordionContext.setValue([
-                ...accordionContext.value,
-                props.value,
-              ]);
+              handleAddValue(props.value);
             } else {
-              accordionContext.setValue(
-                accordionContext.value.filter(
-                  (identifier) => identifier != props.value,
-                ),
-              );
+              handleRemoveValue(props.value);
             }
           }}
         />

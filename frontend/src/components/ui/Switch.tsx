@@ -34,14 +34,16 @@ const StyledThumb = styled(RadixSwitch.Thumb)`
 `;
 
 const Switch = ({
+  checked,
   onCheckedChange,
 }: {
   onCheckedChange?: React.ComponentProps<
     typeof RadixSwitch.Root
   >["onCheckedChange"];
+  checked?: React.ComponentProps<typeof RadixSwitch.Root>["checked"];
 }) => {
   return (
-    <StyledRoot onCheckedChange={onCheckedChange}>
+    <StyledRoot checked={checked} onCheckedChange={onCheckedChange}>
       <StyledThumb />
     </StyledRoot>
   );

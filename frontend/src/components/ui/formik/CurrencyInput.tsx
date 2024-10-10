@@ -5,7 +5,7 @@ import { cssVariable } from "src/components/helper";
 
 const StyledInput = styled(Field)`
   all: unset;
-  width: 80px;
+  width: 45px;
 
   /* Remove the arrows */
   /* Chrome, Safari, Edge, Opera */
@@ -44,6 +44,7 @@ const CurrencyInput = ({
         border={{ color: "neutral.dark", size: "sm" }}
         padding="sm"
         gap="sm"
+        justifyContent="center"
       >
         <StyledInput id={name} name={name} type="number" />
         {currency}

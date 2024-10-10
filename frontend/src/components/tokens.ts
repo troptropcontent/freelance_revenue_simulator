@@ -39,6 +39,7 @@ interface Tokens {
       white: string;
     };
     border: {
+      neutral: Color;
       blue: Color;
       green: Color;
       red: Color;
@@ -68,6 +69,13 @@ interface Tokens {
     xl: string;
   };
   borderRadius: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+  };
+  border: {
     xs: string;
     sm: string;
     md: string;

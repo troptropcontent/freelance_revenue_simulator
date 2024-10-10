@@ -53,6 +53,11 @@ type BorderRadius = SpacingsType<
   keyof typeof BorderRadiusKeys
 >;
 
+type Border = {
+  color: RecursiveKeyOf<Tokens["color"]["border"]>;
+  size: keyof Tokens["border"];
+};
+
 type BackgroundColor = RecursiveKeyOf<Tokens["color"]["background"]>;
 
 type ButtonColor = Exclude<
@@ -129,6 +134,7 @@ export type {
   Padding,
   Margin,
   BorderRadius,
+  Border,
   Spacing,
   BackgroundColor,
   TokenId,

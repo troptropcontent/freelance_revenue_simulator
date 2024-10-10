@@ -88,6 +88,11 @@ const theme: DefaultTheme = {
       white: "#FFFFFF",
     },
     border: {
+      neutral: {
+        light: "#FBFAFC", // Lighter shade of F8F6FA
+        medium: "#F8F6FA", // The given medium neutral
+        dark: "#E3DFE8", // Darker shade of F8F6FA
+      },
       blue: {
         light: "#0000FF",
         medium: "#0000FF",
@@ -146,6 +151,13 @@ const theme: DefaultTheme = {
     md: "1em", // 16px
     lg: "2em", // 32px
     xl: "4em", // 64px
+  },
+  border: {
+    xs: "0.0625em", // 1px
+    sm: "0.125em", // 2px
+    md: "0.25em", // 4px
+    lg: "0.5em", // 8px
+    xl: "1em", // 16px
   },
 };
 

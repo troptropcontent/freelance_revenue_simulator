@@ -34,7 +34,7 @@ const FreelanceDailyRate = ({ index }: { index: number }) => {
           })
         }
       />
-      <EnjoymentRateInput name="activities.freelance_daily_rate.enjoyment_rate" />
+      <EnjoymentRateInput name={`activities[${index}].values.enjoyment_rate`} />
     </BaseActivity>
   );
 };

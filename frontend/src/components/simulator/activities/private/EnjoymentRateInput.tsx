@@ -1,16 +1,14 @@
 import { useTranslation } from "react-i18next";
-import { Range } from "src/components/ui/formik/Range";
+import { Rating } from "src/components/ui/formik/Rating";
 
 const EnjoymentRateInput = ({ name }: { name: string }) => {
   const { t } = useTranslation();
 
   return (
-    <Range
-      name={name}
+    <Rating
       label={t("simulator.activities.shared_inputs.enjoyment_rate.label")}
-      hint={t("simulator.activities.shared_inputs.enjoyment_rate.hint")}
+      name={name}
       max={5}
-      valueFormater={(value) => `${value} / 5`}
     />
   );
 };

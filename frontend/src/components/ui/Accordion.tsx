@@ -13,6 +13,8 @@ import { Text } from "./Text";
 import { Box } from "./Box";
 import Switch from "./Switch";
 import { Separator } from "./Separator";
+import { Tooltip } from "./Tooltip";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 type AccordionContextType = React.ComponentProps<
   typeof AccordionPrimitive.Root
@@ -154,12 +156,22 @@ const AccordionItem = forwardRef<
       className="AccordionItem"
     >
       <AccordionPrimitive.Header className="AccordionHeader">
-        <Box flex flexDirection="column" justifyContent="center" gap="sm" grow>
+        <Box
+          flex
+          flexDirection="row"
+          justifyContent="flex-start"
+          alignItems="center"
+          gap="sm"
+          grow
+        >
           <Text>{props.title}</Text>
           {props.description && (
-            <Text size="xs" color="muted.dark">
-              {props.description}
-            </Text>
+            <Tooltip.Root>
+              <Tooltip.Trigger>
+                <HelpOutlineIcon />
+              </Tooltip.Trigger>
+              <Tooltip.Content>{props.description}</Tooltip.Content>
+            </Tooltip.Root>
           )}
         </Box>
         <Switch

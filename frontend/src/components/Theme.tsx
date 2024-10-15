@@ -151,6 +151,7 @@ const theme: DefaultTheme = {
     md: "1em", // 16px
     lg: "2em", // 32px
     xl: "4em", // 64px
+    rounded: "9999px", // Rounded
   },
   border: {
     xs: "0.0625em", // 1px

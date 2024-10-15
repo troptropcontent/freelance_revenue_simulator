@@ -74,6 +74,7 @@ interface Tokens {
     md: string;
     lg: string;
     xl: string;
+    rounded: string;
   };
   border: {
     xs: string;

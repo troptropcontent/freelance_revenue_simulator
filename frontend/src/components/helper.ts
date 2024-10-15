@@ -106,8 +106,7 @@ const createMarginStyle = (margin: Margin) => {
 
 const createBorderRadiusStyle = (borderRadius: BorderRadius) => {
   if (typeof borderRadius === "string") {
-    const tokenId = `borderRadius.${borderRadius}` as TokenId;
-    return `border-radius: ${cssVariable(tokenId)};`;
+    return `border-radius: ${cssVariable(`borderRadius.${borderRadius}`)};`;
   }
 
   return Object.entries(borderRadius)

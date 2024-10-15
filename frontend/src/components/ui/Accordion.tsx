@@ -111,7 +111,7 @@ const AccordionItem = forwardRef<
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & {
     description?: string;
   }
->((props, forwardedRef) => {
+>(({ title, description, ...props }, forwardedRef) => {
   const accordionContext = useContext(AccordionContext);
   if (accordionContext == null) {
     throw new Error("AccordionItem must be used within a AccordionRoot");
@@ -164,13 +164,13 @@ const AccordionItem = forwardRef<
           gap="sm"
           grow
         >
-          <Text>{props.title}</Text>
-          {props.description && (
+          <Text>{title}</Text>
+          {description && (
             <Tooltip.Root>
               <Tooltip.Trigger>
                 <HelpOutlineIcon />
               </Tooltip.Trigger>
-              <Tooltip.Content>{props.description}</Tooltip.Content>
+              <Tooltip.Content>{description}</Tooltip.Content>
             </Tooltip.Root>
           )}
         </Box>

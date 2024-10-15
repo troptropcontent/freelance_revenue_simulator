@@ -1,7 +1,7 @@
 import { Field } from "formik";
 import { Box } from "../Box";
 import styled from "styled-components";
-import { cssVariable } from "src/components/helper";
+import { Text } from "../Text";
 
 const StyledInput = styled(Field)`
   all: unset;
@@ -36,7 +36,9 @@ const CurrencyInput = ({
       justifyContent="space-between"
       alignItems="center"
     >
-      <label htmlFor={name}>{label}</label>
+      <Text as="label" htmlFor={name}>
+        {label}
+      </Text>
       <Box
         as="span"
         flex
@@ -47,7 +49,7 @@ const CurrencyInput = ({
         justifyContent="center"
       >
         <StyledInput id={name} name={name} type="number" />
-        {currency}
+        <Text>{currency}</Text>
       </Box>
     </Box>
   );

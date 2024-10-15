@@ -30,9 +30,8 @@ const ActivityKindComponents: Record<
 };
 
 const ActivitiesList = () => {
-  console.log("toto");
   return (
-    <Accordion.Root type="multiple" grow>
+    <Accordion.Root type="multiple">
       <List.Root grow gap="sm">
         {ActivityKinds.map((activity_kind) => {
           const ActivityComponent =

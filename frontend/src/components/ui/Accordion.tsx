@@ -117,7 +117,6 @@ const AccordionItem = forwardRef<
 
   const handleAddValue = (value: string) => {
     if (accordionContext.type == "single") {
-      console.log("Setting value: ", value);
       accordionContext.setValue(value);
     } else {
       accordionContext.setValue(
@@ -147,12 +146,6 @@ const AccordionItem = forwardRef<
         : false;
     }
   };
-
-  console.log({
-    i: isItemChecked(),
-    v: accordionContext.value,
-    p: props.value,
-  });
 
   return (
     <AccordionPrimitive.Item

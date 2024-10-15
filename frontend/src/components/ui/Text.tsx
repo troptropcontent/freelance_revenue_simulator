@@ -1,9 +1,20 @@
 import { Tokens } from "src/components/tokens";
 import styled from "styled-components";
 import { cssVariable, TextColor } from "src/components/helper";
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 
-const StyledText = styled.p<{
+const TextTag = ({
+  children,
+  as,
+}: {
+  children: ReactNode;
+  as: "p" | "label";
+}) => {
+  const Tag = as;
+  return <Tag>{children}</Tag>;
+};
+
+const StyledTextTag = styled(TextTag)<{
   $align?: CSSProperties["textAlign"];
   $size: keyof Tokens["fonts"]["size"];
   $color: TextColor;
@@ -16,22 +27,34 @@ const StyledText = styled.p<{
   ${(props) => props.$align && `text-align: ${props.$align};`}
 `;
 
+type BaseTextProps = {
+  children: React.ReactNode;
+  color?: TextColor;
+  size?: keyof Tokens["fonts"]["size"];
+  weight?: CSSProperties["fontWeight"];
+  align?: CSSProperties["textAlign"];
+};
+
+type PTagProps = {
+  as?: "p";
+} & React.ComponentPropsWithoutRef<"p">;
+
+type LabelTagProps = {
+  as?: "label";
+} & React.ComponentPropsWithoutRef<"label">;
+
 const Text = ({
+  as = "p",
   size = "sm",
   color = "primary.medium",
   weight,
   children,
   align,
   ...props
-}: {
-  color?: TextColor;
-  size?: keyof Tokens["fonts"]["size"];
-  weight?: CSSProperties["fontWeight"];
-  align?: CSSProperties["textAlign"];
-  children: React.ReactNode;
-} & React.ComponentPropsWithoutRef<"p">) => {
+}: BaseTextProps & (PTagProps | LabelTagProps)) => {
   return (
-    <StyledText
+    <StyledTextTag
+      as={as}
       $size={size}
       $color={color}
       $weight={weight}
@@ -39,7 +62,7 @@ const Text = ({
       {...props}
     >
       {children}
-    </StyledText>
+    </StyledTextTag>
   );
 };
 

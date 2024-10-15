@@ -18,8 +18,6 @@ const BaseKind = ({
   color: React.ComponentProps<typeof Box>["background"];
   children: ReactNode;
 }) => {
-  console.log("prout");
-
   return (
     <List.Item
       key={kind}

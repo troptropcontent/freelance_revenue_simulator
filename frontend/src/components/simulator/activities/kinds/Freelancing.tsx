@@ -41,7 +41,7 @@ const Freelancing = ({
       {values.activities.map((activity, i) => {
         if (Activities[activity.type].kind == "freelancing") {
           const InputComponent = ActivityInputComponents[activity.type];
-          return <InputComponent index={i} />;
+          return <InputComponent index={i} key={`activity_${i}`} />;
         } else {
           return null;
         }

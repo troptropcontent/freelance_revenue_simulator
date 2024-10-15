@@ -6,7 +6,7 @@ import { FormValues } from "src/App";
 import { Text } from "../Text";
 import { cssVariable } from "src/components/helper";
 
-const Star = styled.label`
+const StarSymbol = styled.label`
   &[for="input_0"] {
     display: none;
   }
@@ -16,14 +16,39 @@ const Star = styled.label`
 const HiddenRadio = styled(Field)`
   display: none;
 
-  &:checked ~ ${Star} {
+  &:checked ~ ${StarSymbol} {
     color: ${cssVariable("color.background.grey.light")};
   }
 
-  &:checked + ${Star} {
+  &:checked + ${StarSymbol} {
     color: gold;
   }
 `;
+
+const Star = ({ name, value }: { name: string; value: number }) => {
+  const { setFieldValue: setFormikFieldValue } = useFormikContext<FormValues>();
+  const setFieldValue = (valueString: string) => {
+    // We need to overwrite the formik Field behavior here because the inpout values are detected as string so we need to convert them as int manually
+    setFormikFieldValue(name, parseInt(valueString));
+  };
+  const inputId = "input_" + value.toString();
+  return (
+    <>
+      <HiddenRadio
+        type="radio"
+        id={inputId}
+        name={name}
+        value={value}
+        onChange={({
+          target: { value },
+        }: React.ChangeEvent<HTMLInputElement>) => setFieldValue(value)}
+      />
+      <StarSymbol htmlFor={inputId}>
+        <StarSvg />
+      </StarSymbol>
+    </>
+  );
+};
 
 const Rating = ({
   label,
@@ -34,11 +59,11 @@ const Rating = ({
   label: string;
   max: number;
 }) => {
-  const { setFieldValue: setFormikFieldValue } = useFormikContext<FormValues>();
-  const setFieldValue = (valueString: string) => {
-    // We need to overwrite the formik Field behavior here because the inpout values are detected as string so we need to convert them as int manually
-    setFormikFieldValue(name, parseInt(valueString));
-  };
+  const stars = [];
+  for (let i = 0; i < max + 1; i++) {
+    stars.push(i);
+  }
+
   return (
     <Box
       flex
@@ -49,24 +74,7 @@ const Rating = ({
       <Text>{label}</Text>
       <Box flex flexDirection="row">
         {Array.from(Array(max + 1), (_, i) => {
-          const inputId = "input_" + i.toString();
-          return (
-            <>
-              <HiddenRadio
-                type="radio"
-                id={inputId}
-                name={name}
-                value={i}
-                defaultChecked={i == 0}
-                onChange={({
-                  target: { value },
-                }: React.ChangeEvent<HTMLInputElement>) => setFieldValue(value)}
-              />
-              <Star htmlFor={inputId}>
-                <StarSvg />
-              </Star>
-            </>
-          );
+          return <Star name={name} value={i} key={i} />;
         })}
       </Box>
     </Box>

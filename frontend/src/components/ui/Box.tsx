@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 import styled from "styled-components";
 import {
   BackgroundColor,
@@ -25,6 +25,7 @@ type BoxProps = {
   grow?: boolean;
   height?: string | number;
   border?: Border;
+  width?: number | { min?: number; max?: number };
 };
 
 const BoxTag = ({
@@ -52,6 +53,7 @@ const StyledBox = styled(BoxTag)<{
   $grow?: boolean;
   $height?: string | number;
   $border?: Border;
+  $width?: React.ComponentProps<typeof Box>["width"];
 }>`
   ${(props) =>
     props.as === "ul" && `list-style-type: none; padding: 0; margin: 0;`}
@@ -74,7 +76,20 @@ const StyledBox = styled(BoxTag)<{
     `height: ${typeof props.$height === "number" ? `${props.$height}px` : props.$height};`}
     ${(props) =>
     props.$border &&
-    `border: ${cssVariable(`color.border.${props.$border.color}`)} solid ${cssVariable(`border.${props.$border.size}`)}`}
+    `border: ${cssVariable(`color.border.${props.$border.color}`)} solid ${cssVariable(`border.${props.$border.size}`)};`}
+    ${({ $width }) => {
+    if ($width == undefined) {
+      return;
+    }
+
+    if (typeof $width == "object") {
+      return Object.entries($width).map(
+        ([key, value]) => `${key}-width: ${value}px;`,
+      );
+    }
+
+    return `width: ${$width}px;`;
+  }}
 `;
 
 const Box = ({
@@ -91,6 +106,7 @@ const Box = ({
   grow,
   height,
   border,
+  width,
   ...props
 }: BoxProps & React.ComponentProps<NonNullable<BoxProps["as"]>>) => {
   return (
@@ -107,6 +123,7 @@ const Box = ({
       $grow={grow}
       $height={height}
       $border={border}
+      $width={width}
       {...props}
     >
       {children}

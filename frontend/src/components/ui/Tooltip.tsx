@@ -1,6 +1,7 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { forwardRef, ReactNode } from "react";
 import styled from "styled-components";
+import { createPaddingStyle, cssVariable } from "../helper";
 
 const Root = ({ children }: { children: ReactNode }) => {
   return (
@@ -43,11 +44,12 @@ const TooltipContent = forwardRef<
 Trigger.displayName = "TooltipContent";
 
 const StyledTooltipContent = styled(TooltipContent)`
-  border-radius: 4px;
-  padding: 10px 15px;
-  font-size: 15px;
+  z-index: 9999;
+  border-radius: ${cssVariable("borderRadius.sm")};
+  ${createPaddingStyle("md")}
+  font-size: ${cssVariable("fonts.size.xs")};
   line-height: 1;
-  background-color: white;
+  background-color: ${cssVariable("color.background.white")};
   box-shadow:
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;

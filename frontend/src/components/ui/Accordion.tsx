@@ -1,12 +1,5 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import {
-  createContext,
-  Dispatch,
-  forwardRef,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
+import { createContext, forwardRef, useContext, useState } from "react";
 import styled from "styled-components";
 import { cssVariable, Spacing } from "../helper";
 import { Text } from "./Text";
@@ -168,7 +161,7 @@ const AccordionItem = forwardRef<
           {description && (
             <Tooltip.Root>
               <Tooltip.Trigger>
-                <HelpOutlineIcon />
+                <HelpOutlineIcon color="disabled" fontSize="small" />
               </Tooltip.Trigger>
               <Tooltip.Content>{description}</Tooltip.Content>
             </Tooltip.Root>

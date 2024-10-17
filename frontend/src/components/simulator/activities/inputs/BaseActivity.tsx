@@ -1,4 +1,3 @@
-import { ActivityTypes } from "src/App";
 import { Accordion } from "src/components/ui";
 import { Box } from "src/components/ui/Box";
 
@@ -20,7 +19,7 @@ const BaseActivity = ({
       key={identifier}
       description={description}
     >
-      <Box flex flexDirection="column" padding="md" gap="lg">
+      <Box flex flexDirection="column" padding={{ top: "md" }} gap="lg">
         {children}
       </Box>
     </Accordion.Item>

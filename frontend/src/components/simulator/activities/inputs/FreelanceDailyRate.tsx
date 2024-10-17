@@ -4,7 +4,6 @@ import { EnjoymentRateInput } from "src/components/simulator/activities/private/
 import { useTranslation } from "react-i18next";
 import { CurrencyInput } from "src/components/ui/formik/CurrencyInput";
 import { useFormikContext } from "formik";
-import { FormValues } from "src/App";
 
 const FreelanceDailyRate = ({ index }: { index: number }) => {
   const { values } = useFormikContext();

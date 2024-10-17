@@ -10,6 +10,7 @@ import { FormValues } from "src/App";
 const StyledLabel = styled.label`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const SliderRoot = forwardRef<

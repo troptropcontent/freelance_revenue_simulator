@@ -8,6 +8,8 @@ type BaseActivity = {
   kind: (typeof ActivityKinds)[number];
 };
 
+const Frequencies = ["by_month", "by_year"] as const;
+
 const Activities: {
   freelance_daily_rate: BaseActivity & {
     initial_values: {
@@ -19,7 +21,8 @@ const Activities: {
   freelance_on_delivery: BaseActivity & {
     initial_values: {
       rate: number;
-      quantity: number;
+      frequency_value: number;
+      frequency_unit: (typeof Frequencies)[number];
       average_time_spent: number;
       enjoyment_rate: number;
     };
@@ -72,7 +75,8 @@ const Activities: {
     kind: "freelancing",
     initial_values: {
       rate: 100,
-      quantity: 1,
+      frequency_value: 1,
+      frequency_unit: "by_month",
       average_time_spent: 1,
       enjoyment_rate: 1,
     },
@@ -129,4 +133,4 @@ const AverageWorkingConditions = {
   timeSpentOnAdminTasksPerWeek: 0.5,
 } as const;
 
-export { Activities, ActivityKinds, AverageWorkingConditions };
+export { Activities, ActivityKinds, AverageWorkingConditions, Frequencies };

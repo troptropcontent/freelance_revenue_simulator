@@ -11,6 +11,10 @@
         },
         "currency": {
           "EUR": "{{value, currency(currency: 'EUR')}}"
+        },
+        "frequencies": {
+          "by_month": "par mois",
+          "by_year": "par ans"
         }
       },
       "simulator": {
@@ -81,7 +85,7 @@
                 "label": "Tarif moyen d'une mission",
                 "unit": "{{value}} € / mission"
               },
-              "quantity": {
+              "frequency": {
                 "label": "Nombre de missions facturées"
               },
               "average_time_spent": {

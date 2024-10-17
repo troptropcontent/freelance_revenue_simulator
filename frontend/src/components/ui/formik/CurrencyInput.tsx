@@ -42,11 +42,12 @@ const CurrencyInput = ({
       <Box
         as="span"
         flex
-        borderRadius={"md"}
+        borderRadius={"sm"}
         border={{ color: "neutral.dark", size: "sm" }}
         padding="sm"
         gap="sm"
         justifyContent="center"
+        width={{ min: 92 }}
       >
         <StyledInput id={name} name={name} type="number" />
         <Text>{currency}</Text>

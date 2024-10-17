@@ -101,8 +101,11 @@
                 "label": "Tarif horaire",
                 "unit": "{{value}} € / heure"
               },
-              "quantity": {
+              "frequency": {
                 "label": "Nombre d'heures facturées"
+              },
+              "average_time_spent": {
+                "label": "Heures passées par consulting"
               }
             }
           },
@@ -114,7 +117,7 @@
                 "label": "Tarif par contenu sponsorisé",
                 "unit": "{{value}} € / contenu"
               },
-              "quantity": {
+              "frequency": {
                 "label": "Nombre de contenus sponsorisés"
               },
               "average_time_spent": {

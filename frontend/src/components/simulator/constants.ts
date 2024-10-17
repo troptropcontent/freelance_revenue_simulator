@@ -30,14 +30,17 @@ const Activities: {
   consulting: BaseActivity & {
     initial_values: {
       rate: number;
-      quantity: number;
+      frequency_value: number;
+      frequency_unit: (typeof Frequencies)[number];
+      average_time_spent: number;
       enjoyment_rate: number;
     };
   };
   sponsorship: BaseActivity & {
     initial_values: {
       rate: number;
-      quantity: number;
+      frequency_value: number;
+      frequency_unit: (typeof Frequencies)[number];
       average_time_spent: number;
       enjoyment_rate: number;
     };
@@ -85,7 +88,9 @@ const Activities: {
     kind: "freelancing",
     initial_values: {
       rate: 100,
-      quantity: 1,
+      frequency_value: 1,
+      frequency_unit: "by_month",
+      average_time_spent: 1,
       enjoyment_rate: 1,
     },
   },
@@ -93,7 +98,8 @@ const Activities: {
     kind: "freelancing",
     initial_values: {
       rate: 100,
-      quantity: 1,
+      frequency_value: 1,
+      frequency_unit: "by_month",
       average_time_spent: 1,
       enjoyment_rate: 1,
     },

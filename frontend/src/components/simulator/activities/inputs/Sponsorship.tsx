@@ -2,6 +2,8 @@ import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
+import { CurrencyInput } from "src/components/ui/formik/CurrencyInput";
+import { FrequencyInput } from "src/components/ui/formik/FrequencyInput";
 
 const Sponsorship = ({ index }: { index: number }) => {
   const { t } = useTranslation();
@@ -11,38 +13,24 @@ const Sponsorship = ({ index }: { index: number }) => {
       identifier="sponsorship"
       description={t("simulator.activities.sponsorship.description")}
     >
-      <Range
-        name="activities.sponsorship.rate"
+      <CurrencyInput
+        name={`activities[${index}].values.rate`}
         label={t("simulator.activities.sponsorship.inputs.rate.label")}
-        valueFormater={(value) =>
-          t("simulator.activities.sponsorship.inputs.rate.unit", { value })
-        }
-        min={100}
-        max={10000}
-        step={50}
+      />
+      <FrequencyInput
+        name={`activities[${index}].values.frequency`}
+        label={t("simulator.activities.sponsorship.inputs.frequency.label")}
       />
       <Range
-        name="activities.sponsorship.quantity"
-        label={t("simulator.activities.sponsorship.inputs.quantity.label")}
-        valueFormater={(value) =>
-          t("common.value_with_unit.per_month", { value })
-        }
-      />
-      <Range
-        name="activities.sponsorship.average_time_spent"
+        name={`activities[${index}].values.average_time_spent`}
         label={t(
           "simulator.activities.sponsorship.inputs.average_time_spent.label",
         )}
         min={0}
-        max={10}
+        max={5}
         step={0.5}
-        valueFormater={(value) =>
-          t("common.value_with_unit.number_of_days", {
-            count: value,
-          })
-        }
       />
-      <EnjoymentRateInput name="activities.sponsorship.enjoyment_rate" />
+      <EnjoymentRateInput name={`activities[${index}].values.enjoyment_rate`} />
     </BaseActivity>
   );
 };

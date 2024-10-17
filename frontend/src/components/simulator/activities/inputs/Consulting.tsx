@@ -2,6 +2,8 @@ import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
+import { CurrencyInput } from "src/components/ui/formik/CurrencyInput";
+import { FrequencyInput } from "src/components/ui/formik/FrequencyInput";
 
 const Consulting = ({ index }: { index: number }) => {
   const { t } = useTranslation();
@@ -12,24 +14,24 @@ const Consulting = ({ index }: { index: number }) => {
       identifier={`consulting_${index}`}
       description={t("simulator.activities.consulting.description")}
     >
-      <Range
-        name="activities.consulting.rate"
+      <CurrencyInput
+        name={`activities[${index}].values.rate`}
         label={t("simulator.activities.consulting.inputs.rate.label")}
-        valueFormater={(value) =>
-          t("simulator.activities.consulting.inputs.rate.unit", { value })
-        }
-        min={0}
-        max={1000}
-        step={50}
+      />
+      <FrequencyInput
+        name={`activities[${index}].values.frequency`}
+        label={t("simulator.activities.consulting.inputs.frequency.label")}
       />
       <Range
-        name="activities.consulting.quantity"
-        label={t("simulator.activities.consulting.inputs.quantity.label")}
-        valueFormater={(value) =>
-          t("common.value_with_unit.per_month", { value })
-        }
+        name={`activities[${index}].values.average_time_spent`}
+        label={t(
+          "simulator.activities.consulting.inputs.average_time_spent.label",
+        )}
+        min={0}
+        max={5}
+        step={0.5}
       />
-      <EnjoymentRateInput name="activities.consulting.enjoyment_rate" />
+      <EnjoymentRateInput name={`activities[${index}].values.enjoyment_rate`} />
     </BaseActivity>
   );
 };

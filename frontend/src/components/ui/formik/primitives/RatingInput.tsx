@@ -1,31 +1,39 @@
-import styled from "styled-components";
-import { Box } from "../Box";
-import StarSvg from "src/assets/star.svg";
+import { ReactNode } from "react";
+import { Box } from "../../Box";
 import { Field, useFormikContext } from "formik";
 import { FormValues } from "src/App";
-import { Text } from "../Text";
+import styled from "styled-components";
 import { cssVariable } from "src/components/helper";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 
-const StarSymbol = styled.label`
+const StyledLabel = styled.label`
   &[for="input_0"] {
     display: none;
   }
   color: gold;
 `;
 
-const HiddenRadio = styled(Field)`
+const HiddenRadioCheckBox = styled(Field)`
   display: none;
 
-  &:checked ~ ${StarSymbol} {
+  &:checked ~ ${StyledLabel} {
     color: ${cssVariable("color.background.grey.light")};
   }
 
-  &:checked + ${StarSymbol} {
+  &:checked + ${StyledLabel} {
     color: gold;
   }
 `;
 
-const Star = ({ name, value }: { name: string; value: number }) => {
+const RatingInputIcon = ({
+  name,
+  value,
+  children,
+}: {
+  name: string;
+  value: number;
+  children: ReactNode;
+}) => {
   const { setFieldValue: setFormikFieldValue } = useFormikContext<FormValues>();
   const setFieldValue = (valueString: string) => {
     // We need to overwrite the formik Field behavior here because the inpout values are detected as string so we need to convert them as int manually
@@ -34,7 +42,7 @@ const Star = ({ name, value }: { name: string; value: number }) => {
   const inputId = "input_" + value.toString();
   return (
     <>
-      <HiddenRadio
+      <HiddenRadioCheckBox
         type="radio"
         id={inputId}
         name={name}
@@ -43,42 +51,31 @@ const Star = ({ name, value }: { name: string; value: number }) => {
           target: { value },
         }: React.ChangeEvent<HTMLInputElement>) => setFieldValue(value)}
       />
-      <StarSymbol htmlFor={inputId}>
-        <StarSvg />
-      </StarSymbol>
+      <StyledLabel htmlFor={inputId}>{children}</StyledLabel>
     </>
   );
 };
 
-const Rating = ({
-  label,
+const RatingInput = ({
   name,
-  max = 5,
+  children,
+  max,
 }: {
   name: string;
-  label: string;
+  children?: ReactNode;
   max: number;
 }) => {
-  const stars = [];
-  for (let i = 0; i < max + 1; i++) {
-    stars.push(i);
-  }
-
   return (
-    <Box
-      flex
-      flexDirection="row"
-      justifyContent="space-between"
-      alignItems="center"
-    >
-      <Text>{label}</Text>
-      <Box flex flexDirection="row">
-        {Array.from(Array(max + 1), (_, i) => {
-          return <Star name={name} value={i} key={i} />;
-        })}
-      </Box>
+    <Box flex flexDirection="row">
+      {Array.from(Array(max + 1), (_, i) => {
+        return (
+          <RatingInputIcon name={name} value={i} key={i}>
+            {children ? children : <StarRoundedIcon />}
+          </RatingInputIcon>
+        );
+      })}
     </Box>
   );
 };
 
-export { Rating };
+export { RatingInput };

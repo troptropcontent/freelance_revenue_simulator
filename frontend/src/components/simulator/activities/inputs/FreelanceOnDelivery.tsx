@@ -3,7 +3,7 @@ import { BaseActivity } from "src/components/simulator/activities/inputs/BaseAct
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
 import { CurrencyInput } from "src/components/ui/formik/CurrencyInput";
-import { FrequencyInput } from "src/components/ui/formik/FrequencyInput";
+import { FrequencyInputGroup } from "src/components/ui/formik/groups/FrequencyInputGroup";
 
 const FreelanceOnDelivery = ({ index }: { index: number }) => {
   const { t } = useTranslation();
@@ -20,7 +20,7 @@ const FreelanceOnDelivery = ({ index }: { index: number }) => {
           "simulator.activities.freelance_on_delivery.inputs.rate.label",
         )}
       />
-      <FrequencyInput
+      <FrequencyInputGroup
         name={`activities[${index}].values.frequency`}
         label={t(
           "simulator.activities.freelance_on_delivery.inputs.frequency.label",

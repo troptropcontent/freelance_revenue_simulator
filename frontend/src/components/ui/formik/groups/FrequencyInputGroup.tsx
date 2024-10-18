@@ -1,11 +1,17 @@
-import { Box } from "../Box";
+import { Box } from "../../Box";
 import { Frequencies } from "src/components/simulator/constants";
 import { useTranslation } from "react-i18next";
-import { Text } from "../Text";
-import { SelectInput } from "./SelectInput";
-import { NumberInput } from "./NumberInput";
+import { Text } from "../../Text";
+import { SelectInput } from "../primitives/SelectInput";
+import { NumberInput } from "../primitives/NumberInput";
 
-const FrequencyInput = ({ name, label }: { name: string; label: string }) => {
+const FrequencyInputGroup = ({
+  name,
+  label,
+}: {
+  name: string;
+  label: string;
+}) => {
   const { t } = useTranslation();
   return (
     <Box
@@ -34,4 +40,4 @@ const FrequencyInput = ({ name, label }: { name: string; label: string }) => {
   );
 };
 
-export { FrequencyInput };
+export { FrequencyInputGroup };

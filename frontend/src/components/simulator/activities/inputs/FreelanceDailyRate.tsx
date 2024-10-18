@@ -2,7 +2,7 @@ import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
-import { CurrencyInput } from "src/components/ui/formik/CurrencyInput";
+import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInputGroup";
 import { useFormikContext } from "formik";
 
 const FreelanceDailyRate = ({ index }: { index: number }) => {
@@ -16,7 +16,7 @@ const FreelanceDailyRate = ({ index }: { index: number }) => {
       description={t("simulator.activities.freelance_daily_rate.description")}
       identifier="freelance_daily_rate"
     >
-      <CurrencyInput
+      <CurrencyInputGroup
         name={`activities[${index}].values.rate`}
         label="Taux Journalier Moyen (TJM)"
       />

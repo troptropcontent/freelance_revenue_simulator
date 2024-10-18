@@ -1,8 +1,6 @@
 import { Box } from "src/components/ui/Box";
 import { BaseKind } from "./BaseKind";
 import { useTranslation } from "react-i18next";
-import { Accordion } from "src/components/ui";
-import { CurrencyInput } from "src/components/ui/formik/CurrencyInput";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
 import { Activities } from "../../constants";

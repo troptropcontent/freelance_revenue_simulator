@@ -2,7 +2,7 @@ import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
-import { CurrencyInput } from "src/components/ui/formik/CurrencyInput";
+import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInputGroup";
 import { FrequencyInputGroup } from "src/components/ui/formik/groups/FrequencyInputGroup";
 
 const Sponsorship = ({ index }: { index: number }) => {
@@ -13,7 +13,7 @@ const Sponsorship = ({ index }: { index: number }) => {
       identifier="sponsorship"
       description={t("simulator.activities.sponsorship.description")}
     >
-      <CurrencyInput
+      <CurrencyInputGroup
         name={`activities[${index}].values.rate`}
         label={t("simulator.activities.sponsorship.inputs.rate.label")}
       />

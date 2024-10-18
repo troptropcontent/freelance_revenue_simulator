@@ -4,13 +4,15 @@ const ActivityKinds = [
   "unbilled_activity",
 ] as const;
 
+type ActivityKindsType = (typeof ActivityKinds)[number];
+
 type BaseActivity = {
-  kind: (typeof ActivityKinds)[number];
+  kind: ActivityKindsType;
 };
 
 const Frequencies = ["by_month", "by_year"] as const;
 
-const Activities: {
+type ActivitiesType = {
   freelance_daily_rate: BaseActivity & {
     initial_values: {
       rate: number;
@@ -65,7 +67,9 @@ const Activities: {
       average_time_spent: number;
     };
   };
-} = {
+};
+
+const Activities = {
   freelance_daily_rate: {
     kind: "freelancing",
     initial_values: {
@@ -127,7 +131,13 @@ const Activities: {
       average_time_spent: 0,
     },
   },
-} as const;
+} as const satisfies ActivitiesType;
+
+type ActivitiesWithKind<V extends ActivityKindsType> = {
+  [K in keyof typeof Activities]-?: (typeof Activities)[K]["kind"] extends V
+    ? K
+    : never;
+}[keyof typeof Activities];
 
 const AverageWorkingConditions = {
   weeksPerYear: 52,
@@ -140,3 +150,5 @@ const AverageWorkingConditions = {
 } as const;
 
 export { Activities, ActivityKinds, AverageWorkingConditions, Frequencies };
+
+export type { ActivitiesWithKind };

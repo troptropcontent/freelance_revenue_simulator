@@ -3,14 +3,14 @@ import { BaseKind } from "./BaseKind";
 import { useTranslation } from "react-i18next";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
-import { Activities } from "../../constants";
+import { Activities, ActivitiesWithKind } from "../../constants";
 import { FreelanceDailyRate } from "../inputs/FreelanceDailyRate";
 import { FreelanceOnDelivery } from "../inputs/FreelanceOnDelivery";
 import { Consulting } from "../inputs/Consulting";
 import { Sponsorship } from "../inputs/Sponsorship";
 
 const ActivityInputComponents: Record<
-  keyof typeof Activities,
+  ActivitiesWithKind<"freelancing">,
   React.FC<{
     index: number;
   }>

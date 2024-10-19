@@ -1,13 +1,30 @@
 import { useTranslation } from "react-i18next";
 import { BaseKind } from "./BaseKind";
 import { Box } from "src/components/ui/Box";
+import { useFormikContext } from "formik";
+import { FormValues } from "src/App";
+import { Activities } from "../../constants";
+import { Entrepreneurship } from "../inputs/Entrepreneurship";
+import { Button } from "src/components/ui/Button";
 
 const EntrepreneurialProject = ({
   color,
 }: {
   color: React.ComponentProps<typeof Box>["background"];
 }) => {
+  const { values, setValues } = useFormikContext<FormValues>();
   const { t } = useTranslation();
+
+  const addNewEntrepreunarialProject = () => {
+    values.activities = [
+      ...values.activities,
+      {
+        type: "entrepreneurship",
+        values: Activities.entrepreneurship.initial_values,
+      },
+    ];
+    setValues(values);
+  };
   return (
     <BaseKind
       kind="entrepeunarial_project"
@@ -17,7 +34,16 @@ const EntrepreneurialProject = ({
         "simulator.activities.kinds.entrepreneurial_project.description",
       )}
     >
-      EntrepreneurialProject
+      {values.activities.map((activity, i) => {
+        if (Activities[activity.type].kind == "entrepeunarial_project") {
+          return <Entrepreneurship index={i} key={`activity_${i}`} />;
+        } else {
+          return null;
+        }
+      })}
+      <Button onClick={addNewEntrepreunarialProject}>
+        Ajouter un autre projet
+      </Button>
     </BaseKind>
   );
 };

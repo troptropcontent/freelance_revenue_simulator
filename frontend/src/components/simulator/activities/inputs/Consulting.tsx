@@ -11,7 +11,7 @@ const Consulting = ({ index }: { index: number }) => {
   return (
     <BaseActivity
       title={t("simulator.activities.consulting.label")}
-      identifier={`consulting_${index}`}
+      index={index}
       description={t("simulator.activities.consulting.description")}
     >
       <CurrencyInputGroup

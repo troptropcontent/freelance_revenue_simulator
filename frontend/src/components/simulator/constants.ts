@@ -49,6 +49,7 @@ type ActivitiesType = {
   };
   entrepreneurship: BaseActivity & {
     initial_values: {
+      name?: string;
       rate: number;
       quantity: number;
       average_time_spent: number;
@@ -151,4 +152,4 @@ const AverageWorkingConditions = {
 
 export { Activities, ActivityKinds, AverageWorkingConditions, Frequencies };
 
-export type { ActivitiesWithKind };
+export type { ActivitiesWithKind, ActivitiesType };

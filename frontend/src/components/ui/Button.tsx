@@ -26,11 +26,30 @@ const Button = forwardRef<
   React.ComponentPropsWithoutRef<"button"> & {
     color?: Exclude<ButtonColor, "white" | "black">;
   }
->(({ children, color = "brand", ...props }, forwardedRef) => (
-  <StyledButton {...props} $color={color} ref={forwardedRef}>
-    {children}
-  </StyledButton>
-));
+>(({ children, color = "brand", onClick, ...props }, forwardedRef) => {
+  const handleClick = (
+    e: Parameters<
+      NonNullable<React.ComponentPropsWithoutRef<"button">["onClick"]>
+    >[0],
+  ) => {
+    if (onClick == undefined) {
+      return;
+    }
+
+    e.preventDefault();
+    onClick(e);
+  };
+  return (
+    <StyledButton
+      {...props}
+      onClick={handleClick}
+      $color={color}
+      ref={forwardedRef}
+    >
+      {children}
+    </StyledButton>
+  );
+});
 Button.displayName = "Button";
 
 export { Button };

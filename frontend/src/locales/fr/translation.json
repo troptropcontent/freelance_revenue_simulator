@@ -155,18 +155,18 @@
               }
             }
           },
-          "digital_product": {
-            "label": "Digital Product",
+          "entrepreneurial_project": {
+            "label": "Projet n° {{index}}",
             "description": "Template, ebook, mini formation, etc.",
             "inputs": {
               "rate": {
-                "label": "Tarif du produit"
+                "label": "Chiffre d’affaires mensuel estimé"
               },
               "quantity": {
-                "label": "Nombre de produits digitaux vendus"
+                "label": "Nombre de mois facturés"
               },
               "average_time_spent": {
-                "label": "Temps alloué"
+                "label": "Nombre de jours alloués par semaine"
               }
             }
           },

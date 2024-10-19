@@ -10,7 +10,7 @@ const Sponsorship = ({ index }: { index: number }) => {
   return (
     <BaseActivity
       title={t("simulator.activities.sponsorship.label")}
-      identifier="sponsorship"
+      index={index}
       description={t("simulator.activities.sponsorship.description")}
     >
       <CurrencyInputGroup

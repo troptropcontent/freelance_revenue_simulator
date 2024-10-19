@@ -14,7 +14,7 @@ const FreelanceDailyRate = ({ index }: { index: number }) => {
     <BaseActivity
       title={t("simulator.activities.freelance_daily_rate.label")}
       description={t("simulator.activities.freelance_daily_rate.description")}
-      identifier="freelance_daily_rate"
+      index={index}
     >
       <CurrencyInputGroup
         name={`activities[${index}].values.rate`}

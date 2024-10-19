@@ -4,19 +4,19 @@ import { Box } from "src/components/ui/Box";
 const BaseActivity = ({
   title,
   description,
-  identifier,
+  index,
   children,
 }: {
   title: string;
   description?: string;
-  identifier: string;
+  index: number;
   children: React.ReactNode;
 }) => {
   return (
     <Accordion.Item
       title={title}
-      value={identifier}
-      key={identifier}
+      value={`activity_${index}`}
+      key={`activity_${index}`}
       description={description}
     >
       <Box flex flexDirection="column" padding={{ top: "md" }} gap="lg">

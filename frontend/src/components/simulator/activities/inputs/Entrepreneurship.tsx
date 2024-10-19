@@ -2,46 +2,66 @@ import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
+import { useFormikContext } from "formik";
+import { FormValues } from "src/App";
+import { ActivitiesType } from "../../constants";
+import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInputGroup";
 
-const Entrepreneurship = () => {
+const Entrepreneurship = ({ index }: { index: number }) => {
   const { t } = useTranslation();
+  const { values, getFieldMeta } = useFormikContext<FormValues>();
+  const base_name = `activities[${index}].values`;
+
+  const { value: label } = getFieldMeta<
+    ActivitiesType["entrepreneurship"]["initial_values"]["name"]
+  >(`${base_name}.name`);
+
+  const loadLabel = () => {
+    if (label) {
+      return label;
+    }
+
+    let entrepreuneurial_project_index = 0;
+
+    values.activities.some((activity, i) => {
+      if (activity.type == "entrepreneurship") {
+        entrepreuneurial_project_index++;
+      }
+      return i == index;
+    });
+
+    return t("simulator.activities.entrepreneurial_project.label", {
+      index: entrepreuneurial_project_index,
+    });
+  };
+
   return (
-    <BaseActivity
-      title={t("simulator.activities.digital_product.label")}
-      identifier="entrepreneurship"
-      description={t("simulator.activities.digital_product.description")}
-    >
-      <Range
-        name="activities.digital_product.rate"
-        label={t("simulator.activities.digital_product.inputs.rate.label")}
-        valueFormater={(value) => t("common.currency.EUR", { value })}
-        min={0}
-        max={10000}
-        step={50}
+    <BaseActivity title={loadLabel()} index={index}>
+      <CurrencyInputGroup
+        name={`activities[${index}].values.rate`}
+        label={t(
+          "simulator.activities.entrepreneurial_project.inputs.rate.label",
+        )}
       />
       <Range
-        name="activities.digital_product.quantity"
-        label={t("simulator.activities.digital_product.inputs.quantity.label")}
-        valueFormater={(value) =>
-          t("common.value_with_unit.per_month", { value })
-        }
+        name={`${base_name}.quantity`}
+        label={t(
+          "simulator.activities.entrepreneurial_project.inputs.quantity.label",
+        )}
         min={0}
         max={1000}
         step={10}
       />
       <Range
-        name="activities.digital_product.average_time_spent"
+        name={`${base_name}.average_time_spent`}
         label={t(
-          "simulator.activities.digital_product.inputs.average_time_spent.label",
+          "simulator.activities.entrepreneurial_project.inputs.average_time_spent.label",
         )}
-        valueFormater={(value) =>
-          t("common.value_with_unit.number_of_days_per_week", { count: value })
-        }
         min={0}
         max={20}
         step={0.5}
       />
-      <EnjoymentRateInput name="activities.digital_product.enjoyment_rate" />
+      <EnjoymentRateInput name={`${base_name}.enjoyment_rate`} />
     </BaseActivity>
   );
 };

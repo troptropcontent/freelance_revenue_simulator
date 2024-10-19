@@ -11,7 +11,7 @@ const FreelanceOnDelivery = ({ index }: { index: number }) => {
   return (
     <BaseActivity
       title={t("simulator.activities.freelance_on_delivery.label")}
-      identifier="freelance_on_delivery"
+      index={index}
       description={t("simulator.activities.freelance_on_delivery.description")}
     >
       <CurrencyInputGroup

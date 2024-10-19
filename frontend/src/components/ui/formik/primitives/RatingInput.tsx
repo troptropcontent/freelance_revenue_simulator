@@ -7,9 +7,6 @@ import { cssVariable } from "src/components/helper";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 
 const StyledLabel = styled.label`
-  &[for="input_0"] {
-    display: none;
-  }
   color: gold;
 `;
 
@@ -39,7 +36,7 @@ const RatingInputIcon = ({
     // We need to overwrite the formik Field behavior here because the inpout values are detected as string so we need to convert them as int manually
     setFormikFieldValue(name, parseInt(valueString));
   };
-  const inputId = "input_" + value.toString();
+  const inputId = name + "_" + value.toString();
   return (
     <>
       <HiddenRadioCheckBox
@@ -51,7 +48,9 @@ const RatingInputIcon = ({
           target: { value },
         }: React.ChangeEvent<HTMLInputElement>) => setFieldValue(value)}
       />
-      <StyledLabel htmlFor={inputId}>{children}</StyledLabel>
+      <StyledLabel htmlFor={inputId} hidden={value == 0}>
+        {children}
+      </StyledLabel>
     </>
   );
 };

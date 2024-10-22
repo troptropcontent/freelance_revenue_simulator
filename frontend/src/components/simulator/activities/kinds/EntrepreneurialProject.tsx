@@ -6,6 +6,7 @@ import { FormValues } from "src/App";
 import { Activities } from "../../constants";
 import { Entrepreneurship } from "../inputs/Entrepreneurship";
 import { Button } from "src/components/ui/Button";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const EntrepreneurialProject = ({
   color,
@@ -41,9 +42,12 @@ const EntrepreneurialProject = ({
           return null;
         }
       })}
-      <Button onClick={addNewEntrepreunarialProject}>
-        Ajouter un autre projet
-      </Button>
+      <Box flex flexDirection="row" justifyContent="center">
+        <Button onClick={addNewEntrepreunarialProject} color="white">
+          Ajouter un autre projet
+          <AddCircleIcon fontSize="small" />
+        </Button>
+      </Box>
     </BaseKind>
   );
 };

@@ -37,7 +37,12 @@ const EntrepreneurialProject = ({
     >
       {values.activities.map((activity, i) => {
         if (Activities[activity.type].kind == "entrepeunarial_project") {
-          return <Entrepreneurship index={i} key={`activity_${i}`} />;
+          return (
+            <Entrepreneurship
+              index={i}
+              key={`entrepreneurship_activity_${i}`}
+            />
+          );
         } else {
           return null;
         }

@@ -42,7 +42,7 @@ const Freelancing = ({
             ActivityInputComponents[
               activity.type as ActivitiesWithKind<"freelancing">
             ];
-          return <InputComponent index={i} key={`activity_${i}`} />;
+          return <InputComponent index={i} key={`freelancing_activity_${i}`} />;
         } else {
           return null;
         }

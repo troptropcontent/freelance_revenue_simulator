@@ -65,7 +65,7 @@ export type FormValues = {
   };
 };
 
-const initialValues: FormValues = {
+const InitialValues: FormValues = {
   activities: [
     {
       type: "freelance_daily_rate",
@@ -108,7 +108,7 @@ function App() {
   return (
     <Theme>
       <Formik
-        initialValues={initialValues}
+        initialValues={InitialValues}
         onSubmit={() => {}}
         enableReinitialize
       >
@@ -128,4 +128,4 @@ function App() {
   );
 }
 
-export default App;
+export { App, InitialValues };

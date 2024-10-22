@@ -3,11 +3,8 @@ import { BaseActivity } from "src/components/simulator/activities/inputs/BaseAct
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
 import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInputGroup";
-import { useFormikContext } from "formik";
 
 const FreelanceDailyRate = ({ index }: { index: number }) => {
-  const { values } = useFormikContext();
-  console.log({ values });
   const { t } = useTranslation();
 
   return (

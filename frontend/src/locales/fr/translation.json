@@ -34,6 +34,7 @@
             }
           },
           "title": "Mon portfolio d'activités",
+          "reset": "Réinitialiser",
           "empty_state": {
             "title": "Aucune activité selectionnée",
             "description": "Commencer à simuler vos revenus en ajoutant une activité via le bouton ci dessous"
@@ -126,15 +127,11 @@
             }
           },
           "side_project": {
-            "label": "Side Project",
-            "description": "Communauté, agence, saas, etc.",
+            "label": "Activités personnelles",
+            "description": "Sport, engagement associatif, formation, création de contenu, etc.",
             "inputs": {
-              "revenue": {
-                "label": "Chiffres d'affaires moyen",
-                "unit": "{{value}} € / mois"
-              },
               "average_time_spent": {
-                "label": "Temps alloué"
+                "label": "Nombre de jours alloués par semaine"
               }
             }
           },
@@ -171,11 +168,11 @@
             }
           },
           "admin": {
-            "label": "Admin",
+            "label": "Développement et gestion de l’activité",
             "description": "Admin, vente, personal branding, etc.",
             "inputs": {
-              "rate": {
-                "label": "Temps alloué"
+              "average_time_spent": {
+                "label": "Nombre de jours alloués par semaine"
               }
             }
           },

@@ -129,7 +129,7 @@ const Activities = {
   admin: {
     kind: "unbilled_activity",
     initial_values: {
-      average_time_spent: 0,
+      average_time_spent: 1,
     },
   },
 } as const satisfies ActivitiesType;

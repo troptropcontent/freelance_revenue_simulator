@@ -111,7 +111,7 @@ const Range = ({
         </Text>
       </Box>
       <StyledSliderRoot
-        defaultValue={[value]}
+        value={[value]}
         max={max}
         min={min}
         step={step}

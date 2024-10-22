@@ -6,9 +6,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import { Text } from "src/components/ui/Text";
 import { Button } from "src/components/ui/Button";
-import { useFormik, useFormikContext } from "formik";
-import { FormValues } from "src/App";
 import { useRef, useState } from "react";
+import { useFormikContext } from "formik";
 
 const EditableTitle = ({
   value,

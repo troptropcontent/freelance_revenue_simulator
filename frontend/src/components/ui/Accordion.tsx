@@ -1,13 +1,16 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { createContext, forwardRef, useContext, useState } from "react";
+import {
+  createContext,
+  forwardRef,
+  ReactNode,
+  useContext,
+  useState,
+} from "react";
 import styled from "styled-components";
 import { cssVariable, Spacing } from "../helper";
-import { Text } from "./Text";
 import { Box } from "./Box";
 import Switch from "./Switch";
 import { Separator } from "./Separator";
-import { Tooltip } from "./Tooltip";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 type AccordionContextType = React.ComponentProps<
   typeof AccordionPrimitive.Root
@@ -101,10 +104,13 @@ const StyledRoot = styled(AccordionRoot)`
 
 const AccordionItem = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & {
-    description?: string;
+  Exclude<
+    React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>,
+    "title"
+  > & {
+    title: ReactNode;
   }
->(({ title, description, ...props }, forwardedRef) => {
+>(({ title, ...props }, forwardedRef) => {
   const accordionContext = useContext(AccordionContext);
   if (accordionContext == null) {
     throw new Error("AccordionItem must be used within a AccordionRoot");
@@ -157,15 +163,7 @@ const AccordionItem = forwardRef<
           gap="sm"
           grow
         >
-          <Text>{title}</Text>
-          {description && (
-            <Tooltip.Root>
-              <Tooltip.Trigger>
-                <HelpOutlineIcon color="disabled" fontSize="small" />
-              </Tooltip.Trigger>
-              <Tooltip.Content>{description}</Tooltip.Content>
-            </Tooltip.Root>
-          )}
+          {title}
         </Box>
         <Switch
           checked={isItemChecked()}

@@ -11,6 +11,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import { Text } from "src/components/ui/Text";
 import { useFormikContext } from "formik";
 import { FormValues, InitialValues } from "src/App";
+import { useContext } from "react";
 
 const ActivityKindComponents: Record<
   (typeof ActivityKinds)[number],
@@ -35,13 +36,26 @@ const ActivityKindComponents: Record<
   },
 };
 
-const ActivitiesList = () => {
+const ResetButton = () => {
   const { t } = useTranslation();
   const { setValues } = useFormikContext<FormValues>();
-  const resetFormValues = () => {
-    console.log("resetFormValues");
+  const accordionContext = useContext(Accordion.Context);
+
+  const resetAccordionAndFormValues = () => {
+    if (accordionContext != null) {
+      accordionContext.resetValue();
+    }
     setValues(InitialValues);
   };
+  return (
+    <Button color="transparent" onClick={resetAccordionAndFormValues}>
+      <RefreshIcon fontSize="small" />
+      <Text>{t("simulator.activities.reset")}</Text>
+    </Button>
+  );
+};
+
+const ActivitiesList = () => {
   return (
     <Accordion.Root type="multiple">
       <List.Root
@@ -63,10 +77,7 @@ const ActivitiesList = () => {
           );
         })}
         <List.Item flex flexDirection="row" justifyContent="center">
-          <Button color="transparent" onClick={resetFormValues}>
-            <RefreshIcon fontSize="small" />
-            <Text>{t("simulator.activities.reset")}</Text>
-          </Button>
+          <ResetButton />
         </List.Item>
       </List.Root>
     </Accordion.Root>

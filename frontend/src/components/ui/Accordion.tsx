@@ -18,6 +18,7 @@ type AccordionContextType = React.ComponentProps<
   setValue: (
     newValue: React.ComponentProps<typeof AccordionPrimitive.Root>["value"],
   ) => void;
+  resetValue: () => void;
 };
 
 const AccordionContext = createContext<AccordionContextType | null>(null);
@@ -33,8 +34,17 @@ const AccordionRoot = forwardRef<
     React.ComponentProps<typeof AccordionPrimitive.Root>["value"]
   >(props.value);
 
+  const resetValue = () => {
+    if (props.type == "single") {
+      return setValue(undefined);
+    }
+    return setValue([]);
+  };
+
   return (
-    <AccordionContext.Provider value={{ ...props, value: value, setValue }}>
+    <AccordionContext.Provider
+      value={{ ...props, value, setValue, resetValue }}
+    >
       <AccordionPrimitive.Root {...props} value={value} ref={forwardedRef} />
     </AccordionContext.Provider>
   );
@@ -188,6 +198,7 @@ AccordionItem.displayName = "AccordionItem";
 const Accordion = {
   Root: StyledRoot,
   Item: AccordionItem,
+  Context: AccordionContext,
 };
 
 export { Accordion };

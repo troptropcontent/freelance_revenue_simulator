@@ -3,12 +3,17 @@ import { ButtonColor, cssVariable } from "src/components/helper";
 import { forwardRef } from "react";
 
 const StyledButton = styled.button<{
-  $color: Exclude<ButtonColor, "white" | "black">;
+  $color: ButtonColor;
 }>`
   all: unset;
 
-  background-color: ${({ $color }) =>
-    cssVariable(`color.background.${$color}.light`)};
+  background-color: ${({ $color }) => {
+    if ($color == "white") {
+      return cssVariable(`color.background.white`);
+    }
+
+    return cssVariable(`color.background.${$color}.light`);
+  }};
   padding: ${cssVariable("spacing.sm")};
   border-radius: ${cssVariable("borderRadius.sm")};
   display: inline-flex;
@@ -16,15 +21,23 @@ const StyledButton = styled.button<{
   justify-content: center;
 
   &:hover {
-    background-color: ${({ $color }) =>
-      cssVariable(`color.background.${$color}.dark`)};
+    background-color: ${({ $color }) => {
+      if ($color == "white") {
+        return cssVariable(`color.background.neutral.dark`);
+      }
+      return cssVariable(`color.background.${$color}.dark`);
+    }};
+  }
+
+  & > svg {
+    padding-inline-start: ${cssVariable(`spacing.xs`)};
   }
 `;
 
 const Button = forwardRef<
   React.ElementRef<"button">,
   React.ComponentPropsWithoutRef<"button"> & {
-    color?: Exclude<ButtonColor, "white" | "black">;
+    color?: Exclude<ButtonColor, "black">;
   }
 >(({ children, color = "brand", onClick, ...props }, forwardedRef) => {
   const handleClick = (

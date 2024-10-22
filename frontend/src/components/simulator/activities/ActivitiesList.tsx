@@ -62,7 +62,7 @@ const ActivitiesList = () => {
         grow
         gap="sm"
         border={{ color: "neutral.medium", size: "sm" }}
-        borderRadius="md"
+        borderRadius={{ bottomLeft: "md", topLeft: "md" }}
         padding="md"
       >
         {ActivityKinds.map((activity_kind, index) => {

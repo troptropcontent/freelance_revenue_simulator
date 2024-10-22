@@ -119,8 +119,9 @@ const AccordionItem = forwardRef<
     "title"
   > & {
     title: ReactNode;
+    onStateChange?: (newState: "open" | "closed") => void;
   }
->(({ title, ...props }, forwardedRef) => {
+>(({ title, onStateChange, ...props }, forwardedRef) => {
   const accordionContext = useContext(AccordionContext);
   if (accordionContext == null) {
     throw new Error("AccordionItem must be used within a AccordionRoot");
@@ -134,6 +135,9 @@ const AccordionItem = forwardRef<
         accordionContext.value ? [...accordionContext.value, value] : [value],
       );
     }
+    if (onStateChange) {
+      onStateChange("open");
+    }
   };
 
   const handleRemoveValue = (value: string) => {
@@ -145,6 +149,10 @@ const AccordionItem = forwardRef<
           ? accordionContext.value.filter((identifier) => identifier != value)
           : [],
       );
+    }
+
+    if (onStateChange) {
+      onStateChange("closed");
     }
   };
 

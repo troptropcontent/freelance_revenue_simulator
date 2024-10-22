@@ -9,12 +9,14 @@ import {
   AverageWorkingConditions,
 } from "./components/simulator/constants";
 import { useTranslation } from "react-i18next";
+import { ResultsDetails } from "./components/simulator/results/ResultsDetails";
+import { cssVariable } from "./components/helper";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
   padding-block: var(--spacing-large);
   display: grid;
-  gap: var(--spacing-large);
+  row-gap: ${cssVariable("spacing.md")};
   grid-template-areas:
     "activities_title"
     "activities"
@@ -53,6 +55,8 @@ export type FormValues = {
       type: `${ActivityType}`;
     } & {
       values?: (typeof Activities)[ActivityType]["initial_values"];
+      enabled: boolean;
+      name?: string;
     };
   }[keyof typeof Activities][];
   config: {
@@ -70,30 +74,37 @@ const InitialValues: FormValues = {
     {
       type: "freelance_daily_rate",
       values: Activities.freelance_daily_rate.initial_values,
+      enabled: false,
     },
     {
       type: "freelance_on_delivery",
       values: Activities.freelance_on_delivery.initial_values,
+      enabled: false,
     },
     {
       type: "consulting",
       values: Activities.consulting.initial_values,
+      enabled: false,
     },
     {
       type: "sponsorship",
       values: Activities.sponsorship.initial_values,
+      enabled: false,
     },
     {
       type: "entrepreneurship",
       values: Activities.entrepreneurship.initial_values,
+      enabled: false,
     },
     {
       type: "side_project",
       values: Activities.side_project.initial_values,
+      enabled: false,
     },
     {
       type: "admin",
       values: Activities.admin.initial_values,
+      enabled: false,
     },
   ],
   config: {
@@ -121,6 +132,9 @@ function App() {
           </Heading>
           <Box flex flexDirection="column" gap="md" id="activities">
             <ActivitiesList />
+          </Box>
+          <Box flex flexDirection="column" gap="md" id="results">
+            <ResultsDetails />
           </Box>
         </StyledForm>
       </Formik>

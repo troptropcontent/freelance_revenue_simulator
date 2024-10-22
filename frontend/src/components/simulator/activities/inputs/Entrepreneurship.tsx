@@ -36,7 +36,7 @@ const Entrepreneurship = ({ index }: { index: number }) => {
   };
 
   return (
-    <BaseActivity title={loadLabel()} index={index}>
+    <BaseActivity title={loadLabel()} index={index} editable>
       <CurrencyInputGroup
         name={`activities[${index}].values.rate`}
         label={t(

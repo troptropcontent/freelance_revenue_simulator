@@ -7,9 +7,15 @@ const StyledButton = styled.button<{
 }>`
   all: unset;
 
+  cursor: pointer;
+
   background-color: ${({ $color }) => {
     if ($color == "white") {
       return cssVariable(`color.background.white`);
+    }
+
+    if ($color == "transparent") {
+      return;
     }
 
     return cssVariable(`color.background.${$color}.light`);
@@ -25,6 +31,11 @@ const StyledButton = styled.button<{
       if ($color == "white") {
         return cssVariable(`color.background.neutral.dark`);
       }
+
+      if ($color == "transparent") {
+        return;
+      }
+
       return cssVariable(`color.background.${$color}.dark`);
     }};
   }

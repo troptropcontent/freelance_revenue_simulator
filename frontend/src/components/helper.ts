@@ -60,7 +60,9 @@ type Border = {
 
 type BackgroundColor = RecursiveKeyOf<Tokens["color"]["background"]>;
 
-type ButtonColor = Exclude<keyof Tokens["color"]["background"], "black">;
+type ButtonColor =
+  | Exclude<keyof Tokens["color"]["background"], "black">
+  | "transparent";
 
 type TextColor = RecursiveKeyOf<Tokens["color"]["text"]>;
 

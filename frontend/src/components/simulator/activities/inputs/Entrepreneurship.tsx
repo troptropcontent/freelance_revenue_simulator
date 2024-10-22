@@ -10,11 +10,9 @@ import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInpu
 const Entrepreneurship = ({ index }: { index: number }) => {
   const { t } = useTranslation();
   const { values, getFieldMeta } = useFormikContext<FormValues>();
-  const base_name = `activities[${index}].values`;
+  const base_name = `activities[${index}]`;
 
-  const { value: label } = getFieldMeta<
-    ActivitiesType["entrepreneurship"]["initial_values"]["name"]
-  >(`${base_name}.name`);
+  const { value: label } = getFieldMeta<string>(`${base_name}.name`);
 
   const loadLabel = () => {
     if (label) {
@@ -61,7 +59,7 @@ const Entrepreneurship = ({ index }: { index: number }) => {
         max={20}
         step={0.5}
       />
-      <EnjoymentRateInput name={`${base_name}.enjoyment_rate`} />
+      <EnjoymentRateInput name={`${base_name}.values.enjoyment_rate`} />
     </BaseActivity>
   );
 };

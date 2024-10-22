@@ -30,7 +30,7 @@ const FrequencyInputGroup = ({
           name={`${name}_unit`}
         >
           {Frequencies.map((frequency) => (
-            <SelectInput.Item value={frequency}>
+            <SelectInput.Item value={frequency} key={frequency}>
               {t(`common.frequencies.${frequency}`)}
             </SelectInput.Item>
           ))}

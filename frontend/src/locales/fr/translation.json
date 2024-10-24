@@ -73,7 +73,7 @@
                 "hint": "(i) Débutant : 250€ - Intermédiaire : 500€ - Pro 750€ - Expert : 1000€."
               },
               "quantity": {
-                "label": "Nombre de jours facturés",
+                "label": "Nombre de jours alloués par semaine",
                 "unit": "{{value}} / semaines"
               }
             }
@@ -90,7 +90,7 @@
                 "label": "Nombre de missions facturées"
               },
               "average_time_spent": {
-                "label": "Temps alloué par mission"
+                "label": "Nombre de jours alloués par semaine"
               }
             }
           },
@@ -99,11 +99,11 @@
             "description": "Coaching, mentoring, etc.",
             "inputs": {
               "rate": {
-                "label": "Tarif horaire",
+                "label": "Tarif horaire conseil",
                 "unit": "{{value}} € / heure"
               },
-              "frequency": {
-                "label": "Nombre d'heures facturées"
+              "quantity": {
+                "label": "Nombre de conseils réalisées"
               },
               "average_time_spent": {
                 "label": "Heures passées par consulting"
@@ -118,11 +118,11 @@
                 "label": "Tarif par contenu sponsorisé",
                 "unit": "{{value}} € / contenu"
               },
-              "frequency": {
-                "label": "Nombre de contenus sponsorisés"
+              "quantity": {
+                "label": "Nombre de contenus réalisés"
               },
               "average_time_spent": {
-                "label": "Temps passé par contenu sponsorisé"
+                "label": "Heures passées par contenu sponsorisé"
               }
             }
           },
@@ -182,19 +182,16 @@
           }
         },
         "results": {
-          "title": "Résultats",
+          "title": "Simulation",
           "details": {
-            "total_annual_earnings": {
-              "label": "CA annuel total :"
+            "total_annual_turnover": {
+              "label": "Chiffre d’affaires annuel estimé 💶"
             },
-            "total_monthly_earnings": {
-              "label": "CA mensuel :"
+            "average_enjoyment_rate": {
+              "label": "Niveau de kiff"
             },
-            "worked_days_per_weeks": {
-              "label": "Temps consacré à mes activités par semaine :"
-            },
-            "available_days_per_week": {
-              "label": "Temps disponible par semaine :"
+            "total_number_of_days_available_per_week": {
+              "label": "Temps disponible par semaine ⏳"
             }
           },
           "charts": {

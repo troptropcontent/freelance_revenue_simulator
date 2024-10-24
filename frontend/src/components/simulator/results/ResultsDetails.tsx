@@ -1,59 +1,40 @@
 import { List } from "src/components/ui/List";
-import { useWorkedWeekAnalysis, useRevenueAnalysis } from "./private/hooks";
+import {
+  useTotalAnnualTurnover,
+  useTotalNumberOfDaysAvailablePerWeek,
+  useWeigthedAverageEnjoymentRate,
+} from "./private/hooks";
 import { Text } from "src/components/ui/Text";
 import { useTranslation } from "react-i18next";
 
 const ResultsDetails = () => {
-  const { annualTurnover } = useRevenueAnalysis();
-  const { daysWorkedPerWeek, daysAvailablePerWeek } = useWorkedWeekAnalysis();
   const { t } = useTranslation();
+  const total_annual_turnover = useTotalAnnualTurnover();
+  const total_number_of_days_available_per_week =
+    useTotalNumberOfDaysAvailablePerWeek();
+  const average_enjoyment_rate = useWeigthedAverageEnjoymentRate();
 
-  const data = [
-    {
-      label: t("simulator.results.details.total_annual_earnings.label"),
-      value: t("common.currency.EUR", {
-        value: annualTurnover,
-      }),
-    },
-    {
-      label: t("simulator.results.details.total_monthly_earnings.label"),
-      value: t("common.currency.EUR", {
-        value: annualTurnover / 12,
-      }),
-    },
-    {
-      label: t("simulator.results.details.worked_days_per_weeks.label"),
-      value: t("common.value_with_unit.number_of_days", {
-        count: daysWorkedPerWeek,
-      }),
-    },
-    {
-      label: t("simulator.results.details.available_days_per_week.label"),
-      value: t("common.value_with_unit.number_of_days", {
-        count: daysAvailablePerWeek < 0 ? 0 : daysAvailablePerWeek,
-      }),
-    },
-  ];
+  const results = {
+    total_annual_turnover,
+    total_number_of_days_available_per_week,
+    average_enjoyment_rate,
+  };
 
   return (
     <List.Root
       grow
       gap="sm"
-      background="grey.light"
-      borderRadius="md"
+      background="neutral.medium"
+      borderRadius={{ bottomRight: "md", topRight: "md" }}
       padding="lg"
     >
-      {data.map((item) => (
-        <List.Item
-          flex
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
-          key={item.label}
-        >
-          <Text>{item.label}</Text>
-          <Text size="md">
-            <data>{item.value}</data>
+      {Object.entries(results).map(([key, value]) => (
+        <List.Item flex flexDirection="column" key={key}>
+          <Text size="md" align="center">
+            {t(`simulator.results.details.${key}.label`)}
+          </Text>
+          <Text size="xl" align="center">
+            <data>{value}</data>
           </Text>
         </List.Item>
       ))}
@@ -61,4 +42,4 @@ const ResultsDetails = () => {
   );
 };
 
-export default ResultsDetails;
+export { ResultsDetails };

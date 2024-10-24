@@ -3,7 +3,7 @@ import { BaseActivity } from "src/components/simulator/activities/inputs/BaseAct
 import { EnjoymentRateInput } from "src/components/simulator/activities/private/EnjoymentRateInput";
 import { useTranslation } from "react-i18next";
 import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInputGroup";
-import { FrequencyInputGroup } from "src/components/ui/formik/groups/FrequencyInputGroup";
+import { NumberInputGroup } from "src/components/ui/formik/groups/NumberInput";
 
 const Consulting = ({ index }: { index: number }) => {
   const { t } = useTranslation();
@@ -18,9 +18,9 @@ const Consulting = ({ index }: { index: number }) => {
         name={`activities[${index}].values.rate`}
         label={t("simulator.activities.consulting.inputs.rate.label")}
       />
-      <FrequencyInputGroup
-        name={`activities[${index}].values.frequency`}
-        label={t("simulator.activities.consulting.inputs.frequency.label")}
+      <NumberInputGroup
+        name={`activities[${index}].values.quantity`}
+        label={t("simulator.activities.consulting.inputs.quantity.label")}
       />
       <Range
         name={`activities[${index}].values.average_time_spent`}

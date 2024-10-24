@@ -6,7 +6,11 @@ import { Formik } from "formik";
 import { ActivitiesList } from "src/components/simulator/activities/ActivitiesList";
 import {
   Activities,
-  AverageWorkingConditions,
+  ActivitiesType,
+  DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
+  DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK,
+  DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
+  DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR,
 } from "./components/simulator/constants";
 import { useTranslation } from "react-i18next";
 import { ResultsDetails } from "./components/simulator/results/ResultsDetails";
@@ -52,20 +56,17 @@ export type ActivityTypes = keyof typeof Activities;
 export type FormValues = {
   activities: {
     [ActivityType in ActivityTypes]: {
-      type: `${ActivityType}`;
-    } & {
-      values?: (typeof Activities)[ActivityType]["initial_values"];
       enabled: boolean;
       name?: string;
+    } & {
+      type: `${ActivityType}`;
+      values?: ActivitiesType[ActivityType]["initial_values"];
     };
   }[keyof typeof Activities][];
   config: {
     weeks_off: number;
-    time_spent_on_admin_tasks: number;
-    side_projects?: {
-      average_time_spent: number;
-      enjoyment_rate: number;
-    };
+    number_of_days_worked_per_week: number;
+    number_of_hours_worked_per_day: number;
   };
 };
 
@@ -108,9 +109,9 @@ const InitialValues: FormValues = {
     },
   ],
   config: {
-    weeks_off: AverageWorkingConditions.weeksOffPerYear,
-    time_spent_on_admin_tasks:
-      AverageWorkingConditions.timeSpentOnAdminTasksPerWeek,
+    weeks_off: DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR,
+    number_of_days_worked_per_week: DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
+    number_of_hours_worked_per_day: DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
   },
 };
 

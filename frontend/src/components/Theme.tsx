@@ -80,6 +80,11 @@ const theme: DefaultTheme = {
         medium: "#000000",
         dark: "#000000",
       },
+      error: {
+        light: "#FFCDD2",
+        medium: "#E57373",
+        dark: "#B71C1C",
+      },
       muted: {
         light: "#E3E1D9",
         medium: "#C7C8CC",

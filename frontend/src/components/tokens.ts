@@ -35,6 +35,7 @@ interface Tokens {
     text: {
       primary: Color;
       secondary: Color;
+      error: Color;
       muted: Color;
       white: string;
     };

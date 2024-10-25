@@ -90,4 +90,43 @@ const computeNumberOfDaysWorkedPerWeek = (
   }
 };
 
-export { computeAnnualTurnover, computeNumberOfDaysWorkedPerWeek };
+const findNumberOfDaysAvailableTextType = (
+  number_of_days_available: number,
+  number_of_hours_worked_per_day: number,
+):
+  | "hours"
+  | "half_a_day"
+  | "days"
+  | "more_days_worked_than_days_available"
+  | "perfectly_balanced" => {
+  const hours_available =
+    number_of_days_available * number_of_hours_worked_per_day;
+
+  if (number_of_days_available < 0) {
+    return "more_days_worked_than_days_available";
+  }
+
+  if (number_of_days_available < 1 && Math.round(hours_available) == 0) {
+    return "perfectly_balanced";
+  }
+
+  if (hours_available < 3) {
+    return "hours";
+  }
+
+  if (hours_available < 4) {
+    return "half_a_day";
+  }
+
+  if (number_of_days_available < 1) {
+    return "hours";
+  }
+
+  return "days";
+};
+
+export {
+  computeAnnualTurnover,
+  computeNumberOfDaysWorkedPerWeek,
+  findNumberOfDaysAvailableTextType,
+};

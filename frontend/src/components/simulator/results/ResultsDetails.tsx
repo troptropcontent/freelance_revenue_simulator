@@ -8,6 +8,9 @@ import { Text } from "src/components/ui/Text";
 import { useTranslation } from "react-i18next";
 import { ReactNode } from "react";
 import { NumberOfDaysAvailable } from "./private/NumberOfDaysAvailable";
+import { RatingInput } from "src/components/ui/formik/primitives/RatingInput";
+import { Form, Formik } from "formik";
+import { MAX_RATE } from "../constants";
 
 const ResultsDetails = () => {
   const { t } = useTranslation();
@@ -41,7 +44,19 @@ const ResultsDetails = () => {
     },
     average_enjoyment_rate: {
       value: average_enjoyment_rate,
-      formater: (value) => `${value}`,
+      formater: (value) => {
+        return (
+          <Formik
+            onSubmit={() => {}}
+            initialValues={{ average_rating: Math.round(value) }}
+            enableReinitialize
+          >
+            <Form>
+              <RatingInput disabled name="average_rating" max={MAX_RATE} />
+            </Form>
+          </Formik>
+        );
+      },
     },
   };
 

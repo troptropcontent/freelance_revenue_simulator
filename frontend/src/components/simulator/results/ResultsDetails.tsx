@@ -9,8 +9,9 @@ import { useTranslation } from "react-i18next";
 import { ReactNode } from "react";
 import { NumberOfDaysAvailable } from "./private/NumberOfDaysAvailable";
 import { RatingInput } from "src/components/ui/formik/primitives/RatingInput";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import { MAX_RATE } from "../constants";
+import { Box } from "src/components/ui/Box";
 
 const ResultsDetails = () => {
   const { t } = useTranslation();
@@ -31,7 +32,7 @@ const ResultsDetails = () => {
     total_annual_turnover: {
       value: total_annual_turnover,
       formater: (value) => (
-        <Text size="xl" align="center">
+        <Text size="xl" align="center" style="heading" weight="bold">
           {t("common.currency.EUR", { value })}
         </Text>
       ),
@@ -51,9 +52,14 @@ const ResultsDetails = () => {
             initialValues={{ average_rating: Math.round(value) }}
             enableReinitialize
           >
-            <Form>
-              <RatingInput disabled name="average_rating" max={MAX_RATE} />
-            </Form>
+            <Box flex flexDirection="column" alignItems="center">
+              <RatingInput
+                size="xl"
+                disabled
+                name="average_rating"
+                max={MAX_RATE}
+              />
+            </Box>
           </Formik>
         );
       },
@@ -63,14 +69,14 @@ const ResultsDetails = () => {
   return (
     <List.Root
       grow
-      gap="sm"
+      gap="lg"
       background="neutral.medium"
       borderRadius={{ bottomRight: "md", topRight: "md" }}
       padding="lg"
     >
       {Object.entries(results).map(([key, { value, formater }]) => (
-        <List.Item flex flexDirection="column" key={key}>
-          <Text size="md" align="center">
+        <List.Item flex flexDirection="column" key={key} gap="sm">
+          <Text size="md" align="center" style="heading" weight="bold">
             {t(`simulator.results.details.${key}.label`)}
           </Text>
           {formater(value)}

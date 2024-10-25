@@ -66,6 +66,10 @@ type ButtonColor =
 
 type TextColor = RecursiveKeyOf<Tokens["color"]["text"]>;
 
+type TextSize = keyof Tokens["fonts"]["size"];
+
+type TextStyle = keyof Tokens["fonts"]["family"];
+
 const cssVariable = (tokenId: TokenId) => {
   return `var(--${tokenId.split(".").join("-")})`;
 };
@@ -137,5 +141,7 @@ export type {
   BackgroundColor,
   TokenId,
   TextColor,
+  TextSize,
+  TextStyle,
   ButtonColor,
 };

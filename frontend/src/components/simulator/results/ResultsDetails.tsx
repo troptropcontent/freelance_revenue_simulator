@@ -67,13 +67,7 @@ const ResultsDetails = () => {
   };
 
   return (
-    <List.Root
-      grow
-      gap="lg"
-      background="neutral.medium"
-      borderRadius={{ bottomRight: "md", topRight: "md" }}
-      padding="lg"
-    >
+    <List.Root gap="lg">
       {Object.entries(results).map(([key, { value, formater }]) => (
         <List.Item flex flexDirection="column" key={key} gap="sm">
           <Text size="md" align="center" style="heading" weight="bold">

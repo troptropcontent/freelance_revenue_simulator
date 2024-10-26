@@ -15,6 +15,9 @@ import {
 import { useTranslation } from "react-i18next";
 import { ResultsDetails } from "./components/simulator/results/ResultsDetails";
 import { cssVariable } from "./components/helper";
+import { PieChart } from "./components/ui/PieChart";
+import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
+import { Separator } from "./components/ui/Separator";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -134,8 +137,18 @@ function App() {
           <Box flex flexDirection="column" gap="md" id="activities">
             <ActivitiesList />
           </Box>
-          <Box flex flexDirection="column" gap="md" id="results">
+          <Box
+            flex
+            flexDirection="column"
+            gap="md"
+            id="results"
+            background="neutral.medium"
+            borderRadius={{ bottomRight: "md", topRight: "md" }}
+            padding="lg"
+          >
             <ResultsDetails />
+            <Separator color="grey.light" />
+            <ResultsCharts />
           </Box>
         </StyledForm>
       </Formik>

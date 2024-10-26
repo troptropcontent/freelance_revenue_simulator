@@ -10,7 +10,8 @@
           "per_month": "{{value, number(maximumFractionDigits: 2)}} / mois"
         },
         "currency": {
-          "EUR": "{{value, currency(currency: 'EUR')}}"
+          "EUR": "{{value, currency(currency: 'EUR')}}",
+          "EUR_NO_DIGITS": "{{value, currency(currency: 'EUR', maximumFractionDigits: 0)}}"
         },
         "frequencies": {
           "by_month": "par mois",
@@ -215,6 +216,9 @@
             }
           },
           "charts": {
+            "revenue_ventilation": {
+              "title": "Répartition de ton chiffre d’affaires"
+            },
             "value": {
               "title": "Valeur",
               "no_data_title": "Aucune donnée à afficher",

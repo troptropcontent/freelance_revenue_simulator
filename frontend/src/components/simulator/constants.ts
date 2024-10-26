@@ -1,10 +1,18 @@
+import { BackgroundColor } from "../helper";
+
 const ActivityKinds = [
   "freelancing",
-  "entrepeunarial_project",
+  "entrepreneurial_project",
   "unbilled_activity",
 ] as const;
 
 type ActivityKindsType = (typeof ActivityKinds)[number];
+
+const ActivityKindColors: Record<ActivityKindsType, BackgroundColor> = {
+  entrepreneurial_project: "green.medium",
+  freelancing: "blue.medium",
+  unbilled_activity: "yellow.medium",
+};
 
 type BaseActivity = {
   kind: ActivityKindsType;
@@ -120,7 +128,7 @@ const Activities = {
     },
   },
   entrepreneurship: {
-    kind: "entrepeunarial_project",
+    kind: "entrepreneurial_project",
     initial_values: {
       rate: 100,
       quantity: 1,
@@ -152,6 +160,7 @@ type ActivitiesWithKind<V extends ActivityKindsType> = {
 export {
   Activities,
   ActivityKinds,
+  ActivityKindColors,
   Frequencies,
   NUMBER_OF_DAYS_IN_A_WEEK,
   NUMBER_OF_MONTHS_IN_A_YEAR,

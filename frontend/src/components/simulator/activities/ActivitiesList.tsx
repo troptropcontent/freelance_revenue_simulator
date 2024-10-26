@@ -1,6 +1,9 @@
 import { Accordion } from "src/components/ui/Accordion";
 import { List } from "src/components/ui/List";
-import { ActivityKinds } from "src/components/simulator/constants.ts";
+import {
+  ActivityKindColors,
+  ActivityKinds,
+} from "src/components/simulator/constants.ts";
 import { EntrepreneurialProject } from "./kinds/EntrepreneurialProject";
 import { Freelancing } from "./kinds/Freelancing";
 import { UnbilledActivty } from "./kinds/UnbilledActivity";
@@ -22,17 +25,17 @@ const ActivityKindComponents: Record<
     background: React.ComponentProps<typeof Box>["background"];
   }
 > = {
-  entrepeunarial_project: {
+  entrepreneurial_project: {
     component: EntrepreneurialProject,
-    background: "green.medium",
+    background: ActivityKindColors["entrepreneurial_project"],
   },
   freelancing: {
     component: Freelancing,
-    background: "blue.medium",
+    background: ActivityKindColors["freelancing"],
   },
   unbilled_activity: {
     component: UnbilledActivty,
-    background: "yellow.medium",
+    background: ActivityKindColors["unbilled_activity"],
   },
 };
 

@@ -21,6 +21,7 @@ const EntrepreneurialProject = ({
       ...values.activities,
       {
         type: "entrepreneurship",
+        enabled: false,
         values: Activities.entrepreneurship.initial_values,
       },
     ];
@@ -28,7 +29,7 @@ const EntrepreneurialProject = ({
   };
   return (
     <BaseKind
-      kind="entrepeunarial_project"
+      kind="entrepreneurial_project"
       color={color}
       title={t("simulator.activities.kinds.entrepreneurial_project.title")}
       description={t(
@@ -36,7 +37,7 @@ const EntrepreneurialProject = ({
       )}
     >
       {values.activities.map((activity, i) => {
-        if (Activities[activity.type].kind == "entrepeunarial_project") {
+        if (Activities[activity.type].kind == "entrepreneurial_project") {
           return (
             <Entrepreneurship
               index={i}

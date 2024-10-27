@@ -4,37 +4,17 @@ import { EnjoymentRateInput } from "src/components/simulator/activities/private/
 import { useTranslation } from "react-i18next";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
-import { ActivitiesType } from "../../constants";
 import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInputGroup";
 
 const Entrepreneurship = ({ index }: { index: number }) => {
   const { t } = useTranslation();
-  const { values, getFieldMeta } = useFormikContext<FormValues>();
+  const { getFieldMeta } = useFormikContext<FormValues>();
   const base_name = `activities[${index}]`;
 
-  const { value: label } = getFieldMeta<string>(`${base_name}.name`);
-
-  const loadLabel = () => {
-    if (label) {
-      return label;
-    }
-
-    let entrepreuneurial_project_index = 0;
-
-    values.activities.some((activity, i) => {
-      if (activity.type == "entrepreneurship") {
-        entrepreuneurial_project_index++;
-      }
-      return i == index;
-    });
-
-    return t("simulator.activities.entrepreneurial_project.label", {
-      index: entrepreuneurial_project_index,
-    });
-  };
+  const { value: name } = getFieldMeta<string>(`${base_name}.name`);
 
   return (
-    <BaseActivity title={loadLabel()} index={index} editable>
+    <BaseActivity title={name} index={index} editable>
       <CurrencyInputGroup
         name={`activities[${index}].values.rate`}
         label={t(

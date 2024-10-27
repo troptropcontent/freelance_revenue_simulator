@@ -13,8 +13,9 @@ import { useTranslation } from "react-i18next";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { Text } from "src/components/ui/Text";
 import { useFormikContext } from "formik";
-import { FormValues, InitialValues } from "src/App";
+import { FormValues } from "src/App";
 import { useContext } from "react";
+import { useFormInitialValues } from "src/shared/hooks";
 
 const ActivityKindComponents: Record<
   (typeof ActivityKinds)[number],
@@ -42,13 +43,14 @@ const ActivityKindComponents: Record<
 const ResetButton = () => {
   const { t } = useTranslation();
   const { setValues } = useFormikContext<FormValues>();
+  const initial_values = useFormInitialValues();
   const accordionContext = useContext(Accordion.Context);
 
   const resetAccordionAndFormValues = () => {
     if (accordionContext != null) {
       accordionContext.resetValue();
     }
-    setValues(InitialValues);
+    setValues(initial_values);
   };
   return (
     <Button color="transparent" onClick={resetAccordionAndFormValues}>

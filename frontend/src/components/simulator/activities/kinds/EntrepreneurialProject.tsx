@@ -17,9 +17,16 @@ const EntrepreneurialProject = ({
   const { t } = useTranslation();
 
   const addNewEntrepreunarialProject = () => {
+    const number_of_entrepreuneurial_projects = values.activities.filter(
+      ({ type }) => type == "entrepreneurship",
+    ).length;
+
     values.activities = [
       ...values.activities,
       {
+        name: t("simulator.activities.entrepreneurial_project.label", {
+          index: number_of_entrepreuneurial_projects + 1,
+        }),
         type: "entrepreneurship",
         enabled: false,
         values: Activities.entrepreneurship.initial_values,

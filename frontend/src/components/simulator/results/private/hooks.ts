@@ -20,13 +20,20 @@ const useAnnualTurnoverPerActivity = (): {
   } = useFormikContext<FormValues>();
 
   const computeResult = () =>
-    activities.map((activity) => {
-      return {
-        name: activity.name,
-        type: activity.type,
-        annualTurnover: computeAnnualTurnover(activity, weeks_off),
-      };
-    });
+    activities
+      .map((activity) => {
+        return {
+          name: activity.name,
+          type: activity.type,
+          annualTurnover: computeAnnualTurnover(activity, weeks_off),
+        };
+      })
+      .sort((a, b) => {
+        if (a.annualTurnover == null || b.annualTurnover == null) {
+          return -1;
+        }
+        return b.annualTurnover - a.annualTurnover;
+      });
 
   return useMemo(computeResult, [activities, weeks_off]);
 };

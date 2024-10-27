@@ -6,18 +6,17 @@ import {
   cssVariable,
   RecursiveKeyOf,
 } from "../helper";
-import { Tokens } from "../tokens";
+import { ColorValueHex, Tokens } from "../tokens";
 import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Text } from "./Text";
 
 const LabelCard = styled.div<{
-  $color: RecursiveKeyOf<Tokens["color"]["background"]>;
+  $color: ColorValueHex;
 }>`
   display: flex;
   text-wrap: wrap;
-  border-left: ${cssVariable("spacing.sm")} solid
-    ${({ $color }) => cssVariable(`color.background.${$color}`)};
+  border-left: ${cssVariable("spacing.sm")} solid ${({ $color }) => $color};
   border-right: ${cssVariable("spacing.sm")} solid transparent;
 
   padding-block: ${cssVariable("spacing.sm")};
@@ -35,7 +34,7 @@ const LabelCard = styled.div<{
 const Graph = styled.div<{
   $title: string;
   $data: {
-    color: RecursiveKeyOf<Tokens["color"]["background"]>;
+    color: ColorValueHex;
     start_angle: number;
     end_angle: number;
   }[];
@@ -59,7 +58,7 @@ const Graph = styled.div<{
         $data
           .map(
             (data) =>
-              `${cssVariable(`color.background.${data.color}`)} ${data.start_angle}deg ${data.end_angle}deg`,
+              `${data.color} ${data.start_angle}deg ${data.end_angle}deg`,
           )
           .join(",")}
     );
@@ -83,14 +82,23 @@ const Graph = styled.div<{
   }
 `;
 
+interface PieChartElement {
+  label: string;
+  color: ColorValueHex;
+  value: number;
+}
+
 const PieChart = ({
   data,
+  labelFormater,
+  title,
 }: {
-  data: {
-    label: ReactNode;
-    color: RecursiveKeyOf<Tokens["color"]["background"]>;
-    value: number;
-  }[];
+  data: PieChartElement[];
+  labelFormater?: (
+    element: PieChartElement,
+    data: PieChartElement[],
+  ) => ReactNode;
+  title: string;
 }) => {
   const total_value = data.reduce((acc, { value }) => acc + value, 0);
   if (total_value == 0) {
@@ -101,13 +109,12 @@ const PieChart = ({
     (value / total_value) * 360;
 
   const initialValue: {
-    color: RecursiveKeyOf<Tokens["color"]["background"]>;
+    color: ColorValueHex;
     start_angle: number;
     end_angle: number;
   }[] = [];
 
-  const sorted_data = data.sort((a, b) => b.value - a.value);
-  const pie_data = sorted_data.reduce((acc, current): typeof initialValue => {
+  const pie_data = data.reduce((acc, current): typeof initialValue => {
     if (current.value == 0) {
       return acc;
     }
@@ -135,17 +142,13 @@ const PieChart = ({
 
   return (
     <Box flex flexDirection="column" alignItems="center" gap="lg">
-      <Graph
-        $data={pie_data}
-        $title={`${Math.round((total_value / 1000) * 10) / 10}K€`}
-      />
+      <Graph $data={pie_data} $title={title} />
       <List.Root gap="sm">
-        {sorted_data.map(
+        {data.map(
           (element, i) =>
             element.value != 0 && (
               <LabelCard $color={element.color} key={i}>
-                <data>{`${Math.round((element.value / 1000) * 10) / 10}K€`}</data>
-                <Text>{element.label}</Text>
+                {labelFormater ? labelFormater(element, data) : element.label}
               </LabelCard>
             ),
         )}

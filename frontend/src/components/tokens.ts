@@ -1,8 +1,10 @@
 interface Color {
-  light: string;
-  medium: string;
-  dark: string;
+  light: ColorValueHex;
+  medium: ColorValueHex;
+  dark: ColorValueHex;
 }
+
+type ColorValueHex = `#${string}`;
 
 interface Tokens {
   color: {
@@ -15,20 +17,20 @@ interface Tokens {
       yellow: Color;
       orange: Color;
       grey: Color;
-      white: string;
+      white: ColorValueHex;
       black: {
-        a1: string;
-        a2: string;
-        a3: string;
-        a4: string;
-        a5: string;
-        a6: string;
-        a7: string;
-        a8: string;
-        a9: string;
-        a10: string;
-        a11: string;
-        a12: string;
+        a1: ColorValueHex;
+        a2: ColorValueHex;
+        a3: ColorValueHex;
+        a4: ColorValueHex;
+        a5: ColorValueHex;
+        a6: ColorValueHex;
+        a7: ColorValueHex;
+        a8: ColorValueHex;
+        a9: ColorValueHex;
+        a10: ColorValueHex;
+        a11: ColorValueHex;
+        a12: ColorValueHex;
       };
       brand: Color;
     };
@@ -37,7 +39,7 @@ interface Tokens {
       secondary: Color;
       error: Color;
       muted: Color;
-      white: string;
+      white: ColorValueHex;
     };
     border: {
       neutral: Color;
@@ -86,4 +88,4 @@ interface Tokens {
   };
 }
 
-export type { Tokens };
+export type { Tokens, ColorValueHex };

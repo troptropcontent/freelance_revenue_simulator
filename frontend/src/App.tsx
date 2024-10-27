@@ -18,6 +18,7 @@ import { cssVariable } from "./components/helper";
 import { PieChart } from "./components/ui/PieChart";
 import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 import { Separator } from "./components/ui/Separator";
+import { useFormInitialValues } from "./shared/hooks";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
@@ -73,57 +74,13 @@ export type FormValues = {
   };
 };
 
-const InitialValues: FormValues = {
-  activities: [
-    {
-      type: "freelance_daily_rate",
-      values: Activities.freelance_daily_rate.initial_values,
-      enabled: false,
-    },
-    {
-      type: "freelance_on_delivery",
-      values: Activities.freelance_on_delivery.initial_values,
-      enabled: false,
-    },
-    {
-      type: "consulting",
-      values: Activities.consulting.initial_values,
-      enabled: false,
-    },
-    {
-      type: "sponsorship",
-      values: Activities.sponsorship.initial_values,
-      enabled: false,
-    },
-    {
-      type: "entrepreneurship",
-      values: Activities.entrepreneurship.initial_values,
-      enabled: false,
-    },
-    {
-      type: "side_project",
-      values: Activities.side_project.initial_values,
-      enabled: false,
-    },
-    {
-      type: "admin",
-      values: Activities.admin.initial_values,
-      enabled: false,
-    },
-  ],
-  config: {
-    weeks_off: DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR,
-    number_of_days_worked_per_week: DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
-    number_of_hours_worked_per_day: DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
-  },
-};
-
 function App() {
   const { t } = useTranslation();
+  const initial_values = useFormInitialValues();
   return (
     <Theme>
       <Formik
-        initialValues={InitialValues}
+        initialValues={initial_values}
         onSubmit={() => {}}
         enableReinitialize
       >
@@ -156,4 +113,4 @@ function App() {
   );
 }
 
-export { App, InitialValues };
+export { App };

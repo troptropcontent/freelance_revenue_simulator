@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ColorValueHex } from "../tokens";
 import { useTranslation } from "react-i18next";
 import { cssVariable } from "../helper";
 import { List } from "./List";
@@ -92,7 +91,6 @@ const WeekChart = ({
   data,
   number_of_days,
   labelFormater,
-  remainingLabelFormater,
 }: {
   data: WeekChartData[];
   number_of_days: number;
@@ -100,7 +98,6 @@ const WeekChart = ({
   remainingLabelFormater?: (value: number) => ReactNode;
 }) => {
   const weekdays = useLocalisedDaysOfWeek();
-  const { t } = useTranslation();
 
   if (number_of_days > MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK) {
     throw new Error(

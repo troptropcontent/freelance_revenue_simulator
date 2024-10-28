@@ -5,7 +5,6 @@ import { WeekChart } from "src/components/ui/WeekChart";
 import { useEnjoymentChartData } from "./private/hooks";
 import { Text } from "src/components/ui/Text";
 import { useTranslation } from "react-i18next";
-import { MAX_RATE } from "../../constants";
 
 const EnjoymentChart = () => {
   const {

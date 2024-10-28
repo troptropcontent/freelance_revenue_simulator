@@ -9,7 +9,7 @@ const StyledRoot = styled(RadixSwitch.Root)`
   width: 56px;
   height: 29px;
   background-color: ${cssVariable("color.background.neutral.medium")};
-  box-shadow: 0 2px 2px ${cssVariable("color.background.black.a7")};
+  box-shadow: 0 2px 2px ${cssVariable("color.background.black.a2")};
   border-radius: 9999px;
   position: relative;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -24,7 +24,7 @@ const StyledThumb = styled(RadixSwitch.Thumb)`
   height: 25px;
   background-color: white;
   border-radius: 9999px;
-  box-shadow: 0 2px 2px ${cssVariable("color.background.black.a7")};
+  box-shadow: 0 2px 2px ${cssVariable("color.background.black.a2")};
   transition: transform 100ms;
   transform: translateX(2px);
   will-change: transform;

@@ -23,7 +23,7 @@ const LabelCard = styled.div<{
 
   ${createBorderRadiusStyle("sm")}
 
-  box-shadow: 0 2px 2px ${cssVariable("color.background.black.a7")};
+  box-shadow: 0 2px 2px ${cssVariable("color.background.black.a2")};
 
   & > data {
     font-weight: bold;

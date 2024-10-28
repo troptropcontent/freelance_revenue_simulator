@@ -14,8 +14,8 @@
           "EUR_NO_DIGITS": "{{value, currency(currency: 'EUR', maximumFractionDigits: 0)}}"
         },
         "frequencies": {
-          "by_month": "par mois",
-          "by_year": "par ans"
+          "by_month": "par moi",
+          "by_year": "par an"
         }
       },
       "simulator": {

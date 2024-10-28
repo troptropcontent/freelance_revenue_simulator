@@ -5,6 +5,10 @@ import { useTranslation } from "react-i18next";
 import { RevenueByActivityChart } from "./charts/RevenueByActivityChart";
 import styled from "styled-components";
 import { cssVariable } from "src/components/helper";
+import { Collapsible } from "src/components/ui/Collapsible";
+import { useEffect, useState } from "react";
+import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
+import { useShouldDisplayResultCharts } from "./private/hooks";
 
 const StyledContainer = styled.div`
   display: grid;
@@ -13,17 +17,52 @@ const StyledContainer = styled.div`
 `;
 const ResultsCharts = () => {
   const { t } = useTranslation();
+  const should_display_result_charts = useShouldDisplayResultCharts();
+  const [collapsibleOpen, setCollapsibleOpen] = useState(false);
+
+  useEffect(() => {
+    if (!should_display_result_charts && collapsibleOpen)
+      setCollapsibleOpen(false);
+  }, [should_display_result_charts, collapsibleOpen]);
 
   return (
-    <Box flex flexDirection="column" gap="md">
-      <Text size="md" weight="bold" align="center">
-        {t("simulator.results.charts.revenue_ventilation.title")}
-      </Text>
-      <StyledContainer>
-        <RevenueByKindsChart />
-        <RevenueByActivityChart />
-      </StyledContainer>
-    </Box>
+    <Collapsible.Root
+      open={collapsibleOpen}
+      onOpenChange={setCollapsibleOpen}
+      disabled={!should_display_result_charts}
+    >
+      <Collapsible.Trigger>
+        <Box
+          flex
+          gap="md"
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text
+            weight="bold"
+            size="md"
+            color={should_display_result_charts ? undefined : "primary.light"}
+          >
+            {t(
+              `simulator.results.collapsible.${collapsibleOpen ? "open" : "closed"}`,
+            )}
+          </Text>
+          {collapsibleOpen ? <ChevronDownIcon /> : <ChevronUpIcon />}
+        </Box>
+      </Collapsible.Trigger>
+      <Collapsible.Content>
+        <Box flex flexDirection="column" gap="md" padding="md">
+          <Text size="md" weight="bold" align="center">
+            {t("simulator.results.charts.revenue_ventilation.title")}
+          </Text>
+          <StyledContainer>
+            <RevenueByKindsChart />
+            <RevenueByActivityChart />
+          </StyledContainer>
+        </Box>
+      </Collapsible.Content>
+    </Collapsible.Root>
   );
 };
 

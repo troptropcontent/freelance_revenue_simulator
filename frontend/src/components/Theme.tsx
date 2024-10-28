@@ -71,9 +71,9 @@ const theme: DefaultTheme = {
     },
     text: {
       primary: {
-        light: "#000000",
-        medium: "#000000",
-        dark: "#000000",
+        light: "#8466A3",
+        medium: "#32164B",
+        dark: "#1E0F34",
       },
       secondary: {
         light: "#000000",

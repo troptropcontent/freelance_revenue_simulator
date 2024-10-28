@@ -85,18 +85,26 @@ const useTotalNumberOfDaysAvailablePerWeek = (): number => {
     },
   } = useFormikContext<FormValues>();
   const number_of_days_worked_per_week_activity =
-    useNumberOfDaysWorkedPerWeekPerActivity();
+    useTotalNumberOfDaysEffectivelyWorkedPerWeek();
 
   return useMemo(() => {
     return (
-      number_of_days_worked_per_week -
-      number_of_days_worked_per_week_activity.reduce(
-        (acc, { daysWorkedPerWeek }) =>
-          daysWorkedPerWeek ? acc + daysWorkedPerWeek : acc,
-        0,
-      )
+      number_of_days_worked_per_week - number_of_days_worked_per_week_activity
     );
   }, [number_of_days_worked_per_week_activity, number_of_days_worked_per_week]);
+};
+
+const useTotalNumberOfDaysEffectivelyWorkedPerWeek = (): number => {
+  const number_of_days_worked_per_week_activity =
+    useNumberOfDaysWorkedPerWeekPerActivity();
+
+  return useMemo(() => {
+    return number_of_days_worked_per_week_activity.reduce(
+      (acc, { daysWorkedPerWeek }) =>
+        daysWorkedPerWeek ? acc + daysWorkedPerWeek : acc,
+      0,
+    );
+  }, [number_of_days_worked_per_week_activity]);
 };
 
 const useWeightedEnjoymentRates = (): number[] => {
@@ -148,7 +156,19 @@ const useWeigthedAverageEnjoymentRate = (): number => {
   return sum == 0 ? sum : sum / weightSum;
 };
 
+const useShouldDisplayResultCharts = (): boolean => {
+  const total_number_days_effectively_worked_per_week =
+    useTotalNumberOfDaysEffectivelyWorkedPerWeek();
+  const total_annual_turnover = useTotalAnnualTurnover();
+
+  return (
+    total_annual_turnover != 0 &&
+    total_number_days_effectively_worked_per_week != 0
+  );
+};
+
 export {
+  useShouldDisplayResultCharts,
   useAnnualTurnoverPerActivity,
   useTotalAnnualTurnover,
   useTotalNumberOfDaysAvailablePerWeek,

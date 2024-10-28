@@ -5,7 +5,7 @@ import { Text } from "src/components/ui/Text";
 
 const RevenueByKindsChart = () => {
   const { total, details } = useRevenueByKindChartData();
-  console.log({ details });
+
   return total != 0 ? (
     <Box background="white" padding="md" borderRadius="md">
       <PieChart

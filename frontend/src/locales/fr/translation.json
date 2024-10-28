@@ -184,6 +184,10 @@
         },
         "results": {
           "title": "Simulation",
+          "collapsible": {
+            "open": "📈 MASQUER LES DÉTAILS",
+            "closed": "📈 VOIR EN DÉTAILS"
+          },
           "details": {
             "total_annual_turnover": {
               "label": "Chiffre d’affaires annuel estimé 💶"

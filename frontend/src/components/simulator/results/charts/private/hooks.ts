@@ -74,7 +74,6 @@ const useRevenueByKindChartData = () => {
   const annual_turnover_per_activity = useAnnualTurnoverPerActivity();
 
   const buildData = () => {
-    console.log("buildData with : ", annual_turnover_per_activity);
     const result: {
       total: number;
       details: {
@@ -102,7 +101,6 @@ const useRevenueByKindChartData = () => {
 
       let updated_details: typeof result.details;
 
-      console.log({ data_already_recorded_index });
       if (data_already_recorded_index == -1) {
         updated_details = [
           ...result.details,

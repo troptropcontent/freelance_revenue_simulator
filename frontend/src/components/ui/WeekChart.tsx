@@ -120,8 +120,8 @@ const WeekChart = ({
           )}
         </BackGround>
         <DataContainer>
-          {data.map(({ value, color }) => (
-            <DataItem $ratio={value} $color={color} />
+          {data.map(({ value, color }, i) => (
+            <DataItem $ratio={value} $color={color} key={i} />
           ))}
           {Math.round(remaining) > 0 && (
             <DataItem $ratio={remaining} $color={REMAINING_COLOR} />

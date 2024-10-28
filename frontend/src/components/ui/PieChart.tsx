@@ -9,6 +9,7 @@ const LabelCard = styled.div<{
   $color: ColorValueHex;
 }>`
   display: flex;
+  align-items: center;
   text-wrap: wrap;
   border-left: ${cssVariable("spacing.sm")} solid ${({ $color }) => $color};
   border-right: ${cssVariable("spacing.sm")} solid transparent;

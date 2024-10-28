@@ -2,7 +2,11 @@ import {
   useAnnualTurnoverPerActivity,
   useNumberOfDaysWorkedPerWeekPerActivity,
 } from "../../private/hooks";
-import { Activities, ActivityKinds } from "src/components/simulator/constants";
+import {
+  Activities,
+  ActivityKindEmoji,
+  ActivityKinds,
+} from "src/components/simulator/constants";
 import { brightenColor } from "./utils";
 import { useTranslation } from "react-i18next";
 import { ColorValueHex } from "src/components/tokens";
@@ -112,9 +116,11 @@ const useRevenueByKindChartData = () => {
             type: Activities[activity.type]["kind"],
             color:
               RevenueByKindChartBaseColors[Activities[activity.type]["kind"]],
-            label: t(
-              `simulator.activities.kinds.${Activities[activity.type]["kind"]}.title`,
-            ),
+            label:
+              ActivityKindEmoji[Activities[activity.type]["kind"]] +
+              t(
+                `simulator.activities.kinds.${Activities[activity.type]["kind"]}.title`,
+              ),
             value: activity.annualTurnover,
           },
         ];

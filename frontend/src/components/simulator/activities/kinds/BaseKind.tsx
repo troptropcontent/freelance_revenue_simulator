@@ -3,7 +3,7 @@ import { Box } from "src/components/ui/Box";
 import { Heading } from "src/components/ui/Heading";
 import { List } from "src/components/ui/List";
 import { Text } from "src/components/ui/Text";
-import { ActivityKinds } from "../../constants";
+import { ActivityKindEmoji, ActivityKinds } from "../../constants";
 
 const BaseKind = ({
   kind,
@@ -30,6 +30,7 @@ const BaseKind = ({
     >
       <Box flex flexDirection="column" gap="sm">
         <Heading as="h2" align="center">
+          {ActivityKindEmoji[kind]}
           {title}
         </Heading>
         <Text align="center">{description}</Text>

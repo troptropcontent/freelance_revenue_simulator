@@ -16,13 +16,13 @@ const Entrepreneurship = ({ index }: { index: number }) => {
   return (
     <BaseActivity title={name} index={index} editable>
       <CurrencyInputGroup
-        name={`activities[${index}].values.rate`}
+        name={`${base_name}.values.rate`}
         label={t(
           "simulator.activities.entrepreneurial_project.inputs.rate.label",
         )}
       />
       <Range
-        name={`${base_name}.quantity`}
+        name={`${base_name}.values.quantity`}
         label={t(
           "simulator.activities.entrepreneurial_project.inputs.quantity.label",
         )}
@@ -31,7 +31,7 @@ const Entrepreneurship = ({ index }: { index: number }) => {
         step={10}
       />
       <Range
-        name={`${base_name}.average_time_spent`}
+        name={`${base_name}.values.average_time_spent`}
         label={t(
           "simulator.activities.entrepreneurial_project.inputs.average_time_spent.label",
         )}

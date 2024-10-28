@@ -1,110 +1,178 @@
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
+import { ActivitiesType, MAX_RATE } from "src/components/simulator/constants";
 import {
-  Activities,
-  AverageWorkingConditions,
-} from "src/components/simulator/constants";
-import { computeAnnualTurnover } from "./utils";
+  computeAnnualTurnover,
+  computeNumberOfDaysWorkedPerWeek,
+} from "./utils";
+import { useMemo } from "react";
 
-// TODO: use a useMemo here to avoid recomputing the values if the form values didn't change
-const useRevenueAnalysis = () => {
+const useAnnualTurnoverPerActivity = (): {
+  name?: string;
+  type: keyof ActivitiesType;
+  annualTurnover: number | null;
+}[] => {
   const {
     values: {
-      general_informations: { weeks_off },
-      activities: {
-        consulting,
-        freelance_daily_rate,
-        freelance_on_delivery,
-        sponsorship,
-        side_project,
-        training,
-        digital_product,
-      },
-    },
-  } = useFormikContext<FormValues>();
-  const annualTurnoverPerActivities: {
-    [key in keyof FormValues["activities"]]: number;
-  } = {
-    freelance_daily_rate: computeAnnualTurnover(
-      freelance_daily_rate,
-      weeks_off,
-      true,
-    ),
-    freelance_on_delivery: computeAnnualTurnover(
-      freelance_on_delivery,
-      weeks_off,
-    ),
-    consulting: computeAnnualTurnover(consulting, weeks_off),
-    sponsorship: computeAnnualTurnover(sponsorship, weeks_off),
-    side_project: side_project ? side_project.revenue * 12 : 0,
-    training: computeAnnualTurnover(training, weeks_off),
-    digital_product: computeAnnualTurnover(digital_product, weeks_off),
-  };
-
-  const annualTurnover = Object.values(annualTurnoverPerActivities).reduce(
-    (acc, curr) => acc + curr,
-    0,
-  );
-
-  return { annualTurnoverPerActivities, annualTurnover };
-};
-
-// TODO: use a useMemo here to avoid recomputing the values if the form values didn't change
-const useWorkedWeekAnalysis = () => {
-  const {
-    values: {
-      activities: {
-        freelance_daily_rate,
-        freelance_on_delivery,
-        consulting,
-        sponsorship,
-        side_project,
-        training,
-        digital_product,
-      },
-      general_informations: { time_spent_on_admin_tasks },
+      activities,
+      config: { weeks_off },
     },
   } = useFormikContext<FormValues>();
 
-  const daysUsedPerWeek: {
-    activities: {
-      [key in Exclude<keyof typeof Activities, "admin">]: number;
-    };
-    admin: number;
-  } = {
-    activities: {
-      freelance_daily_rate: freelance_daily_rate
-        ? freelance_daily_rate.quantity
-        : 0,
-      freelance_on_delivery: freelance_on_delivery
-        ? freelance_on_delivery.average_time_spent *
-          freelance_on_delivery.quantity *
-          4
-        : 0,
-      consulting: consulting ? consulting.quantity / 4 / 7 : 0,
-      sponsorship: sponsorship
-        ? (sponsorship.quantity * sponsorship.average_time_spent) / 4
-        : 0,
-      side_project: side_project ? side_project.average_time_spent : 0,
-      training: training ? training.quantity / 4 / 7 : 0,
-      digital_product: digital_product ? digital_product.quantity / 4 / 7 : 0,
-    },
-    admin: time_spent_on_admin_tasks,
-  };
+  const computeResult = () =>
+    activities
+      .map((activity) => {
+        return {
+          name: activity.name,
+          type: activity.type,
+          annualTurnover: computeAnnualTurnover(activity, weeks_off),
+        };
+      })
+      .sort((a, b) => {
+        if (a.annualTurnover == null || b.annualTurnover == null) {
+          return -1;
+        }
+        return b.annualTurnover - a.annualTurnover;
+      });
 
-  const daysWorkedPerWeek = Object.values(daysUsedPerWeek.activities).reduce(
-    (acc, curr) => acc + curr,
-    time_spent_on_admin_tasks,
-  );
-
-  const daysAvailablePerWeek =
-    AverageWorkingConditions.daysWorkedPerWeek - daysWorkedPerWeek;
-
-  return {
-    daysUsedPerWeek,
-    daysAvailablePerWeek,
-    daysWorkedPerWeek,
-  };
+  return useMemo(computeResult, [activities, weeks_off]);
 };
 
-export { useRevenueAnalysis, useWorkedWeekAnalysis };
+const useTotalAnnualTurnover = (): number => {
+  const annual_turnover_per_activity = useAnnualTurnoverPerActivity();
+  return useMemo(
+    () =>
+      annual_turnover_per_activity.reduce(
+        (acc, { annualTurnover }) =>
+          annualTurnover ? acc + annualTurnover : acc,
+        0,
+      ),
+    [annual_turnover_per_activity],
+  );
+};
+
+const useNumberOfDaysWorkedPerWeekPerActivity = (): {
+  name?: string;
+  type: keyof ActivitiesType;
+  daysWorkedPerWeek: number | null;
+}[] => {
+  const {
+    values: {
+      activities,
+      config: { number_of_hours_worked_per_day },
+    },
+  } = useFormikContext<FormValues>();
+
+  const computeResult = () =>
+    activities.map((activity) => {
+      return {
+        name: activity.name,
+        type: activity.type,
+        daysWorkedPerWeek: computeNumberOfDaysWorkedPerWeek(
+          activity,
+          number_of_hours_worked_per_day,
+        ),
+      };
+    });
+
+  return useMemo(computeResult, [activities, number_of_hours_worked_per_day]);
+};
+
+const useTotalNumberOfDaysAvailablePerWeek = (): number => {
+  const {
+    values: {
+      config: { number_of_days_worked_per_week },
+    },
+  } = useFormikContext<FormValues>();
+  const number_of_days_worked_per_week_activity =
+    useTotalNumberOfDaysEffectivelyWorkedPerWeek();
+
+  return useMemo(() => {
+    return (
+      number_of_days_worked_per_week - number_of_days_worked_per_week_activity
+    );
+  }, [number_of_days_worked_per_week_activity, number_of_days_worked_per_week]);
+};
+
+const useTotalNumberOfDaysEffectivelyWorkedPerWeek = (): number => {
+  const number_of_days_worked_per_week_activity =
+    useNumberOfDaysWorkedPerWeekPerActivity();
+
+  return useMemo(() => {
+    return number_of_days_worked_per_week_activity.reduce(
+      (acc, { daysWorkedPerWeek }) =>
+        daysWorkedPerWeek ? acc + daysWorkedPerWeek : acc,
+      0,
+    );
+  }, [number_of_days_worked_per_week_activity]);
+};
+
+const useWeightedEnjoymentRates = (): number[] => {
+  const {
+    values: { activities },
+  } = useFormikContext<FormValues>();
+  const number_of_days_worked_per_week_activity =
+    useNumberOfDaysWorkedPerWeekPerActivity();
+
+  const computation = () => {
+    const result = Array<number>(MAX_RATE).fill(0);
+    activities.forEach((activity, i) => {
+      const { daysWorkedPerWeek } = number_of_days_worked_per_week_activity[i];
+      if (
+        !activity.enabled ||
+        activity.values == undefined ||
+        activity.values.enjoyment_rate == undefined ||
+        daysWorkedPerWeek == null
+      ) {
+        return;
+      }
+
+      const current_weight_for_this_enjoyment_rate =
+        result[activity.values.enjoyment_rate - 1];
+
+      return (result[activity.values.enjoyment_rate - 1] =
+        current_weight_for_this_enjoyment_rate + daysWorkedPerWeek);
+    });
+    return result;
+  };
+
+  return useMemo(computation, [
+    activities,
+    number_of_days_worked_per_week_activity,
+  ]);
+};
+
+const useWeigthedAverageEnjoymentRate = (): number => {
+  const weights = useWeightedEnjoymentRates();
+  const [sum, weightSum] = weights.reduce(
+    (acc, w, i) => {
+      const enjoyment_rate = i + 1;
+      acc[0] = acc[0] + enjoyment_rate * w;
+      acc[1] = acc[1] + w;
+      return acc;
+    },
+    [0, 0],
+  );
+  return sum == 0 ? sum : sum / weightSum;
+};
+
+const useShouldDisplayResultCharts = (): boolean => {
+  const total_number_days_effectively_worked_per_week =
+    useTotalNumberOfDaysEffectivelyWorkedPerWeek();
+  const total_annual_turnover = useTotalAnnualTurnover();
+
+  return (
+    total_annual_turnover != 0 &&
+    total_number_days_effectively_worked_per_week != 0
+  );
+};
+
+export {
+  useShouldDisplayResultCharts,
+  useAnnualTurnoverPerActivity,
+  useTotalAnnualTurnover,
+  useTotalNumberOfDaysAvailablePerWeek,
+  useWeigthedAverageEnjoymentRate,
+  useNumberOfDaysWorkedPerWeekPerActivity,
+  useWeightedEnjoymentRates,
+};

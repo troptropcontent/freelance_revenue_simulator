@@ -1,15 +1,16 @@
 import { useFormikContext } from "formik";
 import { Box } from "src/components/ui/Box";
 import { Text } from "src/components/ui/Text";
-import lodash from "lodash";
 import styled from "styled-components";
 import * as PrimitiveSlider from "@radix-ui/react-slider";
 import { forwardRef } from "react";
 import { cssVariable } from "src/components/helper";
+import { FormValues } from "src/App";
 
 const StyledLabel = styled.label`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const SliderRoot = forwardRef<
@@ -26,37 +27,37 @@ const StyledSliderRoot = styled(SliderRoot)`
   align-items: center;
   user-select: none;
   touch-action: none;
-  height: 20px;
+  height: 26px;
 
   .SliderTrack {
-    background-color: ${cssVariable("color.background.grey.medium")};
+    background-color: ${cssVariable("color.background.black.a12")};
     position: relative;
     flex-grow: 1;
     border-radius: 9999px;
-    height: 3px;
+    height: 2px;
   }
 
   .SliderRange {
     position: absolute;
-    background-color: ${cssVariable("color.background.brand.dark")};
+    background-color: ${cssVariable("color.background.black.a12")};
     border-radius: 9999px;
     height: 100%;
   }
 
   .SliderThumb {
     display: block;
-    width: 20px;
-    height: 20px;
-    background-color: ${cssVariable("color.background.brand.light")};
-    box-shadow: 0 2px 10px rgba(${cssVariable("color.background.black")}, 0.5);
-    border-radius: 10px;
+    width: 26px;
+    height: 26px;
+    background-color: ${cssVariable("color.background.white")};
+    border: 2px solid ${cssVariable("color.background.black.a12")};
+    border-radius: 9999px;
   }
   .SliderThumb:hover {
-    background-color: ${cssVariable("color.background.brand.medium")};
+    background-color: ${cssVariable("color.background.neutral.medium")};
   }
   .SliderThumb:focus {
     outline: none;
-    box-shadow: 0 0 0 5px rgba(${cssVariable("color.background.black")}, 0.5);
+    box-shadow: 0 0 0 5px ${cssVariable("color.background.black.a5")};
   }
 `;
 
@@ -77,24 +78,32 @@ const Range = ({
   step?: number;
   valueFormater?: (value: number) => string;
 }) => {
-  const { values, setFieldValue } = useFormikContext<
-    Record<string, unknown> | undefined
+  const { values, setFieldValue, getFieldMeta } = useFormikContext<
+    FormValues | undefined
   >();
 
   if (values === undefined || typeof values !== "object") {
     throw new Error("The component Range must be used within a Formik context");
   }
 
-  const value = lodash.get(values, name.split("."));
-  const valueNumber = typeof value === "number" ? value : 0;
+  const { value } = getFieldMeta<number>(name);
 
   return (
     <Box flex flexDirection="column" gap="md">
       <Box flex flexDirection="column" gap="xs">
         <StyledLabel htmlFor={name}>
-          <Text>{label + ":"}</Text>
-          <Box as="span">
-            {valueFormater ? valueFormater(valueNumber) : value}
+          <Text>{label}</Text>
+          <Box
+            as="span"
+            width={{ min: 45 }}
+            background="neutral.medium"
+            borderRadius={"md"}
+            padding={"sm"}
+            flex
+            flexDirection="row"
+            justifyContent="center"
+          >
+            <Text>{valueFormater ? valueFormater(value) : value}</Text>
           </Box>
         </StyledLabel>
         <Text size="xs" color="muted.medium">
@@ -102,7 +111,7 @@ const Range = ({
         </Text>
       </Box>
       <StyledSliderRoot
-        defaultValue={[valueNumber]}
+        value={[value]}
         max={max}
         min={min}
         step={step}

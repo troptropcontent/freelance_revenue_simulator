@@ -8,8 +8,7 @@ import { Text } from "./Text";
 import { Button } from "./Button";
 
 const DialogOverlay = styled(PrimitiveDialog.Overlay)`
-  background-color: ${() =>
-    `rgba(${cssVariable("color.background.black")}, 0.6)`};
+  background-color: ${cssVariable("color.background.black.a12")};
   position: fixed;
   inset: 0;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);

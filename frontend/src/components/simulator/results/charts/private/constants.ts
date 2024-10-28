@@ -1,18 +1,35 @@
-const ChartColors = [
-  "#5a2900", // darkest
-  "#8b3e00", // darker
-  "#d35400", // dark
-  "#ea8a5e", // mediumDark
-  "#eda46b", // medium
-  "#f0be78", // mediumLight
-  "#f3d885", // lightDark
-  "#f6f292", // light
-  "#f9fc9f", // lighter
-  "#fcffac", // lightest
-] as const;
+import { ActivityKinds } from "src/components/simulator/constants";
+import { ColorValueHex } from "src/components/tokens";
 
-const ChartHeight = 400;
+const RevenueByActivityChartBaseColors: Record<
+  (typeof ActivityKinds)[number],
+  ColorValueHex
+> = {
+  entrepreneurial_project: "#BBD826",
+  freelancing: "#004A97",
+  unbilled_activity: "#F0B441",
+};
 
-const RADIAN = Math.PI / 180;
+const RevenueByKindChartBaseColors: Record<
+  (typeof ActivityKinds)[number],
+  ColorValueHex
+> = {
+  entrepreneurial_project: "#E3F588",
+  freelancing: "#CAE0F7",
+  unbilled_activity: "#F8D470",
+};
 
-export { ChartColors, RADIAN, ChartHeight };
+const AverageWeekChartBaseColors: Record<
+  (typeof ActivityKinds)[number],
+  ColorValueHex
+> = {
+  entrepreneurial_project: "#E3F588",
+  freelancing: "#CAE0F7",
+  unbilled_activity: "#F8D470",
+};
+
+export {
+  AverageWeekChartBaseColors,
+  RevenueByActivityChartBaseColors,
+  RevenueByKindChartBaseColors,
+};

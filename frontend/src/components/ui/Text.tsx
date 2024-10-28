@@ -1,35 +1,78 @@
-import { Tokens } from "src/components/tokens";
 import styled from "styled-components";
-import { cssVariable, TextColor } from "src/components/helper";
-import { CSSProperties } from "react";
+import {
+  cssVariable,
+  TextColor,
+  TextSize,
+  TextStyle,
+} from "src/components/helper";
+import { CSSProperties, ReactNode } from "react";
 
-const StyledText = styled.p<{
-  $size: keyof Tokens["fonts"]["size"];
+const TextTag = ({
+  children,
+  as,
+}: {
+  children: ReactNode;
+  as: "p" | "label";
+}) => {
+  const Tag = as;
+  return <Tag>{children}</Tag>;
+};
+
+const StyledTextTag = styled(TextTag)<{
+  $align?: CSSProperties["textAlign"];
+  $size: TextSize;
   $color: TextColor;
   $weight?: CSSProperties["fontWeight"];
-  props?: React.ComponentPropsWithoutRef<"p">;
+  $style?: TextStyle;
+  props?: React.ComponentPropsWithoutRef<typeof Text>["align"];
 }>`
   font-size: ${(props) => cssVariable(`fonts.size.${props.$size}`)};
   color: ${(props) => cssVariable(`color.text.${props.$color}`)};
   ${(props) => props.$weight && `font-weight: ${props.$weight};`}
+  ${(props) => props.$align && `text-align: ${props.$align};`}
+  ${({ $style }) =>
+    $style && `font-family: ${cssVariable(`fonts.family.${$style}`)};`}
 `;
 
+type BaseTextProps = {
+  children: React.ReactNode;
+  color?: TextColor;
+  size?: TextSize;
+  weight?: CSSProperties["fontWeight"];
+  align?: CSSProperties["textAlign"];
+  style?: TextStyle;
+};
+
+type PTagProps = {
+  as?: "p";
+} & Omit<React.ComponentPropsWithoutRef<"p">, "style">;
+
+type LabelTagProps = {
+  as?: "label";
+} & Omit<React.ComponentPropsWithoutRef<"label">, "style">;
+
 const Text = ({
+  as = "p",
   size = "sm",
   color = "primary.medium",
   weight,
   children,
+  align,
+  style,
   ...props
-}: {
-  color?: TextColor;
-  size?: keyof Tokens["fonts"]["size"];
-  weight?: CSSProperties["fontWeight"];
-  children: React.ReactNode;
-} & React.ComponentPropsWithoutRef<"p">) => {
+}: BaseTextProps & (PTagProps | LabelTagProps)) => {
   return (
-    <StyledText $size={size} $color={color} $weight={weight} {...props}>
+    <StyledTextTag
+      as={as}
+      $size={size}
+      $color={color}
+      $weight={weight}
+      $align={align}
+      $style={style}
+      {...props}
+    >
       {children}
-    </StyledText>
+    </StyledTextTag>
   );
 };
 

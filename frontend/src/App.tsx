@@ -3,21 +3,20 @@ import { Heading } from "src/components/ui/Heading";
 import { Box } from "src/components/ui/Box";
 import Theme from "src/components/Theme";
 import { Formik } from "formik";
-import { ActivitiesAccordion } from "src/components/simulator/activities/ActivitiesAccordion";
-import { ActivitiesModal } from "src/components/simulator/activities/ActivitiesModal";
-import {
-  Activities,
-  AverageWorkingConditions,
-} from "./components/simulator/constants";
-import ResultsDetails from "./components/simulator/results/ResultsDetails";
-import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
+import { ActivitiesList } from "src/components/simulator/activities/ActivitiesList";
+import { Activities, ActivitiesType } from "./components/simulator/constants";
 import { useTranslation } from "react-i18next";
+import { ResultsDetails } from "./components/simulator/results/ResultsDetails";
+import { cssVariable } from "./components/helper";
+import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
+import { Separator } from "./components/ui/Separator";
+import { useFormInitialValues } from "./shared/hooks";
 
 const StyledForm = styled.form`
   padding-inline: var(--spacing-medium);
   padding-block: var(--spacing-large);
   display: grid;
-  gap: var(--spacing-large);
+  row-gap: ${cssVariable("spacing.md")};
   grid-template-areas:
     "activities_title"
     "activities"
@@ -48,55 +47,33 @@ const StyledForm = styled.form`
   }
 `;
 
+export type ActivityTypes = keyof typeof Activities;
+
 export type FormValues = {
   activities: {
-    [key in keyof typeof Activities]?: (typeof Activities)[key]["defaultValue"];
-  };
-} & {
-  general_informations: {
+    [ActivityType in ActivityTypes]: {
+      enabled: boolean;
+      name?: string;
+    } & {
+      type: `${ActivityType}`;
+      values?: ActivitiesType[ActivityType]["initial_values"];
+    };
+  }[keyof typeof Activities][];
+  config: {
     weeks_off: number;
-    time_spent_on_admin_tasks: number;
+    number_of_days_worked_per_week: number;
+    number_of_hours_worked_per_day: number;
   };
-};
-
-const initialValues: FormValues = {
-  activities: {
-    freelance_daily_rate: Activities.freelance_daily_rate.displayInInitialValues
-      ? Activities.freelance_daily_rate.defaultValue
-      : undefined,
-    freelance_on_delivery: Activities.freelance_on_delivery
-      .displayInInitialValues
-      ? Activities.freelance_on_delivery.defaultValue
-      : undefined,
-    consulting: Activities.consulting.displayInInitialValues
-      ? Activities.consulting.defaultValue
-      : undefined,
-    sponsorship: Activities.sponsorship.displayInInitialValues
-      ? Activities.sponsorship.defaultValue
-      : undefined,
-    side_project: Activities.side_project.displayInInitialValues
-      ? Activities.side_project.defaultValue
-      : undefined,
-    training: Activities.training.displayInInitialValues
-      ? Activities.training.defaultValue
-      : undefined,
-    digital_product: Activities.digital_product.displayInInitialValues
-      ? Activities.digital_product.defaultValue
-      : undefined,
-  },
-  general_informations: {
-    weeks_off: AverageWorkingConditions.weeksOffPerYear,
-    time_spent_on_admin_tasks:
-      AverageWorkingConditions.timeSpentOnAdminTasksPerWeek,
-  },
 };
 
 function App() {
   const { t } = useTranslation();
+  const initial_values = useFormInitialValues();
+
   return (
     <Theme>
       <Formik
-        initialValues={initialValues}
+        initialValues={initial_values}
         onSubmit={() => {}}
         enableReinitialize
       >
@@ -107,22 +84,20 @@ function App() {
           <Heading as="h2" align="center" id="results_title">
             {t("simulator.results.title")}
           </Heading>
+          <Box flex flexDirection="column" gap="md" id="activities">
+            <ActivitiesList />
+          </Box>
           <Box
-            background="grey.light"
-            padding="lg"
-            borderRadius="md"
             flex
             flexDirection="column"
             gap="md"
-            id="activities"
+            id="results"
+            background="neutral.medium"
+            borderRadius={{ bottomRight: "md", topRight: "md" }}
+            padding="lg"
           >
-            <ActivitiesAccordion />
-            <Box flex flexDirection="column">
-              <ActivitiesModal />
-            </Box>
-          </Box>
-          <Box flex flexDirection="column" gap="lg" id="results">
             <ResultsDetails />
+            <Separator color="grey.light" />
             <ResultsCharts />
           </Box>
         </StyledForm>
@@ -131,4 +106,4 @@ function App() {
   );
 }
 
-export default App;
+export { App };

@@ -1,7 +1,8 @@
-import { CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 import styled from "styled-components";
 import {
   BackgroundColor,
+  Border,
   BorderRadius,
   createBorderRadiusStyle,
   createPaddingStyle,
@@ -23,6 +24,9 @@ type BoxProps = {
   borderRadius?: BorderRadius;
   grow?: boolean;
   height?: string | number;
+  border?: Border;
+  width?: number | { min?: number; max?: number };
+  flexWrap?: CSSProperties["flexWrap"];
 };
 
 const BoxTag = ({
@@ -49,6 +53,9 @@ const StyledBox = styled(BoxTag)<{
   $borderRadius?: BoxProps["borderRadius"];
   $grow?: boolean;
   $height?: string | number;
+  $border?: Border;
+  $width?: React.ComponentProps<typeof Box>["width"];
+  $flexWrap?: CSSProperties["flexWrap"];
 }>`
   ${(props) =>
     props.as === "ul" && `list-style-type: none; padding: 0; margin: 0;`}
@@ -66,7 +73,27 @@ const StyledBox = styled(BoxTag)<{
     ${(props) =>
     props.$borderRadius && createBorderRadiusStyle(props.$borderRadius)}
     ${(props) => props.$grow && `flex-grow: 1;`}
-    ${(props) => props.$height && `height: ${typeof props.$height === "number" ? `${props.$height}px` : props.$height};`}
+    ${(props) =>
+    props.$height &&
+    `height: ${typeof props.$height === "number" ? `${props.$height}px` : props.$height};`}
+    ${(props) =>
+    props.$border &&
+    `border: ${cssVariable(`color.border.${props.$border.color}`)} solid ${cssVariable(`border.${props.$border.size}`)};`}
+    ${({ $width }) => {
+    if ($width == undefined) {
+      return;
+    }
+
+    if (typeof $width == "object") {
+      return Object.entries($width).map(
+        ([key, value]) => `${key}-width: ${value}px;`,
+      );
+    }
+
+    return `width: ${$width}px;`;
+  }}
+  
+  ${(props) => props.$flexWrap && `flex-wrap: ${props.$flexWrap};`}
 `;
 
 const Box = ({
@@ -82,6 +109,9 @@ const Box = ({
   background,
   grow,
   height,
+  border,
+  width,
+  flexWrap,
   ...props
 }: BoxProps & React.ComponentProps<NonNullable<BoxProps["as"]>>) => {
   return (
@@ -97,6 +127,9 @@ const Box = ({
       $borderRadius={borderRadius}
       $grow={grow}
       $height={height}
+      $border={border}
+      $width={width}
+      $flexWrap={flexWrap}
       {...props}
     >
       {children}

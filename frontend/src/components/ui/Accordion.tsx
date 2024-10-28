@@ -1,10 +1,27 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { forwardRef } from "react";
+import {
+  createContext,
+  forwardRef,
+  ReactNode,
+  useContext,
+  useState,
+} from "react";
 import styled from "styled-components";
 import { cssVariable, Spacing } from "../helper";
-import { Text } from "./Text";
 import { Box } from "./Box";
+import Switch from "./Switch";
+import { Separator } from "./Separator";
+
+type AccordionContextType = React.ComponentProps<
+  typeof AccordionPrimitive.Root
+> & {
+  setValue: (
+    newValue: React.ComponentProps<typeof AccordionPrimitive.Root>["value"],
+  ) => void;
+  resetValue: () => void;
+};
+
+const AccordionContext = createContext<AccordionContextType | null>(null);
 
 const AccordionRoot = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
@@ -12,14 +29,33 @@ const AccordionRoot = forwardRef<
     gap?: Spacing;
     grow?: boolean;
   }
->((props, forwardedRef) => (
-  <AccordionPrimitive.Root {...props} ref={forwardedRef} />
-));
+>(({ value: value_props, ...props }, forwardedRef) => {
+  const [value, setValue] =
+    useState<React.ComponentProps<typeof AccordionPrimitive.Root>["value"]>(
+      value_props,
+    );
+
+  const resetValue = () => {
+    if (props.type == "single") {
+      return setValue(undefined);
+    }
+    return setValue([]);
+  };
+
+  return (
+    <AccordionContext.Provider
+      // @ts-expect-error The props are the same with a basic AccordionPrimitive.Root
+      value={{ ...props, value, setValue, resetValue }}
+    >
+      {/* @ts-expect-error The props are the same with a basic AccordionPrimitive.Root */}
+      <AccordionPrimitive.Root {...props} value={value} ref={forwardedRef} />
+    </AccordionContext.Provider>
+  );
+});
 AccordionRoot.displayName = "AccordionRoot";
 
 const StyledRoot = styled(AccordionRoot)`
-  button,
-  h3 {
+  & h3 {
     all: unset;
   }
 
@@ -29,14 +65,15 @@ const StyledRoot = styled(AccordionRoot)`
   ${({ grow }) => grow && "flex-grow: 1;"}
 
   .AccordionItem {
-    border-radius: ${() => cssVariable("borderRadius.md")};
+    border-radius: ${() => cssVariable("borderRadius.sm")};
+    background-color: ${() => cssVariable("color.background.white")};
+    padding: ${() => cssVariable("spacing.md")};
 
     overflow: hidden;
 
     &:focus-within {
       position: relative;
       z-index: 1;
-      box-shadow: 0 0 0 2px ${() => cssVariable("color.border.brand.medium")};
     }
   }
   .AccordionHeader {
@@ -44,27 +81,7 @@ const StyledRoot = styled(AccordionRoot)`
   }
 
   .AccordionTrigger {
-    font-family: inherit;
-    background-color: transparent;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 1px 0 ${() => cssVariable("color.background.grey.dark")};
-    background-color: white;
-    padding: ${() => cssVariable("spacing.md")};
-
-    &:hover {
-      background-color: ${() => cssVariable("color.background.brand.light")};
-    }
-
-    & > svg {
-      transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
-    }
-
-    &[data-state="open"] > svg {
-      transform: rotate(180deg);
-    }
+    all: unset;
   }
 
   .AccordionContent {
@@ -98,40 +115,102 @@ const StyledRoot = styled(AccordionRoot)`
   }
 `;
 
+type AccordionItemProps = React.ComponentPropsWithoutRef<
+  typeof AccordionPrimitive.Item
+> & {
+  title: ReactNode;
+  onStateChange?: (newState: "open" | "closed") => void;
+};
+
 const AccordionItem = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & {
-    description?: string;
+  AccordionItemProps
+>(({ title, onStateChange, ...props }, forwardedRef) => {
+  const accordionContext = useContext(AccordionContext);
+  if (accordionContext == null) {
+    throw new Error("AccordionItem must be used within a AccordionRoot");
   }
->((props, forwardedRef) => (
-  <AccordionPrimitive.Item
-    {...props}
-    ref={forwardedRef}
-    className="AccordionItem"
-  >
-    <AccordionPrimitive.Header className="AccordionHeader">
-      <AccordionPrimitive.Trigger className="AccordionTrigger">
-        <Box flex flexDirection="column" gap="sm">
-          <Text>{props.title}</Text>
-          {props.description && (
-            <Text size="xs" color="muted.dark">
-              {props.description}
-            </Text>
-          )}
+
+  const handleAddValue = (value: string) => {
+    if (accordionContext.type == "single") {
+      accordionContext.setValue(value);
+    } else {
+      accordionContext.setValue(
+        accordionContext.value ? [...accordionContext.value, value] : [value],
+      );
+    }
+    if (onStateChange) {
+      onStateChange("open");
+    }
+  };
+
+  const handleRemoveValue = (value: string) => {
+    if (accordionContext.type == "single") {
+      accordionContext.setValue(undefined);
+    } else {
+      accordionContext.setValue(
+        accordionContext.value
+          ? accordionContext.value.filter((identifier) => identifier != value)
+          : [],
+      );
+    }
+
+    if (onStateChange) {
+      onStateChange("closed");
+    }
+  };
+
+  const isItemChecked = () => {
+    if (accordionContext.type == "single") {
+      return accordionContext.value == props.value;
+    } else {
+      return accordionContext.value
+        ? accordionContext.value.includes(props.value)
+        : false;
+    }
+  };
+
+  return (
+    <AccordionPrimitive.Item
+      {...props}
+      ref={forwardedRef}
+      className="AccordionItem"
+    >
+      <AccordionPrimitive.Header className="AccordionHeader">
+        <Box
+          flex
+          flexDirection="row"
+          justifyContent="flex-start"
+          alignItems="center"
+          gap="sm"
+          grow
+        >
+          {title}
         </Box>
-        <ChevronDownIcon aria-hidden />
-      </AccordionPrimitive.Trigger>
-    </AccordionPrimitive.Header>
-    <AccordionPrimitive.Content className="AccordionContent">
-      {props.children}
-    </AccordionPrimitive.Content>
-  </AccordionPrimitive.Item>
-));
+        <Switch
+          checked={isItemChecked()}
+          onCheckedChange={(checked) => {
+            if (checked) {
+              handleAddValue(props.value);
+            } else {
+              handleRemoveValue(props.value);
+            }
+          }}
+        />
+      </AccordionPrimitive.Header>
+      <AccordionPrimitive.Content className="AccordionContent">
+        <Separator margin={{ top: "md" }} color="grey.light" />
+        {props.children}
+      </AccordionPrimitive.Content>
+    </AccordionPrimitive.Item>
+  );
+});
 AccordionItem.displayName = "AccordionItem";
 
 const Accordion = {
   Root: StyledRoot,
   Item: AccordionItem,
+  Context: AccordionContext,
 };
 
 export { Accordion };

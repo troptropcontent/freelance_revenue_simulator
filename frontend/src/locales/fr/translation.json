@@ -10,12 +10,34 @@
           "per_month": "{{value, number(maximumFractionDigits: 2)}} / mois"
         },
         "currency": {
-          "EUR": "{{value, currency(currency: 'EUR')}}"
-        }
+          "EUR": "{{value, currency(currency: 'EUR')}}",
+          "EUR_NO_DIGITS": "{{value, currency(currency: 'EUR', maximumFractionDigits: 0)}}"
+        },
+        "frequencies": {
+          "by_month": "par moi",
+          "by_year": "par an"
+        },
+        "days_one": "{{count, number(maximumFractionDigits: 1)}} jour",
+        "days_other": "{{count, number(maximumFractionDigits: 1)}} jours"
       },
       "simulator": {
         "activities": {
+          "kinds": {
+            "freelancing": {
+              "title": "Clients",
+              "description": "Activités dédiées à des clients : missions, offre de conseil ou créations de contenus sponsoring."
+            },
+            "entrepreneurial_project": {
+              "title": "Projet entrepreneurial",
+              "description": "Activité dédiée à la création d’un projet de type start-up, communauté, agence, collectif, SAAS, formation, produit digital..."
+            },
+            "unbilled_activity": {
+              "title": "Temps non facturé",
+              "description": "Activités pour le plaisir ou nécessaires, n’étant pas rémunérées."
+            }
+          },
           "title": "Mon portfolio d'activités",
+          "reset": "Réinitialiser",
           "empty_state": {
             "title": "Aucune activité selectionnée",
             "description": "Commencer à simuler vos revenus en ajoutant une activité via le bouton ci dessous"
@@ -27,7 +49,7 @@
           },
           "shared_inputs": {
             "enjoyment_rate": {
-              "label": "Niveau de kiff",
+              "label": "Niveau de satisfaction",
               "hint": "(i) 0 = alimentaire - 5 = c'est que du bonheur."
             }
           },
@@ -54,7 +76,7 @@
                 "hint": "(i) Débutant : 250€ - Intermédiaire : 500€ - Pro 750€ - Expert : 1000€."
               },
               "quantity": {
-                "label": "Nombre de jours facturés",
+                "label": "Nombre de jours alloués par semaine",
                 "unit": "{{value}} / semaines"
               }
             }
@@ -67,11 +89,11 @@
                 "label": "Tarif moyen d'une mission",
                 "unit": "{{value}} € / mission"
               },
-              "quantity": {
+              "frequency": {
                 "label": "Nombre de missions facturées"
               },
               "average_time_spent": {
-                "label": "Temps alloué par mission"
+                "label": "Nombre de jours alloués par semaine"
               }
             }
           },
@@ -80,11 +102,14 @@
             "description": "Coaching, mentoring, etc.",
             "inputs": {
               "rate": {
-                "label": "Tarif horaire",
+                "label": "Tarif horaire conseil",
                 "unit": "{{value}} € / heure"
               },
               "quantity": {
-                "label": "Nombre d'heures facturées"
+                "label": "Nombre de conseils réalisées"
+              },
+              "average_time_spent": {
+                "label": "Heures passées par consulting"
               }
             }
           },
@@ -97,23 +122,19 @@
                 "unit": "{{value}} € / contenu"
               },
               "quantity": {
-                "label": "Nombre de contenus sponsorisés"
+                "label": "Nombre de contenus réalisés"
               },
               "average_time_spent": {
-                "label": "Temps passé par contenu sponsorisé"
+                "label": "Heures passées par contenu sponsorisé"
               }
             }
           },
           "side_project": {
-            "label": "Side Project",
-            "description": "Communauté, agence, saas, etc.",
+            "label": "Activités personnelles",
+            "description": "Sport, engagement associatif, formation, création de contenu, etc.",
             "inputs": {
-              "revenue": {
-                "label": "Chiffres d'affaires moyen",
-                "unit": "{{value}} € / mois"
-              },
               "average_time_spent": {
-                "label": "Temps alloué"
+                "label": "Nombre de jours alloués par semaine"
               }
             }
           },
@@ -134,27 +155,27 @@
               }
             }
           },
-          "digital_product": {
-            "label": "Digital Product",
+          "entrepreneurial_project": {
+            "label": "Projet n° {{index}}",
             "description": "Template, ebook, mini formation, etc.",
             "inputs": {
               "rate": {
-                "label": "Tarif du produit"
+                "label": "Chiffre d’affaires mensuel estimé"
               },
               "quantity": {
-                "label": "Nombre de produits digitaux vendus"
+                "label": "Nombre de mois facturés"
               },
               "average_time_spent": {
-                "label": "Temps alloué"
+                "label": "Nombre de jours alloués par semaine"
               }
             }
           },
           "admin": {
-            "label": "Admin",
+            "label": "Développement et gestion de l’activité",
             "description": "Admin, vente, personal branding, etc.",
             "inputs": {
-              "rate": {
-                "label": "Temps alloué"
+              "average_time_spent": {
+                "label": "Nombre de jours alloués par semaine"
               }
             }
           },
@@ -164,22 +185,53 @@
           }
         },
         "results": {
-          "title": "Résultats",
+          "title": "Simulation",
+          "collapsible": {
+            "open": "📈 MASQUER LES DÉTAILS",
+            "closed": "📈 VOIR EN DÉTAILS"
+          },
           "details": {
-            "total_annual_earnings": {
-              "label": "CA annuel total :"
+            "total_annual_turnover": {
+              "label": "Chiffre d’affaires annuel estimé 💶"
             },
-            "total_monthly_earnings": {
-              "label": "CA mensuel :"
+            "average_enjoyment_rate": {
+              "label": "Niveau de kiff"
             },
-            "worked_days_per_weeks": {
-              "label": "Temps consacré à mes activités par semaine :"
-            },
-            "available_days_per_week": {
-              "label": "Temps disponible par semaine :"
+            "total_number_of_days_available_per_week": {
+              "label": "Temps disponible par semaine ⏳",
+              "default_sub_text": "N’hésite pas à compléter ton portfolio d’activités ! 😃",
+              "more_days_worked_than_days_available": {
+                "text": "À vérifier",
+                "sub_text": "Attention il semble que ta semaine comporte + de jours que tu ne peux en travailler. C’est gourmand ça 😂 !"
+              },
+              "perfectly_balanced": {
+                "text": "Ta semaine est complète",
+                "sub_text": "Ça dépote par ici, bravo ! 😃"
+              },
+              "hours": {
+                "text_one": "{{count}} heure",
+                "text_other": "{{count}} heures"
+              },
+              "half_a_day": {
+                "text": "1 demie journée"
+              },
+              "days": {
+                "text_one": "{{count}} jour",
+                "text_other": "{{count}} jours"
+              }
             }
           },
           "charts": {
+            "revenue_ventilation": {
+              "title": "Répartition de ton chiffre d’affaires"
+            },
+            "week_ventilation": {
+              "title": "Composition de ta semaine type",
+              "available_time_label": "Temps disponible"
+            },
+            "enjoyment_ventilation": {
+              "title": "Ton niveau de kiff sur la semaine"
+            },
             "value": {
               "title": "Valeur",
               "no_data_title": "Aucune donnée à afficher",

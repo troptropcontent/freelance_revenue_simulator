@@ -30,6 +30,17 @@ const PaddingKeys = {
 
 type Padding = SpacingsType<Spacing, keyof typeof PaddingKeys>;
 
+const MarginKeys = {
+  top: "margin-block-start",
+  right: "margin-inline-end",
+  bottom: "margin-block-end",
+  left: "margin-inline-start",
+  inline: "margin-inline",
+  block: "margin-block",
+} as const;
+
+type Margin = SpacingsType<Spacing, keyof typeof MarginKeys>;
+
 const BorderRadiusKeys = {
   topLeft: "border-top-left-radius",
   topRight: "border-top-right-radius",
@@ -42,14 +53,22 @@ type BorderRadius = SpacingsType<
   keyof typeof BorderRadiusKeys
 >;
 
+type Border = {
+  color: RecursiveKeyOf<Tokens["color"]["border"]>;
+  size: keyof Tokens["border"];
+};
+
 type BackgroundColor = RecursiveKeyOf<Tokens["color"]["background"]>;
 
-type ButtonColor = Exclude<
-  keyof Tokens["color"]["background"],
-  "white" | "black"
->;
+type ButtonColor =
+  | Exclude<keyof Tokens["color"]["background"], "black">
+  | "transparent";
 
 type TextColor = RecursiveKeyOf<Tokens["color"]["text"]>;
+
+type TextSize = keyof Tokens["fonts"]["size"];
+
+type TextStyle = keyof Tokens["fonts"]["family"];
 
 const cssVariable = (tokenId: TokenId) => {
   return `var(--${tokenId.split(".").join("-")})`;
@@ -76,10 +95,21 @@ const createPaddingStyle = (padding: Padding) => {
     .join("");
 };
 
+const createMarginStyle = (margin: Margin) => {
+  if (typeof margin === "string") {
+    return `margin: ${cssVariable(`spacing.${margin}`)};`;
+  }
+
+  return Object.entries(margin)
+    .map(([key, value]) => {
+      return `${MarginKeys[key as keyof typeof PaddingKeys]}: ${cssVariable(`spacing.${value}`)};`;
+    })
+    .join("");
+};
+
 const createBorderRadiusStyle = (borderRadius: BorderRadius) => {
   if (typeof borderRadius === "string") {
-    const tokenId = `borderRadius.${borderRadius}` as TokenId;
-    return `border-radius: ${cssVariable(tokenId)};`;
+    return `border-radius: ${cssVariable(`borderRadius.${borderRadius}`)};`;
   }
 
   return Object.entries(borderRadius)
@@ -98,15 +128,20 @@ export {
   cssVariables,
   cssVariable,
   createPaddingStyle,
+  createMarginStyle,
   createBorderRadiusStyle,
 };
 export type {
   RecursiveKeyOf,
   Padding,
+  Margin,
   BorderRadius,
+  Border,
   Spacing,
   BackgroundColor,
   TokenId,
   TextColor,
+  TextSize,
+  TextStyle,
   ButtonColor,
 };

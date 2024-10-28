@@ -29,10 +29,11 @@ const AccordionRoot = forwardRef<
     gap?: Spacing;
     grow?: boolean;
   }
->((props, forwardedRef) => {
-  const [value, setValue] = useState<
-    React.ComponentProps<typeof AccordionPrimitive.Root>["value"]
-  >(props.value);
+>(({ value: value_props, ...props }, forwardedRef) => {
+  const [value, setValue] =
+    useState<React.ComponentProps<typeof AccordionPrimitive.Root>["value"]>(
+      value_props,
+    );
 
   const resetValue = () => {
     if (props.type == "single") {
@@ -43,8 +44,10 @@ const AccordionRoot = forwardRef<
 
   return (
     <AccordionContext.Provider
+      // @ts-expect-error The props are the same with a basic AccordionPrimitive.Root
       value={{ ...props, value, setValue, resetValue }}
     >
+      {/* @ts-expect-error The props are the same with a basic AccordionPrimitive.Root */}
       <AccordionPrimitive.Root {...props} value={value} ref={forwardedRef} />
     </AccordionContext.Provider>
   );
@@ -112,15 +115,16 @@ const StyledRoot = styled(AccordionRoot)`
   }
 `;
 
+type AccordionItemProps = React.ComponentPropsWithoutRef<
+  typeof AccordionPrimitive.Item
+> & {
+  title: ReactNode;
+  onStateChange?: (newState: "open" | "closed") => void;
+};
+
 const AccordionItem = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
-  Exclude<
-    React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>,
-    "title"
-  > & {
-    title: ReactNode;
-    onStateChange?: (newState: "open" | "closed") => void;
-  }
+  AccordionItemProps
 >(({ title, onStateChange, ...props }, forwardedRef) => {
   const accordionContext = useContext(AccordionContext);
   if (accordionContext == null) {

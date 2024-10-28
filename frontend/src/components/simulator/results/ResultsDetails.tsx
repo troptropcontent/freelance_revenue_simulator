@@ -12,7 +12,6 @@ import { RatingInput } from "src/components/ui/formik/primitives/RatingInput";
 import { Formik } from "formik";
 import { MAX_RATE } from "../constants";
 import { Box } from "src/components/ui/Box";
-import { WeekChart } from "src/components/ui/WeekChart";
 
 const ResultsDetails = () => {
   const { t } = useTranslation();

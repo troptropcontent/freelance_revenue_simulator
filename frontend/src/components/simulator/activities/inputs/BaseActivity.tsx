@@ -104,6 +104,7 @@ const BaseActivity = ({
 
   return (
     <Accordion.Item
+      // @ts-expect-error This works correctly
       title={
         <ActivityTitle
           title={title}

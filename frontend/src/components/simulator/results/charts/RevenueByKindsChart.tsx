@@ -2,7 +2,6 @@ import { Box } from "src/components/ui/Box";
 import { PieChart } from "src/components/ui/PieChart";
 import { useRevenueByKindChartData } from "./private/hooks";
 import { Text } from "src/components/ui/Text";
-import { ActivityKindEmoji } from "../../constants";
 
 const RevenueByKindsChart = () => {
   const { total, details } = useRevenueByKindChartData();

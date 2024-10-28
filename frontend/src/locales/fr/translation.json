@@ -14,7 +14,7 @@
           "EUR_NO_DIGITS": "{{value, currency(currency: 'EUR', maximumFractionDigits: 0)}}"
         },
         "frequencies": {
-          "by_month": "par moi",
+          "by_month": "par mois",
           "by_year": "par an"
         },
         "days_one": "{{count, number(maximumFractionDigits: 1)}} jour",

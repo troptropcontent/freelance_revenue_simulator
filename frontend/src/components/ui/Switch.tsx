@@ -1,6 +1,5 @@
 import * as RadixSwitch from "@radix-ui/react-switch";
 import styled from "styled-components";
-import { Box } from "./Box";
 import { cssVariable } from "../helper";
 
 const StyledRoot = styled(RadixSwitch.Root)`

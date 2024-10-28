@@ -1,15 +1,9 @@
 import styled from "styled-components";
 import { Box } from "./Box";
 import { List } from "./List";
-import {
-  createBorderRadiusStyle,
-  cssVariable,
-  RecursiveKeyOf,
-} from "../helper";
-import { ColorValueHex, Tokens } from "../tokens";
+import { createBorderRadiusStyle, cssVariable } from "../helper";
+import { ColorValueHex } from "../tokens";
 import { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
-import { Text } from "./Text";
 
 const LabelCard = styled.div<{
   $color: ColorValueHex;

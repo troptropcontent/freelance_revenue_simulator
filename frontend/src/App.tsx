@@ -4,18 +4,10 @@ import { Box } from "src/components/ui/Box";
 import Theme from "src/components/Theme";
 import { Formik } from "formik";
 import { ActivitiesList } from "src/components/simulator/activities/ActivitiesList";
-import {
-  Activities,
-  ActivitiesType,
-  DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
-  DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK,
-  DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
-  DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR,
-} from "./components/simulator/constants";
+import { Activities, ActivitiesType } from "./components/simulator/constants";
 import { useTranslation } from "react-i18next";
 import { ResultsDetails } from "./components/simulator/results/ResultsDetails";
 import { cssVariable } from "./components/helper";
-import { PieChart } from "./components/ui/PieChart";
 import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 import { Separator } from "./components/ui/Separator";
 import { useFormInitialValues } from "./shared/hooks";

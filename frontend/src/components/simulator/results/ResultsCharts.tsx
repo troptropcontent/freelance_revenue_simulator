@@ -9,6 +9,8 @@ import { Collapsible } from "src/components/ui/Collapsible";
 import { useEffect, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
 import { useShouldDisplayResultCharts } from "./private/hooks";
+import { AverageWeekChart } from "./charts/AverageWeekChart";
+import { EnjoymentChart } from "./charts/EnjoymentChart";
 
 const StyledContainer = styled.div`
   display: grid;
@@ -52,7 +54,7 @@ const ResultsCharts = () => {
         </Box>
       </Collapsible.Trigger>
       <Collapsible.Content>
-        <Box flex flexDirection="column" gap="md" padding="md">
+        <Box flex flexDirection="column" gap="lg" padding="md">
           <Text size="md" weight="bold" align="center">
             {t("simulator.results.charts.revenue_ventilation.title")}
           </Text>
@@ -60,6 +62,14 @@ const ResultsCharts = () => {
             <RevenueByKindsChart />
             <RevenueByActivityChart />
           </StyledContainer>
+          <Text size="md" weight="bold" align="center">
+            {t("simulator.results.charts.week_ventilation.title")}
+          </Text>
+          <AverageWeekChart />
+          <Text size="md" weight="bold" align="center">
+            {t("simulator.results.charts.enjoyment_ventilation.title")}
+          </Text>
+          <EnjoymentChart />
         </Box>
       </Collapsible.Content>
     </Collapsible.Root>

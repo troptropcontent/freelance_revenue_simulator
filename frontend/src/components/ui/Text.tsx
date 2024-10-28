@@ -1,4 +1,3 @@
-import { Tokens } from "src/components/tokens";
 import styled from "styled-components";
 import {
   cssVariable,

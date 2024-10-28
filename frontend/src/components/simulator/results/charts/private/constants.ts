@@ -19,4 +19,17 @@ const RevenueByKindChartBaseColors: Record<
   unbilled_activity: "#F8D470",
 };
 
-export { RevenueByActivityChartBaseColors, RevenueByKindChartBaseColors };
+const AverageWeekChartBaseColors: Record<
+  (typeof ActivityKinds)[number],
+  ColorValueHex
+> = {
+  entrepreneurial_project: "#E3F588",
+  freelancing: "#CAE0F7",
+  unbilled_activity: "#F8D470",
+};
+
+export {
+  AverageWeekChartBaseColors,
+  RevenueByActivityChartBaseColors,
+  RevenueByKindChartBaseColors,
+};

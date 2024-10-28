@@ -8,11 +8,17 @@ const ActivityKinds = [
 
 type ActivityKindsType = (typeof ActivityKinds)[number];
 
-const ActivityKindColors: Record<ActivityKindsType, BackgroundColor> = {
+const ActivityKindColors = {
   entrepreneurial_project: "green.medium",
   freelancing: "blue.medium",
   unbilled_activity: "yellow.medium",
-};
+} as const satisfies Record<ActivityKindsType, BackgroundColor>;
+
+const ActivityKindEmoji = {
+  entrepreneurial_project: "🚀",
+  freelancing: "🤝",
+  unbilled_activity: "😎",
+} as const satisfies Record<ActivityKindsType, string>;
 
 type BaseActivity = {
   kind: ActivityKindsType;
@@ -161,6 +167,7 @@ export {
   Activities,
   ActivityKinds,
   ActivityKindColors,
+  ActivityKindEmoji,
   Frequencies,
   NUMBER_OF_DAYS_IN_A_WEEK,
   NUMBER_OF_MONTHS_IN_A_YEAR,

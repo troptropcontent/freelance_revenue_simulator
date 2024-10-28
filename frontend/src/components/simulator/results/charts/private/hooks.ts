@@ -1,9 +1,13 @@
-import { useAnnualTurnoverPerActivity } from "../../private/hooks";
+import {
+  useAnnualTurnoverPerActivity,
+  useNumberOfDaysWorkedPerWeekPerActivity,
+} from "../../private/hooks";
 import { Activities, ActivityKinds } from "src/components/simulator/constants";
 import { brightenColor } from "./utils";
 import { useTranslation } from "react-i18next";
 import { ColorValueHex } from "src/components/tokens";
 import {
+  AverageWeekChartBaseColors,
   RevenueByActivityChartBaseColors,
   RevenueByKindChartBaseColors,
 } from "./constants";
@@ -134,4 +138,81 @@ const useRevenueByKindChartData = () => {
   return useMemo(buildData, [t, annual_turnover_per_activity]);
 };
 
-export { useRevenueByActivityChartData, useRevenueByKindChartData };
+const useAverageWeekChartData = () => {
+  const { t } = useTranslation();
+  const number_of_days_worked_per_week_per_activity =
+    useNumberOfDaysWorkedPerWeekPerActivity();
+
+  const buildData = () => {
+    const result: {
+      total: number;
+      details: {
+        type: (typeof ActivityKinds)[number];
+        value: number;
+        color: ColorValueHex;
+        label: string;
+      }[];
+    } = {
+      total: 0,
+      details: [],
+    };
+
+    for (
+      let index = 0;
+      index < number_of_days_worked_per_week_per_activity.length;
+      index++
+    ) {
+      const activity = number_of_days_worked_per_week_per_activity[index];
+      if (
+        activity.daysWorkedPerWeek == null ||
+        activity.daysWorkedPerWeek == 0
+      ) {
+        continue;
+      }
+
+      result.total = result.total + activity.daysWorkedPerWeek;
+
+      const data_already_recorded_index = result.details.findIndex(
+        (row) => row.type == Activities[activity.type]["kind"],
+      );
+
+      let updated_details: typeof result.details;
+
+      if (data_already_recorded_index == -1) {
+        updated_details = [
+          ...result.details,
+          {
+            type: Activities[activity.type]["kind"],
+            color:
+              AverageWeekChartBaseColors[Activities[activity.type]["kind"]],
+            label: t(
+              `simulator.activities.kinds.${Activities[activity.type]["kind"]}.title`,
+            ),
+            value: activity.daysWorkedPerWeek,
+          },
+        ];
+      } else {
+        const data_already_recorded =
+          result.details[data_already_recorded_index];
+        const updated_data = {
+          ...data_already_recorded,
+          value: data_already_recorded.value + activity.daysWorkedPerWeek,
+        };
+        updated_details = result.details;
+        updated_details[data_already_recorded_index] = updated_data;
+      }
+
+      result.details = updated_details;
+    }
+
+    return result;
+  };
+
+  return useMemo(buildData, [t, number_of_days_worked_per_week_per_activity]);
+};
+
+export {
+  useRevenueByActivityChartData,
+  useRevenueByKindChartData,
+  useAverageWeekChartData,
+};

@@ -16,21 +16,23 @@
         "frequencies": {
           "by_month": "par moi",
           "by_year": "par an"
-        }
+        },
+        "days_one": "{{count, number(maximumFractionDigits: 1)}} jour",
+        "days_other": "{{count, number(maximumFractionDigits: 1)}} jours"
       },
       "simulator": {
         "activities": {
           "kinds": {
             "freelancing": {
-              "title": "🤝 Clients",
+              "title": "Clients",
               "description": "Activités dédiées à des clients : missions, offre de conseil ou créations de contenus sponsoring."
             },
             "entrepreneurial_project": {
-              "title": "🚀 Projet entrepreneurial",
+              "title": "Projet entrepreneurial",
               "description": "Activité dédiée à la création d’un projet de type start-up, communauté, agence, collectif, SAAS, formation, produit digital..."
             },
             "unbilled_activity": {
-              "title": "😎 Temps non facturé",
+              "title": "Temps non facturé",
               "description": "Activités pour le plaisir ou nécessaires, n’étant pas rémunérées."
             }
           },
@@ -222,6 +224,13 @@
           "charts": {
             "revenue_ventilation": {
               "title": "Répartition de ton chiffre d’affaires"
+            },
+            "week_ventilation": {
+              "title": "Composition de ta semaine type",
+              "available_time_label": "Temps disponible"
+            },
+            "enjoyment_ventilation": {
+              "title": "Ton niveau de kiff sur la semaine"
             },
             "value": {
               "title": "Valeur",

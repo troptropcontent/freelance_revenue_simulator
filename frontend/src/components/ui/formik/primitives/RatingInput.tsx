@@ -4,11 +4,12 @@ import { Field, useFormikContext } from "formik";
 import styled from "styled-components";
 import { cssVariable, TextSize } from "src/components/helper";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import { RATED_COLOR, UNRATED_COLOR } from "./constants";
 
 const StyledLabel = styled.label<{
   $size?: TextSize;
 }>`
-  color: gold;
+  color: ${RATED_COLOR};
 
   & > svg {
     ${({ $size }) => $size && `width: ${cssVariable(`fonts.size.${$size}`)};`}
@@ -20,11 +21,11 @@ const HiddenRadioCheckBox = styled(Field)`
   display: none;
 
   &:checked ~ ${StyledLabel} {
-    color: ${cssVariable("color.background.grey.light")};
+    color: ${UNRATED_COLOR};
   }
 
   &:checked + ${StyledLabel} {
-    color: gold;
+    color: ${RATED_COLOR};
   }
 `;
 

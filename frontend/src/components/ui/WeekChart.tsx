@@ -25,7 +25,7 @@ const useLocalisedDaysOfWeek = (): string[] => {
 
 interface WeekChartData {
   label: string;
-  color: ColorValueHex;
+  color: string;
   value: number;
 }
 
@@ -69,12 +69,12 @@ const DataItem = styled.div<{ $ratio: number; $color: string }>`
   display: flex;
   flex-direction: column-reverse;
   flex-grow: ${({ $ratio }) => $ratio};
-  background-color: ${({ $color }) => $color};
+  background: ${({ $color }) => $color};
   border-radius: ${cssVariable("borderRadius.md")};
   opacity: 0.6;
 `;
 
-const Label = styled.span<{ $color: string }>`
+const Label = styled.span<{ $color?: string }>`
   display: flex;
   align-items: center;
   &:before {
@@ -82,7 +82,7 @@ const Label = styled.span<{ $color: string }>`
     content: "";
     width: ${cssVariable("spacing.sm")};
     height: ${cssVariable("spacing.sm")};
-    background-color: ${({ $color }) => $color};
+    background-color: ${({ $color }) => ($color ? $color : "inherit")};
     border-radius: ${cssVariable("borderRadius.rounded")};
     margin-inline-end: ${cssVariable("spacing.sm")};
   }
@@ -92,10 +92,12 @@ const WeekChart = ({
   data,
   number_of_days,
   labelFormater,
+  remainingLabelFormater,
 }: {
   data: WeekChartData[];
   number_of_days: number;
   labelFormater?: (element: WeekChartData, data: WeekChartData[]) => ReactNode;
+  remainingLabelFormater?: (value: number) => ReactNode;
 }) => {
   const weekdays = useLocalisedDaysOfWeek();
   const { t } = useTranslation();
@@ -137,24 +139,15 @@ const WeekChart = ({
               </Label>
             ),
         )}
-        {Math.round(remaining) > 0 && (
-          <Label $color={REMAINING_COLOR}>
-            {labelFormater
-              ? labelFormater(
-                  {
-                    color: REMAINING_COLOR,
-                    label: t(
-                      "simulator.results.charts.week_ventilation.available_time_label",
-                    ),
-                    value: remaining,
-                  },
-                  data,
-                )
-              : t(
-                  "simulator.results.charts.week_ventilation.available_time_label",
-                )}
+        {/* {Math.round(remaining) > 0 && (
+          <Label>
+            {remainingLabelFormater
+              ? remainingLabelFormater(remaining)
+              : t("simulator.results.charts.week_chart.remaining_days", {
+                  count: remaining,
+                })}
           </Label>
-        )}
+        )} */}
       </List.Root>
     </Box>
   );

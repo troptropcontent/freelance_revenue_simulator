@@ -222,6 +222,10 @@
             }
           },
           "charts": {
+            "week_chart": {
+              "remaining_days_one": "{{count}} jour disponible",
+              "remaining_days_other": "{{count}} jours disponibles"
+            },
             "revenue_ventilation": {
               "title": "Répartition de ton chiffre d’affaires"
             },
@@ -230,7 +234,8 @@
               "available_time_label": "Temps disponible"
             },
             "enjoyment_ventilation": {
-              "title": "Ton niveau de kiff sur la semaine"
+              "title": "Ton niveau de kiff sur la semaine",
+              "label": "à {{label}} de kiff"
             },
             "value": {
               "title": "Valeur",

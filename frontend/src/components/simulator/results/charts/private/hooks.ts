@@ -1,6 +1,7 @@
 import {
   useAnnualTurnoverPerActivity,
   useNumberOfDaysWorkedPerWeekPerActivity,
+  useWeightedEnjoymentRates,
 } from "../../private/hooks";
 import {
   Activities,
@@ -16,6 +17,10 @@ import {
   RevenueByKindChartBaseColors,
 } from "./constants";
 import { useMemo } from "react";
+import {
+  RATED_COLOR,
+  UNRATED_COLOR,
+} from "src/components/ui/formik/primitives/constants";
 
 const useRevenueByActivityChartData = () => {
   const annual_turnover_per_activities = useAnnualTurnoverPerActivity();
@@ -217,8 +222,39 @@ const useAverageWeekChartData = () => {
   return useMemo(buildData, [t, number_of_days_worked_per_week_per_activity]);
 };
 
+const useEnjoymentChartData = () => {
+  const enjoyment_rates = useWeightedEnjoymentRates();
+
+  const buildData = () => {
+    const initial_value: {
+      label: string;
+      color: string;
+      value: number;
+    }[] = [];
+    return enjoyment_rates.reduce((prev, current, i) => {
+      if (current == 0) {
+        return prev;
+      } else {
+        const threshold_percentage =
+          (1 - (i + 1) / enjoyment_rates.length) * 100;
+        return [
+          ...prev,
+          {
+            label: `${i + 1}/${enjoyment_rates.length}`,
+            color: `linear-gradient( ${UNRATED_COLOR} ${threshold_percentage}%, ${RATED_COLOR} ${threshold_percentage}%);`,
+            value: current,
+          },
+        ];
+      }
+    }, initial_value);
+  };
+
+  return useMemo(buildData, [enjoyment_rates]);
+};
+
 export {
   useRevenueByActivityChartData,
   useRevenueByKindChartData,
   useAverageWeekChartData,
+  useEnjoymentChartData,
 };

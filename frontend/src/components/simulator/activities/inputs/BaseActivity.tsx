@@ -10,7 +10,6 @@ import { Button } from "src/components/ui/Button";
 import { useRef, useState } from "react";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
-import { ActivitiesType } from "../../constants";
 
 const EditableTitle = ({
   value,

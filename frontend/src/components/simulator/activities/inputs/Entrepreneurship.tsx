@@ -43,7 +43,7 @@ const Entrepreneurship = ({ index }: { index: number }) => {
           "simulator.activities.entrepreneurial_project.inputs.quantity.label",
         )}
         min={0}
-        max={1000}
+        max={12}
         step={10}
       />
       <Range

@@ -57,7 +57,6 @@ const StyledSliderRoot = styled(SliderRoot)`
   }
   .SliderThumb:focus {
     outline: none;
-    box-shadow: 0 0 0 5px ${cssVariable("color.background.black.a5")};
   }
 `;
 

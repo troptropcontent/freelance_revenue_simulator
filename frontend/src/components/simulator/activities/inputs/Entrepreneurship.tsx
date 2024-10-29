@@ -5,16 +5,29 @@ import { useTranslation } from "react-i18next";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
 import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInputGroup";
+import { useMemo } from "react";
 
 const Entrepreneurship = ({ index }: { index: number }) => {
   const { t } = useTranslation();
-  const { getFieldMeta } = useFormikContext<FormValues>();
+  const {
+    getFieldMeta,
+    values: { activities },
+  } = useFormikContext<FormValues>();
   const base_name = `activities[${index}]`;
 
   const { value: name } = getFieldMeta<string>(`${base_name}.name`);
 
+  const computeIsDeletable = () => {
+    const index_of_the_first_entrepreneurship_activity = activities.findIndex(
+      (activity) => activity.type == "entrepreneurship",
+    );
+    return index_of_the_first_entrepreneurship_activity != index;
+  };
+
+  const isDeletable = useMemo(computeIsDeletable, [activities, index]);
+
   return (
-    <BaseActivity title={name} index={index} editable>
+    <BaseActivity title={name} index={index} editable deletable={isDeletable}>
       <CurrencyInputGroup
         name={`${base_name}.values.rate`}
         label={t(

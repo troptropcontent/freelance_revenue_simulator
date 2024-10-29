@@ -4,11 +4,13 @@ import { Tooltip } from "src/components/ui/Tooltip";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Text } from "src/components/ui/Text";
 import { Button } from "src/components/ui/Button";
 import { useRef, useState } from "react";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
+import { ActivitiesType } from "../../constants";
 
 const EditableTitle = ({
   value,
@@ -56,19 +58,33 @@ const ActivityTitle = ({
   title,
   description,
   editable,
+  deletable,
   index,
 }: {
   title: string;
   description?: string;
   editable?: boolean;
+  deletable?: boolean;
   index: number;
 }) => {
+  const { setFieldValue, values } = useFormikContext<FormValues>();
+  const deleteActivity = () => {
+    const updated_activities = values.activities;
+    updated_activities.splice(index, 1);
+    setFieldValue(`activities`, updated_activities);
+  };
+
   return (
     <>
       {editable ? (
         <EditableTitle value={title} activityIndex={index} />
       ) : (
         <Text>{title}</Text>
+      )}
+      {deletable && (
+        <Button color="transparent" onClick={deleteActivity}>
+          <DeleteIcon color="inherit" fontSize="small" />
+        </Button>
       )}
       {description && (
         <Tooltip.Root>
@@ -88,12 +104,14 @@ const BaseActivity = ({
   index,
   children,
   editable,
+  deletable,
 }: {
   title: string;
   description?: string;
   index: number;
   children: React.ReactNode;
   editable?: boolean;
+  deletable?: boolean;
 }) => {
   const { setFieldValue } = useFormikContext<FormValues>();
 
@@ -102,6 +120,7 @@ const BaseActivity = ({
       ? setFieldValue(`activities[${index}].enabled`, true)
       : setFieldValue(`activities[${index}].enabled`, false);
 
+  const identifier = `activity_${index}`;
   return (
     <Accordion.Item
       // @ts-expect-error This works correctly
@@ -110,11 +129,12 @@ const BaseActivity = ({
           title={title}
           description={description}
           editable={editable}
+          deletable={deletable}
           index={index}
         />
       }
-      value={`activity_${index}`}
-      key={`activity_${index}`}
+      value={identifier}
+      key={identifier}
       onStateChange={onAccordionItemStateChange}
     >
       <Box flex flexDirection="column" padding={{ top: "md" }} gap="lg">

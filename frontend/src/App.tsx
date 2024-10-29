@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Heading } from "src/components/ui/Heading";
 import { Box } from "src/components/ui/Box";
-import Theme from "src/components/Theme";
+import { Theme } from "src/components/Theme";
 import { Formik } from "formik";
 import { ActivitiesList } from "src/components/simulator/activities/ActivitiesList";
 import { Activities, ActivitiesType } from "./components/simulator/constants";

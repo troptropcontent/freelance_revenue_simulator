@@ -6,7 +6,7 @@ import { createPaddingStyle, cssVariable } from "../helper";
 const Root = ({ children }: { children: ReactNode }) => {
   return (
     <RadixTooltip.Provider>
-      <RadixTooltip.Root>{children}</RadixTooltip.Root>
+      <RadixTooltip.Root delayDuration={200}>{children}</RadixTooltip.Root>
     </RadixTooltip.Provider>
   );
 };

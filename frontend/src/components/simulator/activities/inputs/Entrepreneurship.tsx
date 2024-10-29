@@ -11,7 +11,10 @@ const Entrepreneurship = ({ index }: { index: number }) => {
   const { t } = useTranslation();
   const {
     getFieldMeta,
-    values: { activities },
+    values: {
+      activities,
+      config: { number_of_days_worked_per_week },
+    },
   } = useFormikContext<FormValues>();
   const base_name = `activities[${index}]`;
 
@@ -49,7 +52,7 @@ const Entrepreneurship = ({ index }: { index: number }) => {
           "simulator.activities.entrepreneurial_project.inputs.average_time_spent.label",
         )}
         min={0}
-        max={20}
+        max={number_of_days_worked_per_week}
         step={0.5}
       />
       <EnjoymentRateInput name={`${base_name}.values.enjoyment_rate`} />

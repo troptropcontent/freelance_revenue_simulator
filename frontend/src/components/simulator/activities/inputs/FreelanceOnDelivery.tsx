@@ -4,9 +4,16 @@ import { EnjoymentRateInput } from "src/components/simulator/activities/private/
 import { useTranslation } from "react-i18next";
 import { CurrencyInputGroup } from "src/components/ui/formik/groups/CurrencyInputGroup";
 import { FrequencyInputGroup } from "src/components/ui/formik/groups/FrequencyInputGroup";
+import { useFormikContext } from "formik";
+import { FormValues } from "src/App";
 
 const FreelanceOnDelivery = ({ index }: { index: number }) => {
   const { t } = useTranslation();
+  const {
+    values: {
+      config: { number_of_days_worked_per_week },
+    },
+  } = useFormikContext<FormValues>();
 
   return (
     <BaseActivity
@@ -32,7 +39,7 @@ const FreelanceOnDelivery = ({ index }: { index: number }) => {
           "simulator.activities.freelance_on_delivery.inputs.average_time_spent.label",
         )}
         min={0}
-        max={20}
+        max={number_of_days_worked_per_week}
         step={0.5}
       />
       <EnjoymentRateInput name={`activities[${index}].values.enjoyment_rate`} />

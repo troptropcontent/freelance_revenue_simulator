@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-  --main-nav-height: 64px;
+  --main-nav-height: 100px;
 
   /* Colors */
   --color-primary: #f4a261;
@@ -17,6 +17,8 @@
   --who-we-are-section-background-color: #dff5ff;
 
   /* Fonts */
+  --font-color: #32164b;
+  --font-color-light: #8466a3;
   --font-family: "Work Sans", sans-serif;
   --font-family-heading: "Work Sans", sans-serif;
 
@@ -73,6 +75,8 @@ body {
 
 .main_nav-list a {
   text-decoration: none;
+  font-size: var(--font-size-medium);
+  font-weight: bold;
   color: inherit;
 }
 
@@ -81,7 +85,7 @@ body {
 }
 
 .main_nav-list a:hover {
-  color: var(--color-secondary);
+  color: var(--font-color-light);
 }
 
 .main_nav-logo {
@@ -115,22 +119,10 @@ body {
 #simulator_section-sponsors {
   margin-inline: auto;
   width: fit-content;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: var(--spacing-small);
-  grid-template-areas:
-    "logo"
-    "text"
-    "offer"
-    "link";
-}
-
-@media only screen and (min-width: 600px) {
-  #simulator_section-sponsors {
-    grid-template-areas:
-      "logo text text"
-      "logo offer offer"
-      "logo link link";
-  }
 }
 
 #simulator_section-sponsor-logo {
@@ -165,140 +157,54 @@ body {
   background-color: var(--color-background);
   padding-block-end: var(--spacing-medium);
   padding-inline: var(--spacing-medium);
-  display: grid;
-  grid-template-areas:
-    "title"
-    "article_1_photo"
-    "article_1_title"
-    "article_1_text"
-    "article_1_link"
-    "article_2_photo"
-    "article_2_title"
-    "article_2_text"
-    "article_2_link";
+  display: flex;
+  flex-direction: column;
 }
 
-#who_we_are_section_title {
-  grid-area: title;
+.who_we_are_section-authors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-small);
 }
 
-#who_we_are_section_article_1_photo {
-  grid-area: article_1_photo;
-}
-
-#who_we_are_section_article_1_title {
-  grid-area: article_1_title;
-}
-
-#who_we_are_section_article_1_text {
-  grid-area: article_1_text;
-}
-
-#who_we_are_section_article_1_link {
-  grid-area: article_1_link;
-}
-
-#who_we_are_section_article_2_photo {
-  grid-area: article_2_photo;
-}
-
-#who_we_are_section_article_2_title {
-  grid-area: article_2_title;
-}
-
-#who_we_are_section_article_2_text {
-  grid-area: article_2_text;
-}
-
-#who_we_are_section_article_2_link {
-  grid-area: article_2_link;
-}
-
-#who_we_are_section #who_we_are_section_title {
-  text-align: center;
-  padding-block: var(--spacing-medium);
-}
-
-.who_we_are_section_article_photo {
-  height: 200px;
-  width: 145px;
-  object-fit: cover;
-  margin-inline: auto;
-  background: #378ce7;
+.who_we_are_section-authors > * {
+  flex: calc(33.33% - (2 * var(--spacing-small) / 3));
+  box-sizing: border-box;
+  min-width: calc(200px - var(--spacing-small));
+  padding-block: var(--spacing-large);
+  padding-inline: var(--spacing-medium);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-large);
+  align-items: center;
   border-radius: var(--border-radius-medium);
 }
 
-.who_we_are_article_photo_container {
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  padding-block: var(--spacing-medium);
-  border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
+.who_we_are_section-authors > * > p {
+  flex-grow: 1;
 }
 
-.who_we_are_section_article_text {
-  margin-inline: auto;
-  background-color: white;
-  padding-block-end: var(--spacing-medium);
-  padding-inline: var(--spacing-medium);
+.who_we_are_section_article_photo {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-size: cover; /* Remplit le cercle avec l'image */
+  background-position: center; /* Centre l'image */
 }
 
-.who_we_are_section_article_link {
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  padding-block-end: var(--spacing-medium);
-  border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+.who_we_are_section_article_photo.pierre {
+  background-position: 45% 10%;
+  background-size: 242px;
 }
 
-.who_we_are_section_article_title {
-  background-color: white;
-  padding-block-end: var(--spacing-medium);
-  display: flex;
-  justify-content: center;
+.who_we_are_section_article_photo.tom {
+  background-position: top;
+  background-size: 157px;
 }
 
-@media only screen and (min-width: 600px) {
-  #who_we_are_section {
-    grid-template-areas:
-      "title title"
-      "article_1_photo article_2_photo"
-      "article_1_title article_2_title"
-      "article_1_text article_2_text"
-      "article_1_link article_2_link";
-  }
-
-  #who_we_are_section_article_1_photo {
-    margin-inline-end: var(--spacing-small);
-  }
-
-  #who_we_are_section_article_1_title {
-    margin-inline-end: var(--spacing-small);
-  }
-
-  #who_we_are_section_article_1_text {
-    margin-inline-end: var(--spacing-small);
-  }
-
-  #who_we_are_section_article_1_link {
-    margin-inline-end: var(--spacing-small);
-  }
-
-  #who_we_are_section_article_2_photo {
-    margin-inline-start: var(--spacing-small);
-  }
-
-  #who_we_are_section_article_2_title {
-    margin-inline-start: var(--spacing-small);
-  }
-
-  #who_we_are_section_article_2_text {
-    margin-inline-start: var(--spacing-small);
-  }
-
-  #who_we_are_section_article_2_link {
-    margin-inline-start: var(--spacing-small);
-  }
+.who_we_are_section_article_photo.lucie {
+  background-position: top;
 }
 
 #root {
@@ -367,15 +273,26 @@ p {
   background-color: var(--color-secondary);
 }
 
-.button--grey {
-  background-color: var(--color-grey-light);
+.button--primary {
+  color: white;
+  background-color: var(--font-color);
 }
 
-.button--grey:hover {
-  background-color: var(--color-grey);
+.button--primary:hover {
+  background-color: var(--font-color-light);
 }
 
 /* Typography */
+
+/* Sizes */
+
+.text-size-md {
+  font-size: var(--font-size-medium);
+}
+
+.text-size-sm {
+  font-size: var(--font-size-small);
+}
 
 .heading-1 {
   font-size: var(--font-size-x-large);
@@ -386,7 +303,25 @@ p {
 }
 
 .heading-3 {
+  font-weight: bold;
   font-size: var(--font-size-medium);
+}
+
+.heading-4 {
+  font-weight: bold;
+  font-size: var(--font-size-small);
+}
+
+/* Alignments */
+
+.text-align-center {
+  text-align: center;
+}
+
+/* Spacings */
+/* Padding */
+.padding-lg {
+  padding: var(--spacing-large);
 }
 
 /* Loader */

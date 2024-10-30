@@ -6,6 +6,25 @@ interface Color {
 
 type ColorValueHex = `#${string}`;
 
+const FontWeights = {
+  thin: 100,
+  extra_light: 200,
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semi_bold: 600,
+  bold: 700,
+  extra_bold: 800,
+  black: 900,
+} as const;
+
+interface FontStyle {
+  font_size: string;
+  line_height: string;
+  letter_spacing: string;
+  font_weight: keyof typeof FontWeights;
+}
+
 interface Tokens {
   color: {
     background: {
@@ -52,6 +71,15 @@ interface Tokens {
     };
   };
   fonts: {
+    styles: {
+      title_1: FontStyle;
+      subtitle_1: FontStyle;
+      title_2: FontStyle;
+      subtitle_2: FontStyle;
+      title_3: FontStyle;
+      sub_title_3: FontStyle;
+      base: FontStyle;
+    };
     family: {
       default: string;
       heading: string;
@@ -87,5 +115,5 @@ interface Tokens {
     xl: string;
   };
 }
-
+export { FontWeights };
 export type { Tokens, ColorValueHex };

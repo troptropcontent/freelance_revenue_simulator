@@ -126,6 +126,50 @@ const ThemeTokens = {
     },
   },
   fonts: {
+    styles: {
+      title_1: {
+        font_size: "35px",
+        font_weight: "bold",
+        line_height: "48px",
+        letter_spacing: "0",
+      },
+      subtitle_1: {
+        font_size: "23px",
+        font_weight: "semi_bold",
+        line_height: "auto",
+        letter_spacing: "0",
+      },
+      title_2: {
+        font_size: "30px",
+        font_weight: "semi_bold",
+        line_height: "32px",
+        letter_spacing: "0",
+      },
+      subtitle_2: {
+        font_size: "15px",
+        font_weight: "medium",
+        line_height: "auto",
+        letter_spacing: "0",
+      },
+      title_3: {
+        font_size: "20px",
+        font_weight: "semi_bold",
+        line_height: "28px",
+        letter_spacing: "0",
+      },
+      sub_title_3: {
+        font_size: "17",
+        font_weight: "semi_bold",
+        line_height: "28px",
+        letter_spacing: "0",
+      },
+      base: {
+        font_size: "17px",
+        font_weight: "medium",
+        line_height: "22px",
+        letter_spacing: "0",
+      },
+    },
     family: {
       default: "'Merriweather', serif",
       heading: "'Work Sans', sans-serif",

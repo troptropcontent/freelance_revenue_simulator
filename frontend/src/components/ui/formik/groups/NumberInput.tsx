@@ -10,7 +10,7 @@ const NumberInputGroup = ({ name, label }: { name: string; label: string }) => {
       justifyContent="space-between"
       alignItems="center"
     >
-      <Text as="label" size="sm" htmlFor={name}>
+      <Text as="label" htmlFor={name}>
         {label}
       </Text>
       <NumberInput name={name} />

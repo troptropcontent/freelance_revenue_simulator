@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-  cssVariable,
-  TextColor,
-  TextSize,
-  TextStyle,
-} from "src/components/helper";
+import { cssVariable, TextColor } from "src/components/helper";
 import { CSSProperties, ReactNode } from "react";
 import { ThemeTokens } from "../constants";
 

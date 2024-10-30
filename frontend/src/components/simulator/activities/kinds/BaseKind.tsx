@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { Box } from "src/components/ui/Box";
-import { Heading } from "src/components/ui/Heading";
 import { List } from "src/components/ui/List";
 import { Text } from "src/components/ui/Text";
 import { ActivityKindEmoji, ActivityKinds } from "../../constants";

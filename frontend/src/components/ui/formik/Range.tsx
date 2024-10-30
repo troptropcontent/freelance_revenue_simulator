@@ -105,7 +105,7 @@ const Range = ({
             <Text>{valueFormater ? valueFormater(value) : value}</Text>
           </Box>
         </StyledLabel>
-        <Text size="xs" color="muted.medium">
+        <Text style="base" color="muted.medium">
           {hint}
         </Text>
       </Box>

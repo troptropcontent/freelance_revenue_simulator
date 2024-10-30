@@ -80,6 +80,7 @@ interface Tokens {
       title_3: FontStyle;
       sub_title_3: FontStyle;
       base: FontStyle;
+      footer: FontStyle;
     };
     family: {
       default: string;

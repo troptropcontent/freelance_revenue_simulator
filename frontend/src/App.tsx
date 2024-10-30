@@ -61,6 +61,7 @@ export type FormValues = {
   }[keyof typeof Activities][];
   config: {
     weeks_off: number;
+    number_of_days_off_per_year: number;
     number_of_days_worked_per_week: number;
     number_of_hours_worked_per_day: number;
   };

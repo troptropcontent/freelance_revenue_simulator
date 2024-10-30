@@ -12,10 +12,12 @@ import { Button } from "src/components/ui/Button";
 import { useTranslation } from "react-i18next";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { Text } from "src/components/ui/Text";
-import { useFormikContext } from "formik";
+import { useFormik, useFormikContext } from "formik";
 import { FormValues } from "src/App";
 import { useContext } from "react";
 import { useFormInitialValues } from "src/shared/hooks";
+import { Dialog } from "src/components/ui/Dialog";
+import { Range } from "src/components/ui/formik/Range";
 
 const ActivityKindComponents: Record<
   (typeof ActivityKinds)[number],
@@ -60,9 +62,34 @@ const ResetButton = () => {
   );
 };
 
+const ConfigModalContent = () => {
+  return (
+    <Box flex flexDirection="column" gap="lg">
+      <Range
+        name={`config.number_of_days_worked_per_week`}
+        label={"Jours ouvrés (travaillés) par semaine"}
+        min={0}
+        max={7}
+        step={1}
+      />
+      <Range
+        name={`config.weeks_off`}
+        label={"Semaines de vacances par an"}
+        min={0}
+        max={10}
+        step={0.5}
+      />
+      <Text style="footer" align="center">
+        Les calculs du simulateur sont basés sur des journées de 7 heures
+        travaillées. Cette donnée n’est pas modifiable.
+      </Text>
+    </Box>
+  );
+};
+
 const ActivitiesList = () => {
   return (
-    <Accordion.Root type="multiple">
+    <Accordion.Root type="multiple" asChild>
       <List.Root
         grow
         gap="sm"
@@ -81,14 +108,19 @@ const ActivitiesList = () => {
             />
           );
         })}
-        <List.Item
-          flex
-          flexDirection="row"
-          justifyContent="center"
-          alignItems="flex-end"
-          grow
-        >
+        <List.Item flex flexDirection="column" justifyContent="center" grow>
           <ResetButton />
+          <Dialog
+            title="Ajuster les paramètres"
+            description="Tu peux ajuster les paramètres tels que tes jours ouvrés par semaine et les vacances que tu souhaites prendre par an."
+            trigger={
+              <Text weight="bolder" align="center">
+                <u>Ajuster les paramètres</u>
+              </Text>
+            }
+          >
+            {() => <ConfigModalContent />}
+          </Dialog>
         </List.Item>
       </List.Root>
     </Accordion.Root>

@@ -72,6 +72,7 @@ interface Tokens {
   };
   fonts: {
     styles: {
+      biggest: FontStyle;
       title_1: FontStyle;
       subtitle_1: FontStyle;
       title_2: FontStyle;

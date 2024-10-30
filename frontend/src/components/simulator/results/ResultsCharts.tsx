@@ -42,8 +42,7 @@ const ResultsCharts = () => {
           justifyContent="center"
         >
           <Text
-            weight="bold"
-            size="md"
+            style="subtitle_1"
             color={should_display_result_charts ? undefined : "primary.light"}
           >
             {t(
@@ -55,18 +54,18 @@ const ResultsCharts = () => {
       </Collapsible.Trigger>
       <Collapsible.Content>
         <Box flex flexDirection="column" gap="lg" padding="md">
-          <Text size="md" weight="bold" align="center">
+          <Text style="subtitle_1" align="center">
             {t("simulator.results.charts.revenue_ventilation.title")}
           </Text>
           <StyledContainer>
             <RevenueByKindsChart />
             <RevenueByActivityChart />
           </StyledContainer>
-          <Text size="md" weight="bold" align="center">
+          <Text style="subtitle_1" align="center">
             {t("simulator.results.charts.week_ventilation.title")}
           </Text>
           <AverageWeekChart />
-          <Text size="md" weight="bold" align="center">
+          <Text style="subtitle_1" align="center">
             {t("simulator.results.charts.enjoyment_ventilation.title")}
           </Text>
           <EnjoymentChart />

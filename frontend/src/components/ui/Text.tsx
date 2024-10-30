@@ -6,6 +6,7 @@ import {
   TextStyle,
 } from "src/components/helper";
 import { CSSProperties, ReactNode } from "react";
+import { ThemeTokens } from "../constants";
 
 const TextTag = ({
   children,
@@ -20,27 +21,28 @@ const TextTag = ({
 
 const StyledTextTag = styled(TextTag)<{
   $align?: CSSProperties["textAlign"];
-  $size: TextSize;
   $color: TextColor;
-  $weight?: CSSProperties["fontWeight"];
-  $style?: TextStyle;
+  $style: NonNullable<React.ComponentPropsWithoutRef<typeof Text>["style"]>;
+  $weight: React.ComponentPropsWithoutRef<typeof Text>["weight"];
   props?: React.ComponentPropsWithoutRef<typeof Text>["align"];
 }>`
-  font-size: ${(props) => cssVariable(`fonts.size.${props.$size}`)};
   color: ${(props) => cssVariable(`color.text.${props.$color}`)};
-  ${(props) => props.$weight && `font-weight: ${props.$weight};`}
   ${(props) => props.$align && `text-align: ${props.$align};`}
   ${({ $style }) =>
-    $style && `font-family: ${cssVariable(`fonts.family.${$style}`)};`}
+    `
+  font-size: ${cssVariable(`fonts.styles.${$style}.font_size`)};
+  font-weight: ${cssVariable(`fonts.styles.${$style}.font_weight`)};
+  letter-spacing: ${cssVariable(`fonts.styles.${$style}.letter_spacing`)};
+  `}
+  ${({ $weight }) => $weight && `font-weight: ${$weight};`}
 `;
 
 type BaseTextProps = {
   children: React.ReactNode;
   color?: TextColor;
-  size?: TextSize;
-  weight?: CSSProperties["fontWeight"];
   align?: CSSProperties["textAlign"];
-  style?: TextStyle;
+  style?: keyof (typeof ThemeTokens)["fonts"]["styles"];
+  weight?: CSSProperties["fontWeight"];
 };
 
 type PTagProps = {
@@ -53,22 +55,20 @@ type LabelTagProps = {
 
 const Text = ({
   as = "p",
-  size = "sm",
   color = "primary.medium",
-  weight,
   children,
   align,
-  style,
+  style = "base",
+  weight,
   ...props
 }: BaseTextProps & (PTagProps | LabelTagProps)) => {
   return (
     <StyledTextTag
       as={as}
-      $size={size}
       $color={color}
-      $weight={weight}
       $align={align}
       $style={style}
+      $weight={weight}
       {...props}
     >
       {children}

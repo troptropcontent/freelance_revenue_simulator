@@ -32,7 +32,7 @@ const ResultsDetails = () => {
     total_annual_turnover: {
       value: total_annual_turnover,
       formater: (value) => (
-        <Text size="xl" align="center" style="heading" weight="bold">
+        <Text style="biggest" align="center">
           {t("common.currency.EUR", { value })}
         </Text>
       ),
@@ -70,7 +70,7 @@ const ResultsDetails = () => {
     <List.Root gap="lg">
       {Object.entries(results).map(([key, { value, formater }]) => (
         <List.Item flex flexDirection="column" key={key} gap="sm">
-          <Text size="md" align="center" style="heading" weight="bold">
+          <Text style="subtitle_1" align="center">
             {t(`simulator.results.details.${key}.label`)}
           </Text>
           {formater(value)}

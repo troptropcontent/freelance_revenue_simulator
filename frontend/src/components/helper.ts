@@ -1,4 +1,4 @@
-import { Tokens } from "./tokens";
+import { FontWeights, Tokens } from "./tokens";
 
 type RecursiveKeyOf<TObj extends object> = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -74,11 +74,21 @@ const cssVariable = (tokenId: TokenId) => {
   return `var(--${tokenId.split(".").join("-")})`;
 };
 
+// This function is here to map all the tokens values that can not be sent as is into css variables.
+const mapValues = (varName: string, value: unknown): unknown => {
+  // For clarity, the tokens for font weight are stored in string 'bold', 'semi-bold' etc, as those values are passed to css values we need to convert them in number before
+  if (/--fonts.styles.*.font_weight/.test(varName)) {
+    return FontWeights[value as keyof typeof FontWeights];
+  } else {
+    return value;
+  }
+};
+
 const createCssVar = (themeObject: object, prefix: string = ""): string[] =>
   Object.entries(themeObject).flatMap(([key, value]) => {
     const varName = prefix == "" ? `--${key}` : `${prefix}-${key}`;
     if (typeof value === "object") return createCssVar(value, varName);
-    return `${varName}:${value}`;
+    return `${varName}:${mapValues(varName, value)}`;
   });
 
 const createPaddingStyle = (padding: Padding) => {

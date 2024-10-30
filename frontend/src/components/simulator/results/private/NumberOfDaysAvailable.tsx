@@ -30,10 +30,8 @@ const NumberOfDaysAvailable = ({
       alignItems="center"
     >
       <Text
-        size="xl"
+        style="biggest"
         align="center"
-        style="heading"
-        weight="bold"
         color={
           text_type == "more_days_worked_than_days_available"
             ? "error.medium"
@@ -50,7 +48,7 @@ const NumberOfDaysAvailable = ({
           },
         )}
       </Text>
-      <Text color="muted.medium" size="xs" align="center">
+      <Text color="muted.medium" style="base" align="center">
         {t([
           `simulator.results.details.total_number_of_days_available_per_week.${text_type}.sub_text`,
           `simulator.results.details.total_number_of_days_available_per_week.default_sub_text`,

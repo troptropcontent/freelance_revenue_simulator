@@ -2,7 +2,7 @@ import { Box } from "src/components/ui/Box";
 import EmptyState from "./EmptyState";
 
 type RootProps = Omit<
-  React.ComponentProps<typeof Box>,
+  React.ComponentPropsWithoutRef<typeof Box>,
   "as" | "flex" | "flexDirection"
 > & {
   emptyState?: React.ComponentProps<typeof EmptyState>;

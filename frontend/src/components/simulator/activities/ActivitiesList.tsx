@@ -62,7 +62,7 @@ const ResetButton = () => {
 
 const ActivitiesList = () => {
   return (
-    <Accordion.Root type="multiple" asChild>
+    <Accordion.Root type="multiple">
       <List.Root
         grow
         gap="sm"

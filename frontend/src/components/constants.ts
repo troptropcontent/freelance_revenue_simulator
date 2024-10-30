@@ -127,6 +127,12 @@ const ThemeTokens = {
   },
   fonts: {
     styles: {
+      biggest: {
+        font_size: "50px",
+        font_weight: "bold",
+        line_height: "auto",
+        letter_spacing: "0",
+      },
       title_1: {
         font_size: "35px",
         font_weight: "bold",

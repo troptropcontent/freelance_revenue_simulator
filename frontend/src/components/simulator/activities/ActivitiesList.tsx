@@ -9,7 +9,7 @@ import { Freelancing } from "./kinds/Freelancing";
 import { UnbilledActivty } from "./kinds/UnbilledActivity";
 import { Box } from "src/components/ui/Box";
 import { Button } from "src/components/ui/Button";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { Text } from "src/components/ui/Text";
 import { useFormikContext } from "formik";

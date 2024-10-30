@@ -38,6 +38,14 @@
           },
           "title": "Mon portfolio d'activités",
           "reset": "Réinitialiser",
+          "config_modal": {
+            "trigger": "Ajuster les paramètres",
+            "title": "Ajuster les paramètres",
+            "description": "Tu peux ajuster les paramètres tels que tes jours ouvrés par semaine et les vacances que tu souhaites prendre par an.",
+            "weeks_off_label": "Semaines de vacances par an",
+            "number_of_days_worked_per_week_label": "Jours ouvrés (travaillés) par semaine",
+            "hint": "Les calculs du simulateur sont basés sur des journées de 7 heures travaillées. Cette donnée n’est pas modifiable."
+          },
           "empty_state": {
             "title": "Aucune activité selectionnée",
             "description": "Commencer à simuler vos revenus en ajoutant une activité via le bouton ci dessous"

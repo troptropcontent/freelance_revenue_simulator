@@ -19,6 +19,7 @@ const StyledTextTag = styled(TextTag)<{
   $color: TextColor;
   $style: NonNullable<React.ComponentPropsWithoutRef<typeof Text>["style"]>;
   $weight: React.ComponentPropsWithoutRef<typeof Text>["weight"];
+  $decoration: React.ComponentPropsWithoutRef<typeof Text>["decoration"];
   props?: React.ComponentPropsWithoutRef<typeof Text>["align"];
 }>`
   color: ${(props) => cssVariable(`color.text.${props.$color}`)};
@@ -30,6 +31,7 @@ const StyledTextTag = styled(TextTag)<{
   letter-spacing: ${cssVariable(`fonts.styles.${$style}.letter_spacing`)};
   `}
   ${({ $weight }) => $weight && `font-weight: ${$weight};`}
+  ${({ $decoration }) => $decoration && `text-decoration: ${$decoration};`}
 `;
 
 type BaseTextProps = {
@@ -38,6 +40,7 @@ type BaseTextProps = {
   align?: CSSProperties["textAlign"];
   style?: keyof (typeof ThemeTokens)["fonts"]["styles"];
   weight?: CSSProperties["fontWeight"];
+  decoration?: CSSProperties["textDecoration"];
 };
 
 type PTagProps = {
@@ -55,6 +58,7 @@ const Text = ({
   align,
   style = "base",
   weight,
+  decoration,
   ...props
 }: BaseTextProps & (PTagProps | LabelTagProps)) => {
   return (
@@ -64,6 +68,7 @@ const Text = ({
       $align={align}
       $style={style}
       $weight={weight}
+      $decoration={decoration}
       {...props}
     >
       {children}

@@ -9,10 +9,10 @@ import { Freelancing } from "./kinds/Freelancing";
 import { UnbilledActivty } from "./kinds/UnbilledActivity";
 import { Box } from "src/components/ui/Box";
 import { Button } from "src/components/ui/Button";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { Text } from "src/components/ui/Text";
-import { useFormik, useFormikContext } from "formik";
+import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
 import { useContext } from "react";
 import { useFormInitialValues } from "src/shared/hooks";
@@ -63,31 +63,35 @@ const ResetButton = () => {
 };
 
 const ConfigModalContent = () => {
+  const { t } = useTranslation();
+
   return (
     <Box flex flexDirection="column" gap="lg">
       <Range
         name={`config.number_of_days_worked_per_week`}
-        label={"Jours ouvrés (travaillés) par semaine"}
+        label={t(
+          "simulator.activities.config_modal.number_of_days_worked_per_week_label",
+        )}
         min={0}
         max={7}
         step={1}
       />
       <Range
         name={`config.weeks_off`}
-        label={"Semaines de vacances par an"}
+        label={t("simulator.activities.config_modal.weeks_off_label")}
         min={0}
         max={10}
         step={0.5}
       />
       <Text style="footer" align="center">
-        Les calculs du simulateur sont basés sur des journées de 7 heures
-        travaillées. Cette donnée n’est pas modifiable.
+        {t("simulator.activities.config_modal.hint")}
       </Text>
     </Box>
   );
 };
 
 const ActivitiesList = () => {
+  const { t } = useTranslation();
   return (
     <Accordion.Root type="multiple" asChild>
       <List.Root
@@ -111,11 +115,11 @@ const ActivitiesList = () => {
         <List.Item flex flexDirection="column" justifyContent="center" grow>
           <ResetButton />
           <Dialog
-            title="Ajuster les paramètres"
-            description="Tu peux ajuster les paramètres tels que tes jours ouvrés par semaine et les vacances que tu souhaites prendre par an."
+            title={t("simulator.activities.config_modal.title")}
+            description={t("simulator.activities.config_modal.description")}
             trigger={
-              <Text weight="bolder" align="center">
-                <u>Ajuster les paramètres</u>
+              <Text weight="bolder" align="center" decoration="underline">
+                {t("simulator.activities.config_modal.trigger")}
               </Text>
             }
           >

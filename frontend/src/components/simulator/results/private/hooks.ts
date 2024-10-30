@@ -167,6 +167,7 @@ export {
   useAnnualTurnoverPerActivity,
   useTotalAnnualTurnover,
   useTotalNumberOfDaysAvailablePerWeek,
+  useTotalNumberOfDaysEffectivelyWorkedPerWeek,
   useWeigthedAverageEnjoymentRate,
   useNumberOfDaysWorkedPerWeekPerActivity,
   useWeightedEnjoymentRates,

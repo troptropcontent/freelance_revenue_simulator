@@ -210,7 +210,8 @@
               "default_sub_text": "N’hésite pas à compléter ton portfolio d’activités ! 😃",
               "more_days_worked_than_days_available": {
                 "text": "À vérifier",
-                "sub_text": "Attention il semble que ta semaine comporte + de jours que tu ne peux en travailler. C’est gourmand ça 😂 !"
+                "sub_text_one": "Attention la semaine que tu as composée comporte {{count}} jour. C'est + que tu ne peux en travailler, c’est gourmand ça !",
+                "sub_text_other": "Attention la semaine que tu as composée comporte {{count}} jours. C'est + que tu ne peux en travailler, c’est gourmand ça !"
               },
               "perfectly_balanced": {
                 "text": "Ta semaine est complète",

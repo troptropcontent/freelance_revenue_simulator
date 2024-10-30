@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Box } from "src/components/ui/Box";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
+import { useTotalNumberOfDaysEffectivelyWorkedPerWeek } from "./hooks";
 
 const NumberOfDaysAvailable = ({
   number_of_days_available,
@@ -11,6 +12,8 @@ const NumberOfDaysAvailable = ({
   number_of_days_available: number;
 }) => {
   const { t } = useTranslation();
+  const total_number_of_days_worked =
+    useTotalNumberOfDaysEffectivelyWorkedPerWeek();
   const {
     values: {
       config: { number_of_hours_worked_per_day },
@@ -49,10 +52,13 @@ const NumberOfDaysAvailable = ({
         )}
       </Text>
       <Text color="muted.medium" style="base" align="center">
-        {t([
-          `simulator.results.details.total_number_of_days_available_per_week.${text_type}.sub_text`,
-          `simulator.results.details.total_number_of_days_available_per_week.default_sub_text`,
-        ])}
+        {t(
+          [
+            `simulator.results.details.total_number_of_days_available_per_week.${text_type}.sub_text`,
+            `simulator.results.details.total_number_of_days_available_per_week.default_sub_text`,
+          ],
+          { count: Math.round(total_number_of_days_worked) },
+        )}
       </Text>
     </Box>
   );

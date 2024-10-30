@@ -62,7 +62,7 @@ const ResetButton = () => {
 
 const ActivitiesList = () => {
   return (
-    <Accordion.Root type="multiple">
+    <Accordion.Root type="multiple" asChild>
       <List.Root
         grow
         gap="sm"
@@ -81,7 +81,13 @@ const ActivitiesList = () => {
             />
           );
         })}
-        <List.Item flex flexDirection="row" justifyContent="center">
+        <List.Item
+          flex
+          flexDirection="row"
+          justifyContent="center"
+          alignItems="flex-end"
+          grow
+        >
           <ResetButton />
         </List.Item>
       </List.Root>

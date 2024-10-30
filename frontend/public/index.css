@@ -117,12 +117,11 @@ body {
 }
 
 #simulator_section-sponsors {
-  margin-inline: auto;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-small);
+  background: linear-gradient(
+    to bottom,
+    var(--color-background) 30%,
+    white 30%
+  );
 }
 
 #simulator_section-sponsor-logo {

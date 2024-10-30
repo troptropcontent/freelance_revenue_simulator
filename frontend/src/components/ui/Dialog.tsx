@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from "react";
 import * as PrimitiveDialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import styled from "styled-components";
-import { cssVariable } from "../helper";
+import { createPaddingStyle, cssVariable } from "../helper";
 import { Box } from "./Box";
 import { Text } from "./Text";
 import { Button } from "./Button";
@@ -39,31 +39,21 @@ const DialogContent = styled(PrimitiveDialog.Content)`
   width: 90vw;
   max-width: 450px;
   max-height: 85vh;
-  padding: ${() => cssVariable("spacing.lg")};
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  display: grid;
-  grid-template-areas:
-    "title close"
-    "description description"
-    "content content";
+  display: flex;
+  flex-direction: column;
 
   gap: ${() => cssVariable("spacing.xs")};
 
-  & .DialogContent {
-    grid-area: content;
-  }
-
-  & .DialogTitle {
-    grid-area: title;
-  }
-
   & .DialogDescription {
-    grid-area: description;
     margin-block-end: ${() => cssVariable("spacing.sm")};
   }
 
   & .DialogClose {
-    grid-area: close;
+    ${createPaddingStyle("md")}
+    position: absolute;
+    right: 0;
+    top: 0;
     width: fit-content;
     margin-inline-start: auto;
   }
@@ -113,9 +103,6 @@ const Dialog = ({ children, trigger, title, description }: DialogProps) => {
       <PrimitiveDialog.Portal>
         <DialogOverlay />
         <DialogContent>
-          <PrimitiveDialog.Title className="DialogTitle">
-            <Text style={"title_2"}>{title}</Text>
-          </PrimitiveDialog.Title>
           <PrimitiveDialog.Close asChild>
             <Button
               color="transparent"
@@ -125,10 +112,19 @@ const Dialog = ({ children, trigger, title, description }: DialogProps) => {
               <Cross2Icon />
             </Button>
           </PrimitiveDialog.Close>
-          <Text className="DialogDescription">{description}</Text>
-          <Box className="DialogContent">
-            <Separator color="neutral.dark" margin={{ block: "md" }} />
-            {children({ setOpen })}
+          <Box padding="lg" flex flexDirection="column">
+            <PrimitiveDialog.Title className="DialogTitle">
+              <Text style={"title_2"} align="center">
+                {title}
+              </Text>
+            </PrimitiveDialog.Title>
+            <Text className="DialogDescription" align="center">
+              {description}
+            </Text>
+            <Box className="DialogContent">
+              <Separator color="neutral.dark" margin={{ block: "md" }} />
+              {children({ setOpen })}
+            </Box>
           </Box>
         </DialogContent>
       </PrimitiveDialog.Portal>

@@ -368,6 +368,25 @@ p {
   left: 3.5em;
 }
 
+/* Carbon footprint */
+
+#wcb_p {
+  color: var(--font-color) !important;
+}
+
+#wcb_g {
+  border-color: var(--font-color) !important;
+}
+
+#wcb_a {
+  background: var(--font-color) !important;
+  border-color: var(--font-color) !important;
+}
+
+#wcb_2 {
+  color: var(--font-color) !important;
+}
+
 @keyframes bblFadInOut {
   0%,
   80%,

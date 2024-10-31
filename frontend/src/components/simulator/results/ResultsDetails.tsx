@@ -33,7 +33,7 @@ const ResultsDetails = () => {
       value: total_annual_turnover,
       formater: (value) => (
         <Text style="biggest" align="center">
-          {t("common.currency.EUR", { value: Math.round(value * 2) / 2 })}
+          {t("common.currency.EUR_NO_DIGITS", { value })}
         </Text>
       ),
     },

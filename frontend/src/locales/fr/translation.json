@@ -114,7 +114,7 @@
                 "unit": "{{value}} € / heure"
               },
               "quantity": {
-                "label": "Nombre de conseils réalisées par mois"
+                "label": "Nombre de conseils réalisés par mois"
               },
               "average_time_spent": {
                 "label": "Heures passées par consulting"
@@ -130,7 +130,7 @@
                 "unit": "{{value}} € / contenu"
               },
               "quantity": {
-                "label": "Nombre de contenus réalisés"
+                "label": "Nombre de contenus réalisés par mois"
               },
               "average_time_spent": {
                 "label": "Heures passées par contenu sponsorisé"

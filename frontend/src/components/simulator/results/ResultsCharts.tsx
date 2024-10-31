@@ -8,7 +8,10 @@ import { cssVariable } from "src/components/helper";
 import { Collapsible } from "src/components/ui/Collapsible";
 import { useEffect, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
-import { useShouldDisplayResultCharts } from "./private/hooks";
+import {
+  useShouldDisplayResultCharts,
+  useTotalAnnualTurnover,
+} from "./private/hooks";
 import { AverageWeekChart } from "./charts/AverageWeekChart";
 import { EnjoymentChart } from "./charts/EnjoymentChart";
 
@@ -20,6 +23,7 @@ const StyledContainer = styled.div`
 const ResultsCharts = () => {
   const { t } = useTranslation();
   const should_display_result_charts = useShouldDisplayResultCharts();
+  const total_annual_turnover = useTotalAnnualTurnover();
   const [collapsibleOpen, setCollapsibleOpen] = useState(false);
 
   useEffect(() => {
@@ -54,13 +58,17 @@ const ResultsCharts = () => {
       </Collapsible.Trigger>
       <Collapsible.Content>
         <Box flex flexDirection="column" gap="lg" padding="md">
-          <Text style="subtitle_1" align="center">
-            {t("simulator.results.charts.revenue_ventilation.title")}
-          </Text>
-          <StyledContainer>
-            <RevenueByKindsChart />
-            <RevenueByActivityChart />
-          </StyledContainer>
+          {total_annual_turnover > 0 && (
+            <>
+              <Text style="subtitle_1" align="center">
+                {t("simulator.results.charts.revenue_ventilation.title")}
+              </Text>
+              <StyledContainer>
+                <RevenueByKindsChart />
+                <RevenueByActivityChart />
+              </StyledContainer>
+            </>
+          )}
           <Text style="subtitle_1" align="center">
             {t("simulator.results.charts.week_ventilation.title")}
           </Text>

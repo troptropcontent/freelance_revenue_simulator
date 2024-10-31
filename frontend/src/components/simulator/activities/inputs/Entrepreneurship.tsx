@@ -44,7 +44,7 @@ const Entrepreneurship = ({ index }: { index: number }) => {
         )}
         min={0}
         max={12}
-        step={10}
+        step={1}
       />
       <Range
         name={`${base_name}.values.average_time_spent`}

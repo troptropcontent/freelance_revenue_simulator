@@ -157,7 +157,7 @@ const useShouldDisplayResultCharts = (): boolean => {
   const total_annual_turnover = useTotalAnnualTurnover();
 
   return (
-    total_annual_turnover != 0 &&
+    total_annual_turnover != 0 ||
     total_number_days_effectively_worked_per_week != 0
   );
 };

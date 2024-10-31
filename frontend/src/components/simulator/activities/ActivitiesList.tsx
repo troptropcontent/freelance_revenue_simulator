@@ -72,7 +72,7 @@ const ConfigModalContent = () => {
         label={t(
           "simulator.activities.config_modal.number_of_days_worked_per_week_label",
         )}
-        min={0}
+        min={1}
         max={7}
         step={1}
       />
@@ -80,7 +80,7 @@ const ConfigModalContent = () => {
         name={`config.weeks_off`}
         label={t("simulator.activities.config_modal.weeks_off_label")}
         min={0}
-        max={10}
+        max={20}
         step={0.5}
       />
       <Text style="footer" align="center">

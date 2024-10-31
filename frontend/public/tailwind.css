@@ -16,20 +16,12 @@
   display: flex
 }
 
-.h-lg {
-  height: 2em
-}
-
 .w-2\/3 {
   width: 66.666667%
 }
 
 .w-2\/5 {
   width: 40%
-}
-
-.w-3\/12 {
-  width: 25%
 }
 
 .w-full {
@@ -71,11 +63,6 @@
 .border-grey-1 {
   --tw-border-opacity: 1;
   border-color: rgb(212 212 212 / var(--tw-border-opacity))
-}
-
-.bg-neutral-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 229 229 / var(--tw-bg-opacity))
 }
 
 .bg-primary-light {
@@ -165,4 +152,14 @@
 
 .visited\:text-white:visited {
   color: rgb(255 255 255 )
+}
+
+.hover\:bg-activity_1:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 212 112 / var(--tw-bg-opacity))
+}
+
+.hover\:text-primary-dark:hover {
+  --tw-text-opacity: 1;
+  color: rgb(50 22 75 / var(--tw-text-opacity))
 }

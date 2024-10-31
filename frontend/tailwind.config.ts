@@ -47,6 +47,7 @@ export default {
           light: "#F8F6FA",
           dark: "#32164B",
         },
+        activity_1: "#F8D470",
       },
     },
   },

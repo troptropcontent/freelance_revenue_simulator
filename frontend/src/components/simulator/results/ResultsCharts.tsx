@@ -47,13 +47,20 @@ const ResultsCharts = () => {
         >
           <Text
             style="subtitle_1"
-            color={should_display_result_charts ? undefined : "primary.light"}
+            color={should_display_result_charts ? undefined : "muted.light"}
           >
             {t(
               `simulator.results.collapsible.${collapsibleOpen ? "open" : "closed"}`,
             )}
           </Text>
-          {collapsibleOpen ? <ChevronDownIcon /> : <ChevronUpIcon />}
+          {should_display_result_charts ? (
+            collapsibleOpen ? (
+              <ChevronDownIcon />
+            ) : (
+              <ChevronUpIcon />
+            )
+          ) : null}
+          {}
         </Box>
       </Collapsible.Trigger>
       <Collapsible.Content>

@@ -76,7 +76,7 @@
             }
           },
           "freelance_daily_rate": {
-            "label": "Mission freelance facturée au TJM",
+            "label": "Mission freelance (TJM)",
             "description": "Mission freelance que vous facturez au temps passé.",
             "inputs": {
               "rate": {
@@ -90,7 +90,7 @@
             }
           },
           "freelance_on_delivery": {
-            "label": "Mission freelance facturée au livrable.",
+            "label": "Mission freelance (livrable)",
             "description": "Audit, Stratégie, Contenus, etc.",
             "inputs": {
               "rate": {
@@ -106,7 +106,7 @@
             }
           },
           "consulting": {
-            "label": "Consulting",
+            "label": "Conseil",
             "description": "Coaching, mentoring, etc.",
             "inputs": {
               "rate": {
@@ -122,7 +122,7 @@
             }
           },
           "sponsorship": {
-            "label": "Sponsorship & Media",
+            "label": "Sponsoring",
             "description": "Newsletter, épisode de podcast, post réseaux sociaux, etc.",
             "inputs": {
               "rate": {

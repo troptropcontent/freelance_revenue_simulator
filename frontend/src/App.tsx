@@ -13,10 +13,12 @@ import { Separator } from "./components/ui/Separator";
 import { useFormInitialValues } from "./shared/hooks";
 
 const StyledForm = styled.form`
+  margin-inline: auto;
   padding-inline: var(--spacing-medium);
   padding-block: var(--spacing-large);
   display: grid;
   row-gap: ${cssVariable("spacing.md")};
+  max-width: 1320px;
   grid-template-areas:
     "activities_title"
     "activities"

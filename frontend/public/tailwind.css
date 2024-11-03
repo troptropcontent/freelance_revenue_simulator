@@ -4,6 +4,10 @@
 
 /* @tailwind components; */
 
+.m-md {
+  margin: 1em
+}
+
 .my-auto {
   margin-top: auto;
   margin-bottom: auto
@@ -23,6 +27,14 @@
 
 .mt-xl {
   margin-top: 4em
+}
+
+.ml-\[0\] {
+  margin-left: 0
+}
+
+.mr-\[0\] {
+  margin-right: 0
 }
 
 .flex {
@@ -154,6 +166,22 @@
   border-right-width: 0px
 }
 
+.border-t-\[1px\] {
+  border-top-width: 1px
+}
+
+.border-l-\[1px\] {
+  border-left-width: 1px
+}
+
+.border-r-\[1px\] {
+  border-right-width: 1px
+}
+
+.border-b-\[1px\] {
+  border-bottom-width: 1px
+}
+
 .border-solid {
   border-style: solid
 }
@@ -179,6 +207,14 @@
 .border-grey-2 {
   --tw-border-opacity: 1;
   border-color: rgb(172 172 172 / var(--tw-border-opacity))
+}
+
+.border-t-\[\] {
+  border-top-color: 
+}
+
+.border-t-\[1\] {
+  border-top-color: 1
 }
 
 .bg-primary-light {
@@ -211,6 +247,10 @@
 
 .p-xl {
   padding: 4em
+}
+
+.p-md {
+  padding: 1em
 }
 
 .px-lg {

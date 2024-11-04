@@ -86,7 +86,7 @@ const ConfigModalContent = () => {
 const ActivitiesList = () => {
   const { t } = useTranslation();
   return (
-    <Accordion.Root type="multiple" asChild>
+    <Accordion.Root type="multiple">
       <List.Root
         grow
         gap="sm"

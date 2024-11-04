@@ -34,7 +34,19 @@ const StyledForm = styled.form`
   }
 
   #activities {
+    overflow-y: auto;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    &::-webkit-scrollbar {
+      display: none; /* for Chrome, Safari, and Opera */
+    }
+
     grid-area: activities;
+
+    & > div {
+      min-height: 100%;
+      height: 0;
+    }
   }
 
   #results {

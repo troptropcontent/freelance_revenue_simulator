@@ -1,8 +1,6 @@
 import { Range } from "src/components/ui/formik/Range";
 import { BaseActivity } from "src/components/simulator/activities/inputs/BaseActivity";
 import { useTranslation } from "react-i18next";
-import { useFormikContext } from "formik";
-import { FormValues } from "src/App";
 
 const TimeOff = ({ index }: { index: number }) => {
   const { t } = useTranslation();

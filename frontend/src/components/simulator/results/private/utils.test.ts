@@ -120,6 +120,7 @@ describe("computeAnnualTurnover", () => {
           enabled: true,
           values: {
             average_time_spent: 1,
+            enjoyment_rate: 1,
           },
         },
         8,

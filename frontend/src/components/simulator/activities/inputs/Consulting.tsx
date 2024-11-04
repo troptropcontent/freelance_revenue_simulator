@@ -28,7 +28,7 @@ const Consulting = ({ index }: { index: number }) => {
           "simulator.activities.consulting.inputs.average_time_spent.label",
         )}
         min={0}
-        max={20}
+        max={7}
         step={0.5}
       />
       <EnjoymentRateInput name={`activities[${index}].values.enjoyment_rate`} />

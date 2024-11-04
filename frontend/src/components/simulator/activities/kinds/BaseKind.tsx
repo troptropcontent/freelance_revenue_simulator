@@ -27,7 +27,7 @@ const BaseKind = ({
       flexDirection="column"
       gap="md"
     >
-      <Box flex flexDirection="column" gap="sm">
+      <Box flex flexDirection="column" gap="sm" alignItems="center">
         <Text style="title_2">
           {ActivityKindEmoji[kind]}
           {title}

@@ -113,7 +113,6 @@ body {
   gap: var(--spacing-medium);
   flex-direction: column;
   background-color: var(--color-background);
-  max-width: 720px;
   margin-inline: auto;
 }
 

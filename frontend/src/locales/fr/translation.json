@@ -57,7 +57,7 @@
           },
           "shared_inputs": {
             "enjoyment_rate": {
-              "label": "Niveau de satisfaction",
+              "label": "Niveau de kiff",
               "hint": "(i) 0 = alimentaire - 5 = c'est que du bonheur."
             }
           },

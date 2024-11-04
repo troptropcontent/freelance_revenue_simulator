@@ -3,6 +3,7 @@ import { BaseActivity } from "src/components/simulator/activities/inputs/BaseAct
 import { useTranslation } from "react-i18next";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
+import { EnjoymentRateInput } from "../private/EnjoymentRateInput";
 
 const Admin = ({ index }: { index: number }) => {
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ const Admin = ({ index }: { index: number }) => {
         max={number_of_days_worked_per_week}
         step={0.5}
       />
+      <EnjoymentRateInput name={`activities[${index}].values.enjoyment_rate`} />
     </BaseActivity>
   );
 };

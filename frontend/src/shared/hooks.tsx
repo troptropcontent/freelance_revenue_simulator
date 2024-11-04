@@ -50,9 +50,13 @@ const useFormInitialValues = (): FormValues => {
         values: Activities.admin.initial_values,
         enabled: false,
       },
+      {
+        type: "time_off",
+        values: Activities.time_off.initial_values,
+        enabled: false,
+      },
     ],
     config: {
-      weeks_off: DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR,
       number_of_days_off_per_year: DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR,
       number_of_days_worked_per_week: DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
       number_of_hours_worked_per_day: DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,

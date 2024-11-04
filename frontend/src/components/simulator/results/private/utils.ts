@@ -20,6 +20,8 @@ const computeAnnualTurnover = (
       return 0;
     case "side_project":
       return 0;
+    case "time_off":
+      return 0;
     case "consulting": {
       const { quantity, rate } = values;
       return rate * quantity * months_worked_per_year;
@@ -56,6 +58,8 @@ const computeNumberOfDaysWorkedPerWeek = (
   }
 
   switch (type) {
+    case "time_off":
+      return 0;
     case "admin":
       return values.average_time_spent;
     case "side_project":

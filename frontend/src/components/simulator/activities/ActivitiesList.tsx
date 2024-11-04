@@ -76,13 +76,6 @@ const ConfigModalContent = () => {
         max={7}
         step={1}
       />
-      <Range
-        name={`config.weeks_off`}
-        label={t("simulator.activities.config_modal.weeks_off_label")}
-        min={0}
-        max={20}
-        step={0.5}
-      />
       <Text style="footer" align="center">
         {t("simulator.activities.config_modal.hint")}
       </Text>

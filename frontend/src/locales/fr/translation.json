@@ -75,6 +75,15 @@
               }
             }
           },
+          "time_off": {
+            "label": "Vacances",
+            "description": "Nombres de semaines de congés dans l’année",
+            "inputs": {
+              "quantity": {
+                "label": "Nombre de semaines par an"
+              }
+            }
+          },
           "freelance_daily_rate": {
             "label": "Mission freelance (TJM)",
             "description": "Mission freelance que vous facturez au temps passé.",

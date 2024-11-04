@@ -6,6 +6,7 @@ import { FormValues } from "src/App";
 import { Activities, ActivitiesWithKind } from "../../constants";
 import { Admin } from "../inputs/Admin";
 import { SideProject } from "../inputs/SideProject";
+import { TimeOff } from "../inputs/TimeOff";
 
 const ActivityInputComponents: Record<
   ActivitiesWithKind<"unbilled_activity">,
@@ -15,6 +16,7 @@ const ActivityInputComponents: Record<
 > = {
   admin: Admin,
   side_project: SideProject,
+  time_off: TimeOff,
 } as const;
 
 const UnbilledActivty = ({

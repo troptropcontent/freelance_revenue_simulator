@@ -1,6 +1,10 @@
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
-import { ActivitiesType, MAX_RATE } from "src/components/simulator/constants";
+import {
+  ActivitiesType,
+  DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR,
+  MAX_RATE,
+} from "src/components/simulator/constants";
 import {
   computeAnnualTurnover,
   computeNumberOfDaysWorkedPerWeek,
@@ -13,18 +17,25 @@ const useAnnualTurnoverPerActivity = (): {
   annualTurnover: number | null;
 }[] => {
   const {
-    values: {
-      activities,
-      config: { weeks_off },
-    },
+    values: { activities },
   } = useFormikContext<FormValues>();
+
+  const findWeeksOff = () => {
+    const weeks_off_activity = activities.find(
+      (acticity) => acticity.type == "time_off",
+    );
+
+    return weeks_off_activity && weeks_off_activity.values
+      ? weeks_off_activity.values.quantity
+      : DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR;
+  };
 
   return activities
     .map((activity) => {
       return {
         name: activity.name,
         type: activity.type,
-        annualTurnover: computeAnnualTurnover(activity, weeks_off),
+        annualTurnover: computeAnnualTurnover(activity, findWeeksOff()),
       };
     })
     .sort((a, b) => {

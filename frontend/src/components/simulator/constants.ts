@@ -94,6 +94,12 @@ type ActivitiesType = {
   admin: BaseActivity & {
     initial_values: BaseActivityValues & {
       average_time_spent: number;
+      enjoyment_rate: number;
+    };
+  };
+  time_off: BaseActivity & {
+    initial_values: BaseActivityValues & {
+      quantity: number;
     };
   };
 };
@@ -155,6 +161,13 @@ const Activities = {
     kind: "unbilled_activity",
     initial_values: {
       average_time_spent: 1,
+      enjoyment_rate: 1,
+    },
+  },
+  time_off: {
+    kind: "unbilled_activity",
+    initial_values: {
+      quantity: 5,
     },
   },
 } as const satisfies ActivitiesType;

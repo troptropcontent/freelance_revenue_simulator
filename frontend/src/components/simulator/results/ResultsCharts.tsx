@@ -7,7 +7,8 @@ import styled from "styled-components";
 import { cssVariable } from "src/components/helper";
 import { Collapsible } from "src/components/ui/Collapsible";
 import { useEffect, useState } from "react";
-import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
+import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import {
   useShouldDisplayResultCharts,
   useTotalAnnualTurnover,
@@ -55,9 +56,9 @@ const ResultsCharts = () => {
           </Text>
           {should_display_result_charts ? (
             collapsibleOpen ? (
-              <ChevronDownIcon />
+              <ExpandLessRoundedIcon fontSize="large" />
             ) : (
-              <ChevronUpIcon />
+              <ExpandMoreRoundedIcon fontSize="large" />
             )
           ) : null}
           {}

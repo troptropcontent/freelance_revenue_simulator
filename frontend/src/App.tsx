@@ -99,7 +99,7 @@ function App() {
             padding="lg"
           >
             <ResultsDetails />
-            <Separator color="grey.light" />
+            <Separator color="grey.light" margin={{ block: "lg" }} />
             <ResultsCharts />
           </Box>
         </StyledForm>

@@ -8,14 +8,14 @@
   margin: 1em
 }
 
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto
 }
 
 .mb-lg {
@@ -78,12 +78,20 @@
   justify-content: center
 }
 
+.justify-between {
+  justify-content: space-between
+}
+
 .gap-md {
   gap: 1em
 }
 
 .gap-sm {
   gap: 0.5em
+}
+
+.gap-\[40px\] {
+  gap: 40px
 }
 
 .rounded-md {
@@ -189,6 +197,16 @@
 .py-xs {
   padding-top: 0.25em;
   padding-bottom: 0.25em
+}
+
+.px-\[60px\] {
+  padding-left: 60px;
+  padding-right: 60px
+}
+
+.py-\[12px\] {
+  padding-top: 12px;
+  padding-bottom: 12px
 }
 
 .pb-xl {

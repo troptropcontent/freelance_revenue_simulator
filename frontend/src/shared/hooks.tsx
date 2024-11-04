@@ -5,7 +5,6 @@ import {
   DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
   DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR,
   DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
-  DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR,
 } from "src/components/simulator/constants";
 
 const useFormInitialValues = (): FormValues => {

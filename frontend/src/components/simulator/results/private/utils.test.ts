@@ -248,6 +248,7 @@ describe("computeNumberOfDaysWorkedPerWeek", () => {
             enabled: true,
             values: {
               average_time_spent: 2,
+              enjoyment_rate: 2,
             },
           },
           8,

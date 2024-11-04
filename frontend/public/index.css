@@ -76,9 +76,6 @@ body {
 
 .main_nav-list a {
   text-decoration: none;
-  font-size: var(--font-size-medium);
-  font-weight: bold;
-  color: inherit;
 }
 
 .main_nav-list a:visited {

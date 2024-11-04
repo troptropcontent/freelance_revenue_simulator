@@ -112,7 +112,7 @@ const Dialog = ({ children, trigger, title, description }: DialogProps) => {
               <Cross2Icon />
             </Button>
           </PrimitiveDialog.Close>
-          <Box padding="lg" flex flexDirection="column">
+          <Box padding="lg" flex flexDirection="column" gap={"sm"}>
             <PrimitiveDialog.Title className="DialogTitle">
               <Text style={"title_2"} align="center">
                 {title}
@@ -122,7 +122,10 @@ const Dialog = ({ children, trigger, title, description }: DialogProps) => {
               {description}
             </Text>
             <Box className="DialogContent">
-              <Separator color="neutral.dark" margin={{ block: "md" }} />
+              <Separator
+                color="neutral.dark"
+                margin={{ inline: "md", bottom: "md" }}
+              />
               {children({ setOpen })}
             </Box>
           </Box>

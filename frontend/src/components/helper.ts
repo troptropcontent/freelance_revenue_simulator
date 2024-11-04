@@ -28,7 +28,9 @@ const PaddingKeys = {
   block: "padding-block",
 } as const;
 
-type Padding = SpacingsType<Spacing, keyof typeof PaddingKeys>;
+type Padding =
+  | SpacingsType<Spacing | number, keyof typeof PaddingKeys>
+  | number;
 
 const MarginKeys = {
   top: "margin-block-start",
@@ -92,6 +94,10 @@ const createCssVar = (themeObject: object, prefix: string = ""): string[] =>
   });
 
 const createPaddingStyle = (padding: Padding) => {
+  if (typeof padding === "number") {
+    return `padding: ${padding}px;`;
+  }
+
   if (typeof padding === "string") {
     const tokenId = `spacing.${padding}` as TokenId;
     return `padding: ${cssVariable(tokenId)};`;
@@ -99,8 +105,12 @@ const createPaddingStyle = (padding: Padding) => {
 
   return Object.entries(padding)
     .map(([key, value]) => {
-      const tokenId = `spacing.${value}` as TokenId;
-      return `${PaddingKeys[key as keyof typeof PaddingKeys]}: ${cssVariable(tokenId)};`;
+      const cssValue =
+        typeof value == "string"
+          ? cssVariable(`spacing.${value}`)
+          : `${value}px`;
+
+      return `${PaddingKeys[key as keyof typeof PaddingKeys]}: ${cssValue};`;
     })
     .join("");
 };

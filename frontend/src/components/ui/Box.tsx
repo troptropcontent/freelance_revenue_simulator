@@ -18,7 +18,7 @@ type BoxProps = {
   flexDirection?: CSSProperties["flexDirection"];
   justifyContent?: CSSProperties["justifyContent"];
   alignItems?: CSSProperties["alignItems"];
-  gap?: Spacing;
+  gap?: Spacing | number;
   padding?: Padding;
   background?: BackgroundColor;
   borderRadius?: BorderRadius;
@@ -47,7 +47,7 @@ const StyledBox = styled(BoxTag)<{
   $flexDirection?: CSSProperties["flexDirection"];
   $justifyContent?: CSSProperties["justifyContent"];
   $alignItems?: CSSProperties["alignItems"];
-  $gap?: CSSProperties["gap"];
+  $gap?: React.ComponentProps<typeof Box>["gap"];
   $padding?: Padding;
   $background?: BoxProps["background"];
   $borderRadius?: BoxProps["borderRadius"];
@@ -65,7 +65,9 @@ const StyledBox = styled(BoxTag)<{
     ${(props) =>
     props.$justifyContent && `justify-content: ${props.$justifyContent};`}
     ${(props) => props.$alignItems && `align-items: ${props.$alignItems};`}
-    ${(props) => props.$gap && `gap: var(--spacing-${props.$gap});`}
+    ${({ $gap }) =>
+    $gap &&
+    `gap: ${typeof $gap == "string" ? cssVariable(`spacing.${$gap}`) : `${$gap}px`};`}
     ${(props) => props.$padding && createPaddingStyle(props.$padding)}
     ${(props) =>
     props.$background &&

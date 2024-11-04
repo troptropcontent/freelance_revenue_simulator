@@ -52,7 +52,12 @@ const ResultsDetails = () => {
             initialValues={{ average_rating: Math.round(value) }}
             enableReinitialize
           >
-            <Box flex flexDirection="column" alignItems="center">
+            <Box
+              flex
+              flexDirection="column"
+              alignItems="center"
+              padding={{ block: "sm" }}
+            >
               <RatingInput
                 size="xl"
                 disabled
@@ -67,9 +72,9 @@ const ResultsDetails = () => {
   };
 
   return (
-    <List.Root gap="lg">
+    <List.Root gap={40}>
       {Object.entries(results).map(([key, { value, formater }]) => (
-        <List.Item flex flexDirection="column" key={key} gap="sm">
+        <List.Item flex flexDirection="column" key={key}>
           <Text style="subtitle_1" align="center">
             {t(`simulator.results.details.${key}.label`)}
           </Text>

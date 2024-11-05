@@ -112,8 +112,8 @@ function App() {
                 padding={80}
               >
                 <ResultsDetails />
-                <Separator color="grey.light" margin={{ block: "lg" }} />
-                <ResultsCharts />
+                {/* <Separator color="grey.light" margin={{ block: "lg" }} />
+                <ResultsCharts /> */}
               </Box>
             </Box>
           </Box>

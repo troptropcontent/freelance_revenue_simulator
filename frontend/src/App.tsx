@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Heading } from "src/components/ui/Heading";
 import { Box } from "src/components/ui/Box";
 import { Theme } from "src/components/Theme";
 import { Formik } from "formik";
@@ -7,9 +6,6 @@ import { ActivitiesList } from "src/components/simulator/activities/ActivitiesLi
 import { Activities, ActivitiesType } from "./components/simulator/constants";
 import { useTranslation } from "react-i18next";
 import { ResultsDetails } from "./components/simulator/results/ResultsDetails";
-import { cssVariable } from "./components/helper";
-import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
-import { Separator } from "./components/ui/Separator";
 import { useFormInitialValues } from "./shared/hooks";
 import { Text } from "./components/ui/Text";
 

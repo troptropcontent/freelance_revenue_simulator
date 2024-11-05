@@ -11,53 +11,34 @@ import { cssVariable } from "./components/helper";
 import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 import { Separator } from "./components/ui/Separator";
 import { useFormInitialValues } from "./shared/hooks";
+import { Text } from "./components/ui/Text";
 
 const StyledForm = styled.form`
   margin-inline: auto;
   padding-inline: var(--spacing-medium);
   padding-block: var(--spacing-large);
-  display: grid;
-  row-gap: ${cssVariable("spacing.md")};
-  max-width: 1320px;
-  grid-template-areas:
-    "activities_title"
-    "activities"
-    "results_title"
-    "results";
+  position: relative;
 
-  #activities_title {
-    grid-area: activities_title;
+  & > div {
+    color: var(--midnight-blue);
+    align-items: flex-start;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
   }
 
-  #results_title {
-    grid-area: results_title;
+  & > div > div:last-child {
+    width: 50%;
+    height: auto;
+    position: sticky;
+    top: 130px;
   }
-
-  #activities {
-    overflow-y: auto;
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
-    &::-webkit-scrollbar {
-      display: none; /* for Chrome, Safari, and Opera */
-    }
-
-    grid-area: activities;
-
-    & > div {
-      min-height: 100%;
-      height: 0;
-    }
-  }
-
-  #results {
-    grid-area: results;
-  }
-
-  @media only screen and (min-width: 600px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "activities_title results_title"
-      "activities results";
+  & > div > div:first-child {
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    display: flex;
   }
 `;
 
@@ -92,27 +73,49 @@ function App() {
         enableReinitialize
       >
         <StyledForm>
-          <Heading as="h2" align="center" id="activities_title">
-            {t("simulator.activities.title")}
-          </Heading>
-          <Heading as="h2" align="center" id="results_title">
-            {t("simulator.results.title")}
-          </Heading>
-          <Box flex flexDirection="column" gap="md" id="activities">
-            <ActivitiesList />
-          </Box>
-          <Box
-            flex
-            flexDirection="column"
-            gap="md"
-            id="results"
-            background="neutral.medium"
-            borderRadius={{ bottomRight: "md", topRight: "md" }}
-            padding="lg"
-          >
-            <ResultsDetails />
-            <Separator color="grey.light" margin={{ block: "lg" }} />
-            <ResultsCharts />
+          <Box>
+            <Box>
+              <Box
+                padding={{
+                  inline: 20,
+                  block: 20,
+                  bottom: 35,
+                }}
+              >
+                <Text align="center" style="title_1">
+                  {t("simulator.activities.title")}
+                </Text>
+              </Box>
+              <Box flex flexDirection="column" gap="md" id="activities">
+                <ActivitiesList />
+              </Box>
+            </Box>
+            <Box>
+              <Box
+                padding={{
+                  inline: 20,
+                  block: 20,
+                  bottom: 35,
+                }}
+              >
+                <Text align="center" style="title_1">
+                  {t("simulator.results.title")}
+                </Text>
+              </Box>
+              <Box
+                flex
+                flexDirection="column"
+                gap="md"
+                id="results"
+                background="neutral.medium"
+                borderRadius={{ bottomRight: "md", topRight: "md" }}
+                padding={80}
+              >
+                <ResultsDetails />
+                <Separator color="grey.light" margin={{ block: "lg" }} />
+                <ResultsCharts />
+              </Box>
+            </Box>
           </Box>
         </StyledForm>
       </Formik>

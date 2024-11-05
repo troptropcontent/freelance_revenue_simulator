@@ -92,7 +92,7 @@ const ActivitiesList = () => {
         gap="sm"
         border={{ color: "neutral.medium", size: "sm" }}
         borderRadius={{ bottomLeft: "md", topLeft: "md" }}
-        padding="md"
+        padding={40}
       >
         {ActivityKinds.map((activity_kind, index) => {
           const ActivityComponent =

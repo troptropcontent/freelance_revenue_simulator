@@ -82,16 +82,16 @@
   justify-content: space-between
 }
 
+.gap-\[40px\] {
+  gap: 40px
+}
+
 .gap-md {
   gap: 1em
 }
 
 .gap-sm {
   gap: 0.5em
-}
-
-.gap-\[40px\] {
-  gap: 40px
 }
 
 .rounded-md {
@@ -184,9 +184,19 @@
   padding: 0.5em
 }
 
+.px-\[60px\] {
+  padding-left: 60px;
+  padding-right: 60px
+}
+
 .px-lg {
   padding-left: 2em;
   padding-right: 2em
+}
+
+.py-\[12px\] {
+  padding-top: 12px;
+  padding-bottom: 12px
 }
 
 .py-xl {
@@ -197,16 +207,6 @@
 .py-xs {
   padding-top: 0.25em;
   padding-bottom: 0.25em
-}
-
-.px-\[60px\] {
-  padding-left: 60px;
-  padding-right: 60px
-}
-
-.py-\[12px\] {
-  padding-top: 12px;
-  padding-bottom: 12px
 }
 
 .pb-xl {

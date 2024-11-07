@@ -212,7 +212,15 @@
               "label": "Chiffre d’affaires annuel estimé 💶"
             },
             "average_enjoyment_rate": {
-              "label": "Niveau de kiff"
+              "label": "Niveau de kiff",
+              "sub_text": {
+                "0/5": "-",
+                "1/5": "Aie aie aie",
+                "2/5": "Pas ouf...",
+                "3/5": "Moyen.",
+                "4/5": "Pas mal du tout !",
+                "5/5": "Excellent !"
+              }
             },
             "total_number_of_days_available_per_week": {
               "label": "Temps disponible par semaine ⏳",

@@ -56,6 +56,7 @@ const ResultsDetails = () => {
               flex
               flexDirection="column"
               alignItems="center"
+              gap={15}
               padding={{ block: "sm" }}
             >
               <RatingInput
@@ -64,6 +65,11 @@ const ResultsDetails = () => {
                 name="average_rating"
                 max={MAX_RATE}
               />
+              <Text color="primary.light" style="base" align="center">
+                {t([
+                  `simulator.results.details.average_enjoyment_rate.sub_text.${Math.round(value)}/5`,
+                ])}
+              </Text>
             </Box>
           </Formik>
         );

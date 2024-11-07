@@ -216,7 +216,7 @@
             },
             "total_number_of_days_available_per_week": {
               "label": "Temps disponible par semaine ⏳",
-              "default_sub_text": "N’hésite pas à compléter ton portfolio d’activités ! 😃",
+              "default_sub_text": "N’hésite pas à compléter ton portfolio d’activités !",
               "more_days_worked_than_days_available": {
                 "text": "À vérifier",
                 "sub_text_one": "Attention la semaine que tu as composée comporte {{count}} jour. C'est + que tu ne peux en travailler, c’est gourmand ça !",
@@ -224,7 +224,7 @@
               },
               "perfectly_balanced": {
                 "text": "Ta semaine est complète",
-                "sub_text": "Ça dépote par ici, bravo ! 😃"
+                "sub_text": "Ça dépote par ici, bravo !"
               },
               "hours": {
                 "text_one": "{{count}} heure",

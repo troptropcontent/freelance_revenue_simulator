@@ -51,7 +51,7 @@ const NumberOfDaysAvailable = ({
           },
         )}
       </Text>
-      <Text color="muted.medium" style="base" align="center">
+      <Text color="primary.light" style="base" align="center">
         {t(
           [
             `simulator.results.details.total_number_of_days_available_per_week.${text_type}.sub_text`,

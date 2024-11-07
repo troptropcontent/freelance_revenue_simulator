@@ -66,7 +66,7 @@ const ThemeTokens = {
     },
     text: {
       primary: {
-        light: "#8466A3",
+        light: "#6A5A7D",
         medium: "#32164B",
         dark: "#1E0F34",
       },

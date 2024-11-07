@@ -170,6 +170,10 @@
   gap: 5px
 }
 
+.text-wrap {
+  text-wrap: wrap
+}
+
 .rounded-md {
   border-radius: 0.375rem
 }

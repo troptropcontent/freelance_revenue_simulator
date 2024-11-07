@@ -27,11 +27,14 @@ const BaseKind = ({
       flexDirection="column"
       gap={15}
     >
-      <Box flex flexDirection="column" gap="sm" alignItems="center">
-        <Text style="title_2">
-          {ActivityKindEmoji[kind]}
-          {title}
-        </Text>
+      <Box
+        flex
+        flexDirection="column"
+        gap={8}
+        alignItems="center"
+        padding={{ bottom: 15 }}
+      >
+        <Text style="title_2">{`${ActivityKindEmoji[kind]} ${title}`}</Text>
         <Text align="center">{description}</Text>
       </Box>
       {children}

@@ -33,7 +33,7 @@
             },
             "unbilled_activity": {
               "title": "Temps non facturé",
-              "description": "Activités pour le plaisir ou nécessaires, n’étant pas rémunérées."
+              "description": "Activités n’étant pas rémunérées."
             }
           },
           "title": "Mon portfolio d'activités",

@@ -5,7 +5,7 @@ import { Field } from "formik";
 
 const StyledInput = styled(Field)`
   all: unset;
-  width: 45px;
+  width: 55px;
 
   /* Remove the arrows */
   /* Chrome, Safari, Edge, Opera */

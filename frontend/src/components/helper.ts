@@ -41,7 +41,7 @@ const MarginKeys = {
   block: "margin-block",
 } as const;
 
-type Margin = SpacingsType<Spacing, keyof typeof MarginKeys>;
+type Margin = SpacingsType<Spacing | number, keyof typeof MarginKeys>;
 
 const BorderRadiusKeys = {
   topLeft: "border-top-left-radius",
@@ -116,13 +116,22 @@ const createPaddingStyle = (padding: Padding) => {
 };
 
 const createMarginStyle = (margin: Margin) => {
+  if (typeof margin === "number") {
+    return `margin: ${margin}px;`;
+  }
+
   if (typeof margin === "string") {
     return `margin: ${cssVariable(`spacing.${margin}`)};`;
   }
 
   return Object.entries(margin)
     .map(([key, value]) => {
-      return `${MarginKeys[key as keyof typeof PaddingKeys]}: ${cssVariable(`spacing.${value}`)};`;
+      const cssValue =
+        typeof value == "string"
+          ? cssVariable(`spacing.${value}`)
+          : `${value}px`;
+
+      return `${MarginKeys[key as keyof typeof PaddingKeys]}: ${cssValue};`;
     })
     .join("");
 };

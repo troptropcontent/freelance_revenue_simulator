@@ -44,7 +44,7 @@ const EditableTitle = ({
   } else {
     return (
       <>
-        <Text>{value}</Text>
+        <Text style="title_3">{value}</Text>
         <Button color="transparent" onClick={() => setEditMode(true)}>
           <EditIcon color="inherit" fontSize="small" />
         </Button>
@@ -78,7 +78,7 @@ const ActivityTitle = ({
       {editable ? (
         <EditableTitle value={title} activityIndex={index} />
       ) : (
-        <Text>{title}</Text>
+        <Text style="title_3">{title}</Text>
       )}
       {deletable && (
         <Button color="transparent" onClick={deleteActivity}>

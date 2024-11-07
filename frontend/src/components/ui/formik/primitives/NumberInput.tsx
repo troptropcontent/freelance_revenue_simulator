@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledField = styled(Field)`
   all: unset;
-  width: 108px;
+  width: 92px;
   ${createPaddingStyle("sm")}
 
   /* Remove the arrows */
@@ -19,9 +19,9 @@ const StyledField = styled(Field)`
 
   text-align: center;
 
-  border: ${cssVariable("border.sm")} solid
+  border: ${cssVariable("border.xs")} solid
     ${cssVariable("color.border.neutral.dark")};
-  border-radius: ${cssVariable("borderRadius.sm")};
+  border-radius: 7px;
 
   &:focus {
     box-shadow: 0 0 0 2px black;

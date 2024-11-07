@@ -199,7 +199,7 @@ const AccordionItem = forwardRef<
         />
       </AccordionPrimitive.Header>
       <AccordionPrimitive.Content className="AccordionContent">
-        <Separator margin={{ top: 15 }} color="grey.light" />
+        <Separator margin={{ top: 15 }} color="neutral.dark" />
         {props.children}
       </AccordionPrimitive.Content>
     </AccordionPrimitive.Item>

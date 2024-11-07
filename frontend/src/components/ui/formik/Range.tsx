@@ -97,7 +97,7 @@ const Range = ({
             as="span"
             width={{ min: 45 }}
             background="neutral.medium"
-            borderRadius={"md"}
+            borderRadius={7}
             padding={"sm"}
             flex
             flexDirection="row"

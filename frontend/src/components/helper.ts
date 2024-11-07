@@ -51,7 +51,7 @@ const BorderRadiusKeys = {
 } as const;
 
 type BorderRadius = SpacingsType<
-  keyof Tokens["borderRadius"],
+  keyof Tokens["borderRadius"] | number,
   keyof typeof BorderRadiusKeys
 >;
 
@@ -141,10 +141,15 @@ const createBorderRadiusStyle = (borderRadius: BorderRadius) => {
     return `border-radius: ${cssVariable(`borderRadius.${borderRadius}`)};`;
   }
 
+  if (typeof borderRadius === "number") {
+    return `border-radius: ${borderRadius}px;`;
+  }
+
   return Object.entries(borderRadius)
     .map(([key, value]) => {
-      const tokenId = `borderRadius.${value}` as TokenId;
-      return `${BorderRadiusKeys[key as keyof typeof BorderRadiusKeys]}: ${cssVariable(tokenId)};`;
+      const cssValue = typeof value == "string" ? cssVariable(`borderRadius.${value}`) : `${value}px`
+   
+      return `${BorderRadiusKeys[key as keyof typeof BorderRadiusKeys]}: ${cssValue};`;
     })
     .join("");
 };

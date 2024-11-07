@@ -89,7 +89,7 @@ const ActivitiesList = () => {
     <Accordion.Root type="multiple">
       <List.Root
         grow
-        gap="sm"
+        gap={25}
         border={{ color: "neutral.medium", size: "sm" }}
         borderRadius={{ bottomLeft: "md", topLeft: "md" }}
         padding={40}

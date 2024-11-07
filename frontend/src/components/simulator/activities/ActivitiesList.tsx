@@ -87,13 +87,7 @@ const ActivitiesList = () => {
   const { t } = useTranslation();
   return (
     <Accordion.Root type="multiple">
-      <List.Root
-        grow
-        gap={25}
-        border={{ color: "neutral.medium", size: "sm" }}
-        borderRadius={{ bottomLeft: "md", topLeft: "md" }}
-        padding={40}
-      >
+      <List.Root grow gap={25} padding={{ inline: 40 }}>
         {ActivityKinds.map((activity_kind, index) => {
           const ActivityComponent =
             ActivityKindComponents[activity_kind].component;

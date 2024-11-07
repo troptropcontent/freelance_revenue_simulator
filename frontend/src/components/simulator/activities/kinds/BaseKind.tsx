@@ -22,10 +22,10 @@ const BaseKind = ({
       key={kind}
       borderRadius="md"
       background={color}
-      padding={{ block: "md", inline: "sm" }}
+      padding={{ block: 40, inline: 20 }}
       flex
       flexDirection="column"
-      gap="md"
+      gap={15}
     >
       <Box flex flexDirection="column" gap="sm" alignItems="center">
         <Text style="title_2">

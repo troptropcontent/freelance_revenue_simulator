@@ -103,9 +103,9 @@ function App() {
                 flexDirection="column"
                 gap="md"
                 id="results"
-                background="neutral.medium"
-                borderRadius={{ bottomRight: "md", topRight: "md" }}
-                padding={80}
+                border={{ color: "neutral.medium", size: "sm" }}
+                borderRadius="md"
+                padding={{ inline: 60, block: 80 }}
               >
                 <ResultsDetails />
                 {/* <Separator color="grey.light" margin={{ block: "lg" }} />

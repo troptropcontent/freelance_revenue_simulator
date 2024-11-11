@@ -8,33 +8,81 @@ import { useTranslation } from "react-i18next";
 import { ResultsDetails } from "./components/simulator/results/ResultsDetails";
 import { useFormInitialValues } from "./shared/hooks";
 import { Text } from "./components/ui/Text";
+import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
+import { cssVariable } from "./components/helper";
+import { ResultsDetailsMobile } from "./components/simulator/results/ResultsDetailsMobile";
 
 const StyledForm = styled.form`
   margin-inline: auto;
-  padding-inline: var(--spacing-medium);
-  padding-block: var(--spacing-large);
   position: relative;
 
-  & > div {
-    color: var(--midnight-blue);
-    align-items: flex-start;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+  & > #titles {
     display: flex;
+    align-items: center;
+
+    & > div {
+      flex: 1 1 0px;
+    }
   }
 
-  & > div > div:last-child {
-    width: 50%;
-    height: auto;
-    position: sticky;
-    top: 130px;
+  & #result_title {
+    display: none;
   }
-  & > div > div:first-child {
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    display: flex;
+
+  & > #container {
+    position: relative;
+
+    // Here we need to update the style for mobile
+
+    & > #results-large-screens {
+      display: none;
+    }
+
+    & > #results-small-screens {
+      position: fixed;
+      bottom: 0%;
+      top: auto;
+      left: 0%;
+      right: 0%;
+
+      z-index: 99999999;
+      width: 100%;
+      background: white;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    padding-inline: var(--spacing-medium);
+
+    #result_title {
+      display: block;
+    }
+
+    & > #container {
+      display: flex;
+      align-items: flex-start;
+      padding-block-end: var(--spacing-large);
+      padding-inline: var(--spacing-xs);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+
+      & > #results-large-screens {
+        display: block;
+        flex: 1 1 0px;
+        height: auto;
+        position: sticky;
+        top: 130px;
+      }
+
+      & > #results-small-screens {
+        display: none;
+      }
+
+      & > #scrollable {
+        flex: 1 1 0px;
+      }
+    }
   }
 `;
 
@@ -69,49 +117,58 @@ function App() {
         enableReinitialize
       >
         <StyledForm>
-          <Box>
-            <Box>
-              <Box
-                padding={{
-                  inline: 20,
-                  block: 20,
-                  bottom: 35,
-                }}
-              >
-                <Text align="center" style="title_1">
-                  {t("simulator.activities.title")}
-                </Text>
-              </Box>
+          <Box id="titles">
+            <Box
+              padding={{
+                inline: 20,
+                block: 20,
+                bottom: 35,
+              }}
+            >
+              <Text align="center" style="title_1">
+                {t("simulator.activities.title")}
+              </Text>
+            </Box>
+            <Box
+              padding={{
+                inline: 20,
+                block: 20,
+                bottom: 35,
+              }}
+              flex
+              flexDirection="column"
+              alignItems="center"
+              id="result_title"
+            >
+              <Text align="center" style="title_1">
+                {t("simulator.results.title")}
+              </Text>
+            </Box>
+          </Box>
+          <Box id="container" padding={{ bottom: "lg" }}>
+            <Box id="scrollable">
               <Box flex flexDirection="column" gap="md" id="activities">
                 <ActivitiesList />
               </Box>
             </Box>
-            <Box>
-              <Box
-                padding={{
-                  inline: 20,
-                  block: 20,
-                  bottom: 35,
-                }}
-              >
-                <Text align="center" style="title_1">
-                  {t("simulator.results.title")}
-                </Text>
-              </Box>
+            <Box id="results-large-screens">
               <Box
                 flex
                 flexDirection="column"
                 gap="md"
-                id="results"
-                border={{ color: "neutral.medium", size: "sm" }}
+                border={{ color: "neutral.dark", size: "sm" }}
                 borderRadius="md"
                 padding={{ inline: 60, block: 80 }}
               >
                 <ResultsDetails />
-                {/* <Separator color="grey.light" margin={{ block: "lg" }} />
-                <ResultsCharts /> */}
               </Box>
             </Box>
+            <Box id="results-small-screens">
+              <ResultsDetailsMobile />
+            </Box>
+          </Box>
+          <Box id="charts" background="neutral.light">
+            <ResultsCharts />
           </Box>
         </StyledForm>
       </Formik>

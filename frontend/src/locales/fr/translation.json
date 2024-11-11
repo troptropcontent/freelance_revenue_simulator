@@ -245,7 +245,9 @@
                 "text_one": "{{count}} jour",
                 "text_other": "{{count}} jours"
               }
-            }
+            },
+            "expand": "Voir plus",
+            "collapse": "Voir moins"
           },
           "charts": {
             "week_chart": {

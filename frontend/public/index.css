@@ -50,14 +50,14 @@ body {
 }
 
 #main_nav {
-  position: fixed;
+  /* position: fixed;
   top: 0%;
   bottom: auto;
   left: 0%;
   right: 0%;
+  z-index: 99999999; */
   height: var(--main-nav-height);
   background-color: var(--color-background);
-  z-index: 99999999;
 }
 
 .main_nav-list {
@@ -93,7 +93,7 @@ body {
 }
 
 .simulator_section-header {
-  margin-block-start: calc(var(--main-nav-height) + var(--spacing-medium));
+  margin-block-start: var(--spacing-medium);
   margin-block-end: var(--spacing-medium);
   text-align: center;
   display: flex;
@@ -191,10 +191,6 @@ body {
 
 .who_we_are_section_article_photo.lucie {
   background-position: top;
-}
-
-#root {
-  background-color: white;
 }
 
 /* Fonts */

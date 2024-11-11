@@ -34,6 +34,11 @@
   margin-right: 4em
 }
 
+.mx-lg {
+  margin-left: 2em;
+  margin-right: 2em
+}
+
 .mb-lg {
   margin-bottom: 2em
 }
@@ -54,12 +59,20 @@
   display: flex
 }
 
+.hidden {
+  display: none
+}
+
 .w-2\/3 {
   width: 66.666667%
 }
 
 .w-full {
   width: 100%
+}
+
+.w-\[107px\] {
+  width: 107px
 }
 
 .max-w-\[1320px\] {
@@ -76,6 +89,10 @@
 
 .flex-col {
   flex-direction: column
+}
+
+.flex-wrap {
+  flex-wrap: wrap
 }
 
 .items-center {
@@ -108,6 +125,18 @@
 
 .gap-sm {
   gap: 0.5em
+}
+
+.gap-\[12px\] {
+  gap: 12px
+}
+
+.gap-\[\] {
+  gap: 
+}
+
+.gap-\[14px\] {
+  gap: 14px
 }
 
 .text-wrap {
@@ -176,6 +205,14 @@
   padding: 0.5em
 }
 
+.p-xl {
+  padding: 4em
+}
+
+.p-md {
+  padding: 1em
+}
+
 .px-\[50px\] {
   padding-left: 50px;
   padding-right: 50px
@@ -204,6 +241,21 @@
 .py-xs {
   padding-top: 0.25em;
   padding-bottom: 0.25em
+}
+
+.py-lg {
+  padding-top: 2em;
+  padding-bottom: 2em
+}
+
+.px-sm {
+  padding-left: 0.5em;
+  padding-right: 0.5em
+}
+
+.px-\[15px\] {
+  padding-left: 15px;
+  padding-right: 15px
 }
 
 .pb-\[calc\(11px\+0\.5em\+30px\)\] {
@@ -285,13 +337,61 @@
   line-height: 1.75rem
 }
 
+.text-subtitle_2 {
+  font-size: 15px;
+  line-height: auto;
+  letter-spacing: 0;
+  font-weight: 500
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem
+}
+
+.text-\[18px\] {
+  font-size: 18px
+}
+
+.text-\[15px\] {
+  font-size: 15px
+}
+
+.text-\[13px\] {
+  font-size: 13px
+}
+
+.text-\[17px\] {
+  font-size: 17px
+}
+
+.text-\[11px\] {
+  font-size: 11px
+}
+
 .font-bold {
   font-weight: 700
+}
+
+.leading-\[20px\] {
+  line-height: 20px
+}
+
+.leading-\[27px\] {
+  line-height: 27px
+}
+
+.leading-\[17px\] {
+  line-height: 17px
 }
 
 .text-primary-dark {
   --tw-text-opacity: 1;
   color: rgb(50 22 75 / var(--tw-text-opacity))
+}
+
+.text-\[\] {
+  color: 
 }
 
 .before\:flex::before {
@@ -325,4 +425,101 @@
 .hover\:text-primary-dark:hover {
   --tw-text-opacity: 1;
   color: rgb(50 22 75 / var(--tw-text-opacity))
+}
+
+@media (min-width: 640px) {
+  .sm\:block {
+    display: block
+  }
+
+  .sm\:flex {
+    display: flex
+  }
+
+  .sm\:hidden {
+    display: none
+  }
+
+  .sm\:w-\[181px\] {
+    width: 181px
+  }
+
+  .sm\:flex-row {
+    flex-direction: row
+  }
+
+  .sm\:items-start {
+    align-items: flex-start
+  }
+
+  .sm\:gap-\[25px\] {
+    gap: 25px
+  }
+
+  .sm\:gap-sm {
+    gap: 0.5em
+  }
+
+  .sm\:p-lg {
+    padding: 2em
+  }
+
+  .sm\:px-\[50px\] {
+    padding-left: 50px;
+    padding-right: 50px
+  }
+
+  .sm\:text-left {
+    text-align: left
+  }
+
+  .sm\:text-title_3 {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0;
+    font-weight: 600
+  }
+
+  .sm\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1
+  }
+
+  .sm\:text-5xl {
+    font-size: 3rem;
+    line-height: 1
+  }
+
+  .sm\:text-title_1 {
+    font-size: 35px;
+    line-height: 48px;
+    letter-spacing: 0;
+    font-weight: 700
+  }
+
+  .sm\:text-base {
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: 0;
+    font-weight: 500
+  }
+
+  .sm\:text-title_2 {
+    font-size: 30px;
+    line-height: 32px;
+    letter-spacing: 0;
+    font-weight: 600
+  }
+
+  .sm\:text-\[20px\] {
+    font-size: 20px
+  }
+
+  .sm\:leading-\[30px\] {
+    line-height: 30px
+  }
+
+  .sm\:text-\[20\] {
+    color: 20
+  }
 }

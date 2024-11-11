@@ -1,6 +1,7 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { forwardRef } from "react";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
+import { cssVariable, Spacing } from "../helper";
 
 const CustomCollapsibleRoot = forwardRef<
   React.ElementRef<typeof RadixCollapsible.Root>,
@@ -36,7 +37,18 @@ const CustomCollapsibleContent = forwardRef<
 ));
 CustomCollapsibleContent.displayName = "CustomCollapsibleContent";
 
-const StyledCollapsibleContent = styled(CustomCollapsibleContent)``;
+const StyledCollapsibleContent = styled(CustomCollapsibleContent)<{
+  $display?: CSSProperties["display"];
+  $flexDirection?: CSSProperties["flexDirection"];
+  $gap?: Spacing | number;
+}>`
+  ${({ $display }) => $display && `display: ${$display}`};
+  ${({ $flexDirection }) =>
+    $flexDirection && `flex-direction: ${$flexDirection}`};
+  ${({ $gap }) =>
+    $gap &&
+    `gap: ${typeof $gap == "string" ? cssVariable(`spacing.${$gap}`) : `${$gap}px`};`}
+`;
 
 const Collapsible = {
   Root: StyledCollapsibleRoot,

@@ -49,20 +49,19 @@ const ResultsDetails = () => {
         return (
           <Formik
             onSubmit={() => {}}
-            initialValues={{ average_rating: Math.round(value) }}
+            initialValues={{ average_enjoyment_rate: Math.round(value) }}
             enableReinitialize
           >
             <Box
               flex
               flexDirection="column"
               alignItems="center"
-              gap={15}
               padding={{ block: "sm" }}
             >
               <RatingInput
-                size="xl"
+                size="lg"
                 disabled
-                name="average_rating"
+                name="average_enjoyment_rate"
                 max={MAX_RATE}
               />
               <Text color="primary.light" style="base" align="center">

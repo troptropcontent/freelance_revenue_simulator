@@ -181,6 +181,12 @@ const ThemeTokens = {
         letter_spacing: "0",
         line_height: "auto",
       },
+      call_to_action: {
+        font_size: "17px",
+        font_weight: "medium",
+        letter_spacing: "0",
+        line_height: "25px",
+      },
     },
     family: {
       default: "'Merriweather', serif",

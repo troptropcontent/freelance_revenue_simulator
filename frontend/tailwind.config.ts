@@ -31,7 +31,7 @@ const mappedFontSizes = () => {
 };
 
 export default {
-  content: ["./index.html"],
+  content: ["./index.html", "./public/legal.html"],
   theme: {
     spacing: ThemeTokens.spacing,
     extend: {

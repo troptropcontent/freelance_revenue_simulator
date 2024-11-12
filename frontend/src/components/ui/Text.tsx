@@ -27,9 +27,15 @@ const StyledTextTag = styled(TextTag)<{
   ${(props) => props.$align && `text-align: ${props.$align};`}
   ${({ $style }) =>
     `
-  font-size: ${cssVariable(`fonts.styles.${$style}.font_size`)};
+  font-size: calc(${cssVariable(`fonts.styles.${$style}.font_size`)} * 0.75);
   font-weight: ${cssVariable(`fonts.styles.${$style}.font_weight`)};
-  letter-spacing: ${cssVariable(`fonts.styles.${$style}.letter_spacing`)};
+  letter-spacing: calc(${cssVariable(`fonts.styles.${$style}.letter_spacing`)} * 0.75);
+
+  @media only screen and (min-width: 600px) {
+    font-size: ${cssVariable(`fonts.styles.${$style}.font_size`)};
+    font-weight: ${cssVariable(`fonts.styles.${$style}.font_weight`)};
+    letter-spacing: ${cssVariable(`fonts.styles.${$style}.letter_spacing`)};
+  }
   `}
   ${({ $size }) => $size && `font-size: ${$size};`}
   ${({ $weight }) => $weight && `font-weight: ${$weight};`}

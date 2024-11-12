@@ -15,18 +15,66 @@
     <meta property="og:type" content="website" />
   </head>
   <body>
-    <nav id="main_nav" class="flex justify-between px-[60px] py-[12px]">
-      <a href="/" class="main_nav-logo"
-        ><img src="/logo.png" height="40" alt="Le logo de soloportfolio"
+    <nav
+      class="bg-primary-light flex justify-between items-center px-md sm:px-[60px] py-[12px] h-[60px]"
+    >
+      <a href="/"
+        ><img
+          src="/logo.png"
+          class="h-[30px] sm:h-[40px]"
+          alt="Le logo de soloportfolio"
       /></a>
-      <ul class="hidden sm:flex main_nav-list gap-[40px] items-center">
+      <label id="hamburger-menu" class="sm:hidden" for="menu-open">
+        <input type="checkbox" name="menu-open" id="menu-open" />
+        <svg
+          width="17px"
+          height="12px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 18L20 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M4 12L20 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M4 6L20 6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+        <ul id="hamburger-menu-links" class="py-md">
+          <li class="px-md">
+            <a href="#who_we_are_section" class="text-title_3 text-primary-dark"
+              >À propos</a
+            >
+          </li>
+          <li class="px-md">
+            <a href="#share" class="text-title_3 text-primary-dark"
+              >Partager le simulateur</a
+            >
+          </li>
+        </ul>
+      </label>
+      <ul class="hidden sm:flex gap-[40px] items-center list-none">
         <li>
-          <a href="#who_we_are_section" class="text-title_3 text-primary-dark"
+          <a
+            href="#who_we_are_section"
+            class="text-title_3 no-underline text-primary-dark"
             >À propos</a
           >
         </li>
         <li>
-          <a href="#share" class="text-title_3 text-primary-dark"
+          <a href="#share" class="text-title_3 no-underline text-primary-dark"
             >Partager le simulateur</a
           >
         </li>

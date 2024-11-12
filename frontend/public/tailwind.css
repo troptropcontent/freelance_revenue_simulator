@@ -218,6 +218,10 @@
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
 
+.p-lg {
+  padding: 2em
+}
+
 .p-md {
   padding: 1em
 }
@@ -317,6 +321,13 @@
 .text-base {
   font-size: 17px;
   line-height: 22px;
+  letter-spacing: 0;
+  font-weight: 500
+}
+
+.text-call_to_action {
+  font-size: 17px;
+  line-height: 25px;
   letter-spacing: 0;
   font-weight: 500
 }
@@ -492,6 +503,13 @@
   .sm\:text-base {
     font-size: 17px;
     line-height: 22px;
+    letter-spacing: 0;
+    font-weight: 500
+  }
+
+  .sm\:text-call_to_action {
+    font-size: 17px;
+    line-height: 25px;
     letter-spacing: 0;
     font-weight: 500
   }

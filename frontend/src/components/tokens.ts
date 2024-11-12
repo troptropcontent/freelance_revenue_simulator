@@ -81,6 +81,7 @@ interface Tokens {
       sub_title_3: FontStyle;
       base: FontStyle;
       footer: FontStyle;
+      call_to_action: FontStyle;
     };
     family: {
       default: string;

@@ -59,6 +59,10 @@ const StyledForm = styled.form`
       display: block;
     }
 
+    & > #titles {
+      max-width: 1200px;
+    }
+
     & > #container {
       display: flex;
       align-items: flex-start;
@@ -118,41 +122,41 @@ function App() {
         enableReinitialize
       >
         <StyledForm>
-          <Box id="titles">
-            <Box
-              padding={{
-                inline: 20,
-                block: 20,
-                bottom: 35,
-              }}
-            >
-              <Text align="center" style="title_1">
-                {t("simulator.activities.title")}
-              </Text>
-            </Box>
-            <Box
-              padding={{
-                inline: 20,
-                block: 20,
-                bottom: 35,
-              }}
-              flex
-              flexDirection="column"
-              alignItems="center"
-              id="result_title"
-            >
-              <Text align="center" style="title_1">
-                {t("simulator.results.title")}
-              </Text>
-            </Box>
-          </Box>
           <Box id="container" padding={{ bottom: "lg" }}>
             <Box id="scrollable">
+              <Box
+                padding={{
+                  inline: 20,
+                  block: 35,
+                }}
+                flex
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Text align="center" style="title_1">
+                  {t("simulator.activities.title")}
+                </Text>
+              </Box>
               <Box flex flexDirection="column" gap="md" id="activities">
                 <ActivitiesList />
               </Box>
             </Box>
             <Box id="results-large-screens">
+              <Box
+                padding={{
+                  inline: 20,
+                  block: 35,
+                }}
+                flex
+                flexDirection="column"
+                alignItems="center"
+                id="result_title"
+              >
+                <Text align="center" style="title_1">
+                  {t("simulator.results.title")}
+                </Text>
+              </Box>
               <Box
                 flex
                 flexDirection="column"

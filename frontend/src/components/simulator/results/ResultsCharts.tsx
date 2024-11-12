@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
   & > * {
     flex: calc(33.33% - (2 * 40px / 3));
     box-sizing: border-box;
-    min-width: calc(400px - 40px);
+    min-width: calc(500px - 40px);
     max-width: 900px;
     margin-inline: auto;
   }

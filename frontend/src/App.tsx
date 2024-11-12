@@ -10,10 +10,12 @@ import { useFormInitialValues } from "./shared/hooks";
 import { Text } from "./components/ui/Text";
 import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 import { ResultsDetailsMobile } from "./components/simulator/results/ResultsDetailsMobile";
+import { Button } from "./components/ui/Button";
 
 const StyledForm = styled.form`
   margin-inline: auto;
   position: relative;
+  background-color: white;
 
   & > #titles {
     display: flex;
@@ -166,8 +168,35 @@ function App() {
               <ResultsDetailsMobile />
             </Box>
           </Box>
-          <Box id="charts" background="neutral.light">
+          <Box
+            id="charts"
+            background="neutral.light"
+            flex
+            flexDirection="column"
+            gap="lg"
+            padding="lg"
+          >
+            <Text style="title_1" align="center">
+              {t("simulator.results.charts.title")}
+            </Text>
             <ResultsCharts />
+            <Box flex flexDirection="column" alignItems="center" gap={20}>
+              <Text style="title_3" align="center">
+                {t("simulator.results.charts.link_to_inputs.text")}
+              </Text>
+              <Box>
+                <Button
+                  color="brand"
+                  onClick={() => {
+                    const url = location.href;
+                    location.href = "#root";
+                    history.replaceState(null, "", url);
+                  }}
+                >
+                  {t("simulator.results.charts.link_to_inputs.cta")}
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </StyledForm>
       </Formik>

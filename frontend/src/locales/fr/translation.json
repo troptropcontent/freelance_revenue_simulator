@@ -250,6 +250,11 @@
             "collapse": "Voir moins"
           },
           "charts": {
+            "title": "Et en détail ça donne quoi ?",
+            "link_to_inputs": {
+              "text": "N’hésite pas à ajuster ton portfolio d’activités pour créer ta semaine idéale !",
+              "cta": "Modifier mon portfolio"
+            },
             "week_chart": {
               "remaining_days_one": "{{count}} jour disponible",
               "remaining_days_other": "{{count}} jours disponibles"

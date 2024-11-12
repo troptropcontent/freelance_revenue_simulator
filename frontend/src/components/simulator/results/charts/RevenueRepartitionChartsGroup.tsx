@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
 const RevenueRepartitionChartsGroup = () => {
   const { t } = useTranslation();
   return (
-    <Box>
+    <Box flex flexDirection="column" gap={25}>
       <Text style="subtitle_1" align="center">
         {t("simulator.results.charts.revenue_ventilation.title")}
       </Text>

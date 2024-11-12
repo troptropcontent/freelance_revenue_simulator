@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const EnjoymentRateRepartitionChartsGroup = () => {
   const { t } = useTranslation();
   return (
-    <Box>
+    <Box flex flexDirection="column" gap={25}>
       <Text style="subtitle_1" align="center">
         {t("simulator.results.charts.enjoyment_ventilation.title")}
       </Text>

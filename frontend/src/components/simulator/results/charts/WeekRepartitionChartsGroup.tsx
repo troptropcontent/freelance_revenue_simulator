@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const WeekRepartitionChartsGroup = () => {
   const { t } = useTranslation();
   return (
-    <Box>
+    <Box flex flexDirection="column" gap={25}>
       <Text style="subtitle_1" align="center">
         {t("simulator.results.charts.week_ventilation.title")}
       </Text>

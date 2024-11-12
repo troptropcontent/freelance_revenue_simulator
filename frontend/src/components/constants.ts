@@ -59,9 +59,9 @@ const ThemeTokens = {
         a12: "#000000f2",
       },
       brand: {
-        light: "#FFEAC5",
-        medium: "#f4a261",
-        dark: "#e76f51",
+        light: "#32164B",
+        medium: "#32164B",
+        dark: "#F8D470",
       },
     },
     text: {

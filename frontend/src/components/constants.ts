@@ -77,7 +77,7 @@ const ThemeTokens = {
       },
       error: {
         light: "#FFCDD2",
-        medium: "#E57373",
+        medium: "#F1645F",
         dark: "#B71C1C",
       },
       muted: {

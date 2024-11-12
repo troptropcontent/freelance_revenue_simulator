@@ -11,6 +11,7 @@ import { Text } from "./components/ui/Text";
 import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 import { ResultsDetailsMobile } from "./components/simulator/results/ResultsDetailsMobile";
 import { Button } from "./components/ui/Button";
+import { ChartsTitle } from "./components/simulator/results/ChartsTitle";
 
 const StyledForm = styled.form`
   margin-inline: auto;
@@ -53,7 +54,7 @@ const StyledForm = styled.form`
   }
 
   @media only screen and (min-width: 600px) {
-    padding-inline: var(--spacing-medium);
+    // padding-inline: var(--spacing-medium);
 
     #result_title {
       display: block;
@@ -67,7 +68,7 @@ const StyledForm = styled.form`
       display: flex;
       align-items: flex-start;
       padding-block-end: var(--spacing-large);
-      padding-inline: var(--spacing-xs);
+      padding-inline: var(--spacing-lg);
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
@@ -180,9 +181,7 @@ function App() {
             gap="lg"
             padding="lg"
           >
-            <Text style="title_1" align="center">
-              {t("simulator.results.charts.title")}
-            </Text>
+            <ChartsTitle />
             <ResultsCharts />
             <Box flex flexDirection="column" alignItems="center" gap={20}>
               <Text style="title_3" align="center">

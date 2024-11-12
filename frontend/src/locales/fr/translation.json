@@ -251,6 +251,9 @@
           },
           "charts": {
             "title": "Et en détail ça donne quoi ?",
+            "unstarted_description": "Commence à composer ton portfolio d’activités pour pouvoir visualiser ta semaine en graphiques.",
+            "exceeded_description_one": "Attention la semaine que tu as composée comporte {{count}} jour. C'est plus que tu ne peux en travailler, ajuste ton portfolio d’activités.",
+            "exceeded_description_other": "Attention la semaine que tu as composée comporte {{count}} jours. C'est plus que tu ne peux en travailler, ajuste ton portfolio d’activités.",
             "link_to_inputs": {
               "text": "N’hésite pas à ajuster ton portfolio d’activités pour créer ta semaine idéale !",
               "cta": "Modifier mon portfolio"

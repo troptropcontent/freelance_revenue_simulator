@@ -49,7 +49,7 @@ const ResultsDetails = () => {
         return (
           <Formik
             onSubmit={() => {}}
-            initialValues={{ average_rating: Math.round(value) }}
+            initialValues={{ average_enjoyment_rate: Math.round(value) }}
             enableReinitialize
           >
             <Box
@@ -59,11 +59,16 @@ const ResultsDetails = () => {
               padding={{ block: "sm" }}
             >
               <RatingInput
-                size="xl"
+                size="lg"
                 disabled
-                name="average_rating"
+                name="average_enjoyment_rate"
                 max={MAX_RATE}
               />
+              <Text color="primary.light" style="base" align="center">
+                {t([
+                  `simulator.results.details.average_enjoyment_rate.sub_text.${Math.round(value)}/5`,
+                ])}
+              </Text>
             </Box>
           </Formik>
         );

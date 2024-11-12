@@ -15,18 +15,66 @@
     <meta property="og:type" content="website" />
   </head>
   <body>
-    <nav id="main_nav" class="flex justify-between px-[60px] py-[12px]">
-      <a href="/" class="main_nav-logo"
-        ><img src="/logo.png" height="40" alt="Le logo de soloportfolio"
+    <nav
+      class="bg-primary-light flex justify-between items-center px-md sm:px-[60px] py-[12px] h-[60px]"
+    >
+      <a href="/"
+        ><img
+          src="/logo.png"
+          class="h-[30px] sm:h-[40px]"
+          alt="Le logo de soloportfolio"
       /></a>
-      <ul class="main_nav-list flex gap-[40px] items-center">
+      <label id="hamburger-menu" class="sm:hidden" for="menu-open">
+        <input type="checkbox" name="menu-open" id="menu-open" />
+        <svg
+          width="17px"
+          height="12px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 18L20 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M4 12L20 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M4 6L20 6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+        <ul id="hamburger-menu-links" class="py-md">
+          <li class="px-md">
+            <a href="#who_we_are_section" class="text-title_3 text-primary-dark"
+              >À propos</a
+            >
+          </li>
+          <li class="px-md">
+            <a href="#share" class="text-title_3 text-primary-dark"
+              >Partager le simulateur</a
+            >
+          </li>
+        </ul>
+      </label>
+      <ul class="hidden sm:flex gap-[40px] items-center list-none">
         <li>
-          <a href="#who_we_are_section" class="text-title_3 text-primary-dark"
+          <a
+            href="#who_we_are_section"
+            class="text-title_3 no-underline text-primary-dark"
             >À propos</a
           >
         </li>
         <li>
-          <a href="#share" class="text-title_3 text-primary-dark"
+          <a href="#share" class="text-title_3 no-underline text-primary-dark"
             >Partager le simulateur</a
           >
         </li>
@@ -35,8 +83,8 @@
     <section id="simulator_section">
       <header class="simulator_section-header">
         <span class="flex flex-col px-lg">
-          <h1 class="text-7xl font-bold">Simulateur</h1>
-          <h2 class="text-5xl font-bold">
+          <h1 class="text-4xl sm:text-7xl font-bold">Simulateur</h1>
+          <h2 class="text-2xl sm:text-5xl font-bold">
             de chiffre d'affaires pour indépendants
           </h2>
         </span>
@@ -48,20 +96,29 @@
         </p>
       </header>
       <aside class="w-full flex flex-col justify-center items-center pb-xl">
-        <div class="flex flex-col w-1/2 items-center rounded-md">
+        <div
+          class="relative flex flex-col items-center max-w-[780px] border-solid border-[1px] border-grey-2 rounded-[13px] mx-lg"
+        >
           <span
-            class="flex pb-0 border-solid border-0 border-l-[1px] border-r-[1px] border-t-[1px] border-grey-2 rounded-md rounded-b-none"
+            class="flex flex-col sm:flex-row px-[15px] sm:px-[50px] pt-[30px] pb-[calc(11px+0.5em+30px)] gap-[12px] sm:gap-[25px]"
           >
-            <div class="flex flex-col gap-md m-md mr-[0] pr-md items-center">
-              <p class="text-2xl font-bold">Propulsé par</p>
+            <div class="flex flex-col items-center sm:items-start gap-[5px]">
+              <p
+                class="text-subtitle_2 text-[#0D3B53] sm:text-title_3 font-bold"
+              >
+                Propulsé par
+              </p>
               <img
                 src="/images/logosponsor.svg"
                 alt="Le logo de notre sponsor"
-                class="my-auto"
+                class="w-[107px] sm:w-[181px]"
               />
             </div>
+            <div
+              class="hidden sm:block before:content-[''] before:flex before:w-[2px] bg-grey-2"
+            ></div>
             <p
-              class="text-xl border-solid border-0 border-l-4 border-primary-dark m-md ml-[0] pl-md"
+              class="flex-grow text-subtitle_2 text-[#0D3B53] sm:text-title_3 text-center sm:text-left"
             >
               <b
                 >L’expert-comptable en ligne qui vous simplifie vraiment la
@@ -70,26 +127,12 @@
               Aucune saisie manuelle. Conseils fantastiques. Sans engagement !
             </p>
           </span>
-          <div class="w-full flex">
-            <div class="flex-grow flex flex-col">
-              <span
-                class="flex-grow border-solid border-0 border-l-[1px] border-b-[1px] border-grey-2 rounded-md rounded-br-none rounded-tl-none"
-              ></span>
-              <span class="flex-grow"></span>
-            </div>
-            <a
-              href="#"
-              class="button button--primary text-base visited:text-white hover:bg-activity_1 hover:text-primary-dark"
-            >
-              30 jours d’essai gratuit
-            </a>
-            <div class="flex-grow flex flex-col">
-              <span
-                class="flex-grow border-solid border-0 border-r-[1px] border-b-[1px] border-grey-2 rounded-md rounded-bl-none rounded-tr-none"
-              ></span>
-              <span class="flex-grow"></span>
-            </div>
-          </div>
+          <a
+            href="#"
+            class="absolute left-auto right-auto bottom-[calc(-11px-0.5em)] button button--primary text-base bg-[#37AEF1] visited:text-white hover:bg-[#0D3B53] hover:text-zhite"
+          >
+            30 jours d’essai gratuit
+          </a>
         </div>
       </aside>
       <div id="root">
@@ -99,19 +142,23 @@
       </div>
     </section>
     <section
-      class="flex flex-col items-center gap-sm bg-primary-light py-xl"
+      class="flex flex-col items-center gap-sm bg-primary-light py-xl px-lg text-center"
       id="share"
     >
-      <h3 class="text-title_1">Tu kiffes ? 😊</h3>
-      <p class="text-title_3">
+      <h3 class="text-title_1 text-[18px] sm:text-title_1">Tu kiffes ? 😊</h3>
+      <p class="text-title_3 leading-[20px] text-[15px] sm:text-title_3">
         Partage le simulateur à un pote indépendant en lui envoyant le lien
       </p>
       <span class="flex gap-md p-sm"
-        ><span class="border-solid border border-grey-1 px-lg py-xs rounded-md">
-          <p class="text-base" id="copy_link_target">{{currentUrl}}</p>
+        ><span
+          class="border-solid border border-grey-1 px-lg rounded-md flex items-center justify-center"
+        >
+          <p class="text-base text-[13px] sm:text-base" id="copy_link_target">
+            {{currentUrl}}
+          </p>
         </span>
         <button
-          class="button button--primary text-base visited:text-white hover:bg-activity_1 hover:text-primary-dark"
+          class="button button--primary text-base text-[13px] sm:text-base visited:text-white hover:bg-activity_1 hover:text-primary-dark"
           id="copy_link_button"
         >
           Copier
@@ -207,8 +254,12 @@
       </span>
     </section>
     <section class="flex flex-col items-center gap-sm bg-white py-xl">
-      <h3 class="text-title_1">Envie d’aller plus loin ?</h3>
-      <p class="text-title_3 w-2/3 text-center">
+      <h3 class="text-title_1 text-[18px] sm:text-title_1">
+        Envie d’aller plus loin ?
+      </h3>
+      <p
+        class="text-title_3 leading-[20px] text-[15px] sm:text-title_3 w-2/3 text-center"
+      >
         Chaque vendredi, Pierre documente ses avancées pour créer le quotidien
         d'entrepreneur qui l'épanouit : projets, chiffre d'affaires (200k€+),
         impact positif & équilibre perso.
@@ -216,64 +267,63 @@
 
       <a
         target="_blank"
-        class="button button--primary mt-md text-base visited:text-white hover:bg-activity_1 hover:text-primary-dark"
+        class="button button--primary mt-md text-base visited:text-white hover:bg-activity_1 hover:text-primary-dark text-[13px] sm:text-base"
         href="https://pierreguilbaud.substack.com/"
       >
         Recevoir la newsletter 💌
       </a>
     </section>
     <section id="who_we_are_section">
-      <h2 class="text-align-center padding-lg text-title_1">
+      <h2
+        class="text-align-center p-md sm:p-lg text-title_1 leading-[27px] text-[18px] sm:text-title_1"
+      >
         Ce simulateur est imaginé par
       </h2>
       <div class="who_we_are_section-authors max-w-[1320px] mx-auto">
-        <span>
+        <span class="flex flex-wrap gap-[14px] sm:gap-[25px]">
           <div
             class="who_we_are_section_article_photo tom"
             style="background-image: url(&quot;/tom.png&quot;)"
           ></div>
           <h3
             id="who_we_are_section_article_1_title"
-            class="who_we_are_section_article_title text-title_2"
+            class="who_we_are_section_article_title text-title_2 leading-[17px] text-[17px] sm:text-title_2 text-center"
           >
             Tom Ecrepont
           </h3>
           <p
             id="who_we_are_section_article_1_text"
-            class="who_we_are_section_article_text"
+            class="who_we_are_section_article_text text-[11px] sm:text-[20px] leading-[17px] sm:leading-[30px] text-center"
           >
-            Tom est <b>entrepreneur et dévelopeur freelance</b>. Il se
+            Tom est <b>entrepreneur et développeur freelance</b>. Il se
             spécialise dans la creation d'outils sur mesure pour générer des
             leads qualifiés et l'automatisation de process pour gagner en
             efficacité.
           </p>
-          <div
-            class="who_we_are_section_article_link"
-            id="who_we_are_section_article_1_link"
-          >
+          <div class="flex" id="who_we_are_section_article_1_link">
             <a
               target="_blank"
               href="https://www.linkedin.com/in/tomecrepont"
-              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark"
+              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark text-wrap text-center"
             >
               Le contacter sur Linkedin
             </a>
           </div>
         </span>
-        <span>
+        <span class="flex flex-wrap gap-[14px] sm:gap-[25px]">
           <div
             class="who_we_are_section_article_photo pierre"
             style="background-image: url(&quot;/pierre.jpg&quot;)"
           ></div>
           <h3
             id="who_we_are_section_article_2_title"
-            class="who_we_are_section_article_title text-title_2 visited:white"
+            class="who_we_are_section_article_title text-title_2 leading-[17px] text-[17px] sm:text-title_2 text-center"
           >
             Pierre Guilbaud
           </h3>
           <p
             id="who_we_are_section_article_2_text"
-            class="who_we_are_section_article_text"
+            class="who_we_are_section_article_text text-[11px] sm:text-[20px] leading-[17px] sm:leading-[30px] text-center"
           >
             Pierre est
             <b>co-fondateur de Marketing Flow et Freelance Growth for Good</b>
@@ -281,47 +331,41 @@
             le quotidien d'entrepreneur qui l'épanouit : projets, chiffre
             d'affaires (200k€+), impact positif & équilibre perso.
           </p>
-          <div
-            class="who_we_are_section_article_link"
-            id="who_we_are_section_article_2_link"
-          >
+          <div class="flex" id="who_we_are_section_article_2_link">
             <a
               href="#"
               target="_blank"
-              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark"
+              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark text-wrap text-center"
             >
               Découvrir sa newsletter
             </a>
           </div>
         </span>
-        <span>
+        <span class="flex flex-wrap gap-[14px] sm:gap-[25px]">
           <div
             class="who_we_are_section_article_photo lucie"
             style="background-image: url(&quot;/lucie.jpg&quot;)"
           ></div>
           <h3
             id="who_we_are_section_article_2_title"
-            class="who_we_are_section_article_title text-title_2"
+            class="who_we_are_section_article_title text-title_2 leading-[17px] text-[17px] sm:text-title_2 text-center"
           >
             Lucie Sevaistre
           </h3>
           <p
             id="who_we_are_section_article_2_text"
-            class="who_we_are_section_article_text"
+            class="who_we_are_section_article_text text-[11px] sm:text-[20px] leading-[17px] sm:leading-[30px] text-center"
           >
             Lucie est <b>graphic designer freelance</b>. Elle a créé le Studio
             Lusse pour aider les entreprises à impact à diffuser leurs messages.
             En parallèle elle dessine une BD sur l’écologie et mène un projet
             entrepreneurial “Carnet de Montagnes”.
           </p>
-          <div
-            class="who_we_are_section_article_link"
-            id="who_we_are_section_article_2_link"
-          >
+          <div class="flex" id="who_we_are_section_article_2_link">
             <a
               target="_blank"
               href="https://www.linkedin.com/in/luciesevaistre/"
-              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark"
+              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark text-wrap text-center"
             >
               Voir son profil Linkedin
             </a>

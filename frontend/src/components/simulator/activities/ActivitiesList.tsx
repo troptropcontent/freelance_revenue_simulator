@@ -86,14 +86,8 @@ const ConfigModalContent = () => {
 const ActivitiesList = () => {
   const { t } = useTranslation();
   return (
-    <Accordion.Root type="multiple" asChild>
-      <List.Root
-        grow
-        gap="sm"
-        border={{ color: "neutral.medium", size: "sm" }}
-        borderRadius={{ bottomLeft: "md", topLeft: "md" }}
-        padding="md"
-      >
+    <Accordion.Root type="multiple">
+      <List.Root grow gap={25} padding={{ inline: 40 }}>
         {ActivityKinds.map((activity_kind, index) => {
           const ActivityComponent =
             ActivityKindComponents[activity_kind].component;

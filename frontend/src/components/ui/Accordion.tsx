@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import styled from "styled-components";
-import { cssVariable, Spacing } from "../helper";
+import { createPaddingStyle, cssVariable, Spacing } from "../helper";
 import { Box } from "./Box";
 import Switch from "./Switch";
 import { Separator } from "./Separator";
@@ -67,7 +67,7 @@ const StyledRoot = styled(AccordionRoot)`
   .AccordionItem {
     border-radius: ${() => cssVariable("borderRadius.sm")};
     background-color: ${() => cssVariable("color.background.white")};
-    padding: ${() => cssVariable("spacing.md")};
+    ${createPaddingStyle({ inline: 20, top: 15, bottom: 18 })}
 
     overflow: hidden;
 
@@ -199,7 +199,7 @@ const AccordionItem = forwardRef<
         />
       </AccordionPrimitive.Header>
       <AccordionPrimitive.Content className="AccordionContent">
-        <Separator margin={{ top: "md" }} color="grey.light" />
+        <Separator margin={{ top: 15 }} color="neutral.dark" />
         {props.children}
       </AccordionPrimitive.Content>
     </AccordionPrimitive.Item>

@@ -22,16 +22,19 @@ const BaseKind = ({
       key={kind}
       borderRadius="md"
       background={color}
-      padding={{ block: "md", inline: "sm" }}
+      padding={{ block: 40, inline: 20 }}
       flex
       flexDirection="column"
-      gap="md"
+      gap={15}
     >
-      <Box flex flexDirection="column" gap="sm" alignItems="center">
-        <Text style="title_2">
-          {ActivityKindEmoji[kind]}
-          {title}
-        </Text>
+      <Box
+        flex
+        flexDirection="column"
+        gap={8}
+        alignItems="center"
+        padding={{ bottom: 15, inline: 14 }}
+      >
+        <Text style="title_2">{`${ActivityKindEmoji[kind]} ${title}`}</Text>
         <Text align="center">{description}</Text>
       </Box>
       {children}

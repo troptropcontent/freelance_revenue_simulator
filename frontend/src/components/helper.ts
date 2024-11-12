@@ -41,7 +41,7 @@ const MarginKeys = {
   block: "margin-block",
 } as const;
 
-type Margin = SpacingsType<Spacing, keyof typeof MarginKeys>;
+type Margin = SpacingsType<Spacing | number, keyof typeof MarginKeys>;
 
 const BorderRadiusKeys = {
   topLeft: "border-top-left-radius",
@@ -51,7 +51,7 @@ const BorderRadiusKeys = {
 } as const;
 
 type BorderRadius = SpacingsType<
-  keyof Tokens["borderRadius"],
+  keyof Tokens["borderRadius"] | number,
   keyof typeof BorderRadiusKeys
 >;
 
@@ -116,13 +116,22 @@ const createPaddingStyle = (padding: Padding) => {
 };
 
 const createMarginStyle = (margin: Margin) => {
+  if (typeof margin === "number") {
+    return `margin: ${margin}px;`;
+  }
+
   if (typeof margin === "string") {
     return `margin: ${cssVariable(`spacing.${margin}`)};`;
   }
 
   return Object.entries(margin)
     .map(([key, value]) => {
-      return `${MarginKeys[key as keyof typeof PaddingKeys]}: ${cssVariable(`spacing.${value}`)};`;
+      const cssValue =
+        typeof value == "string"
+          ? cssVariable(`spacing.${value}`)
+          : `${value}px`;
+
+      return `${MarginKeys[key as keyof typeof PaddingKeys]}: ${cssValue};`;
     })
     .join("");
 };
@@ -132,10 +141,15 @@ const createBorderRadiusStyle = (borderRadius: BorderRadius) => {
     return `border-radius: ${cssVariable(`borderRadius.${borderRadius}`)};`;
   }
 
+  if (typeof borderRadius === "number") {
+    return `border-radius: ${borderRadius}px;`;
+  }
+
   return Object.entries(borderRadius)
     .map(([key, value]) => {
-      const tokenId = `borderRadius.${value}` as TokenId;
-      return `${BorderRadiusKeys[key as keyof typeof BorderRadiusKeys]}: ${cssVariable(tokenId)};`;
+      const cssValue = typeof value == "string" ? cssVariable(`borderRadius.${value}`) : `${value}px`
+   
+      return `${BorderRadiusKeys[key as keyof typeof BorderRadiusKeys]}: ${cssValue};`;
     })
     .join("");
 };

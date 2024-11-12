@@ -19,6 +19,7 @@ const StyledTextTag = styled(TextTag)<{
   $color: TextColor;
   $style: NonNullable<React.ComponentPropsWithoutRef<typeof Text>["style"]>;
   $weight: React.ComponentPropsWithoutRef<typeof Text>["weight"];
+  $size: React.ComponentPropsWithoutRef<typeof Text>["size"];
   $decoration: React.ComponentPropsWithoutRef<typeof Text>["decoration"];
   props?: React.ComponentPropsWithoutRef<typeof Text>["align"];
 }>`
@@ -26,10 +27,17 @@ const StyledTextTag = styled(TextTag)<{
   ${(props) => props.$align && `text-align: ${props.$align};`}
   ${({ $style }) =>
     `
-  font-size: ${cssVariable(`fonts.styles.${$style}.font_size`)};
+  font-size: calc(${cssVariable(`fonts.styles.${$style}.font_size`)} * 0.75);
   font-weight: ${cssVariable(`fonts.styles.${$style}.font_weight`)};
-  letter-spacing: ${cssVariable(`fonts.styles.${$style}.letter_spacing`)};
+  letter-spacing: calc(${cssVariable(`fonts.styles.${$style}.letter_spacing`)} * 0.75);
+
+  @media only screen and (min-width: 600px) {
+    font-size: ${cssVariable(`fonts.styles.${$style}.font_size`)};
+    font-weight: ${cssVariable(`fonts.styles.${$style}.font_weight`)};
+    letter-spacing: ${cssVariable(`fonts.styles.${$style}.letter_spacing`)};
+  }
   `}
+  ${({ $size }) => $size && `font-size: ${$size};`}
   ${({ $weight }) => $weight && `font-weight: ${$weight};`}
   ${({ $decoration }) => $decoration && `text-decoration: ${$decoration};`}
 `;
@@ -39,6 +47,7 @@ type BaseTextProps = {
   color?: TextColor;
   align?: CSSProperties["textAlign"];
   style?: keyof (typeof ThemeTokens)["fonts"]["styles"];
+  size?: CSSProperties["fontSize"];
   weight?: CSSProperties["fontWeight"];
   decoration?: CSSProperties["textDecoration"];
 };
@@ -57,6 +66,7 @@ const Text = ({
   children,
   align,
   style = "base",
+  size,
   weight,
   decoration,
   ...props
@@ -67,6 +77,7 @@ const Text = ({
       $color={color}
       $align={align}
       $style={style}
+      $size={size}
       $weight={weight}
       $decoration={decoration}
       {...props}

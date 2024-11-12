@@ -33,7 +33,7 @@
             },
             "unbilled_activity": {
               "title": "Temps non facturé",
-              "description": "Activités pour le plaisir ou nécessaires, n’étant pas rémunérées."
+              "description": "Activités n’étant pas rémunérées."
             }
           },
           "title": "Mon portfolio d'activités",
@@ -212,11 +212,19 @@
               "label": "Chiffre d’affaires annuel estimé 💶"
             },
             "average_enjoyment_rate": {
-              "label": "Niveau de kiff"
+              "label": "Niveau de kiff",
+              "sub_text": {
+                "0/5": "-",
+                "1/5": "Aie aie aie",
+                "2/5": "Pas ouf...",
+                "3/5": "Moyen.",
+                "4/5": "Pas mal du tout !",
+                "5/5": "Excellent !"
+              }
             },
             "total_number_of_days_available_per_week": {
               "label": "Temps disponible par semaine ⏳",
-              "default_sub_text": "N’hésite pas à compléter ton portfolio d’activités ! 😃",
+              "default_sub_text": "N’hésite pas à compléter ton portfolio d’activités !",
               "more_days_worked_than_days_available": {
                 "text": "À vérifier",
                 "sub_text_one": "Attention la semaine que tu as composée comporte {{count}} jour. C'est + que tu ne peux en travailler, c’est gourmand ça !",
@@ -224,7 +232,7 @@
               },
               "perfectly_balanced": {
                 "text": "Ta semaine est complète",
-                "sub_text": "Ça dépote par ici, bravo ! 😃"
+                "sub_text": "Ça dépote par ici, bravo !"
               },
               "hours": {
                 "text_one": "{{count}} heure",
@@ -237,9 +245,16 @@
                 "text_one": "{{count}} jour",
                 "text_other": "{{count}} jours"
               }
-            }
+            },
+            "expand": "Voir plus",
+            "collapse": "Voir moins"
           },
           "charts": {
+            "title": "Et en détail ça donne quoi ?",
+            "link_to_inputs": {
+              "text": "N’hésite pas à ajuster ton portfolio d’activités pour créer ta semaine idéale !",
+              "cta": "Modifier mon portfolio"
+            },
             "week_chart": {
               "remaining_days_one": "{{count}} jour disponible",
               "remaining_days_other": "{{count}} jours disponibles"

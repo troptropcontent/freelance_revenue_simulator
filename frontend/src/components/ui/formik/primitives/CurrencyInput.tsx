@@ -5,7 +5,7 @@ import { Field } from "formik";
 
 const StyledInput = styled(Field)`
   all: unset;
-  width: 45px;
+  width: 55px;
 
   /* Remove the arrows */
   /* Chrome, Safari, Edge, Opera */
@@ -31,8 +31,8 @@ const CurrencyInput = ({
     <Box
       as="span"
       flex
-      borderRadius={"sm"}
-      border={{ color: "neutral.dark", size: "sm" }}
+      borderRadius={7}
+      border={{ color: "neutral.dark", size: "xs" }}
       padding="sm"
       gap="sm"
       justifyContent="center"

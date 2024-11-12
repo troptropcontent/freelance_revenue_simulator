@@ -33,7 +33,7 @@ CustomSelectContent.displayName = "CustomSelectContent";
 const StyledSelectContent = styled(CustomSelectContent)`
   overflow: hidden;
   background-color: white;
-  border-radius: 6px;
+  border-radius: 7px;
   box-shadow:
     0px 10px 38px -10px rgba(22, 23, 24, 0.35),
     0px 10px 20px -15px rgba(22, 23, 24, 0.2);
@@ -59,9 +59,8 @@ const StyledSelectInputTrigger = styled(CustomSelectInputTrigger)`
   gap: ${cssVariable("spacing.sm")};
   background-color: white;
 
-  border: ${cssVariable("border.sm")} solid
-    ${cssVariable("color.border.neutral.dark")};
-  border-radius: ${cssVariable("borderRadius.sm")};
+  border: 1px solid ${cssVariable("color.border.neutral.dark")};
+  border-radius: 7px;
 
   &:hover {
     background-color: ${cssVariable("color.background.neutral.medium")};
@@ -137,7 +136,7 @@ CustomSelectItem.displayName = "CustomSelectItem";
 
 const StyledSelectItem = styled(CustomSelectItem)`
   font-size: ${cssVariable("fonts.size.xs")};
-  border-radius: ${cssVariable("borderRadius.xs")};
+  border-radius: 7px;
   display: flex;
   align-items: center;
   padding: 8px 35px 8px 25px;

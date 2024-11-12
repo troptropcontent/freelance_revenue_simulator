@@ -59,14 +59,14 @@ const ThemeTokens = {
         a12: "#000000f2",
       },
       brand: {
-        light: "#FFEAC5",
-        medium: "#f4a261",
-        dark: "#e76f51",
+        light: "#32164B",
+        medium: "#32164B",
+        dark: "#F8D470",
       },
     },
     text: {
       primary: {
-        light: "#8466A3",
+        light: "#6A5A7D",
         medium: "#32164B",
         dark: "#1E0F34",
       },

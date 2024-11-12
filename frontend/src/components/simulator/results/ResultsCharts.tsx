@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { RevenueRepartitionChartsGroup } from "./charts/RevenueRepartitionChartsGroup";
 import { WeekRepartitionChartsGroup } from "./charts/WeekRepartitionChartsGroup";
 import { EnjoymentRateRepartitionChartsGroup } from "./charts/EnjoymentRateRepartitionChartsGroup";

@@ -25,20 +25,18 @@ const StyledTextTag = styled(TextTag)<{
 }>`
   color: ${(props) => cssVariable(`color.text.${props.$color}`)};
   ${(props) => props.$align && `text-align: ${props.$align};`}
-  ${({ $style }) =>
+  ${({ $style, $size, $weight }) =>
     `
-  font-size: calc(${cssVariable(`fonts.styles.${$style}.font_size`)} * 0.75);
-  font-weight: ${cssVariable(`fonts.styles.${$style}.font_weight`)};
+  font-size: ${$size ? `${typeof $size == "string" ? `${$size}` : `${$size}px`}` : `calc(${cssVariable(`fonts.styles.${$style}.font_size`)} * 0.75)`};
+  font-weight: ${$weight ? $weight : cssVariable(`fonts.styles.${$style}.font_weight`)};
   letter-spacing: calc(${cssVariable(`fonts.styles.${$style}.letter_spacing`)} * 0.75);
 
   @media only screen and (min-width: 600px) {
-    font-size: ${cssVariable(`fonts.styles.${$style}.font_size`)};
-    font-weight: ${cssVariable(`fonts.styles.${$style}.font_weight`)};
+    font-size: ${$size ? `${typeof $size == "string" ? `${$size}` : `${$size}px`}` : `${cssVariable(`fonts.styles.${$style}.font_size`)}`};
+    font-weight: ${$weight ? $weight : cssVariable(`fonts.styles.${$style}.font_weight`)};
     letter-spacing: ${cssVariable(`fonts.styles.${$style}.letter_spacing`)};
   }
   `}
-  ${({ $size }) => $size && `font-size: ${$size};`}
-  ${({ $weight }) => $weight && `font-weight: ${$weight};`}
   ${({ $decoration }) => $decoration && `text-decoration: ${$decoration};`}
 `;
 

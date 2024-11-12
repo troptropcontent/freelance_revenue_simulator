@@ -267,7 +267,7 @@
             },
             "week_ventilation": {
               "title": "Composition de ta semaine type",
-              "available_time_label": "Temps disponible"
+              "available_time_label": "Temps disponible : "
             },
             "enjoyment_ventilation": {
               "title": "Ton niveau de kiff sur la semaine",

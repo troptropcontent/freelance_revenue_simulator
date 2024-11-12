@@ -30,6 +30,7 @@ const EnjoymentChart = () => {
             </Text>
           </Box>
         )}
+        remainingLabelFormater={() => null}
       />
     </Box>
   );

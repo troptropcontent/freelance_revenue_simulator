@@ -87,15 +87,27 @@ const Label = styled.span<{ $color?: string }>`
   }
 `;
 
+const DefaultRemainingLabel = ({ value }: { value: number }) => {
+  const { t } = useTranslation();
+  return (
+    <Label $color={REMAINING_COLOR}>
+      {t("simulator.results.charts.week_chart.remaining_days", {
+        count: value,
+      })}
+    </Label>
+  );
+};
+
 const WeekChart = ({
   data,
   number_of_days,
   labelFormater,
+  remainingLabelFormater,
 }: {
   data: WeekChartData[];
   number_of_days: number;
   labelFormater?: (element: WeekChartData, data: WeekChartData[]) => ReactNode;
-  remainingLabelFormater?: (value: number) => ReactNode;
+  remainingLabelFormater?: (value: number, color: string) => ReactNode;
 }) => {
   const weekdays = useLocalisedDaysOfWeek();
 
@@ -136,15 +148,12 @@ const WeekChart = ({
               </Label>
             ),
         )}
-        {/* {Math.round(remaining) > 0 && (
-          <Label>
-            {remainingLabelFormater
-              ? remainingLabelFormater(remaining)
-              : t("simulator.results.charts.week_chart.remaining_days", {
-                  count: remaining,
-                })}
-          </Label>
-        )} */}
+        {Math.round(remaining) > 0 &&
+          (remainingLabelFormater ? (
+            remainingLabelFormater(remaining, REMAINING_COLOR)
+          ) : (
+            <DefaultRemainingLabel value={remaining} />
+          ))}
       </List.Root>
     </Box>
   );

@@ -7,9 +7,17 @@ import { RevenueByActivityChart } from "./RevenueByActivityChart";
 import { useTranslation } from "react-i18next";
 
 const StyledContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: ${cssVariable("spacing.md")};
+  display: flex;
+  gap: ${cssVariable("spacing.md")};
+
+  flex-direction: column;
+
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
+    & > * {
+      flex: 1 1 0px;
+    }
+  }
 `;
 
 const RevenueRepartitionChartsGroup = () => {

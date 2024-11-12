@@ -4,20 +4,32 @@ import { EnjoymentRateRepartitionChartsGroup } from "./charts/EnjoymentRateRepar
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
   border: 2px solid #ecebeb;
   border-radius: 13px;
-  padding: 50px;
 
-  & > * {
-    flex: calc(33.33% - (2 * 40px / 3));
-    box-sizing: border-box;
-    min-width: calc(500px - 40px);
-    max-width: 900px;
-    margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  padding: 21px;
+
+  @media only screen and (min-width: 600px) {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    & > *:last-child {
+      grid-column: 1/-1;
+    }
   }
+
+  // & > * {
+  //   flex: calc(33.33% - (2 * 40px / 3));
+  //   box-sizing: border-box;
+  //   min-width: calc(300px - 40px);
+  //   max-width: 900px;
+  //   margin-inline: auto;
+  // }
 `;
 
 const ResultsCharts = () => {

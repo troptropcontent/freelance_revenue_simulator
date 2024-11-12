@@ -38,11 +38,6 @@
   margin-right: 2em
 }
 
-.mx-sm {
-  margin-left: 0.5em;
-  margin-right: 0.5em
-}
-
 .mx-md {
   margin-left: 1em;
   margin-right: 1em
@@ -52,20 +47,16 @@
   margin-bottom: 2em
 }
 
+.mt-lg {
+  margin-top: 2em
+}
+
 .mt-md {
   margin-top: 1em
 }
 
 .mt-sm {
   margin-top: 0.5em
-}
-
-.mt-xl {
-  margin-top: 4em
-}
-
-.mt-lg {
-  margin-top: 2em
 }
 
 .flex {
@@ -82,18 +73,6 @@
 
 .h-\[60px\] {
   height: 60px
-}
-
-.h-md {
-  height: 1em
-}
-
-.h-xs {
-  height: 0.25em
-}
-
-.h-\[1px\] {
-  height: 1px
 }
 
 .w-2\/3 {
@@ -200,10 +179,6 @@
   border-top-width: 2px
 }
 
-.border-t-\[1px\] {
-  border-top-width: 1px
-}
-
 .border-solid {
   border-style: solid
 }
@@ -216,11 +191,6 @@
 .border-grey-2 {
   --tw-border-opacity: 1;
   border-color: rgb(172 172 172 / var(--tw-border-opacity))
-}
-
-.border-primary-dark {
-  --tw-border-opacity: 1;
-  border-color: rgb(50 22 75 / var(--tw-border-opacity))
 }
 
 .border-primary-light {
@@ -246,11 +216,6 @@
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
-}
-
-.bg-grey-1 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(212 212 212 / var(--tw-bg-opacity))
 }
 
 .p-md {
@@ -309,10 +274,6 @@
 
 .pt-\[30px\] {
   padding-top: 30px
-}
-
-.pt-md {
-  padding-top: 1em
 }
 
 .pt-lg {
@@ -425,46 +386,14 @@
   text-decoration-line: none
 }
 
-.before\:block::before {
-  content: var(--tw-content);
-  display: block
-}
-
 .before\:flex::before {
   content: var(--tw-content);
   display: flex
 }
 
-.before\:h-\[2px\]::before {
-  content: var(--tw-content);
-  height: 2px
-}
-
-.before\:h-\[1px\]::before {
-  content: var(--tw-content);
-  height: 1px
-}
-
 .before\:w-\[2px\]::before {
   content: var(--tw-content);
   width: 2px
-}
-
-.before\:w-full::before {
-  content: var(--tw-content);
-  width: 100%
-}
-
-.before\:bg-slate-400::before {
-  content: var(--tw-content);
-  --tw-bg-opacity: 1;
-  background-color: rgb(148 163 184 / var(--tw-bg-opacity))
-}
-
-.before\:px-sm::before {
-  content: var(--tw-content);
-  padding-left: 0.5em;
-  padding-right: 0.5em
 }
 
 .before\:content-\[\'\'\]::before {

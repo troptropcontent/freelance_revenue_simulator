@@ -175,7 +175,7 @@ function App() {
           </Box>
           <Box
             id="charts"
-            background="neutral.light"
+            background="neutral.medium"
             flex
             flexDirection="column"
             gap="lg"

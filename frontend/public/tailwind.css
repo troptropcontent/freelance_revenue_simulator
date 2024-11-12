@@ -277,6 +277,25 @@
   background-color: rgb(249 250 251 / var(--tw-bg-opacity))
 }
 
+.bg-\[\#0D3B53\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 59 83 / var(--tw-bg-opacity))
+}
+
+.bg-\[\] {
+  background-color: 
+}
+
+.bg-\[\#37AEF1\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 174 241 / var(--tw-bg-opacity))
+}
+
+.bg-grey-2 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(172 172 172 / var(--tw-bg-opacity))
+}
+
 .p-sm {
   padding: 0.5em
 }
@@ -508,6 +527,11 @@
   color: rgb(255 255 255 / var(--tw-text-opacity))
 }
 
+.text-\[\#0D3B53\] {
+  --tw-text-opacity: 1;
+  color: rgb(13 59 83 / var(--tw-text-opacity))
+}
+
 .no-underline {
   text-decoration-line: none
 }
@@ -520,6 +544,11 @@
 .before\:w-\[3px\]::before {
   content: var(--tw-content);
   width: 3px
+}
+
+.before\:w-\[2px\]::before {
+  content: var(--tw-content);
+  width: 2px
 }
 
 .before\:content-\[\'\'\]::before {
@@ -543,6 +572,11 @@
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity))
+}
+
+.hover\:bg-\[\#0D3B53\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 59 83 / var(--tw-bg-opacity))
 }
 
 .hover\:text-primary-dark:hover {

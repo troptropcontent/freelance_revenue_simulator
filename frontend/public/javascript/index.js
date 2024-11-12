@@ -1,5 +1,5 @@
 // Update all {{currentUrl}} by the current url of the website
-const currentUrl = window.location.href;
+const currentUrl = window.location.origin;
 document.body.innerHTML = document.body.innerHTML.replace(
   /{{currentUrl}}/g,
   currentUrl,

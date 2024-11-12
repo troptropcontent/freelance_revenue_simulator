@@ -1,6 +1,39 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-CV1YM2T0H3"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://onsite.optimonk.com/script.js?account=243350"
+      async
+    ></script>
+    <script>
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 5194519, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CV1YM2T0H3");
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <link rel="stylesheet" href="/index.css" />
@@ -128,7 +161,7 @@
             </p>
           </span>
           <a
-            href="#"
+            href="https://rebrand.ly/solodougs"
             class="absolute left-auto right-auto bottom-[calc(-11px-0.5em)] button button--primary text-base bg-[#37AEF1] visited:text-white hover:bg-[#0D3B53] hover:text-zhite"
           >
             1 mois offert
@@ -154,7 +187,7 @@
           class="border-solid border border-grey-1 px-lg rounded-md flex items-center justify-center"
         >
           <p class="text-base text-[13px] sm:text-base" id="copy_link_target">
-            {{currentUrl}}
+            {{currentUrl}}/?utm_source=partage
           </p>
         </span>
         <button
@@ -168,7 +201,7 @@
         <a
           target="_blank"
           class="text-primary-dark visited:text-primary-dark"
-          href="https://www.facebook.com/sharer/sharer.php?u={{currentUrl}}"
+          href="https://www.facebook.com/sharer/sharer.php?u={{currentUrl}}/?utm_source=partage_facebook"
         >
           <svg
             id="fb"
@@ -187,7 +220,7 @@
         <a
           target="_blank"
           class="text-primary-dark visited:text-primary-dark"
-          href="https://www.linkedin.com/shareArticle?mini=true&url={{currentUrl}}"
+          href="https://www.linkedin.com/shareArticle?mini=true&url={{currentUrl}}/?utm_source=partage_linkedin"
         >
           <svg
             id="linkedin"
@@ -210,7 +243,7 @@
         <a
           class="text-primary-dark visited:text-primary-dark"
           target="_blank"
-          href="mailto:info@example.com?&subject=&cc=&bcc=&body={{currentUrl}}"
+          href="mailto:info@example.com?&subject=&cc=&bcc=&body={{currentUrl}}/?utm_source=partage_email"
         >
           <svg
             id="mail"
@@ -229,7 +262,7 @@
         <a
           target="_blank"
           class="text-primary-dark visited:text-primary-dark"
-          href="https://wa.me/?text=https://{{currentUrl}}"
+          href="https://wa.me/?text=https://{{currentUrl}}/?utm_source=partage_whatsapp"
         >
           <svg
             id="whatsapp"

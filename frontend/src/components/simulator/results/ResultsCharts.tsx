@@ -1,8 +1,4 @@
-import { Box } from "src/components/ui/Box";
-import { Text } from "src/components/ui/Text";
 import { useTranslation } from "react-i18next";
-import { AverageWeekChart } from "./charts/AverageWeekChart";
-import { EnjoymentChart } from "./charts/EnjoymentChart";
 import { RevenueRepartitionChartsGroup } from "./charts/RevenueRepartitionChartsGroup";
 import { WeekRepartitionChartsGroup } from "./charts/WeekRepartitionChartsGroup";
 import { EnjoymentRateRepartitionChartsGroup } from "./charts/EnjoymentRateRepartitionChartsGroup";
@@ -24,8 +20,6 @@ const StyledContainer = styled.div`
 `;
 
 const ResultsCharts = () => {
-  const { t } = useTranslation();
-
   return (
     <StyledContainer>
       <RevenueRepartitionChartsGroup />

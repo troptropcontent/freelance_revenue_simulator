@@ -6,7 +6,7 @@ import {
 } from "./private/hooks";
 import { Text } from "src/components/ui/Text";
 import { useTranslation } from "react-i18next";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import { NumberOfDaysAvailable } from "./private/NumberOfDaysAvailable";

@@ -9,7 +9,6 @@ import { ResultsDetails } from "./components/simulator/results/ResultsDetails";
 import { useFormInitialValues } from "./shared/hooks";
 import { Text } from "./components/ui/Text";
 import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
-import { cssVariable } from "./components/helper";
 import { ResultsDetailsMobile } from "./components/simulator/results/ResultsDetailsMobile";
 
 const StyledForm = styled.form`

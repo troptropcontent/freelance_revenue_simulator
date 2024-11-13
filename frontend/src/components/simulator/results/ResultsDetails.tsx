@@ -57,6 +57,7 @@ const ResultsDetails = () => {
               flexDirection="column"
               alignItems="center"
               padding={{ block: "sm" }}
+              gap={15}
             >
               <RatingInput
                 size="lg"

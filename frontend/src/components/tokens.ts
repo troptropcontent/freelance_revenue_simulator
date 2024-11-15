@@ -25,6 +25,11 @@ interface FontStyle {
   font_weight: keyof typeof FontWeights;
 }
 
+interface ResponsiveFontStyle {
+  small: FontStyle;
+  normal: FontStyle;
+}
+
 interface Tokens {
   color: {
     background: {
@@ -72,16 +77,22 @@ interface Tokens {
   };
   fonts: {
     styles: {
-      biggest: FontStyle;
-      title_1: FontStyle;
-      subtitle_1: FontStyle;
-      title_2: FontStyle;
-      subtitle_2: FontStyle;
-      title_3: FontStyle;
-      sub_title_3: FontStyle;
-      base: FontStyle;
-      footer: FontStyle;
-      call_to_action: FontStyle;
+      hero_title: ResponsiveFontStyle;
+      hero_subtitle: ResponsiveFontStyle;
+      hero_text: ResponsiveFontStyle;
+      title_n1: ResponsiveFontStyle;
+      subtitle_n1: ResponsiveFontStyle;
+      title_n2: ResponsiveFontStyle;
+      subtitle_n2: ResponsiveFontStyle;
+      title_n3_activities: ResponsiveFontStyle;
+      subtitle_n3: ResponsiveFontStyle;
+      text: ResponsiveFontStyle;
+      text_section: ResponsiveFontStyle;
+      results: ResponsiveFontStyle;
+      footer: ResponsiveFontStyle;
+      text_in_charts: ResponsiveFontStyle;
+      text_in_charts_semibold: ResponsiveFontStyle;
+      call_to_action: ResponsiveFontStyle;
     };
     family: {
       default: string;
@@ -118,5 +129,8 @@ interface Tokens {
     xl: string;
   };
 }
+
 export { FontWeights };
 export type { Tokens, ColorValueHex };
+
+

@@ -16,16 +16,22 @@ const mappedFontSizes = () => {
     ]
   > = {};
   return Object.keys(font_sizes).reduce((prev, current_key) => {
-    const { font_size, font_weight, letter_spacing, line_height } =
+    const responsive_font_sizes =
       font_sizes[current_key as keyof typeof font_sizes];
-    prev[current_key] = [
+
+    Object.keys(responsive_font_sizes).forEach((key) => {
+      const { font_size, font_weight, letter_spacing, line_height } =
+        responsive_font_sizes[key as keyof typeof responsive_font_sizes];
+
+      prev[`${current_key}-${key}`] = [
       font_size,
       {
         fontWeight: FontWeights[font_weight].toString(),
         letterSpacing: letter_spacing,
-        lineHeight: line_height,
-      },
-    ];
+          lineHeight: line_height,
+        },
+      ];
+    });
     return prev;
   }, initial_value);
 };
@@ -33,6 +39,7 @@ const mappedFontSizes = () => {
 export default {
   content: ["./index.html", "./public/legal.html"],
   theme: {
+    screens: ThemeTokens.screens,
     spacing: ThemeTokens.spacing,
     extend: {
       fontSize: mappedFontSizes(),

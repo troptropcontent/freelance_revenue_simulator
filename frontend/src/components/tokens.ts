@@ -84,7 +84,7 @@ interface Tokens {
       subtitle_n1: ResponsiveFontStyle;
       title_n2: ResponsiveFontStyle;
       subtitle_n2: ResponsiveFontStyle;
-      title_n3_activities: ResponsiveFontStyle;
+      title_n3: ResponsiveFontStyle;
       subtitle_n3: ResponsiveFontStyle;
       text: ResponsiveFontStyle;
       text_section: ResponsiveFontStyle;
@@ -123,6 +123,12 @@ interface Tokens {
   };
   border: {
     xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+  };
+  screens: {
     sm: string;
     md: string;
     lg: string;

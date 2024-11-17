@@ -7,7 +7,7 @@ const EnjoymentRateRepartitionChartsGroup = () => {
   const { t } = useTranslation();
   return (
     <Box flex flexDirection="column" gap={25}>
-      <Text style="subtitle_1" align="center">
+      <Text style="subtitle_n1" align="center">
         {t("simulator.results.charts.enjoyment_ventilation.title")}
       </Text>
       <EnjoymentChart />

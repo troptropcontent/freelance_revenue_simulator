@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { cssVariable, TextColor } from "src/components/helper";
+import { cssVariable, mediaQueries, TextColor } from "src/components/helper";
 import { CSSProperties, ReactNode } from "react";
 import { ThemeTokens } from "../constants";
 
@@ -27,15 +27,15 @@ const StyledTextTag = styled(TextTag)<{
   ${(props) => props.$align && `text-align: ${props.$align};`}
   ${({ $style, $size, $weight }) =>
     `
-  font-size: ${$size ? `${typeof $size == "string" ? `${$size}` : `${$size}px`}` : `calc(${cssVariable(`fonts.styles.${$style}.font_size`)} * 0.75)`};
-  font-weight: ${$weight ? $weight : cssVariable(`fonts.styles.${$style}.font_weight`)};
-  letter-spacing: calc(${cssVariable(`fonts.styles.${$style}.letter_spacing`)} * 0.75);
+  font-size: ${$size ? `${typeof $size == "string" ? `${$size}` : `${$size}px`}` : cssVariable(`fonts.styles.${$style}.small.font_size`)};
+  font-weight: ${$weight ? $weight : cssVariable(`fonts.styles.${$style}.small.font_weight`)};
+  letter-spacing: ${cssVariable(`fonts.styles.${$style}.small.letter_spacing`)};
 
-  @media only screen and (min-width: 600px) {
-    font-size: ${$size ? `${typeof $size == "string" ? `${$size}` : `${$size}px`}` : `${cssVariable(`fonts.styles.${$style}.font_size`)}`};
-    font-weight: ${$weight ? $weight : cssVariable(`fonts.styles.${$style}.font_weight`)};
-    letter-spacing: ${cssVariable(`fonts.styles.${$style}.letter_spacing`)};
-  }
+  ${mediaQueries("md")`
+    font-size: ${$size ? `${typeof $size == "string" ? `${$size}` : `${$size}px`}` : `${cssVariable(`fonts.styles.${$style}.normal.font_size`)}`};
+    font-weight: ${$weight ? $weight : cssVariable(`fonts.styles.${$style}.normal.font_weight`)};
+    letter-spacing: ${cssVariable(`fonts.styles.${$style}.normal.letter_spacing`)};
+    `}
   `}
   ${({ $decoration }) => $decoration && `text-decoration: ${$decoration};`}
 `;
@@ -63,7 +63,7 @@ const Text = ({
   color = "primary.medium",
   children,
   align,
-  style = "base",
+  style = "text",
   size,
   weight,
   decoration,

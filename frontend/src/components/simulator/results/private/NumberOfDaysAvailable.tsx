@@ -35,7 +35,7 @@ const NumberOfDaysAvailable = ({
       alignItems="center"
     >
       <Text
-        style="biggest"
+        style="results"
         size={is_small_screen ? "32px" : undefined}
         align="center"
         color={
@@ -56,7 +56,6 @@ const NumberOfDaysAvailable = ({
       </Text>
       <Text
         color="primary.light"
-        style="base"
         size={is_small_screen ? "12px" : undefined}
         align="center"
       >

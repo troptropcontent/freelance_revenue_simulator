@@ -225,7 +225,7 @@ const ThemeTokens = {
           "font_weight": "medium"
         }
       },
-      "title_n3_activities": {
+      "title_n3": {
         "small": {
           "font_size": "13px",
           "line_height": "17.51px",
@@ -386,6 +386,12 @@ const ThemeTokens = {
     lg: "0.5em", // 8px
     xl: "1em", // 16px
   },
+  screens: {
+    sm: '480px',
+    md: '768px',
+    lg: '976px',
+    xl: '1440px',
+  }
 } as const satisfies DefaultTheme;
 
 export { ThemeTokens };

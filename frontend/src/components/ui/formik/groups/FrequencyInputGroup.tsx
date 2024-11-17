@@ -20,7 +20,7 @@ const FrequencyInputGroup = ({
       justifyContent="space-between"
       alignItems="center"
     >
-      <Text as="label" style="base" htmlFor={`${name}_value`}>
+      <Text as="label"  htmlFor={`${name}_value`}>
         {label}
       </Text>
       <Box flex flexDirection="row" gap="md">

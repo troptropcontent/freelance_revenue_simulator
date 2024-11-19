@@ -106,9 +106,7 @@ const Range = ({
             <Text>{valueFormater ? valueFormater(value) : value}</Text>
           </Box>
         </StyledLabel>
-        <Text style="base" color="muted.medium">
-          {hint}
-        </Text>
+        <Text color="muted.medium">{hint}</Text>
       </Box>
       <StyledSliderRoot
         value={[value]}

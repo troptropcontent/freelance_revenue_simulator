@@ -114,7 +114,7 @@ const Dialog = ({ children, trigger, title, description }: DialogProps) => {
           </PrimitiveDialog.Close>
           <Box padding="lg" flex flexDirection="column" gap={"sm"}>
             <PrimitiveDialog.Title className="DialogTitle">
-              <Text style={"title_2"} align="center">
+              <Text style={"title_n2"} align="center">
                 {title}
               </Text>
             </PrimitiveDialog.Title>

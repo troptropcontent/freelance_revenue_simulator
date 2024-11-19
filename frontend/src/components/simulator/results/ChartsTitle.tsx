@@ -17,7 +17,7 @@ const ChartsTitle = () => {
 
   return (
     <Box flex flexDirection="column" alignItems="center" gap={11}>
-      <Text style="title_1" align="center">
+      <Text style="title_n1" align="center">
         {t("simulator.results.charts.title")}
       </Text>
       {total_annual_turnover == 0 && total_number_of_days_worked == 0 && (

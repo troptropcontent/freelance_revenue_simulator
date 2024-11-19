@@ -135,7 +135,7 @@ function App() {
                 alignItems="center"
                 justifyContent="center"
               >
-                <Text align="center" style="title_1">
+                <Text align="center" style="title_n1">
                   {t("simulator.activities.title")}
                 </Text>
               </Box>
@@ -154,7 +154,7 @@ function App() {
                 alignItems="center"
                 id="result_title"
               >
-                <Text align="center" style="title_1">
+                <Text align="center" style="title_n1">
                   {t("simulator.results.title")}
                 </Text>
               </Box>
@@ -184,7 +184,7 @@ function App() {
             <ChartsTitle />
             <ResultsCharts />
             <Box flex flexDirection="column" alignItems="center" gap={20}>
-              <Text style="title_3" align="center">
+              <Text style="text_section" align="center">
                 {t("simulator.results.charts.link_to_inputs.text")}
               </Text>
               <Box>
@@ -196,7 +196,9 @@ function App() {
                     history.replaceState(null, "", url);
                   }}
                 >
-                  {t("simulator.results.charts.link_to_inputs.cta")}
+                  <Text style="call_to_action">
+                    {t("simulator.results.charts.link_to_inputs.cta")}
+                  </Text>
                 </Button>
               </Box>
             </Box>

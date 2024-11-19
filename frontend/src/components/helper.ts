@@ -1,3 +1,4 @@
+import { ThemeTokens } from "./constants";
 import { FontWeights, Tokens } from "./tokens";
 
 type RecursiveKeyOf<TObj extends object> = {
@@ -147,11 +148,26 @@ const createBorderRadiusStyle = (borderRadius: BorderRadius) => {
 
   return Object.entries(borderRadius)
     .map(([key, value]) => {
-      const cssValue = typeof value == "string" ? cssVariable(`borderRadius.${value}`) : `${value}px`
-   
+      const cssValue =
+        typeof value == "string"
+          ? cssVariable(`borderRadius.${value}`)
+          : `${value}px`;
+
       return `${BorderRadiusKeys[key as keyof typeof BorderRadiusKeys]}: ${cssValue};`;
     })
     .join("");
+};
+
+const mediaQueries = (screen: keyof Tokens["screens"]) => {
+  return (strings: TemplateStringsArray, ...expressions: unknown[]) => {
+    return `
+    @media (min-width: ${ThemeTokens.screens[screen]}) {
+      ${strings.reduce((acc, str, i) => {
+        return acc + str + (expressions[i] != null ? expressions[i] : "");
+      }, "")}
+    }
+    `;
+  };
 };
 
 const cssVariables = (theme: Tokens) => {
@@ -159,6 +175,7 @@ const cssVariables = (theme: Tokens) => {
 };
 
 export {
+  mediaQueries,
   cssVariables,
   cssVariable,
   createPaddingStyle,

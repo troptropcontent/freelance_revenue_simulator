@@ -16,9 +16,7 @@ const RevenueByKindsChart = () => {
             type: "freelancing",
             color: "#ECEBEB",
             value: 1,
-            label:
-              ActivityKindEmoji["freelancing"] +
-              t(`simulator.activities.kinds.freelancing.title`),
+            label: `${ActivityKindEmoji["freelancing"]} ${t(`simulator.activities.kinds.freelancing.title`)}`,
           },
         ];
 
@@ -28,10 +26,10 @@ const RevenueByKindsChart = () => {
         data={chart_data}
         title={`${Math.round((total / 1000) * 10) / 10}K€`}
         labelFormater={({ label, value }) => (
-          <>
-            <data>{`${Math.round((value / 1000) * 10) / 10}K€`}</data>
-            <Text>{label}</Text>
-          </>
+          <Box padding={{ left: 10 }} flex gap={10} alignItems="center">
+            <Text style="text_in_charts_semibold">{`${Math.round((value / 1000) * 10) / 10}K€`}</Text>
+            <Text style="text_in_charts">{label}</Text>
+          </Box>
         )}
       />
     </Box>

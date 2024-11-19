@@ -46,6 +46,7 @@ const StyledForm = styled.form`
       top: auto;
       left: 0%;
       right: 0%;
+      box-shadow: 0px -2px 20px #00000030;
 
       z-index: 99999999;
       width: 100%;

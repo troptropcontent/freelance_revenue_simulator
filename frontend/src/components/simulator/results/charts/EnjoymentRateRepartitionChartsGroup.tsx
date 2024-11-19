@@ -9,7 +9,12 @@ const EnjoymentRateRepartitionChartsGroup = () => {
   const total_number_of_days_available_per_week =
     useTotalNumberOfDaysAvailablePerWeek();
   return (
-    <Box flex flexDirection="column" gap={25} blured={Math.round(total_number_of_days_available_per_week) < 0}>
+    <Box
+      flex
+      flexDirection="column"
+      gap={25}
+      blured={Math.round(total_number_of_days_available_per_week) < 0}
+    >
       <Text style="subtitle_n1" align="center">
         {t("simulator.results.charts.enjoyment_ventilation.title")}
       </Text>

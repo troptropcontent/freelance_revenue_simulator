@@ -15,7 +15,9 @@ const RevenueByKindsChart = () => {
             type: "freelancing",
             color: "#ECEBEB",
             value: 1,
-            label: t("simulator.results.charts.revenue_ventilation.unstarted_label"),
+            label: t(
+              "simulator.results.charts.revenue_ventilation.unstarted_label",
+            ),
           },
         ];
 

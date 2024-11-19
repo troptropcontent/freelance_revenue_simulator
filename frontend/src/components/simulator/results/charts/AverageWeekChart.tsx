@@ -36,7 +36,12 @@ const AverageWeekChart = () => {
   });
 
   return (
-    <Box background="white" padding="md" borderRadius="md" blured={Math.round(total_number_of_days_available_per_week) < 0}>
+    <Box
+      background="white"
+      padding="md"
+      borderRadius="md"
+      blured={Math.round(total_number_of_days_available_per_week) < 0}
+    >
       <WeekChart
         number_of_days={number_of_days_worked_per_week}
         data={chart_data}

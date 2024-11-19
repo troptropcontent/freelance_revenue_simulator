@@ -22,29 +22,12 @@ const useLocalisedDaysOfWeek = (): string[] => {
   return weekdays;
 };
 
-export interface WeekChartDataWithLabel {
+export interface WeekChartData {
   color: string;
   value: number;
-  label: ReactNode;
+  label?: ReactNode;
+  labelFormater?: (element: WeekChartData, data: WeekChartData[]) => ReactNode;
 }
-
-export interface WeekChartDataWithI18n {
-  color: string;
-  value: number;
-  label_i18n_key: string;
-  label_i18n_args?: unknown;
-}
-
-export interface WeekChartDataWithLabelFormater {
-  color: string;
-  value: number;
-  labelFormater: (element: WeekChartData, data: WeekChartData[]) => ReactNode;
-}
-
-export type WeekChartData =
-  | WeekChartDataWithLabel
-  | WeekChartDataWithLabelFormater
-  | WeekChartDataWithI18n;
 
 const MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK = 7 as const;
 
@@ -134,7 +117,7 @@ const WeekChart = ({
       </Container>
       <List.Root gap="sm">
         {data.map(
-          ({ value, label, color, labelFormater }, i) =>
+          ({value, color, label, labelFormater}, i) =>
             value != 0 &&
             (labelFormater ? (
               labelFormater({ value, label, color, labelFormater }, data)

@@ -27,6 +27,7 @@ type BoxProps = {
   border?: Border;
   width?: number | { min?: number; max?: number };
   flexWrap?: CSSProperties["flexWrap"];
+  blured?: boolean;
 };
 
 const BoxTag = ({
@@ -56,6 +57,7 @@ const StyledBox = styled(BoxTag)<{
   $border?: Border;
   $width?: React.ComponentProps<typeof Box>["width"];
   $flexWrap?: CSSProperties["flexWrap"];
+  $blured?: React.ComponentProps<typeof Box>["blured"]
 }>`
   ${(props) =>
     props.as === "ul" && `list-style-type: none; padding: 0; margin: 0;`}
@@ -96,6 +98,7 @@ const StyledBox = styled(BoxTag)<{
   }}
   
   ${(props) => props.$flexWrap && `flex-wrap: ${props.$flexWrap};`}
+  ${({$blured}) => $blured && `filter: blur(4px);;`}
 `;
 
 const Box = ({
@@ -114,6 +117,7 @@ const Box = ({
   border,
   width,
   flexWrap,
+  blured,
   ...props
 }: BoxProps & React.ComponentProps<NonNullable<BoxProps["as"]>>) => {
   return (
@@ -132,6 +136,7 @@ const Box = ({
       $border={border}
       $width={width}
       $flexWrap={flexWrap}
+      $blured={blured}
       {...props}
     >
       {children}

@@ -3,7 +3,6 @@ import { PieChart } from "src/components/ui/PieChart";
 import { useRevenueByKindChartData } from "./private/hooks";
 import { Text } from "src/components/ui/Text";
 import { useTranslation } from "react-i18next";
-import { ActivityKindEmoji } from "../../constants";
 
 const RevenueByKindsChart = () => {
   const { total, details } = useRevenueByKindChartData();
@@ -16,7 +15,7 @@ const RevenueByKindsChart = () => {
             type: "freelancing",
             color: "#ECEBEB",
             value: 1,
-            label: `${ActivityKindEmoji["freelancing"]} ${t(`simulator.activities.kinds.freelancing.title`)}`,
+            label: t("simulator.results.charts.revenue_ventilation.unstarted_label"),
           },
         ];
 

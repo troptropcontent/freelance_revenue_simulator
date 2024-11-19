@@ -270,7 +270,8 @@
               }
             },
             "revenue_ventilation": {
-              "title": "Répartition de ton chiffre d’affaires"
+              "title": "Répartition de ton chiffre d’affaires",
+              "unstarted_label": "à compléter"
             },
             "week_ventilation": {
               "title": "Composition de ta semaine type",

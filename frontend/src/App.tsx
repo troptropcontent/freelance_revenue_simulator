@@ -179,6 +179,7 @@ function App() {
             background="neutral.medium"
             flex
             flexDirection="column"
+            alignItems="center"
             gap="lg"
             padding="lg"
           >

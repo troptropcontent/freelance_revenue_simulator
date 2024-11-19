@@ -21,12 +21,12 @@ const ChartsTitle = () => {
         {t("simulator.results.charts.title")}
       </Text>
       {total_annual_turnover == 0 && total_number_of_days_worked == 0 && (
-        <Text align="center" color="error.medium">
+        <Text align="center" style="text_section" color="error.medium">
           {t("simulator.results.charts.unstarted_description")}
         </Text>
       )}
       {Math.round(total_number_of_days_available_per_week) < 0 && (
-        <Text align="center" color="error.medium">
+        <Text style="text_section" align="center" color="error.medium">
           {t("simulator.results.charts.exceeded_description", {
             count: Math.round(total_number_of_days_worked),
           })}

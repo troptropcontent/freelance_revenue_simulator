@@ -16,7 +16,7 @@ const RevenueByActivityChart = () => {
             kind: "freelancing",
             color: "#ECEBEB",
             value: 1,
-            label: t(`simulator.activities.freelance_daily_rate.label`),
+            label: t("simulator.results.charts.revenue_ventilation.unstarted_label"),
           },
         ];
 

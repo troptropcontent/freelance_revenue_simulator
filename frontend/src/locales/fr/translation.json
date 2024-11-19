@@ -260,7 +260,13 @@
             },
             "week_chart": {
               "remaining_days_one": "{{count}} jour disponible",
-              "remaining_days_other": "{{count}} jours disponibles"
+              "remaining_days_other": "{{count}} jours disponibles",
+              "labels": {
+                "entrepreneurial_project": "Projets entrepreneuriaux : <b>{{days}}</b>",
+                "remaining": "<b>Il te reste {{days}} !</b>",
+                "unbilled_activity": "Temps non facturé : <b>{{days}}</b>",
+                "freelancing": "Clients : <b>{{days}}</b>"
+              }
             },
             "revenue_ventilation": {
               "title": "Répartition de ton chiffre d’affaires"
@@ -271,7 +277,8 @@
             },
             "enjoyment_ventilation": {
               "title": "Ton niveau de kiff sur la semaine",
-              "label": "à {{label}} de kiff"
+              "rate_label": "<b>{{days}}</b> à {{rate}} de kiff",
+              "remaining": "<b>Il te reste {{days}} !</b>"
             },
             "value": {
               "title": "Valeur",

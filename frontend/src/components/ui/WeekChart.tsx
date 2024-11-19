@@ -4,6 +4,7 @@ import { cssVariable } from "../helper";
 import { List } from "./List";
 import { Box } from "./Box";
 import { ReactNode } from "react";
+import { Text } from "./Text";
 
 const useLocalisedDaysOfWeek = (): string[] => {
   const {
@@ -22,15 +23,29 @@ const useLocalisedDaysOfWeek = (): string[] => {
   return weekdays;
 };
 
-interface WeekChartData {
-  label: string;
+export interface WeekChartDataWithLabel {
   color: string;
   value: number;
-}
+  label: ReactNode;
+} 
+
+export interface WeekChartDataWithI18n {
+  color: string;
+  value: number;
+  label_i18n_key: string;
+  label_i18n_args?: unknown
+} 
+
+
+export interface WeekChartDataWithLabelFormater {
+  color: string;
+  value: number;
+  labelFormater: (element: WeekChartData, data: WeekChartData[]) => ReactNode
+} 
+ 
+export type WeekChartData = WeekChartDataWithLabel | WeekChartDataWithLabelFormater | WeekChartDataWithI18n
 
 const MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK = 7 as const;
-
-const REMAINING_COLOR = "#ECEBEB" as const;
 
 const Container = styled.div`
   position: relative;
@@ -87,27 +102,12 @@ const Label = styled.span<{ $color?: string }>`
   }
 `;
 
-const DefaultRemainingLabel = ({ value }: { value: number }) => {
-  const { t } = useTranslation();
-  return (
-    <Label $color={REMAINING_COLOR}>
-      {t("simulator.results.charts.week_chart.remaining_days", {
-        count: value,
-      })}
-    </Label>
-  );
-};
-
 const WeekChart = ({
   data,
   number_of_days,
-  labelFormater,
-  remainingLabelFormater,
 }: {
   data: WeekChartData[];
   number_of_days: number;
-  labelFormater?: (element: WeekChartData, data: WeekChartData[]) => ReactNode;
-  remainingLabelFormater?: (value: number, color: string) => ReactNode;
 }) => {
   const weekdays = useLocalisedDaysOfWeek();
 
@@ -116,11 +116,6 @@ const WeekChart = ({
       "The number_of_days props passed to WeekChart is above the MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK",
     );
   }
-
-  const remaining = data.reduce(
-    (acc, element) => acc - element.value,
-    number_of_days,
-  );
 
   return (
     <Box flex flexDirection="column" gap="md">
@@ -134,26 +129,17 @@ const WeekChart = ({
           {data.map(({ value, color }, i) => (
             <DataItem $ratio={value} $color={color} key={i} />
           ))}
-          {Math.round(remaining) > 0 && (
-            <DataItem $ratio={remaining} $color={REMAINING_COLOR} />
-          )}
         </DataContainer>
       </Container>
       <List.Root gap="sm">
         {data.map(
-          (element, i) =>
-            element.value != 0 && (
-              <Label $color={element.color} key={i}>
-                {labelFormater ? labelFormater(element, data) : element.label}
+          ({value, label, color, labelFormater}, i) =>
+            value != 0 && ( labelFormater ? labelFormater({value, label, color, labelFormater}, data) : 
+              <Label $color={color} key={i}>
+                {label}
               </Label>
             ),
         )}
-        {Math.round(remaining) > 0 &&
-          (remainingLabelFormater ? (
-            remainingLabelFormater(remaining, REMAINING_COLOR)
-          ) : (
-            <DefaultRemainingLabel value={remaining} />
-          ))}
       </List.Root>
     </Box>
   );

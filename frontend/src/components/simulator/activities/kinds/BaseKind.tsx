@@ -35,7 +35,9 @@ const BaseKind = ({
         padding={{ bottom: 15, inline: 14 }}
       >
         <Text style="title_n2">{`${ActivityKindEmoji[kind]} ${title}`}</Text>
-        <Text align="center">{description}</Text>
+        <Text style="subtitle_n2" align="center">
+          {description}
+        </Text>
       </Box>
       {children}
     </List.Item>

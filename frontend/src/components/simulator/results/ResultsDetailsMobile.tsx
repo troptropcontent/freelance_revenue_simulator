@@ -28,10 +28,10 @@ const ResultsDetailsMobile = () => {
   return (
     <List.Root gap={22} padding="md">
       <List.Item flex flexDirection="column">
-        <Text style="subtitle_n1" size="15px" align="center">
+        <Text style="subtitle_n1" align="center">
           {t(`simulator.results.details.total_annual_turnover.label`)}
         </Text>
-        <Text weight="bold" size="32px" align="center">
+        <Text style="results" align="center">
           {t("common.currency.EUR_NO_DIGITS", { value: total_annual_turnover })}
         </Text>
       </List.Item>
@@ -41,7 +41,7 @@ const ResultsDetailsMobile = () => {
       >
         <Collapsible.Content $display="flex" $flexDirection="column" $gap={22}>
           <List.Item flex flexDirection="column">
-            <Text style="subtitle_n1" size="15px" align="center">
+            <Text style="subtitle_n1" align="center">
               {t(
                 `simulator.results.details.total_number_of_days_available_per_week.label`,
               )}
@@ -52,7 +52,7 @@ const ResultsDetailsMobile = () => {
             />
           </List.Item>
           <List.Item flex flexDirection="column" padding={{ bottom: 22 }}>
-            <Text style="subtitle_n1" size="15px" align="center">
+            <Text style="subtitle_n1" align="center">
               {t(`simulator.results.details.average_enjoyment_rate.label`)}
             </Text>
             <Formik
@@ -75,11 +75,7 @@ const ResultsDetailsMobile = () => {
                   name="average_rating"
                   max={MAX_RATE}
                 />
-                <Text
-                  color="primary.light"
-                  size="12px"
-                  align="center"
-                >
+                <Text color="primary.light" align="center">
                   {t([
                     `simulator.results.details.average_enjoyment_rate.sub_text.${Math.round(average_enjoyment_rate)}/5`,
                   ])}
@@ -95,7 +91,7 @@ const ResultsDetailsMobile = () => {
                 onClick={() => set_is_collapsible_open(!is_collapsible_open)}
                 color="neutral"
               >
-                <Text size="18px">
+                <Text style="call_to_action">
                   {t(
                     `simulator.results.details.${is_collapsible_open ? "collapse" : "expand"}`,
                   )}

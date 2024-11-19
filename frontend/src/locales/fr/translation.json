@@ -115,7 +115,7 @@
             }
           },
           "consulting": {
-            "label": "Conseil",
+            "label": "Heures de conseil",
             "description": "Coaching, mentoring, etc.",
             "inputs": {
               "rate": {
@@ -131,7 +131,7 @@
             }
           },
           "sponsorship": {
-            "label": "Sponsoring",
+            "label": "Contenus sponsorisés",
             "description": "Newsletter, épisode de podcast, post réseaux sociaux, etc.",
             "inputs": {
               "rate": {

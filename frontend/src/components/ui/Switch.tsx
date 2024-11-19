@@ -6,6 +6,7 @@ const StyledRoot = styled(RadixSwitch.Root)`
   all: unset;
   margin: 3px;
   width: 56px;
+  min-width: 56px;
   height: 29px;
   background-color: ${cssVariable("color.background.neutral.medium")};
   box-shadow: 0 2px 2px ${cssVariable("color.background.black.a2")};

@@ -25,9 +25,9 @@ const useAnnualTurnoverPerActivity = (): {
       (acticity) => acticity.type == "time_off",
     );
 
-    return weeks_off_activity && weeks_off_activity.values
+    return weeks_off_activity && weeks_off_activity.enabled && weeks_off_activity.values
       ? weeks_off_activity.values.quantity
-      : DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR;
+      : 0;
   };
 
   return activities

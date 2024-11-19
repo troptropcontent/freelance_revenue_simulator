@@ -2,6 +2,7 @@ import { RevenueRepartitionChartsGroup } from "./charts/RevenueRepartitionCharts
 import { WeekRepartitionChartsGroup } from "./charts/WeekRepartitionChartsGroup";
 import { EnjoymentRateRepartitionChartsGroup } from "./charts/EnjoymentRateRepartitionChartsGroup";
 import styled from "styled-components";
+import { mediaQueries } from "src/components/helper";
 
 const StyledContainer = styled.div`
   max-width: 900px;
@@ -15,7 +16,7 @@ const StyledContainer = styled.div`
 
   padding: 21px;
 
-  @media only screen and (min-width: 600px) {
+  ${mediaQueries("md")`
     padding: 50px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -23,9 +24,7 @@ const StyledContainer = styled.div`
     & > *:last-child {
       grid-column: 1/-1;
     }
-  }
-
-  // & > * {
+  `}// & > * {
   //   flex: calc(33.33% - (2 * 40px / 3));
   //   box-sizing: border-box;
   //   min-width: calc(300px - 40px);

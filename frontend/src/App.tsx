@@ -12,6 +12,7 @@ import { ResultsCharts } from "./components/simulator/results/ResultsCharts";
 import { ResultsDetailsMobile } from "./components/simulator/results/ResultsDetailsMobile";
 import { Button } from "./components/ui/Button";
 import { ChartsTitle } from "./components/simulator/results/ChartsTitle";
+import { mediaQueries } from "./components/helper";
 
 const StyledForm = styled.form`
   margin-inline: auto;
@@ -54,9 +55,7 @@ const StyledForm = styled.form`
     }
   }
 
-  @media only screen and (min-width: 600px) {
-    // padding-inline: var(--spacing-medium);
-
+  ${mediaQueries("md")`
     #result_title {
       display: block;
     }
@@ -90,7 +89,7 @@ const StyledForm = styled.form`
         flex: 1 1 0px;
       }
     }
-  }
+    `}
 `;
 
 export type ActivityTypes = keyof typeof Activities;

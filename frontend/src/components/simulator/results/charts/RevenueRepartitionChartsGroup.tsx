@@ -1,4 +1,4 @@
-import { cssVariable } from "src/components/helper";
+import { cssVariable, mediaQueries } from "src/components/helper";
 import { Box } from "src/components/ui/Box";
 import { Text } from "src/components/ui/Text";
 import styled from "styled-components";
@@ -12,12 +12,12 @@ const StyledContainer = styled.div`
 
   flex-direction: column;
 
-  @media only screen and (min-width: 600px) {
+  ${mediaQueries("md")`
     flex-direction: row;
     & > * {
       flex: 1 1 0px;
     }
-  }
+  `}
 `;
 
 const RevenueRepartitionChartsGroup = () => {

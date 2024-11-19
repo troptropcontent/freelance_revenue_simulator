@@ -49,7 +49,7 @@
   </head>
   <body>
     <nav
-      class="bg-primary-light flex justify-between items-center px-md sm:px-[60px] py-[12px] h-[60px]"
+      class="bg-primary-light flex justify-between items-center px-md md:px-[60px] py-[12px] h-[60px]"
     >
       <a href="/"
         ><img
@@ -57,34 +57,35 @@
           class="h-[30px] sm:h-[40px]"
           alt="Le logo de soloportfolio"
       /></a>
-      <label id="hamburger-menu" class="sm:hidden" for="menu-open">
+      <label id="hamburger-menu" class="md:hidden" for="menu-open">
         <input type="checkbox" name="menu-open" id="menu-open" />
         <svg
-          width="17px"
-          height="12px"
-          viewBox="0 0 24 24"
+          width="21"
+          height="21"
+          viewBox="0 0 21 21"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M4 18L20 18"
+            d="M2 4H19"
             stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"
           />
           <path
-            d="M4 12L20 12"
+            d="M2 10H19"
             stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"
           />
           <path
-            d="M4 6L20 6"
+            d="M2 16H19"
             stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"
           />
         </svg>
+
         <ul id="hamburger-menu-links" class="py-md">
           <li class="px-md">
             <a
@@ -102,7 +103,7 @@
           </li>
         </ul>
       </label>
-      <ul class="hidden sm:flex gap-[40px] items-center list-none">
+      <ul class="hidden md:flex gap-[40px] items-center list-none">
         <li>
           <a
             href="#who_we_are_section"

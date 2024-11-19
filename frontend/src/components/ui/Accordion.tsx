@@ -78,6 +78,7 @@ const StyledRoot = styled(AccordionRoot)`
   }
   .AccordionHeader {
     display: flex;
+    align-items: center;
   }
 
   .AccordionTrigger {

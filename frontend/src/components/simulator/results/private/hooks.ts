@@ -2,7 +2,6 @@ import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
 import {
   ActivitiesType,
-  DEFAULT_NUMBER_OF_WEEKS_OF_PER_YEAR,
   MAX_RATE,
 } from "src/components/simulator/constants";
 import {

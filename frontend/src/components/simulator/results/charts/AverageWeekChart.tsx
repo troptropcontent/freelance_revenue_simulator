@@ -6,7 +6,6 @@ import { useAverageWeekChartData } from "./private/hooks";
 import { Text } from "src/components/ui/Text";
 import { Trans, useTranslation } from "react-i18next";
 
-
 const AverageWeekChart = () => {
   const {
     values: {
@@ -15,21 +14,23 @@ const AverageWeekChart = () => {
   } = useFormikContext<FormValues>();
   const { t } = useTranslation();
 
-  const {base_data} = useAverageWeekChartData();
+  const { base_data } = useAverageWeekChartData();
 
   const chart_data: WeekChartData[] = base_data.map((element) => {
     return {
       color: element.color,
       value: element.value,
-      label: <Text style="text_in_charts">
-        <Trans
-        i18nKey={`simulator.results.charts.week_chart.labels.${element.type}`}
-        values={{days: t("common.days", {count: element.value})}}
-        components={{ b: <strong /> }}
-      />
-      </Text>
-    }
-  } )
+      label: (
+        <Text style="text_in_charts">
+          <Trans
+            i18nKey={`simulator.results.charts.week_chart.labels.${element.type}`}
+            values={{ days: t("common.days", { count: element.value }) }}
+            components={{ b: <strong /> }}
+          />
+        </Text>
+      ),
+    };
+  });
 
   return (
     <Box background="white" padding="md" borderRadius="md">

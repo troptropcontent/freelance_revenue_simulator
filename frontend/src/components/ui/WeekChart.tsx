@@ -4,7 +4,6 @@ import { cssVariable } from "../helper";
 import { List } from "./List";
 import { Box } from "./Box";
 import { ReactNode } from "react";
-import { Text } from "./Text";
 
 const useLocalisedDaysOfWeek = (): string[] => {
   const {
@@ -27,23 +26,25 @@ export interface WeekChartDataWithLabel {
   color: string;
   value: number;
   label: ReactNode;
-} 
+}
 
 export interface WeekChartDataWithI18n {
   color: string;
   value: number;
   label_i18n_key: string;
-  label_i18n_args?: unknown
-} 
-
+  label_i18n_args?: unknown;
+}
 
 export interface WeekChartDataWithLabelFormater {
   color: string;
   value: number;
-  labelFormater: (element: WeekChartData, data: WeekChartData[]) => ReactNode
-} 
- 
-export type WeekChartData = WeekChartDataWithLabel | WeekChartDataWithLabelFormater | WeekChartDataWithI18n
+  labelFormater: (element: WeekChartData, data: WeekChartData[]) => ReactNode;
+}
+
+export type WeekChartData =
+  | WeekChartDataWithLabel
+  | WeekChartDataWithLabelFormater
+  | WeekChartDataWithI18n;
 
 const MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK = 7 as const;
 
@@ -133,12 +134,15 @@ const WeekChart = ({
       </Container>
       <List.Root gap="sm">
         {data.map(
-          ({value, label, color, labelFormater}, i) =>
-            value != 0 && ( labelFormater ? labelFormater({value, label, color, labelFormater}, data) : 
+          ({ value, label, color, labelFormater }, i) =>
+            value != 0 &&
+            (labelFormater ? (
+              labelFormater({ value, label, color, labelFormater }, data)
+            ) : (
               <Label $color={color} key={i}>
                 {label}
               </Label>
-            ),
+            )),
         )}
       </List.Root>
     </Box>

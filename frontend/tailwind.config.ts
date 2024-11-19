@@ -24,10 +24,10 @@ const mappedFontSizes = () => {
         responsive_font_sizes[key as keyof typeof responsive_font_sizes];
 
       prev[`${current_key}-${key}`] = [
-      font_size,
-      {
-        fontWeight: FontWeights[font_weight].toString(),
-        letterSpacing: letter_spacing,
+        font_size,
+        {
+          fontWeight: FontWeights[font_weight].toString(),
+          letterSpacing: letter_spacing,
           lineHeight: line_height,
         },
       ];

@@ -9,21 +9,20 @@ import {
   ActivityKinds,
 } from "src/components/simulator/constants";
 import { brightenColor } from "./utils";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { ColorValueHex } from "src/components/tokens";
 import {
   AverageWeekChartBaseColors,
   RevenueByActivityChartBaseColors,
   RevenueByKindChartBaseColors,
 } from "./constants";
-import { ReactNode, useMemo } from "react";
+import { useMemo } from "react";
 import {
   RATED_COLOR,
   UNRATED_COLOR,
 } from "src/components/ui/formik/primitives/constants";
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
-import { WeekChartData } from "src/components/ui/WeekChart";
 
 const REMAINING_COLOR = "#ECEBEB" as const;
 
@@ -155,7 +154,6 @@ const useRevenueByKindChartData = () => {
 };
 
 const useAverageWeekChartData = () => {
-  const { t } = useTranslation();
   const {
     values: {
       config: { number_of_days_worked_per_week },
@@ -166,7 +164,11 @@ const useAverageWeekChartData = () => {
   const buildBaseData = () => {
     const result = {
       total: 0,
-      base_data: [] as {type: typeof ActivityKinds[number] | "remaining", color: string, value: number}[],
+      base_data: [] as {
+        type: (typeof ActivityKinds)[number] | "remaining";
+        color: string;
+        value: number;
+      }[],
     };
 
     // Track activity kinds we've already processed
@@ -192,13 +194,13 @@ const useAverageWeekChartData = () => {
         });
       }
     }
-    
+
     const remainingDays = number_of_days_worked_per_week - result.total;
     if (remainingDays > 0) {
       result.base_data.push({
         type: "remaining",
         color: REMAINING_COLOR,
-        value: Math.round(remainingDays)
+        value: Math.round(remainingDays),
       });
     }
 
@@ -207,7 +209,7 @@ const useAverageWeekChartData = () => {
     return result;
   };
 
-  return useMemo(buildBaseData, [t, activities, number_of_days_worked_per_week]);
+  return useMemo(buildBaseData, [activities, number_of_days_worked_per_week]);
 };
 
 const useEnjoymentChartData = () => {
@@ -217,18 +219,18 @@ const useEnjoymentChartData = () => {
       config: { number_of_days_worked_per_week },
     },
   } = useFormikContext<FormValues>();
-  
+
   const buildData = () => {
     const initial_value: {
       rate: string;
       color: string;
       value: number;
     }[] = [];
-    
-    let remaining_days = number_of_days_worked_per_week
+
+    let remaining_days = number_of_days_worked_per_week;
 
     let base_data = enjoyment_rates.reduce((prev, current, i) => {
-      remaining_days -= current
+      remaining_days -= current;
 
       if (current == 0) {
         return prev;
@@ -252,15 +254,15 @@ const useEnjoymentChartData = () => {
         {
           rate: "remaining",
           color: REMAINING_COLOR,
-          value: remaining_days
-        }
-      ]
+          value: remaining_days,
+        },
+      ];
     }
 
-    return base_data
+    return base_data;
   };
 
-  return useMemo(buildData, [enjoyment_rates]);
+  return useMemo(buildData, [enjoyment_rates, number_of_days_worked_per_week]);
 };
 
 export {

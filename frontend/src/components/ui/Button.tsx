@@ -14,8 +14,8 @@ const StyledButton = styled.button<{
       if ($color == "brand") {
         return cssVariable(`color.text.white`);
       }
-    }}
-  };
+    }};
+  }
 
   background-color: ${({ $color }) => {
     if ($color == "white") {
@@ -49,11 +49,11 @@ const StyledButton = styled.button<{
     }};
 
     & > p {
-    color: ${({ $color }) => {
-      if ($color == "brand") {
-        return cssVariable(`color.text.primary.dark`);
-      }
-    }};
+      color: ${({ $color }) => {
+        if ($color == "brand") {
+          return cssVariable(`color.text.primary.dark`);
+        }
+      }};
     }
   }
 

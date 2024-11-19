@@ -8,7 +8,6 @@ import { useTotalNumberOfDaysEffectivelyWorkedPerWeek } from "./hooks";
 
 const NumberOfDaysAvailable = ({
   number_of_days_available,
-  is_small_screen,
 }: {
   number_of_days_available: number;
   is_small_screen?: boolean;

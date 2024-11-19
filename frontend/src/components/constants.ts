@@ -127,230 +127,230 @@ const ThemeTokens = {
   },
   fonts: {
     styles: {
-      "hero_title": {
-        "small": {
-          "font_size": "35px",
-          "line_height": "32.73px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
+      hero_title: {
+        small: {
+          font_size: "35px",
+          line_height: "32.73px",
+          letter_spacing: "0px",
+          font_weight: "bold",
         },
-        "normal": {
-          "font_size": "65px",
-          "line_height": "60px", 
-          "letter_spacing": "0px",
-          "font_weight": "bold"
-        }
+        normal: {
+          font_size: "65px",
+          line_height: "60px",
+          letter_spacing: "0px",
+          font_weight: "bold",
+        },
       },
-      "hero_subtitle": {
-        "small": {
-          "font_size": "21px",
-          "line_height": "24px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
+      hero_subtitle: {
+        small: {
+          font_size: "21px",
+          line_height: "24px",
+          letter_spacing: "0px",
+          font_weight: "bold",
         },
-        "normal": {
-          "font_size": "35px",
-          "line_height": "60px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
-        }
+        normal: {
+          font_size: "35px",
+          line_height: "60px",
+          letter_spacing: "0px",
+          font_weight: "bold",
+        },
       },
-      "hero_text": {
-        "small": {
-          "font_size": "15px",
-          "line_height": "20px",
-          "letter_spacing": "0px",
-          "font_weight": "normal"
+      hero_text: {
+        small: {
+          font_size: "15px",
+          line_height: "20px",
+          letter_spacing: "0px",
+          font_weight: "normal",
         },
-        "normal": {
-          "font_size": "24px",
-          "line_height": "36.75px",
-          "letter_spacing": "0px",
-          "font_weight": "normal"
-        }
+        normal: {
+          font_size: "24px",
+          line_height: "36.75px",
+          letter_spacing: "0px",
+          font_weight: "normal",
+        },
       },
-      "title_n1": {
-        "small": {
-          "font_size": "20px",
-          "line_height": "27px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
+      title_n1: {
+        small: {
+          font_size: "20px",
+          line_height: "27px",
+          letter_spacing: "0px",
+          font_weight: "bold",
         },
-        "normal": {
-          "font_size": "35px",
-          "line_height": "48px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
-        }
+        normal: {
+          font_size: "35px",
+          line_height: "48px",
+          letter_spacing: "0px",
+          font_weight: "bold",
+        },
       },
-      "subtitle_n1": {
-        "small": {
-          "font_size": "15px",
-          "line_height": "18px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
+      subtitle_n1: {
+        small: {
+          font_size: "15px",
+          line_height: "18px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
         },
-        "normal": {
-          "font_size": "23px",
-          "line_height": "32px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
-        }
+        normal: {
+          font_size: "23px",
+          line_height: "32px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
+        },
       },
-      "title_n2": {
-        "small": {
-          "font_size": "20px",
-          "line_height": "20.01px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
+      title_n2: {
+        small: {
+          font_size: "20px",
+          line_height: "20.01px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
         },
-        "normal": {
-          "font_size": "30px",
-          "line_height": "32px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
-        }
+        normal: {
+          font_size: "30px",
+          line_height: "32px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
+        },
       },
-      "subtitle_n2": {
-        "small": {
-          "font_size": "12px",
-          "line_height": "16px",
-          "letter_spacing": "0px",
-          "font_weight": "medium"
+      subtitle_n2: {
+        small: {
+          font_size: "12px",
+          line_height: "16px",
+          letter_spacing: "0px",
+          font_weight: "medium",
         },
-        "normal": {
-          "font_size": "15px",
-          "line_height": "18px",
-          "letter_spacing": "0px",
-          "font_weight": "medium"
-        }
+        normal: {
+          font_size: "15px",
+          line_height: "18px",
+          letter_spacing: "0px",
+          font_weight: "medium",
+        },
       },
-      "title_n3": {
-        "small": {
-          "font_size": "13px",
-          "line_height": "17.51px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
+      title_n3: {
+        small: {
+          font_size: "13px",
+          line_height: "17.51px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
         },
-        "normal": {
-          "font_size": "19px",
-          "line_height": "28px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
-        }
+        normal: {
+          font_size: "19px",
+          line_height: "28px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
+        },
       },
-      "subtitle_n3": {
-        "small": {
-          "font_size": "17px",
-          "line_height": "28px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
+      subtitle_n3: {
+        small: {
+          font_size: "17px",
+          line_height: "28px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
         },
-        "normal": {
-          "font_size": "17px",
-          "line_height": "28px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
-        }
+        normal: {
+          font_size: "17px",
+          line_height: "28px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
+        },
       },
-      "text": {
-        "small": {
-          "font_size": "12px",
-          "line_height": "18px",
-          "letter_spacing": "0px",
-          "font_weight": "medium"
+      text: {
+        small: {
+          font_size: "12px",
+          line_height: "18px",
+          letter_spacing: "0px",
+          font_weight: "medium",
         },
-        "normal": {
-          "font_size": "17px",
-          "line_height": "28px",
-          "letter_spacing": "0px",
-          "font_weight": "normal"
-        }
+        normal: {
+          font_size: "17px",
+          line_height: "28px",
+          letter_spacing: "0px",
+          font_weight: "normal",
+        },
       },
-      "text_section": {
-        "small": {
-          "font_size": "13px",
-          "line_height": "20px",
-          "letter_spacing": "0px",
-          "font_weight": "medium"
+      text_section: {
+        small: {
+          font_size: "13px",
+          line_height: "20px",
+          letter_spacing: "0px",
+          font_weight: "medium",
         },
-        "normal": {
-          "font_size": "22px",
-          "line_height": "28px",
-          "letter_spacing": "0px",
-          "font_weight": "medium"
-        }
+        normal: {
+          font_size: "22px",
+          line_height: "28px",
+          letter_spacing: "0px",
+          font_weight: "medium",
+        },
       },
-      "results": {
-        "small": {
-          "font_size": "32px",
-          "line_height": "38.4px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
+      results: {
+        small: {
+          font_size: "32px",
+          line_height: "38.4px",
+          letter_spacing: "0px",
+          font_weight: "bold",
         },
-        "normal": {
-          "font_size": "50px",
-          "line_height": "60px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
-        }
+        normal: {
+          font_size: "50px",
+          line_height: "60px",
+          letter_spacing: "0px",
+          font_weight: "bold",
+        },
       },
-      "footer": {
-        "small": {
-          "font_size": "10px",
-          "line_height": "12px",
-          "letter_spacing": "0px",
-          "font_weight": "normal"
+      footer: {
+        small: {
+          font_size: "10px",
+          line_height: "12px",
+          letter_spacing: "0px",
+          font_weight: "normal",
         },
-        "normal": {
-          "font_size": "16px",
-          "line_height": "19.2px",
-          "letter_spacing": "0px",
-          "font_weight": "normal"
-        }
+        normal: {
+          font_size: "16px",
+          line_height: "19.2px",
+          letter_spacing: "0px",
+          font_weight: "normal",
+        },
       },
-      "text_in_charts": {
-        "small": {
-          "font_size": "12px",
-          "line_height": "14.4px",
-          "letter_spacing": "0px",
-          "font_weight": "normal"
+      text_in_charts: {
+        small: {
+          font_size: "12px",
+          line_height: "14.4px",
+          letter_spacing: "0px",
+          font_weight: "normal",
         },
-        "normal": {
-          "font_size": "16px",
-          "line_height": "19.2px",
-          "letter_spacing": "0px",
-          "font_weight": "normal"
-        }
+        normal: {
+          font_size: "16px",
+          line_height: "19.2px",
+          letter_spacing: "0px",
+          font_weight: "normal",
+        },
       },
-      "text_in_charts_semibold": {
-        "small": {
-          "font_size": "12px",
-          "line_height": "14.4px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
+      text_in_charts_semibold: {
+        small: {
+          font_size: "12px",
+          line_height: "14.4px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
         },
-        "normal": {
-          "font_size": "16px",
-          "line_height": "19.2px",
-          "letter_spacing": "0px",
-          "font_weight": "semi_bold"
-        }
+        normal: {
+          font_size: "16px",
+          line_height: "19.2px",
+          letter_spacing: "0px",
+          font_weight: "semi_bold",
+        },
       },
-      "call_to_action": {
-        "small": {
-          "font_size": "12px",
-          "line_height": "20.44px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
+      call_to_action: {
+        small: {
+          font_size: "12px",
+          line_height: "20.44px",
+          letter_spacing: "0px",
+          font_weight: "bold",
         },
-        "normal": {
-          "font_size": "18px",
-          "line_height": "28px",
-          "letter_spacing": "0px",
-          "font_weight": "bold"
-        }
-      }
+        normal: {
+          font_size: "18px",
+          line_height: "28px",
+          letter_spacing: "0px",
+          font_weight: "bold",
+        },
+      },
     },
     family: {
       default: "'Merriweather', serif",
@@ -387,11 +387,11 @@ const ThemeTokens = {
     xl: "1em", // 16px
   },
   screens: {
-    sm: '480px',
-    md: '768px',
-    lg: '976px',
-    xl: '1440px',
-  }
+    sm: "480px",
+    md: "768px",
+    lg: "976px",
+    xl: "1440px",
+  },
 } as const satisfies DefaultTheme;
 
 export { ThemeTokens };

@@ -138,5 +138,3 @@ interface Tokens {
 
 export { FontWeights };
 export type { Tokens, ColorValueHex };
-
-

@@ -203,6 +203,7 @@
         },
         "results": {
           "title": "Ma simulation",
+          "link_to_charts": "Voir en détails 📈",
           "collapsible": {
             "open": "📈 MASQUER LES DÉTAILS",
             "closed": "📈 VOIR EN DÉTAILS"

@@ -12,6 +12,7 @@ import { RatingInput } from "src/components/ui/formik/primitives/RatingInput";
 import { Formik } from "formik";
 import { MAX_RATE } from "../constants";
 import { Box } from "src/components/ui/Box";
+import { Button } from "src/components/ui/Button";
 
 const ResultsDetails = () => {
   const { t } = useTranslation();
@@ -87,6 +88,20 @@ const ResultsDetails = () => {
           {formater(value)}
         </List.Item>
       ))}
+      <Box flex justifyContent="center">
+      <Button
+        color="brand"
+        onClick={() => {
+          const url = location.href;
+          location.href = "#charts";
+          history.replaceState(null, "", url);
+        }}
+      >
+        <Text style="call_to_action">
+          {t("simulator.results.link_to_charts")}
+        </Text>
+      </Button>
+      </Box>
     </List.Root>
   );
 };

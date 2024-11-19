@@ -117,7 +117,7 @@ const WeekChart = ({
       </Container>
       <List.Root gap="sm">
         {data.map(
-          ({value, color, label, labelFormater}, i) =>
+          ({ value, color, label, labelFormater }, i) =>
             value != 0 &&
             (labelFormater ? (
               labelFormater({ value, label, color, labelFormater }, data)

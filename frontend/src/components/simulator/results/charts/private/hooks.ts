@@ -21,6 +21,10 @@ import {
   RATED_COLOR,
   UNRATED_COLOR,
 } from "src/components/ui/formik/primitives/constants";
+import { useFormikContext } from "formik";
+import { FormValues } from "src/App";
+
+const REMAINING_COLOR = "#ECEBEB" as const;
 
 const useRevenueByActivityChartData = () => {
   const annual_turnover_per_activities = useAnnualTurnoverPerActivity();
@@ -150,88 +154,84 @@ const useRevenueByKindChartData = () => {
 };
 
 const useAverageWeekChartData = () => {
-  const { t } = useTranslation();
-  const number_of_days_worked_per_week_per_activity =
-    useNumberOfDaysWorkedPerWeekPerActivity();
+  const {
+    values: {
+      config: { number_of_days_worked_per_week },
+    },
+  } = useFormikContext<FormValues>();
+  const activities = useNumberOfDaysWorkedPerWeekPerActivity();
 
-  const buildData = () => {
-    const result: {
-      total: number;
-      details: {
-        type: (typeof ActivityKinds)[number];
-        value: number;
-        color: ColorValueHex;
-        label: string;
-      }[];
-    } = {
+  const buildBaseData = () => {
+    const result = {
       total: 0,
-      details: [],
+      base_data: [] as {
+        type: (typeof ActivityKinds)[number] | "remaining";
+        color: string;
+        value: number;
+      }[],
     };
 
-    for (
-      let index = 0;
-      index < number_of_days_worked_per_week_per_activity.length;
-      index++
-    ) {
-      const activity = number_of_days_worked_per_week_per_activity[index];
-      if (
-        activity.daysWorkedPerWeek == null ||
-        activity.daysWorkedPerWeek == 0
-      ) {
-        continue;
-      }
+    // Track activity kinds we've already processed
+    const processedKinds = new Map<string, number>();
 
-      result.total = result.total + activity.daysWorkedPerWeek;
+    // Process each activity
+    for (const activity of activities) {
+      if (!activity.daysWorkedPerWeek) continue;
 
-      const data_already_recorded_index = result.details.findIndex(
-        (row) => row.type == Activities[activity.type]["kind"],
-      );
+      const activityKind = Activities[activity.type]["kind"];
+      result.total += activity.daysWorkedPerWeek;
 
-      let updated_details: typeof result.details;
-
-      if (data_already_recorded_index == -1) {
-        updated_details = [
-          ...result.details,
-          {
-            type: Activities[activity.type]["kind"],
-            color:
-              AverageWeekChartBaseColors[Activities[activity.type]["kind"]],
-            label: t(
-              `simulator.activities.kinds.${Activities[activity.type]["kind"]}.title`,
-            ),
-            value: activity.daysWorkedPerWeek,
-          },
-        ];
+      // Either update existing kind or add new one
+      if (processedKinds.has(activityKind)) {
+        const index = processedKinds.get(activityKind)!;
+        result.base_data[index].value += activity.daysWorkedPerWeek;
       } else {
-        const data_already_recorded =
-          result.details[data_already_recorded_index];
-        const updated_data = {
-          ...data_already_recorded,
-          value: data_already_recorded.value + activity.daysWorkedPerWeek,
-        };
-        updated_details = result.details;
-        updated_details[data_already_recorded_index] = updated_data;
+        processedKinds.set(activityKind, result.base_data.length);
+        result.base_data.push({
+          type: activityKind,
+          color: AverageWeekChartBaseColors[activityKind],
+          value: activity.daysWorkedPerWeek,
+        });
       }
-
-      result.details = updated_details;
     }
+
+    const remainingDays = number_of_days_worked_per_week - result.total;
+    if (remainingDays > 0) {
+      result.base_data.push({
+        type: "remaining",
+        color: REMAINING_COLOR,
+        value: Math.round(remainingDays),
+      });
+    }
+
+    // Add remaining available days if any
 
     return result;
   };
 
-  return useMemo(buildData, [t, number_of_days_worked_per_week_per_activity]);
+  return useMemo(buildBaseData, [activities, number_of_days_worked_per_week]);
 };
 
 const useEnjoymentChartData = () => {
   const enjoyment_rates = useWeightedEnjoymentRates();
+  const {
+    values: {
+      config: { number_of_days_worked_per_week },
+    },
+  } = useFormikContext<FormValues>();
 
   const buildData = () => {
     const initial_value: {
-      label: string;
+      rate: string;
       color: string;
       value: number;
     }[] = [];
-    return enjoyment_rates.reduce((prev, current, i) => {
+
+    let remaining_days = number_of_days_worked_per_week;
+
+    let base_data = enjoyment_rates.reduce((prev, current, i) => {
+      remaining_days -= current;
+
       if (current == 0) {
         return prev;
       } else {
@@ -240,16 +240,29 @@ const useEnjoymentChartData = () => {
         return [
           ...prev,
           {
-            label: `${i + 1}/${enjoyment_rates.length}`,
+            rate: `${i + 1}/${enjoyment_rates.length}`,
             color: `linear-gradient( ${UNRATED_COLOR} ${threshold_percentage}%, ${RATED_COLOR} ${threshold_percentage}%);`,
             value: current,
           },
         ];
       }
     }, initial_value);
+
+    if (Math.round(remaining_days) > 0) {
+      base_data = [
+        ...base_data,
+        {
+          rate: "remaining",
+          color: REMAINING_COLOR,
+          value: remaining_days,
+        },
+      ];
+    }
+
+    return base_data;
   };
 
-  return useMemo(buildData, [enjoyment_rates]);
+  return useMemo(buildData, [enjoyment_rates, number_of_days_worked_per_week]);
 };
 
 export {

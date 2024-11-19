@@ -17,16 +17,16 @@ const ChartsTitle = () => {
 
   return (
     <Box flex flexDirection="column" alignItems="center" gap={11}>
-      <Text style="title_1" align="center">
+      <Text style="title_n1" align="center">
         {t("simulator.results.charts.title")}
       </Text>
       {total_annual_turnover == 0 && total_number_of_days_worked == 0 && (
-        <Text align="center" color="error.medium">
+        <Text align="center" style="text_section" color="error.medium">
           {t("simulator.results.charts.unstarted_description")}
         </Text>
       )}
       {Math.round(total_number_of_days_available_per_week) < 0 && (
-        <Text align="center" color="error.medium">
+        <Text style="text_section" align="center" color="error.medium">
           {t("simulator.results.charts.exceeded_description", {
             count: Math.round(total_number_of_days_worked),
           })}

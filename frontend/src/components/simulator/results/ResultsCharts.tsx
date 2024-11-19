@@ -4,6 +4,8 @@ import { EnjoymentRateRepartitionChartsGroup } from "./charts/EnjoymentRateRepar
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
+  max-width: 900px;
+  margin-inline: auto;
   border: 2px solid #ecebeb;
   border-radius: 13px;
 

@@ -9,11 +9,13 @@ const StyledButton = styled.button<{
 
   cursor: pointer;
 
-  color: ${({ $color }) => {
-    if ($color == "brand") {
-      return cssVariable(`color.text.white`);
-    }
-  }};
+  & > * {
+    color: ${({ $color }) => {
+      if ($color == "brand") {
+        return cssVariable(`color.text.white`);
+      }
+    }};
+  }
 
   background-color: ${({ $color }) => {
     if ($color == "white") {
@@ -26,7 +28,8 @@ const StyledButton = styled.button<{
 
     return cssVariable(`color.background.${$color}.light`);
   }};
-  padding: ${cssVariable("spacing.sm")};
+  padding-inline: 20px;
+  padding-block: 18px;
   border-radius: ${cssVariable("borderRadius.sm")};
   display: inline-flex;
   align-items: center;
@@ -45,11 +48,13 @@ const StyledButton = styled.button<{
       return cssVariable(`color.background.${$color}.dark`);
     }};
 
-    color: ${({ $color }) => {
-      if ($color == "brand") {
-        return cssVariable(`color.text.primary.dark`);
-      }
-    }};
+    & > p {
+      color: ${({ $color }) => {
+        if ($color == "brand") {
+          return cssVariable(`color.text.primary.dark`);
+        }
+      }};
+    }
   }
 
   & > svg {

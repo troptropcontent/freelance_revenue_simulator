@@ -16,7 +16,7 @@ const RevenueByActivityChart = () => {
             kind: "freelancing",
             color: "#ECEBEB",
             value: 1,
-            label: t(`simulator.activities.freelance_daily_rate.label`),
+            label: t("simulator.results.charts.revenue_ventilation.unstarted_label"),
           },
         ];
 
@@ -32,7 +32,7 @@ const RevenueByActivityChart = () => {
         data={chart_data}
         title={`${Math.round((total / 1000) * 10) / 10}K€`}
         labelFormater={({ label, value }) => {
-          let label_value = Math.round((value / total) * 100 * 10) / 10;
+          let label_value = Math.round((value / total) * 100);
           if (!isFinite(label_value)) {
             label_value = 100;
           }

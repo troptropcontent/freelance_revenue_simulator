@@ -12,6 +12,7 @@ import { RatingInput } from "src/components/ui/formik/primitives/RatingInput";
 import { Formik } from "formik";
 import { MAX_RATE } from "../constants";
 import { Box } from "src/components/ui/Box";
+import { Button } from "src/components/ui/Button";
 
 const ResultsDetails = () => {
   const { t } = useTranslation();
@@ -32,7 +33,7 @@ const ResultsDetails = () => {
     total_annual_turnover: {
       value: total_annual_turnover,
       formater: (value) => (
-        <Text style="biggest" align="center">
+        <Text style="results" align="center">
           {t("common.currency.EUR_NO_DIGITS", { value })}
         </Text>
       ),
@@ -65,7 +66,7 @@ const ResultsDetails = () => {
                 name="average_enjoyment_rate"
                 max={MAX_RATE}
               />
-              <Text color="primary.light" style="base" align="center">
+              <Text color="primary.light" align="center">
                 {t([
                   `simulator.results.details.average_enjoyment_rate.sub_text.${Math.round(value)}/5`,
                 ])}
@@ -81,12 +82,26 @@ const ResultsDetails = () => {
     <List.Root gap={40}>
       {Object.entries(results).map(([key, { value, formater }]) => (
         <List.Item flex flexDirection="column" key={key}>
-          <Text style="subtitle_1" align="center">
+          <Text style="subtitle_n1" align="center">
             {t(`simulator.results.details.${key}.label`)}
           </Text>
           {formater(value)}
         </List.Item>
       ))}
+      <Box flex justifyContent="center">
+        <Button
+          color="brand"
+          onClick={() => {
+            const url = location.href;
+            location.href = "#charts";
+            history.replaceState(null, "", url);
+          }}
+        >
+          <Text style="call_to_action">
+            {t("simulator.results.link_to_charts")}
+          </Text>
+        </Button>
+      </Box>
     </List.Root>
   );
 };

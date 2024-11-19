@@ -115,7 +115,7 @@
             }
           },
           "consulting": {
-            "label": "Conseil",
+            "label": "Heures de conseil",
             "description": "Coaching, mentoring, etc.",
             "inputs": {
               "rate": {
@@ -131,7 +131,7 @@
             }
           },
           "sponsorship": {
-            "label": "Sponsoring",
+            "label": "Contenus sponsorisés",
             "description": "Newsletter, épisode de podcast, post réseaux sociaux, etc.",
             "inputs": {
               "rate": {
@@ -203,6 +203,7 @@
         },
         "results": {
           "title": "Ma simulation",
+          "link_to_charts": "Voir en détails 📈",
           "collapsible": {
             "open": "📈 MASQUER LES DÉTAILS",
             "closed": "📈 VOIR EN DÉTAILS"
@@ -260,10 +261,17 @@
             },
             "week_chart": {
               "remaining_days_one": "{{count}} jour disponible",
-              "remaining_days_other": "{{count}} jours disponibles"
+              "remaining_days_other": "{{count}} jours disponibles",
+              "labels": {
+                "entrepreneurial_project": "Projets entrepreneuriaux : <b>{{days}}</b>",
+                "remaining": "<b>Il te reste {{days}} !</b>",
+                "unbilled_activity": "Temps non facturé : <b>{{days}}</b>",
+                "freelancing": "Clients : <b>{{days}}</b>"
+              }
             },
             "revenue_ventilation": {
-              "title": "Répartition de ton chiffre d’affaires"
+              "title": "Répartition de ton chiffre d’affaires",
+              "unstarted_label": "à compléter"
             },
             "week_ventilation": {
               "title": "Composition de ta semaine type",
@@ -271,7 +279,8 @@
             },
             "enjoyment_ventilation": {
               "title": "Ton niveau de kiff sur la semaine",
-              "label": "à {{label}} de kiff"
+              "rate_label": "<b>{{days}}</b> à {{rate}} de kiff",
+              "remaining": "<b>Il te reste {{days}} !</b>"
             },
             "value": {
               "title": "Valeur",

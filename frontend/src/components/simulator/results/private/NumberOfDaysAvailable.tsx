@@ -8,7 +8,6 @@ import { useTotalNumberOfDaysEffectivelyWorkedPerWeek } from "./hooks";
 
 const NumberOfDaysAvailable = ({
   number_of_days_available,
-  is_small_screen,
 }: {
   number_of_days_available: number;
   is_small_screen?: boolean;
@@ -35,8 +34,7 @@ const NumberOfDaysAvailable = ({
       alignItems="center"
     >
       <Text
-        style="biggest"
-        size={is_small_screen ? "32px" : undefined}
+        style="results"
         align="center"
         color={
           text_type == "more_days_worked_than_days_available"
@@ -54,12 +52,7 @@ const NumberOfDaysAvailable = ({
           },
         )}
       </Text>
-      <Text
-        color="primary.light"
-        style="base"
-        size={is_small_screen ? "12px" : undefined}
-        align="center"
-      >
+      <Text color="primary.light" align="center">
         {t(
           [
             `simulator.results.details.total_number_of_days_available_per_week.${text_type}.sub_text`,

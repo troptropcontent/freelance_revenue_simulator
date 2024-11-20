@@ -26,7 +26,7 @@ const ResultsDetailsMobile = () => {
   const [is_collapsible_open, set_is_collapsible_open] = useState(false);
 
   return (
-    <List.Root gap={20} padding={{inline: 30, block: 20}}>
+    <List.Root gap={20} padding={{ inline: 30, block: 20 }}>
       <List.Item flex flexDirection="column">
         <Text style="subtitle_n1" align="center">
           {t(`simulator.results.details.total_annual_turnover.label`)}

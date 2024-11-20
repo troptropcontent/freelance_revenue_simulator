@@ -30,11 +30,13 @@ const StyledTextTag = styled(TextTag)<{
   font-size: ${$size ? `${typeof $size == "string" ? `${$size}` : `${$size}px`}` : cssVariable(`fonts.styles.${$style}.small.font_size`)};
   font-weight: ${$weight ? $weight : cssVariable(`fonts.styles.${$style}.small.font_weight`)};
   letter-spacing: ${cssVariable(`fonts.styles.${$style}.small.letter_spacing`)};
+  line-height: ${cssVariable(`fonts.styles.${$style}.small.line_height`)};
 
   ${mediaQueries("md")`
     font-size: ${$size ? `${typeof $size == "string" ? `${$size}` : `${$size}px`}` : `${cssVariable(`fonts.styles.${$style}.normal.font_size`)}`};
     font-weight: ${$weight ? $weight : cssVariable(`fonts.styles.${$style}.normal.font_weight`)};
     letter-spacing: ${cssVariable(`fonts.styles.${$style}.normal.letter_spacing`)};
+    line-height: ${cssVariable(`fonts.styles.${$style}.normal.line_height`)};
     `}
   `}
   ${({ $decoration }) => $decoration && `text-decoration: ${$decoration};`}

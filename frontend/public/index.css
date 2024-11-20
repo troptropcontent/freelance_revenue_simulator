@@ -268,7 +268,7 @@ p {
   text-decoration: none;
   background-color: var(--color-primary);
   padding-inline: 15px;
-  padding-block: 7px;
+  padding-block: 3.782px;
 
   border-radius: var(--border-radius-small);
   border: 0;

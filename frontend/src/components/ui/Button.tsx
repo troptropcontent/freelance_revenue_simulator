@@ -29,7 +29,7 @@ const StyledButton = styled.button<{
     return cssVariable(`color.background.${$color}.light`);
   }};
   padding-inline: 15px;
-  padding-block: 7px;
+  padding-block: 3.782px;
   border-radius: ${cssVariable("borderRadius.sm")};
   display: inline-flex;
   align-items: center;

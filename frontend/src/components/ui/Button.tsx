@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ButtonColor, cssVariable } from "src/components/helper";
+import { ButtonColor, cssVariable, mediaQueries } from "src/components/helper";
 import { forwardRef } from "react";
 
 const StyledButton = styled.button<{
@@ -28,12 +28,18 @@ const StyledButton = styled.button<{
 
     return cssVariable(`color.background.${$color}.light`);
   }};
-  padding-inline: 20px;
-  padding-block: 18px;
+  padding-inline: 15px;
+  padding-block: 3.782px;
   border-radius: ${cssVariable("borderRadius.sm")};
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  ${mediaQueries("md")`
+    padding-inline: 20px;
+    padding-block-start: 8px;
+    padding-block-end: 10px;
+    `}
 
   &:hover {
     background-color: ${({ $color }) => {
@@ -59,7 +65,15 @@ const StyledButton = styled.button<{
 
   & > svg {
     padding-inline-start: ${cssVariable(`spacing.xs`)};
+    height: 14px;
+    weight: 14px;
   }
+  ${mediaQueries("md")`
+    & > svg {
+    height: 22px;
+    weight: 22px;
+  }
+  `}
 `;
 
 const Button = forwardRef<

@@ -18,14 +18,14 @@ const EnjoymentChart = () => {
   const { t } = useTranslation();
   const base_data = useEnjoymentChartData();
 
-  const chart_data: WeekChartData[] = base_data.map((element) => {
+  const chart_data: WeekChartData[] = base_data.map((element, i) => {
     return {
       color: element.color,
       value: element.value,
       labelFormater: (cell) => {
         if (element.rate == "remaining") {
           return (
-            <Text style="text_in_charts">
+            <Text style="text_in_charts" key={i}>
               <Trans
                 i18nKey={`simulator.results.charts.enjoyment_ventilation.remaining`}
                 values={{ days: t("common.days", { count: cell.value }) }}

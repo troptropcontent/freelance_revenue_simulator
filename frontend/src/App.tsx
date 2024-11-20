@@ -13,11 +13,18 @@ import { ResultsDetailsMobile } from "./components/simulator/results/ResultsDeta
 import { Button } from "./components/ui/Button";
 import { ChartsTitle } from "./components/simulator/results/ChartsTitle";
 import { mediaQueries } from "./components/helper";
+import { useEffect, useRef, useState } from "react";
 
 const StyledForm = styled.form`
   margin-inline: auto;
   position: relative;
   background-color: white;
+
+  #scrollable {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
 
   & > #titles {
     display: flex;
@@ -34,6 +41,7 @@ const StyledForm = styled.form`
 
   & > #container {
     position: relative;
+    padding-block: 30px;
 
     // Here we need to update the style for mobile
 
@@ -55,9 +63,14 @@ const StyledForm = styled.form`
     }
   }
 
+  #charts {
+    padding-block: 30px;
+    padding-inline: 40px;
+  }
+
   ${mediaQueries("md")`
     #result_title {
-      display: block;
+      display: flex;
     }
 
     & > #titles {
@@ -67,14 +80,17 @@ const StyledForm = styled.form`
     & > #container {
       display: flex;
       align-items: flex-start;
-      padding-block-end: var(--spacing-large);
-      padding-inline: var(--spacing-lg);
+      padding-block-start: 70px;
+      padding-block-end: 80px;
+      padding-inline: 60px;
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
 
       & > #results-large-screens {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
         flex: 1 1 0px;
         height: auto;
         position: sticky;
@@ -88,6 +104,12 @@ const StyledForm = styled.form`
       & > #scrollable {
         flex: 1 1 0px;
       }
+    }
+
+    #charts {
+      padding-inline: 60px;
+      padding-block-start: 70px;
+      padding-block-end: 80px;
     }
     `}
 `;
@@ -114,6 +136,21 @@ export type FormValues = {
 function App() {
   const { t } = useTranslation();
   const initial_values = useFormInitialValues();
+  const title_ref = useRef<HTMLLabelElement | HTMLParagraphElement | null>(null);
+  const [title_height, set_title_height] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    // The layout of the page should be as follow:
+    // |--------------------------|
+    // | ---Title1---|---Title2---|
+    // |--------------------------|
+    // | ---inputs---|----Charts--|
+    // |--------------------------|
+    // Title1 and Title2 should have the same height
+    // We need to wait for the Title1 to be rendered to get its height to apply it to Title2 
+    // (it is only 1 line so always less height than the Title1)
+    set_title_height(title_ref.current?.clientHeight);
+  }, [title_ref.current?.clientHeight]);
 
   return (
     <Theme>
@@ -123,19 +160,15 @@ function App() {
         enableReinitialize
       >
         <StyledForm>
-          <Box id="container" padding={{ bottom: "lg" }}>
+          <Box id="container">
             <Box id="scrollable">
               <Box
-                padding={{
-                  inline: 20,
-                  block: 35,
-                }}
                 flex
                 flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
               >
-                <Text align="center" style="title_n1">
+                <Text align="center" style="title_n1" ref={title_ref}>
                   {t("simulator.activities.title")}
                 </Text>
               </Box>
@@ -143,15 +176,13 @@ function App() {
                 <ActivitiesList />
               </Box>
             </Box>
-            <Box id="results-large-screens">
+            <Box id="results-large-screens" >
               <Box
-                padding={{
-                  inline: 20,
-                  block: 35,
-                }}
+                height={title_height}
                 flex
                 flexDirection="column"
                 alignItems="center"
+                justifyContent="center"
                 id="result_title"
               >
                 <Text align="center" style="title_n1">
@@ -180,7 +211,6 @@ function App() {
             flexDirection="column"
             alignItems="center"
             gap="lg"
-            padding="lg"
           >
             <ChartsTitle />
             <ResultsCharts />

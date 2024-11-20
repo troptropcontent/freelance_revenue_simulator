@@ -26,7 +26,7 @@ export interface WeekChartData {
   color: string;
   value: number;
   label?: ReactNode;
-  labelFormater?: (element: WeekChartData, data: WeekChartData[]) => ReactNode;
+  labelFormater?: (element: WeekChartData) => ReactNode;
 }
 
 const MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK = 7 as const;
@@ -120,7 +120,7 @@ const WeekChart = ({
           ({ value, color, label, labelFormater }, i) =>
             value != 0 &&
             (labelFormater ? (
-              labelFormater({ value, label, color, labelFormater }, data)
+              labelFormater({ value, label, color, labelFormater })
             ) : (
               <Label $color={color} key={i}>
                 {label}

@@ -20,6 +20,7 @@ const AverageWeekChart = () => {
   const { base_data } = useAverageWeekChartData();
 
   const chart_data: WeekChartData[] = base_data.map((element) => {
+    console.log({ value: element.value });
     return {
       color: element.color,
       value: element.value,

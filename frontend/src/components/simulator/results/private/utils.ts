@@ -106,11 +106,11 @@ const findNumberOfDaysAvailableTextType = (
   const hours_available =
     number_of_days_available * number_of_hours_worked_per_day;
 
-  if (number_of_days_available < 0) {
+  if (Math.round(number_of_days_available) < 0) {
     return "more_days_worked_than_days_available";
   }
 
-  if (number_of_days_available < 1 && Math.round(hours_available) == 0) {
+  if (number_of_days_available < 0.5 ) {
     return "perfectly_balanced";
   }
 

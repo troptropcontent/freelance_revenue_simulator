@@ -58,7 +58,7 @@ const NumberOfDaysAvailable = ({
             `simulator.results.details.total_number_of_days_available_per_week.${text_type}.sub_text`,
             `simulator.results.details.total_number_of_days_available_per_week.default_sub_text`,
           ],
-          { count: Math.round(total_number_of_days_worked) },
+          { count: (Math.round(total_number_of_days_worked * 2) / 2) },
         )}
       </Text>
     </Box>

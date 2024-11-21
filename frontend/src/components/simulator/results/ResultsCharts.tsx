@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { mediaQueries } from "src/components/helper";
 
 const StyledContainer = styled.div`
-  max-width: 900px;
-  margin-inline: auto;
+  max-width: 1200px;
+  width: -webkit-fill-available;
   border: 2px solid #ecebeb;
   border-radius: 13px;
 

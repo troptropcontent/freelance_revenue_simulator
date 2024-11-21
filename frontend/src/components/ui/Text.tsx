@@ -1,18 +1,23 @@
 import styled from "styled-components";
 import { cssVariable, mediaQueries, TextColor } from "src/components/helper";
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode, forwardRef } from "react";
 import { ThemeTokens } from "../constants";
 
-const TextTag = ({
-  children,
-  as,
-}: {
+const TextTag = forwardRef<unknown, {
   children: ReactNode;
   as: "p" | "label";
-}) => {
-  const Tag = as;
-  return <Tag>{children}</Tag>;
-};
+}>(({as, children}, forwardedRef) => {
+  switch (as) {
+    case "p":
+      return <p ref={forwardedRef as React.LegacyRef<HTMLParagraphElement>}>{children}</p>
+    case "label":
+      return <label ref={forwardedRef as React.LegacyRef<HTMLLabelElement>}>{children}</label>
+    default:
+      throw new Error("Invalid tag type");
+  }
+});
+
+TextTag.displayName = "TextTag";
 
 const StyledTextTag = styled(TextTag)<{
   $align?: CSSProperties["textAlign"];
@@ -60,7 +65,7 @@ type LabelTagProps = {
   as?: "label";
 } & Omit<React.ComponentPropsWithoutRef<"label">, "style">;
 
-const Text = ({
+const Text = forwardRef<HTMLParagraphElement | HTMLLabelElement, BaseTextProps & (PTagProps | LabelTagProps)>(({
   as = "p",
   color = "primary.medium",
   children,
@@ -70,9 +75,10 @@ const Text = ({
   weight,
   decoration,
   ...props
-}: BaseTextProps & (PTagProps | LabelTagProps)) => {
+}, ref) => {
   return (
     <StyledTextTag
+      ref={ref}
       as={as}
       $color={color}
       $align={align}
@@ -85,6 +91,8 @@ const Text = ({
       {children}
     </StyledTextTag>
   );
-};
+});
+
+Text.displayName = "Text";
 
 export { Text };

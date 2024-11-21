@@ -28,24 +28,14 @@
   right: auto
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto
-}
-
-.mx-lg {
-  margin-left: 2em;
-  margin-right: 2em
-}
-
-.mx-md {
-  margin-left: 1em;
-  margin-right: 1em
-}
-
 .mx-\[40px\] {
   margin-left: 40px;
   margin-right: 40px
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto
 }
 
 .my-\[30px\] {
@@ -53,16 +43,16 @@
   margin-bottom: 30px
 }
 
-.mb-lg {
-  margin-bottom: 2em
-}
-
-.mt-lg {
-  margin-top: 2em
-}
-
 .mt-md {
   margin-top: 1em
+}
+
+.mb-\[174px\] {
+  margin-bottom: 174px
+}
+
+.mt-\[30px\] {
+  margin-top: 30px
 }
 
 .flex {
@@ -228,10 +218,6 @@
   padding: 2em
 }
 
-.p-md {
-  padding: 1em
-}
-
 .p-sm {
   padding: 0.5em
 }
@@ -271,11 +257,6 @@
   padding-bottom: 1em
 }
 
-.py-xl {
-  padding-top: 4em;
-  padding-bottom: 4em
-}
-
 .pb-\[calc\(11px\+0\.5em\+30px\)\] {
   padding-bottom: calc(11px + 0.5em + 30px)
 }
@@ -294,14 +275,6 @@
 
 .pt-\[30px\] {
   padding-top: 30px
-}
-
-.pt-lg {
-  padding-top: 2em
-}
-
-.pt-\[20px\] {
-  padding-top: 20px
 }
 
 .text-center {
@@ -496,10 +469,6 @@
     gap: 25px
   }
 
-  .md\:p-lg {
-    padding: 2em
-  }
-
   .md\:px-\[50px\] {
     padding-left: 50px;
     padding-right: 50px
@@ -516,10 +485,6 @@
 
   .md\:pt-\[70px\] {
     padding-top: 70px
-  }
-
-  .md\:pt-\[60px\] {
-    padding-top: 60px
   }
 
   .md\:text-left {

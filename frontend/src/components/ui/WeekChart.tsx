@@ -24,9 +24,9 @@ const useLocalisedDaysOfWeek = (): string[] => {
 
 export interface WeekChartData {
   color: string;
-  value: number;
-  label?: ReactNode;
-  labelFormater?: (element: WeekChartData) => ReactNode;
+  main_value: number;
+  sub_value: number;
+  label: ReactNode;
 }
 
 const MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK = 7 as const;
@@ -36,6 +36,7 @@ const Container = styled.div`
 `;
 
 const BackGround = styled.div<{ $number_of_days: number }>`
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: ${({ $number_of_days }) =>
     Array($number_of_days).fill("1fr").join(" ")};
@@ -54,12 +55,19 @@ const BackGround = styled.div<{ $number_of_days: number }>`
   }
 `;
 
-const DataContainer = styled.div`
+const MainContainer = styled.div`
   position: absolute;
   inset: 0;
   display: flex;
   align-items: flex-end;
   gap: ${cssVariable("spacing.sm")};
+`;
+
+const SubContainer = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
 `;
 
 const DataItem = styled.div<{ $ratio: number; $color: string }>`
@@ -109,11 +117,16 @@ const WeekChart = ({
             i < number_of_days ? <span key={weekday}>{weekday}</span> : null,
           )}
         </BackGround>
-        <DataContainer>
-          {data.map(({ value, color }, i) => (
-            <DataItem $ratio={value} $color={color} key={i} />
+        <MainContainer>
+          {data.map(({ main_value, color }, i) => (
+            <DataItem $ratio={main_value} $color={color} key={i} />
           ))}
-        </DataContainer>
+        </MainContainer>
+        <SubContainer>
+          {data.map(({ sub_value, color }, i) => (
+            <DataItem $ratio={sub_value} $color={color} key={i} />
+          ))}
+        </SubContainer>
       </Container>
       <List.Root gap="sm">
         {data.map(

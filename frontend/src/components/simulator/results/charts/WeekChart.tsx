@@ -192,10 +192,6 @@ const WeekChart = () => {
     );
   }
 
-  if (chartData.length == 0) {
-    return null;
-  }
-
   const totalNumberOfDays = chartData.reduce(
     (acc, current) => (acc = acc + current.value),
     0,
@@ -215,6 +211,7 @@ const WeekChart = () => {
         flex
         flexDirection="column"
         gap={25}
+        blured={totalNumberOfDays == 0}
       >
         <Container id="WeekChartContainer">
           <BackGround id="WeekChartBackground">
@@ -242,7 +239,7 @@ const WeekChart = () => {
             )}
           </Activities>
           <EnjoymentRates id="WeekChartEnjoymentRates">
-            {[
+            {chartData.length > 0 && [
               <Block
                 key="first-block"
                 $width={chartData[0].value / 2 / number_of_days_worked_per_week}
@@ -301,6 +298,17 @@ const WeekChart = () => {
               </Text>
             </Label>
           ))}
+          {
+            remainingDays > 0 && <Label $color={UNRATED_COLOR}>
+            <Text style="text_in_charts">
+              <Trans
+                i18nKey={`simulator.results.charts.week_ventilation.remaining_days`}
+                count={remainingDays}
+                components={{ b: <strong /> }}
+              />
+            </Text>
+          </Label>
+          }
         </Box>
       </Box>
     </Box>

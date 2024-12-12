@@ -16,22 +16,6 @@ const StyledContainer = styled.div`
   gap: 40px;
 
   padding: 21px;
-
-  ${mediaQueries("md")`
-    padding: 50px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-
-    & > *:last-child {
-      grid-column: 1/-1;
-    }
-  `}// & > * {
-  //   flex: calc(33.33% - (2 * 40px / 3));
-  //   box-sizing: border-box;
-  //   min-width: calc(300px - 40px);
-  //   max-width: 900px;
-  //   margin-inline: auto;
-  // }
 `;
 
 const ResultsCharts = () => {

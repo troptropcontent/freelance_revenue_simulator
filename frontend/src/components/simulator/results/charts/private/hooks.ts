@@ -16,14 +16,6 @@ import {
   RevenueByKindChartBaseColors,
 } from "./constants";
 import { useMemo } from "react";
-import {
-  RATED_COLOR,
-  UNRATED_COLOR,
-} from "src/components/ui/formik/primitives/constants";
-import { useFormikContext } from "formik";
-import { FormValues } from "src/App";
-
-const REMAINING_COLOR = "#ECEBEB" as const;
 
 const useRevenueByActivityChartData = () => {
   const annual_turnover_per_activities = useAnnualTurnoverPerActivity();
@@ -153,11 +145,6 @@ const useRevenueByKindChartData = () => {
 };
 
 const useAverageWeekChartData = () => {
-  const {
-    values: {
-      config: { number_of_days_worked_per_week },
-    },
-  } = useFormikContext<FormValues>();
   const activities = useNumberOfDaysWorkedPerWeekPerActivity();
 
   const buildBaseData = () => {

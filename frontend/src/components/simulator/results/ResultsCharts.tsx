@@ -1,8 +1,5 @@
 import { RevenueRepartitionChartsGroup } from "./charts/RevenueRepartitionChartsGroup";
-import { WeekRepartitionChartsGroup } from "./charts/WeekRepartitionChartsGroup";
-import { EnjoymentRateRepartitionChartsGroup } from "./charts/EnjoymentRateRepartitionChartsGroup";
 import styled from "styled-components";
-import { mediaQueries } from "src/components/helper";
 import { WeekChart } from "./charts/WeekChart";
 
 const StyledContainer = styled.div`

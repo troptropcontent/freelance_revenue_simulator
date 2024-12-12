@@ -183,7 +183,7 @@ const WeekChart = () => {
     ...data,
     averageEnjoymentRate: averageEnjoymentRateChartData.find(
       (e) => e.type == data.type,
-    )?.averageEnjoymentRate,
+    )?.averageEnjoymentRate || 0,
   }));
 
   if (number_of_days_worked_per_week > MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK) {
@@ -283,7 +283,7 @@ const WeekChart = () => {
             ]}
           </EnjoymentRates>
         </Container>
-        <Box flex gap={12} justifyContent="center">
+        <Box flex gap={12} justifyContent="center" flexWrap="wrap">
           {chartData.map((data) => (
             <Label $color={data.color}>
               <Text style="text_in_charts">

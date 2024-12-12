@@ -1,7 +1,6 @@
 import {
   useAnnualTurnoverPerActivity,
   useNumberOfDaysWorkedPerWeekPerActivity,
-  useWeightedEnjoymentRates,
 } from "../../private/hooks";
 import {
   Activities,
@@ -165,7 +164,7 @@ const useAverageWeekChartData = () => {
     const result = {
       total: 0,
       base_data: [] as {
-        type: (typeof ActivityKinds)[number] | "remaining";
+        type: (typeof ActivityKinds)[number];
         color: string;
         value: number;
       }[],
@@ -181,6 +180,7 @@ const useAverageWeekChartData = () => {
       const activityKind = Activities[activity.type]["kind"];
       result.total += activity.daysWorkedPerWeek;
 
+
       // Either update existing kind or add new one
       if (processedKinds.has(activityKind)) {
         const index = processedKinds.get(activityKind)!;
@@ -195,79 +195,14 @@ const useAverageWeekChartData = () => {
       }
     }
 
-    const remainingDays = number_of_days_worked_per_week - result.total;
-    if (remainingDays > 0) {
-      result.base_data.push({
-        type: "remaining",
-        color: REMAINING_COLOR,
-        value: Math.round(remainingDays),
-      });
-    }
-
-    // Add remaining available days if any
-
     return result;
   };
 
-  return useMemo(buildBaseData, [activities, number_of_days_worked_per_week]);
-};
-
-const useEnjoymentChartData = () => {
-  const enjoyment_rates = useWeightedEnjoymentRates();
-  const {
-    values: {
-      config: { number_of_days_worked_per_week },
-    },
-  } = useFormikContext<FormValues>();
-
-  const buildData = () => {
-    const initial_value: {
-      rate: string;
-      color: string;
-      value: number;
-    }[] = [];
-
-    let remaining_days = number_of_days_worked_per_week;
-
-    let base_data = enjoyment_rates.reduce((prev, current, i) => {
-      remaining_days -= current;
-
-      if (current == 0) {
-        return prev;
-      } else {
-        const threshold_percentage =
-          (1 - (i + 1) / enjoyment_rates.length) * 100;
-        return [
-          ...prev,
-          {
-            rate: `${i + 1}/${enjoyment_rates.length}`,
-            color: `linear-gradient( ${UNRATED_COLOR} ${threshold_percentage}%, ${RATED_COLOR} ${threshold_percentage}%);`,
-            value: current,
-          },
-        ];
-      }
-    }, initial_value);
-
-    if (Math.round(remaining_days) > 0) {
-      base_data = [
-        ...base_data,
-        {
-          rate: "remaining",
-          color: REMAINING_COLOR,
-          value: remaining_days,
-        },
-      ];
-    }
-
-    return base_data;
-  };
-
-  return useMemo(buildData, [enjoyment_rates, number_of_days_worked_per_week]);
+  return useMemo(buildBaseData, [activities]);
 };
 
 export {
   useRevenueByActivityChartData,
   useRevenueByKindChartData,
   useAverageWeekChartData,
-  useEnjoymentChartData,
 };

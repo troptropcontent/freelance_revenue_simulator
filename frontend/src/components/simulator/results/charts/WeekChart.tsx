@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { AverageWeekChart } from "./AverageWeekChart";
 import { sample } from "lodash";
 import { Text } from "src/components/ui/Text";
+import { useAverageWeekChartData, useEnjoymentChartData } from "./private/hooks";
+import { useAverageEnjoymentRatePerKindOfActivity } from "../private/hooks";
 
 const MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK = 7 as const;
 
@@ -152,37 +154,32 @@ const Rate = styled.div<{ $rate: number }>`
   }
 `;
 
-const sampleData = [
-  {
-    color: "red",
-    value: 2,
-    averageEnjoymentRate: 1,
-  },
-  {
-    color: "blue",
-    value: 1.5,
-    averageEnjoymentRate: 5,
-  },
-  {
-    color: "green",
-    value: 1,
-    averageEnjoymentRate: 2,
-  },
-];
-
-const WeekChart = ({ number_of_days = 5 }: { number_of_days: number }) => {
+const WeekChart = ({ number_of_days = 5}: { number_of_days: number, data: {color: string, value: number, averageEnjoymentRate: number}[] }) => {
   const weekdays = useLocalisedDaysOfWeek();
 
+  const { base_data } = useAverageWeekChartData();
+  const averageEnjoymentRateChartData = useAverageEnjoymentRatePerKindOfActivity();
+  const chartData = base_data.map((data) => ({...data, averageEnjoymentRate: averageEnjoymentRateChartData.find(e => e.type == data.type)?.averageEnjoymentRate}))
+  
   if (number_of_days > MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK) {
     throw new Error(
       "The number_of_days props passed to WeekChart is above the MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK",
     );
   }
 
-  const totalNumberOfDays = sampleData.reduce(
+  if (chartData.length == 0) {
+    return null;
+  }
+
+  const totalNumberOfDays = chartData.reduce(
     (acc, current) => (acc = acc + current.value),
     0,
   );
+
+  const remainingDays = number_of_days - totalNumberOfDays;
+
+  console.log({remainingDays})
+
 
   return (
     <Container id="WeekChartContainer">
@@ -199,17 +196,19 @@ const WeekChart = ({ number_of_days = 5 }: { number_of_days: number }) => {
         </Rates>
       </BackGround>
       <Activities id="WeekChartActivities">
-        {sampleData.map((data) => (
-          <Activity key={data.value} $color={data.color} $value={data.value} />
+        {chartData.map((data, i) => (
+          <Activity key={i} $color={data.color} $value={data.value} />
         ))}
+        {remainingDays > 0 && <Activity key="remaining-activity" $color="grey" $value={remainingDays} />}
       </Activities>
       <EnjoymentRates id="WeekChartEnjoymentRates">
         {[
-          <Block $width={sampleData[0].value / 2 / totalNumberOfDays} />,
-          ...sampleData.slice(0, -1).map((el, i) => (
+          <Block key="first-block" $width={chartData[0].value / 2 / number_of_days} />,
+          ...chartData.slice(0, -1).map((el, i) => (
             <Block
+              key={`block-${i}`}
               $width={
-                (el.value / 2 + sampleData[i + 1].value / 2) / totalNumberOfDays
+                (el.value / 2 + chartData[i + 1].value / 2) / number_of_days
               }
             >
               <Star $rate={el.averageEnjoymentRate} />
@@ -218,22 +217,22 @@ const WeekChart = ({ number_of_days = 5 }: { number_of_days: number }) => {
                   x1="0%"
                   y1={`${100 - (el.averageEnjoymentRate / 5) * 100}%`}
                   x2="100%"
-                  y2={`${100 - (sampleData[i + 1].averageEnjoymentRate / 5) * 100}%`}
+                  y2={`${100 - (chartData[i + 1].averageEnjoymentRate / 5) * 100}%`}
                   stroke="black"
-                  stroke-width="2"
                 />
               </svg>
             </Block>
           )),
           <Block
             $width={
-              sampleData[sampleData.length - 1].value / 2 / totalNumberOfDays
+              chartData[chartData.length - 1].value / 2 / number_of_days
             }
           >
             <Star
-              $rate={sampleData[sampleData.length - 1].averageEnjoymentRate}
+              $rate={chartData[chartData.length - 1].averageEnjoymentRate}
             />
           </Block>,
+          ...[remainingDays > 0 ? <Block key="remaining-block" $width={remainingDays / number_of_days}/> : null]
         ]}
       </EnjoymentRates>
     </Container>

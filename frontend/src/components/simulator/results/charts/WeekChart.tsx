@@ -92,7 +92,7 @@ const Star = styled.div<{ $rate: number }>`
   height: var(--enjoyment-rate-heart-tile-size);
   width: var(--enjoyment-rate-heart-tile-size);
   background: white;
-  box-shadow: 0 0 2px black;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,7 +202,7 @@ const WeekChart = () => {
   return (
     <Box flex flexDirection="column" gap={25}>
       <Text style="subtitle_n1" align="center">
-        {t("simulator.results.charts.enjoyment_ventilation.title")}
+        {t("simulator.results.charts.week_ventilation.title")}
       </Text>
       <Box
         background="white"
@@ -211,7 +211,7 @@ const WeekChart = () => {
         flex
         flexDirection="column"
         gap={25}
-        blured={totalNumberOfDays == 0}
+        blured={remainingDays < 0}
       >
         <Container id="WeekChartContainer">
           <BackGround id="WeekChartBackground">
@@ -221,8 +221,8 @@ const WeekChart = () => {
               ))}
             </Weekdays>
             <Rates>
-              {[...Array(number_of_days_worked_per_week)].map((_, index) => (
-                <Rate $rate={index + 1} />
+              {[...Array(number_of_days_worked_per_week)].map((_, index, arr) => (
+                <Rate $rate={arr.length - index} />
               ))}
             </Rates>
           </BackGround>

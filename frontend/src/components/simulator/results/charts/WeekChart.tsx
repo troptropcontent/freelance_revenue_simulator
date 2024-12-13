@@ -202,7 +202,7 @@ const WeekChart = () => {
   return (
     <Box flex flexDirection="column" gap={25}>
       <Text style="subtitle_n1" align="center">
-        {t("simulator.results.charts.enjoyment_ventilation.title")}
+        {t("simulator.results.charts.week_ventilation.title")}
       </Text>
       <Box
         background="white"
@@ -221,8 +221,8 @@ const WeekChart = () => {
               ))}
             </Weekdays>
             <Rates>
-              {[...Array(number_of_days_worked_per_week)].reverse().map((_, index) => (
-                <Rate $rate={index + 1} />
+              {[...Array(number_of_days_worked_per_week)].map((_, index, arr) => (
+                <Rate $rate={arr.length - index} />
               ))}
             </Rates>
           </BackGround>

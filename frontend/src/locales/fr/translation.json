@@ -274,7 +274,7 @@
               "unstarted_label": "à compléter"
             },
             "week_ventilation": {
-              "title": "Composition de ta semaine type",
+              "title": "Composition de ta semaine type et niveau de kiff",
               "available_time_label": "Temps disponible : ",
               "label": "{{kind}} : <b>{{days}}</b>",
               "remaining_days_one": "<b>Il te reste {{count, number(maximumFractionDigits: 1)}} jour disponible !</b>",

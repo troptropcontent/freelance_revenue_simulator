@@ -92,7 +92,7 @@ const Star = styled.div<{ $rate: number }>`
   height: var(--enjoyment-rate-heart-tile-size);
   width: var(--enjoyment-rate-heart-tile-size);
   background: white;
-  box-shadow: 0 0 2px black;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;

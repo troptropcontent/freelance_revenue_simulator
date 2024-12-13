@@ -211,7 +211,7 @@ const WeekChart = () => {
         flex
         flexDirection="column"
         gap={25}
-        blured={totalNumberOfDays == 0}
+        blured={remainingDays < 0}
       >
         <Container id="WeekChartContainer">
           <BackGround id="WeekChartBackground">

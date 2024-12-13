@@ -221,7 +221,7 @@ const WeekChart = () => {
               ))}
             </Weekdays>
             <Rates>
-              {[...Array(number_of_days_worked_per_week)].map((_, index) => (
+              {[...Array(number_of_days_worked_per_week)].reverse().map((_, index) => (
                 <Rate $rate={index + 1} />
               ))}
             </Rates>

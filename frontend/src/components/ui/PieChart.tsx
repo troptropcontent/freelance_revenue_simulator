@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Box } from "./Box";
-import { List } from "./List";
 import { createBorderRadiusStyle, cssVariable } from "../helper";
 import { ColorValueHex } from "../tokens";
 import { ReactNode } from "react";
@@ -138,7 +137,7 @@ const PieChart = ({
   return (
     <Box flex flexDirection="column" alignItems="center" gap="lg">
       <Graph $data={pie_data} $title={title} />
-      <List.Root gap="sm">
+      <Box flex flexWrap="wrap" gap="sm" justifyContent="center">
         {data.map(
           (element, i) =>
             element.value != 0 && (
@@ -147,7 +146,7 @@ const PieChart = ({
               </LabelCard>
             ),
         )}
-      </List.Root>
+      </Box>
     </Box>
   );
 };

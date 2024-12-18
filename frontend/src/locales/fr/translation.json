@@ -228,8 +228,8 @@
               "default_sub_text": "N’hésite pas à compléter ton portfolio d’activités !",
               "more_days_worked_than_days_available": {
                 "text": "À vérifier",
-                "sub_text_one": "Attention la semaine que tu as composée comporte {{count}} jour. C'est + que tu ne peux en travailler, c’est gourmand ça !",
-                "sub_text_other": "Attention la semaine que tu as composée comporte {{count}} jours. C'est + que tu ne peux en travailler, c’est gourmand ça !"
+                "sub_text_one": "Attention, la semaine que tu as composée comporte {{count}} jour. C'est plus que tu ne peux en travailler, ajuste ton portfolio d’activités.",
+                "sub_text_other": "Attention, la semaine que tu as composée comporte {{count}} jours. C'est plus que tu ne peux en travailler, ajuste ton portfolio d’activités."
               },
               "perfectly_balanced": {
                 "text": "Ta semaine est complète",
@@ -274,8 +274,11 @@
               "unstarted_label": "à compléter"
             },
             "week_ventilation": {
-              "title": "Composition de ta semaine type",
-              "available_time_label": "Temps disponible : "
+              "title": "Composition de ta semaine type et niveau de kiff",
+              "available_time_label": "Temps disponible : ",
+              "label": "{{kind}} : <b>{{days}}</b>",
+              "remaining_days_one": "<b>Il te reste {{count, number(maximumFractionDigits: 1)}} jour disponible !</b>",
+              "remaining_days_other": "<b>Il te reste {{count, number(maximumFractionDigits: 1)}} jours disponibles !</b>"
             },
             "enjoyment_ventilation": {
               "title": "Ton niveau de kiff sur la semaine",

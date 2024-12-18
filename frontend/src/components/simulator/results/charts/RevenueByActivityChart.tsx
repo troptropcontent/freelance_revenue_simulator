@@ -34,16 +34,14 @@ const RevenueByActivityChart = () => {
         data={chart_data}
         title={`${Math.round((total / 1000) * 10) / 10}K€`}
         labelFormater={({ label, value }) => {
-          let label_value = Math.round((value / total) * 100);
-          if (!isFinite(label_value)) {
-            label_value = 100;
-          }
-          return (
-            <>
-              <data>{`${label_value}%`}</data>
-              <Text>{label}</Text>
-            </>
-          );
+            let label_value = Math.round((value / total) * 100);
+            if (!isFinite(label_value)) {
+              label_value = 100;
+            }
+          return (<Box padding={{ left: 10 }} flex gap={10} alignItems="center">
+            <Text style="text_in_charts_semibold">{`${label_value}%`}</Text>
+            <Text style="text_in_charts">{label}</Text>
+          </Box>)
         }}
       />
     </Box>

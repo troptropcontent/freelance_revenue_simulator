@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
-import { ActivitiesType, MAX_RATE } from "src/components/simulator/constants";
+import { Activities, ActivitiesType, ActivityKinds, MAX_RATE } from "src/components/simulator/constants";
 import {
   computeAnnualTurnover,
   computeNumberOfDaysWorkedPerWeek,
@@ -146,6 +146,69 @@ const useWeightedEnjoymentRates = (): number[] => {
   ]);
 };
 
+const useAverageEnjoymentRatePerKindOfActivity = (): {
+  type: (typeof ActivityKinds)[number];
+  averageEnjoymentRate: number;
+}[] => {
+  const {
+    values: { activities },
+  } = useFormikContext<FormValues>();
+  const number_of_days_worked_per_week_activity =
+    useNumberOfDaysWorkedPerWeekPerActivity();
+
+  const computation = () => {
+    // Initialize a map to store sums and counts for each activity kind
+    const kindSums = new Map<string, { totalRate: number; totalDays: number }>();
+
+    activities.forEach((activity, i) => {
+      const { daysWorkedPerWeek } = number_of_days_worked_per_week_activity[i];
+      if (
+        !activity.enabled ||
+        activity.values == undefined ||
+        activity.values.enjoyment_rate == undefined ||
+        daysWorkedPerWeek == null
+      ) {
+        return;
+      }
+
+      const activityKind = Activities[activity.type]["kind"];
+      const currentSums = kindSums.get(activityKind) || {
+        totalRate: 0,
+        totalDays: 0,
+      };
+
+      kindSums.set(activityKind, {
+        totalRate: currentSums.totalRate + activity.values.enjoyment_rate * daysWorkedPerWeek,
+        totalDays: currentSums.totalDays + daysWorkedPerWeek,
+      });
+    });
+
+    // Convert the map to the required array format with calculated averages
+    const result = Array.from(kindSums.entries()).map(([kind, sums]) => ({
+      type: kind as (typeof ActivityKinds)[number],
+      averageEnjoymentRate: sums.totalRate / sums.totalDays,
+    }));
+
+    return result;
+  };
+
+  return useMemo(computation, [
+    activities,
+    number_of_days_worked_per_week_activity,
+  ]);
+};
+
+const useShouldDisplayResultCharts = (): boolean => {
+  const total_number_days_effectively_worked_per_week =
+    useTotalNumberOfDaysEffectivelyWorkedPerWeek();
+  const total_annual_turnover = useTotalAnnualTurnover();
+
+  return (
+    total_annual_turnover != 0 ||
+    total_number_days_effectively_worked_per_week != 0
+  );
+};
+
 const useWeigthedAverageEnjoymentRate = (): number => {
   const weights = useWeightedEnjoymentRates();
   const [sum, weightSum] = weights.reduce(
@@ -160,24 +223,14 @@ const useWeigthedAverageEnjoymentRate = (): number => {
   return sum == 0 ? sum : sum / weightSum;
 };
 
-const useShouldDisplayResultCharts = (): boolean => {
-  const total_number_days_effectively_worked_per_week =
-    useTotalNumberOfDaysEffectivelyWorkedPerWeek();
-  const total_annual_turnover = useTotalAnnualTurnover();
-
-  return (
-    total_annual_turnover != 0 ||
-    total_number_days_effectively_worked_per_week != 0
-  );
-};
-
 export {
   useShouldDisplayResultCharts,
   useAnnualTurnoverPerActivity,
   useTotalAnnualTurnover,
   useTotalNumberOfDaysAvailablePerWeek,
   useTotalNumberOfDaysEffectivelyWorkedPerWeek,
-  useWeigthedAverageEnjoymentRate,
   useNumberOfDaysWorkedPerWeekPerActivity,
+  useAverageEnjoymentRatePerKindOfActivity,
   useWeightedEnjoymentRates,
+  useWeigthedAverageEnjoymentRate
 };

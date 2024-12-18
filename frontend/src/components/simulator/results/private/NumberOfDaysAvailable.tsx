@@ -52,15 +52,17 @@ const NumberOfDaysAvailable = ({
           },
         )}
       </Text>
-      <Text color="primary.light" align="center">
-        {t(
-          [
-            `simulator.results.details.total_number_of_days_available_per_week.${text_type}.sub_text`,
-            `simulator.results.details.total_number_of_days_available_per_week.default_sub_text`,
-          ],
-          { count: Math.round(total_number_of_days_worked) },
-        )}
-      </Text>
+      {text_type !== "perfectly_balanced" && (
+        <Text color="primary.light" align="center">
+          {t(
+            [
+              `simulator.results.details.total_number_of_days_available_per_week.${text_type}.sub_text`,
+              `simulator.results.details.total_number_of_days_available_per_week.default_sub_text`,
+            ],
+            { count: Math.round(total_number_of_days_worked) },
+          )}
+        </Text>
+      )}
     </Box>
   );
 };

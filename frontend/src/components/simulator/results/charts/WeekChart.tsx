@@ -10,6 +10,7 @@ import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
 
 const MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK = 7 as const;
+const ENJOYMENT_RATE_LINE_STROKE_WIDTH = 2;
 
 const useLocalisedDaysOfWeek = (): string[] => {
   const {
@@ -240,7 +241,8 @@ const WeekChart = () => {
             )}
           </Activities>
           <EnjoymentRates id="WeekChartEnjoymentRates">
-            {chartData.length > 0 && [
+            {chartData.length > 0 && 
+            [
               <Block
                 key="first-block"
                 $width={chartData[0].value / 2 / number_of_days_worked_per_week}
@@ -253,8 +255,9 @@ const WeekChart = () => {
                   }
                 >
                   <Star $rate={el.averageEnjoymentRate} />
-                  <svg height="100%" width="100%">
+                  <svg height="100%" width="100%" viewBox={`0 -${ENJOYMENT_RATE_LINE_STROKE_WIDTH / 2} 200 200`} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                     <line
+                      strokeWidth={`${ENJOYMENT_RATE_LINE_STROKE_WIDTH}px`}
                       x1="0%"
                       y1={`${100 - (el.averageEnjoymentRate / 5) * 100}%`}
                       x2="100%"

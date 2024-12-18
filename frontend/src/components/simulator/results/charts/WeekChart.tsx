@@ -10,7 +10,7 @@ import { useFormikContext } from "formik";
 import { FormValues } from "src/App";
 
 const MAXIMUM_NUMBER_OF_DAYS_IN_A_WEEK = 7 as const;
-const ENJOYMENT_RATE_LINE_STROKE_WIDTH = 2;
+const ENJOYMENT_RATE_LINE_STROKE_WIDTH = 1;
 
 const useLocalisedDaysOfWeek = (): string[] => {
   const {

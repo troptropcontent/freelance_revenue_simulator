@@ -142,7 +142,7 @@ const Rates = styled.div`
 const Rate = styled.div<{ $rate: number }>`
   flex: 1 1 0px;
   margin-inline-start: -16px;
-  border-block-start: 1px solid grey;
+  border-block-start: 1px solid #ACACAC;
   position: relative;
   &:before {
     content: "${({ $rate }) => $rate} 💛";

@@ -30,7 +30,7 @@ const useLocalisedDaysOfWeek = (): string[] => {
 
 const Container = styled.div`
   --border-color: ${cssVariable("color.border.neutral.dark")};
-  --border-size: ${cssVariable("border.sm")};
+  --border-size: ${cssVariable("border.xs")};
   --border-radius: ${cssVariable("borderRadius.md")};
   --chart-height: 230px;
   --chart-weekdays-height: 60px;

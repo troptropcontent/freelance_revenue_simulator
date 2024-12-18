@@ -28,7 +28,7 @@ const useLocalisedDaysOfWeek = (): string[] => {
   return weekdays;
 };
 
-const Container = styled.div`
+const Container = styled.div<{$blured: boolean}>`
   --border-color: ${cssVariable("color.border.neutral.dark")};
   --border-size: ${cssVariable("border.xs")};
   --border-radius: ${cssVariable("borderRadius.md")};
@@ -37,6 +37,8 @@ const Container = styled.div`
   --left-space-width-for-rates-label: 38px;
   --enjoyment-rate-heart-tile-size: 35px;
 
+
+  ${({ $blured }) => $blured && `filter: blur(4px);;`}
   display: flex;
   flex-direction: column;
   height: var(--chart-height);
@@ -211,9 +213,8 @@ const WeekChart = () => {
         flex
         flexDirection="column"
         gap={25}
-        blured={remainingDays < 0}
       >
-        <Container id="WeekChartContainer">
+        <Container id="WeekChartContainer" $blured={remainingDays < 0}>
           <BackGround id="WeekChartBackground">
             <Weekdays>
               {[...Array(number_of_days_worked_per_week)].map((_, index) => (
@@ -283,7 +284,7 @@ const WeekChart = () => {
             ]}
           </EnjoymentRates>
         </Container>
-        <Box flex gap={12} justifyContent="center" flexWrap="wrap">
+        <Box flex gap={12} justifyContent="center" flexWrap="wrap" blured={remainingDays < 0}>
           {chartData.map((data) => (
             <Label $color={data.color}>
               <Text style="text_in_charts">

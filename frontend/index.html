@@ -47,78 +47,77 @@
     <meta property="og:type" content="website" />
   </head>
   <body>
-    <nav
-      class="bg-white flex justify-between items-center py-6"
-    >
-      <a href="/"
-        ><img
-          src="/logo.png"
-          class="h-[32px]"
-          alt="Le logo de soloportfolio"
-      /></a>
-      <label id="hamburger-menu" class="md:hidden" for="menu-open">
-        <input type="checkbox" name="menu-open" id="menu-open" />
-        <svg
-          width="21"
-          height="21"
-          viewBox="0 0 21 21"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M2 4H19"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M2 10H19"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M2 16H19"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg>
+    <section class="bg-white flex justify-center py-6">
+      <nav class="flex-grow max-w-[1280px] flex justify-between">
+        <a href="/" class="flex gap-3">
+          <img src="/images/logo_icon.png" alt="Le logo de soloportfolio" />
 
-        <ul id="hamburger-menu-links" class="py-md">
-          <li class="px-md">
+          <img src="/images/logo_name.png" alt="Le logo de soloportfolio" />
+        </a>
+        <label id="hamburger-menu" class="md:hidden" for="menu-open">
+          <input type="checkbox" name="menu-open" id="menu-open" />
+          <svg
+            width="21"
+            height="21"
+            viewBox="0 0 21 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2 4H19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M2 10H19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M2 16H19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+
+          <ul id="hamburger-menu-links" class="py-md">
+            <li class="px-md">
+              <a
+                href="#who_we_are_section"
+                class="text-text_section-small md:text-text_section-normal text-primary-dark"
+                >À propos</a
+              >
+            </li>
+            <li class="px-md">
+              <a
+                href="#share"
+                class="text-text_section-small md:text-text_section-normal text-primary-dark"
+                >Partager le simulateur</a
+              >
+            </li>
+          </ul>
+        </label>
+        <ul class="hidden md:flex gap-[40px] items-center list-none">
+          <li>
             <a
               href="#who_we_are_section"
-              class="text-text_section-small md:text-text_section-normal text-primary-dark"
+              class="text-text_section-small md:text-text_section-normal no-underline text-primary-dark"
               >À propos</a
             >
           </li>
-          <li class="px-md">
+          <li>
             <a
               href="#share"
-              class="text-text_section-small md:text-text_section-normal text-primary-dark"
+              class="text-text_section-small md:text-text_section-normal no-underline text-primary-dark"
               >Partager le simulateur</a
             >
           </li>
         </ul>
-      </label>
-      <ul class="hidden md:flex gap-[40px] items-center list-none">
-        <li>
-          <a
-            href="#who_we_are_section"
-            class="text-text_section-small md:text-text_section-normal no-underline text-primary-dark"
-            >À propos</a
-          >
-        </li>
-        <li>
-          <a
-            href="#share"
-            class="text-text_section-small md:text-text_section-normal no-underline text-primary-dark"
-            >Partager le simulateur</a
-          >
-        </li>
-      </ul>
-    </nav>
+      </nav>
+    </section>
     <section id="simulator_section" class="bg-gray-50 py-24">
       <header class="simulator_section-header">
         <span class="flex flex-col px-[40px] md:px-[60px]">
@@ -131,7 +130,9 @@
             de chiffre d'affaires pour indépendants
           </h2>
         </span>
-        <p class="text-hero_text-small md:text-hero_text-normal px-[40px] md:px-[60px]">
+        <p
+          class="text-hero_text-small md:text-hero_text-normal px-[40px] md:px-[60px]"
+        >
           Compose ton <b>portfolio d'activités</b>, organise ta <b
             >semaine idéale</b
           >
@@ -213,10 +214,11 @@
         </div></span
       >
     </section>
-    <section id="who_we_are_section" class="bg-primary-light flex flex-col gap-[40px] px-[40px] py-[30px] md:pt-[70px] md:pb-[80px] md:px-[60px]">
-      <h2
-        class="text-align-center text-title_n1-small md:text-title_n1-normal"
-      >
+    <section
+      id="who_we_are_section"
+      class="bg-primary-light flex flex-col gap-[40px] px-[40px] py-[30px] md:pt-[70px] md:pb-[80px] md:px-[60px]"
+    >
+      <h2 class="text-align-center text-title_n1-small md:text-title_n1-normal">
         Ce simulateur est imaginé par
       </h2>
       <div class="who_we_are_section-authors max-w-[1320px] mx-auto">
@@ -313,7 +315,9 @@
         </span>
       </div>
     </section>
-    <section class="flex flex-col items-center gap-[40px] bg-white px-[40px] py-[30px] md:pt-[70px] md:pb-[80px] md:px-[60px]">
+    <section
+      class="flex flex-col items-center gap-[40px] bg-white px-[40px] py-[30px] md:pt-[70px] md:pb-[80px] md:px-[60px]"
+    >
       <h3 class="text-title_n1-small md:text-title_n1-normal text-center">
         Envie d’aller plus loin ?
       </h3>

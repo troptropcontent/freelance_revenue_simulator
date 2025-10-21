@@ -99,6 +99,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.3.1
         version: 4.3.1(vite@5.4.1(@types/node@22.5.0)(lightningcss@1.30.1))
+      daisyui:
+        specifier: ^5.3.7
+        version: 5.3.7
       eslint:
         specifier: ^9.9.0
         version: 9.9.0(jiti@2.6.1)
@@ -2001,6 +2004,9 @@ packages:
   d3-timer@3.0.1:
     resolution: {integrity: sha512-ndfJ/JxxMd3nw31uyKoY2naivF+r29V+Lc0svZxe1JvvIRmi8hUsrMvdOwgS1o6uBHmiz91geQ0ylPP0aj1VUA==}
     engines: {node: '>=12'}
+
+  daisyui@5.3.7:
+    resolution: {integrity: sha512-0+8PaSGift0HlIQABCeZzWOBV5Nx/vsI2TihB9hbaEyZENPlZZz+se2JnAH5rz9gBYTyDLB7NJup8hkREr6WBw==}
 
   debug@4.3.6:
     resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
@@ -5330,6 +5336,8 @@ snapshots:
       d3-array: 3.2.4
 
   d3-timer@3.0.1: {}
+
+  daisyui@5.3.7: {}
 
   debug@4.3.6:
     dependencies:

@@ -1,6 +1,13 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
-@theme {
-  --color-primary: #f4a261;
-  --color-white: white;
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: var(--color-purple-900);
+}
+
+@utility btn {
+  @apply rounded-lg;
+  @apply shadow-none;
 }

@@ -3,7 +3,7 @@ import { Activities, ActivitiesType } from "./components/simulator/constants";
 import { useTranslation } from "react-i18next";
 import { useFormInitialValues } from "./shared/hooks";
 import { Button } from "./components/ui/Button";
-import { useEffect, useRef, useState } from "react";
+import { InputTabs } from "./components/simulator/inputs/InputTabs";
 
 export type ActivityTypes = keyof typeof Activities;
 
@@ -30,14 +30,17 @@ function App() {
 
   return (
     <Formik
-        initialValues={initial_values}
-        onSubmit={() => {}}
-        enableReinitialize
-      >
-      <form className="bg-primary grid grid-cols-2">
+      initialValues={initial_values}
+      onSubmit={() => {}}
+      enableReinitialize
+    >
+      <form className="container grid grid-cols-3 gap-x-6">
         <div>Simulateur SoloPortfolio</div>
-        <div><Button>Ajuster</Button><Button>Reinitialiser</Button><Button>Partager</Button></div>
-        <div>Inputs</div>
+        <div>
+          <Button>Partager</Button>
+        </div>
+
+        <InputTabs />
         <div>Results</div>
       </form>
     </Formik>

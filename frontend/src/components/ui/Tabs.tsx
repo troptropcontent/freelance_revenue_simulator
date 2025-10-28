@@ -36,7 +36,13 @@ function Trigger(props: TabTriggerType) {
   }
   const isActive = props.name === context.activeTab;
   return (
-    <label className={twMerge("tab", isActive ? props.isActiveClassName : "")}>
+    <label
+      className={twMerge(
+        "tab",
+        isActive ? "tab-active" : "",
+        isActive ? props.isActiveClassName : "",
+      )}
+    >
       <input
         type="radio"
         name={context.tabGroupName}

@@ -27,7 +27,8 @@
               "step": "Étape {{stepNumber}}"
             },
             "missions":{
-              "name": "Prestations"
+              "name": "Prestations",
+              "hint": "Liste tes prestations clients et tes tarifs."
             },
             "projects":{
               "name": "Projets"

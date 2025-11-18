@@ -28,6 +28,8 @@ type MissionFlat = BaseActivity & {
 };
 
 type ProjectPaid = {
+  name: string;
+  enabled: boolean;
   type: "project";
   kind: "paid";
   estimated_monthly_revenue: number;
@@ -35,6 +37,8 @@ type ProjectPaid = {
 };
 
 type ProjectFree = {
+  name: string;
+  enabled: boolean;
   type: "project";
   kind: "free";
 };

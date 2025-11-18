@@ -3,6 +3,9 @@ import { TabTrigger } from "./private/TabTrigger";
 import { useFieldArray, UseFormReturn } from "react-hook-form";
 import { Inputs } from "./types";
 import { ActivityInput } from "./private/ActivityInput";
+import { CirclePlus } from "lucide-react";
+import { DEFAULT_MISSION_DAILY_RATE } from "./constants";
+import { useBuildDefaultActivityValueForKind } from "./shared/hooks";
 
 const STEP_NUMBER = 1;
 
@@ -18,7 +21,13 @@ function Trigger() {
 
 function Content({ form }: { form: UseFormReturn<Inputs> }) {
   const { t } = useTranslation();
-  const { fields: activities, remove } = useFieldArray({
+  const buildDefaultActivityValueForKind =
+    useBuildDefaultActivityValueForKind();
+  const {
+    fields: activities,
+    remove,
+    append,
+  } = useFieldArray({
     control: form.control,
     name: "activities",
   });
@@ -35,6 +44,14 @@ function Content({ form }: { form: UseFormReturn<Inputs> }) {
           remove={remove}
         />
       ))}
+      <button
+        type="button"
+        className="btn bg-blue-500 border-blue-500 text-white gap-3"
+        onClick={() => append(buildDefaultActivityValueForKind("daily_rate"))}
+      >
+        {t("simulator.inputs.tabs.missions.add_button")}
+        <CirclePlus size={16} />
+      </button>
     </div>
   );
 }

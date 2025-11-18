@@ -28,7 +28,23 @@
             },
             "missions":{
               "name": "Prestations",
-              "hint": "Liste tes prestations clients et tes tarifs."
+              "hint": "Liste tes prestations clients et tes tarifs.",
+              "add_button": "Ajouter une prestation",
+              "daily_rate": {
+                "default_name": "Prestation freelance au jour"
+              },
+              "hourly_rate": {
+                "default_name": "Heures de conseil"
+              },
+              "flat_rate": {
+                "default_name": "Prestation freelance au forfait"
+              },
+              "free": {
+                "default_name": "Bénévolat"
+              },
+              "paid": {
+                "default_name": "Projet de startup"
+              }
             },
             "projects":{
               "name": "Projets"

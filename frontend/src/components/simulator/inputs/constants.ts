@@ -1,3 +1,5 @@
+import { Inputs } from "./types";
+
 const ACTIVITY_TYPES = ["mission", "project"] as const;
 
 const MISSION_KINDS = ["hourly_rate", "daily_rate", "flat rate"] as const;
@@ -9,7 +11,90 @@ const DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS = 5;
 const DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR =
   8 * DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS;
 
+const DEFAULT_MISSION_DAILY_RATE = {
+  name: "Prestation freelance au jour",
+  enabled: false,
+  enjoyment_rate: 0,
+  average_time_spent: 0,
+  type: "mission",
+  kind: "daily_rate",
+  rate: 0,
+} satisfies Inputs["activities"][number];
+
+const DEFAULT_MISSION_HOURLY_RATE = {
+  name: "Heures de conseil",
+  enabled: false,
+  enjoyment_rate: 0,
+  average_time_spent: 0,
+  type: "mission",
+  kind: "hourly_rate",
+  rate: 0,
+  frequency: "monthly",
+  quantity: 0,
+} satisfies Inputs["activities"][number];
+
+const DEFAULT_MISSION_FLAT_RATE = {
+  name: "Prestation freelance au forfait",
+  enabled: false,
+  enjoyment_rate: 0,
+  average_time_spent: 0,
+  type: "mission",
+  kind: "flat_rate",
+  frequency: "monthly",
+  quantity: 0,
+  rate: 0,
+} satisfies Inputs["activities"][number];
+
+const DEFAULT_PROJECT_FREE = {
+  type: "project",
+  kind: "free",
+  name: "",
+  enabled: false,
+  average_time_spent: 0,
+  enjoyment_rate: 0,
+} satisfies Inputs["activities"][number];
+
+const DEFAULT_PROJECT_PAID = {
+  type: "project",
+  kind: "paid",
+  name: "",
+  enabled: false,
+  average_time_spent: 0,
+  estilated_months_billed: 0,
+  estimated_monthly_revenue: 0,
+  enjoyment_rate: 0,
+} satisfies Inputs["activities"][number];
+
+const DEFAULT_ACTIVITIES: Record<
+  Inputs["activities"][number]["kind"],
+  Inputs["activities"][number]
+> = {
+  daily_rate: DEFAULT_MISSION_DAILY_RATE,
+  hourly_rate: DEFAULT_MISSION_HOURLY_RATE,
+  flat_rate: DEFAULT_MISSION_FLAT_RATE,
+  free: DEFAULT_PROJECT_FREE,
+  paid: DEFAULT_PROJECT_PAID,
+};
+
+const DEFAULT_FORM_VALUES = {
+  activities: [
+    DEFAULT_MISSION_DAILY_RATE,
+    DEFAULT_MISSION_HOURLY_RATE,
+    DEFAULT_MISSION_FLAT_RATE,
+  ],
+  config: {
+    number_of_days_off_per_year: DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR,
+    number_of_days_worked_per_week: DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
+    number_of_hours_worked_per_day: DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
+  },
+} satisfies Inputs;
+
 export {
+  DEFAULT_ACTIVITIES,
+  DEFAULT_FORM_VALUES,
+  DEFAULT_MISSION_DAILY_RATE,
+  DEFAULT_MISSION_HOURLY_RATE,
+  DEFAULT_MISSION_FLAT_RATE,
   ACTIVITY_TYPES,
   MISSION_KINDS,
   PROJECT_KINDS,

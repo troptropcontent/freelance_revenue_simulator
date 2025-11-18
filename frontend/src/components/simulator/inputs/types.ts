@@ -27,18 +27,14 @@ type MissionFlat = BaseActivity & {
   frequency: "monthly";
 };
 
-type ProjectPaid = {
-  name: string;
-  enabled: boolean;
+type ProjectPaid = BaseActivity & {
   type: "project";
   kind: "paid";
   estimated_monthly_revenue: number;
   estilated_months_billed: number;
 };
 
-type ProjectFree = {
-  name: string;
-  enabled: boolean;
+type ProjectFree = BaseActivity & {
   type: "project";
   kind: "free";
 };

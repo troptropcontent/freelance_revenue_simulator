@@ -14,7 +14,7 @@ const DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR =
 const DEFAULT_MISSION_DAILY_RATE = {
   name: "Prestation freelance au jour",
   enabled: false,
-  enjoyment_rate: 0,
+  enjoyment_rate: 1,
   average_time_spent: 0,
   type: "mission",
   kind: "daily_rate",
@@ -24,7 +24,7 @@ const DEFAULT_MISSION_DAILY_RATE = {
 const DEFAULT_MISSION_HOURLY_RATE = {
   name: "Heures de conseil",
   enabled: false,
-  enjoyment_rate: 0,
+  enjoyment_rate: 1,
   average_time_spent: 0,
   type: "mission",
   kind: "hourly_rate",
@@ -36,7 +36,7 @@ const DEFAULT_MISSION_HOURLY_RATE = {
 const DEFAULT_MISSION_FLAT_RATE = {
   name: "Prestation freelance au forfait",
   enabled: false,
-  enjoyment_rate: 0,
+  enjoyment_rate: 1,
   average_time_spent: 0,
   type: "mission",
   kind: "flat_rate",
@@ -51,7 +51,7 @@ const DEFAULT_PROJECT_FREE = {
   name: "",
   enabled: false,
   average_time_spent: 0,
-  enjoyment_rate: 0,
+  enjoyment_rate: 1,
 } satisfies Inputs["activities"][number];
 
 const DEFAULT_PROJECT_PAID = {
@@ -62,7 +62,7 @@ const DEFAULT_PROJECT_PAID = {
   average_time_spent: 0,
   estilated_months_billed: 0,
   estimated_monthly_revenue: 0,
-  enjoyment_rate: 0,
+  enjoyment_rate: 1,
 } satisfies Inputs["activities"][number];
 
 const DEFAULT_ACTIVITIES: Record<

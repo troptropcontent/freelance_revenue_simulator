@@ -250,6 +250,33 @@ function ActivityInputSelectType({
   );
 }
 
+function ActivityInputEnjoymentRate({
+  activityIndex,
+  form,
+}: {
+  activityIndex: number;
+  form: UseFormReturn<Inputs>;
+}) {
+  const { t } = useTranslation();
+
+  return (
+    <div className="flex p-4">
+      <label
+        htmlFor={`activities.${activityIndex}.kind`}
+        className="flex-1 my-auto"
+      >
+        {t("simulator.inputs.tabs.activities.inputs.enjoyment_rate_label")}
+      </label>
+      <FormInputs.Rating
+        form={form}
+        mask="heart"
+        max={5}
+        name={`activities.${activityIndex}.enjoyment_rate`}
+      />
+    </div>
+  );
+}
+
 function ActivityInput({
   form,
   activityIndex,
@@ -298,6 +325,7 @@ function ActivityInput({
           form={form}
           activityIndex={activityIndex}
         />
+        <ActivityInputEnjoymentRate form={form} activityIndex={activityIndex} />
       </div>
     </div>
   );

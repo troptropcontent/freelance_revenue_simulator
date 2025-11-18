@@ -51,7 +51,7 @@
                 "daily_rate_rate_label": "Taux Journalier Moyen (TJM)",
                 "frequency_select_monthly_label": "Par mois",
                 "average_time_spent_label": "Nombre de jours alloués par semaine",
-                "enjoyment_rate": "Niveau de kiff",
+                "enjoyment_rate_label": "Niveau de kiff",
                 "hourly_rate_rate_label": "Tarif horaire",
                 "hourly_rate_quantity_label": "Heures facturées",
                 "flat_rate_rate_label": "Tarif forfait",

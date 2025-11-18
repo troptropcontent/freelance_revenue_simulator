@@ -73,6 +73,44 @@ function Select<T extends FieldValues>({
   );
 }
 
-const FormInputs = { Currency, Number, Select };
+function Rating<T extends FieldValues>({
+  form,
+  name,
+  max,
+  mask,
+}: {
+  form: UseFormReturn<T>;
+  name: FieldPath<T>;
+  max: number;
+  mask: "heart" | "star";
+  className?: string;
+}) {
+  const currentValue = form.watch(name);
+
+  return (
+    <div className="flex gap-6">
+      <div className="rating gap-3">
+        {Array.from(Array(max), (_, i) => {
+          return (
+            <input
+              type="radio"
+              key={`${name}-${i}`}
+              {...form.register(name)}
+              value={i + 1}
+              className={`mask bg-amber-300 ${mask == "heart" ? "mask-heart" : ""} ${mask == "star" ? "mask-star" : ""}`}
+              aria-label={`${i} ${mask}`}
+              defaultChecked={i + 1 == parseInt(currentValue)}
+            />
+          );
+        })}
+      </div>
+      <p className="text-sm font-bold text-gray-500 my-auto w-[31px] text-end">
+        {currentValue} / {max}
+      </p>
+    </div>
+  );
+}
+
+const FormInputs = { Currency, Number, Select, Rating };
 
 export { FormInputs };

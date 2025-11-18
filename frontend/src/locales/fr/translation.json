@@ -46,6 +46,18 @@
               "paid": {
                 "default_name": "Projet de startup",
                 "select_type_option_label": "Rémunéré"
+              },
+              "inputs": {
+                "daily_rate_rate_label": "Taux Journalier Moyen (TJM)",
+                "frequency_select_monthly_label": "Par mois",
+                "average_time_spent_label": "Nombre de jours alloués par semaine",
+                "enjoyment_rate": "Niveau de kiff",
+                "hourly_rate_rate_label": "Tarif horaire",
+                "hourly_rate_quantity_label": "Heures facturées",
+                "flat_rate_rate_label": "Tarif forfait",
+                "flat_rate_quantity_label": "Forfaits facturés",
+                "estilated_months_billed_label": "Nombre de mois facturés",
+                "estimated_monthly_revenue_label": "Revenu net mensuel estimé"
               }
             },
             "mission":{

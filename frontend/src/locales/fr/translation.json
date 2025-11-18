@@ -26,9 +26,37 @@
             "shared":{
               "step": "Étape {{stepNumber}}"
             },
-            "missions":{
+            "activities": {
+              "daily_rate": {
+                "default_name": "Prestation freelance au jour",
+                "select_type_option_label": "Jour"
+              },
+              "hourly_rate": {
+                "default_name": "Heures de conseil",
+                "select_type_option_label": "Heure"
+              },
+              "flat_rate": {
+                "default_name": "Prestation freelance au forfait",
+                "select_type_option_label": "Forfait"
+              },
+              "free": {
+                "default_name": "Bénévolat",
+                "select_type_option_label": "Non lucratif"
+              },
+              "paid": {
+                "default_name": "Projet de startup",
+                "select_type_option_label": "Rémunéré"
+              }
+            },
+            "mission":{
+              "select_type_label": "Quel type de prestation ?",
               "name": "Prestations",
               "hint": "Liste tes prestations clients et tes tarifs.",
+              "select_type": {
+                "daily_rate": "Jour",
+                "hourly_rate": "Heure",
+                "flat_rate": "Forfait"
+              },
               "add_button": "Ajouter une prestation",
               "daily_rate": {
                 "default_name": "Prestation freelance au jour"
@@ -46,7 +74,7 @@
                 "default_name": "Projet de startup"
               }
             },
-            "projects":{
+            "project":{
               "name": "Projets"
             }
           }

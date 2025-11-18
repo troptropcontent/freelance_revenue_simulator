@@ -28,9 +28,7 @@ function useBuildDefaultActivityValueForKind() {
   const { t } = useTranslation();
   return (kind: Inputs["activities"][number]["kind"]) => {
     const defaultValue = DEFAULT_ACTIVITIES[kind];
-    defaultValue.name = t(
-      `simulator.inputs.tabs.missions.${kind}.default_name`,
-    );
+    defaultValue.name = t(`simulator.inputs.tabs.mission.${kind}.default_name`);
     return defaultValue;
   };
 }

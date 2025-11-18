@@ -4,14 +4,13 @@ import { useFieldArray, UseFormReturn } from "react-hook-form";
 import { Inputs } from "./types";
 import { ActivityInput } from "./private/ActivityInput";
 import { CirclePlus } from "lucide-react";
-import { DEFAULT_MISSION_DAILY_RATE } from "./constants";
 import { useBuildDefaultActivityValueForKind } from "./shared/hooks";
 
 const STEP_NUMBER = 1;
 
 function Trigger() {
   const { t } = useTranslation();
-  const name = t("simulator.inputs.tabs.missions.name");
+  const name = t("simulator.inputs.tabs.mission.name");
   const stepNumber = STEP_NUMBER;
   const badgeClassName = "bg-blue-500 border-blue-500 text-white";
   const badgeNumber = 2;
@@ -35,7 +34,7 @@ function Content({ form }: { form: UseFormReturn<Inputs> }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <p className="mx-auto">{t("simulator.inputs.tabs.missions.hint")}</p>
+      <p className="mx-auto">{t("simulator.inputs.tabs.mission.hint")}</p>
       {missions.map((mission, i) => (
         <ActivityInput
           activityIndex={i}
@@ -49,7 +48,7 @@ function Content({ form }: { form: UseFormReturn<Inputs> }) {
         className="btn bg-blue-500 border-blue-500 text-white gap-3"
         onClick={() => append(buildDefaultActivityValueForKind("daily_rate"))}
       >
-        {t("simulator.inputs.tabs.missions.add_button")}
+        {t("simulator.inputs.tabs.mission.add_button")}
         <CirclePlus size={16} />
       </button>
     </div>

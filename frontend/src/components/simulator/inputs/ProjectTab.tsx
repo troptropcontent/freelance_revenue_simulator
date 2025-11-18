@@ -5,7 +5,7 @@ const STEP_NUMBER = 2;
 
 function Trigger() {
   const { t } = useTranslation();
-  const name = t("simulator.inputs.tabs.projects.name");
+  const name = t("simulator.inputs.tabs.project.name");
   const stepNumber = STEP_NUMBER;
   const badgeClassName = "bg-lime-500 border-lime-500 text-white";
   const badgeNumber = 2;

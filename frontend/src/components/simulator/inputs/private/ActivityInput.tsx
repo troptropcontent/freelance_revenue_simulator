@@ -11,6 +11,7 @@ import {
   FolderOpen,
 } from "lucide-react";
 import { ReactElement, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ActivityKindIcons = {
   hourly_rate: Clock,
@@ -53,6 +54,41 @@ function ActivityName({
   );
 }
 
+function ActivityInputSelectType({
+  activityIndex,
+  form,
+  options,
+}: {
+  activityIndex: number;
+  form: UseFormReturn<Inputs>;
+  options: Inputs["activities"][number]["kind"][];
+}) {
+  const { t } = useTranslation();
+  const activity = form.watch(`activities.${activityIndex}`);
+  return (
+    <div className="flex">
+      <label
+        htmlFor={`activities.${activityIndex}.kind`}
+        className="flex-1 my-auto"
+      >
+        {t(`simulator.inputs.tabs.${activity.type}.select_type_label`)}
+      </label>
+      <select
+        className="select"
+        {...form.register(`activities.${activityIndex}.kind`)}
+      >
+        {options.map((option) => (
+          <option value={option}>
+            {t(
+              `simulator.inputs.tabs.activities.${option}.select_type_option_label`,
+            )}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 function ActivityInput({
   form,
   activityIndex,
@@ -63,7 +99,7 @@ function ActivityInput({
   remove: UseFieldArrayRemove;
 }) {
   const activity = form.watch(`activities.${activityIndex}`);
-  console.log({ activity });
+
   return (
     <div className={`collapse bg-base-200`}>
       <input
@@ -88,7 +124,13 @@ function ActivityInput({
           onClick={() => remove(activityIndex)}
         />
       </div>
-      <div className="collapse-content">tototot</div>
+      <div className="collapse-content">
+        <ActivityInputSelectType
+          form={form}
+          activityIndex={activityIndex}
+          options={["daily_rate", "hourly_rate", "flat_rate"]}
+        />
+      </div>
     </div>
   );
 }

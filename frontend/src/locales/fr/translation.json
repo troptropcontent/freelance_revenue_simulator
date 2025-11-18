@@ -21,6 +21,19 @@
         "days_other": "{{count, number(maximumFractionDigits: 1)}} jours"
       },
       "simulator": {
+        "inputs": {
+          "tabs":{
+            "shared":{
+              "step": "Étape {{stepNumber}}"
+            },
+            "missions":{
+              "name": "Prestations"
+            },
+            "projects":{
+              "name": "Projets"
+            }
+          }
+        },
         "activities": {
           "kinds": {
             "freelancing": {

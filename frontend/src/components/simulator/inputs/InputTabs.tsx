@@ -1,4 +1,6 @@
 import { Tabs } from "src/components/ui/Tabs";
+import { MissionTab } from "./MissionTab";
+import { ProjectTab } from "./ProjectTab";
 
 function InputTabs() {
   return (
@@ -8,16 +10,20 @@ function InputTabs() {
           name="step_1"
           isActiveClassName="[--tab-bg:var(--color-blue-200)]"
         >
-          Étape 1
+          <MissionTab.Trigger />
         </Tabs.Trigger>
-        <Tabs.Content className="bg-blue-200">Inputs étape 1</Tabs.Content>
+        <Tabs.Content className="bg-blue-200">
+          <MissionTab.Content />
+        </Tabs.Content>
         <Tabs.Trigger
           name="step_2"
           isActiveClassName="[--tab-bg:var(--color-lime-100)]"
         >
-          Étape 2
+          <ProjectTab.Trigger />
         </Tabs.Trigger>
-        <Tabs.Content className="bg-lime-100">Inputs étape 2</Tabs.Content>
+        <Tabs.Content className="bg-lime-100">
+          <ProjectTab.Content />
+        </Tabs.Content>
       </Tabs.Root>
     </div>
   );

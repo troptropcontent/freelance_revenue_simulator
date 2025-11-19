@@ -89,6 +89,7 @@
               }
             },
             "project":{
+              "select_type_label": "Quel type de projet ?",
               "name": "Projets",
               "hint": "Liste les projets personnels que tu veux mener.",
               "add_button": "Ajouter un projet"

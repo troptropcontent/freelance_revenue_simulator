@@ -16,8 +16,8 @@ function useInitialValues(): Inputs {
       buildDefaultActivityValueForKind("daily_rate"),
       buildDefaultActivityValueForKind("hourly_rate"),
       buildDefaultActivityValueForKind("flat_rate"),
-      buildDefaultActivityValueForKind("free"),
       buildDefaultActivityValueForKind("paid"),
+      buildDefaultActivityValueForKind("free"),
     ],
     config: {
       number_of_days_off_per_year: DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR,
@@ -30,18 +30,14 @@ function useInitialValues(): Inputs {
 function useActivitiesFieldArray(form: UseFormReturn<Inputs>) {
   const buildDefaultActivityValueForKind =
     useBuildDefaultActivityValueForKind();
-  const {
-    fields: activities,
-    append,
-    remove,
-  } = useFieldArray({
+  const { append, remove } = useFieldArray({
     control: form.control,
     name: "activities",
   });
   const appendActivities = (
     missionKind: Inputs["activities"][number]["kind"],
   ) => append(buildDefaultActivityValueForKind(missionKind));
-
+  const activities = form.watch("activities");
   return { activities, appendActivities, removeActivity: remove };
 }
 

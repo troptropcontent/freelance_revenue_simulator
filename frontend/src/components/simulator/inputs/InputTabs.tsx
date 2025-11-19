@@ -3,10 +3,10 @@ import { UseFormReturn } from "react-hook-form";
 import { Inputs } from "./types";
 import { useActivitiesFieldArray } from "./shared/hooks";
 import { CirclePlus } from "lucide-react";
-import { TabTrigger } from "./private/TabTrigger";
 import { useTranslation } from "react-i18next";
 import { ActivityInput } from "./private/ActivityInput";
 import { twMerge } from "tailwind-merge";
+import { Fragment } from "react";
 
 function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
   const { t } = useTranslation();
@@ -47,10 +47,10 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
 
   return (
     <div className="col-span-2">
-      <Tabs.Root defaultTab="step_1">
+      <Tabs.Root defaultTab="step_0">
         {tabs.map((tab, index) => {
           return (
-            <>
+            <Fragment key={tab.type}>
               <Tabs.Trigger
                 name={`step_${index}`}
                 isActiveClassName={tab.triggerIsActiveClassName}
@@ -94,7 +94,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
                   </button>
                 </div>
               </Tabs.Content>
-            </>
+            </Fragment>
           );
         })}
       </Tabs.Root>

@@ -17,6 +17,7 @@ import {
 import { ReactElement, ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormInputs } from "src/components/ui/form/inputs";
+import { twMerge } from "tailwind-merge";
 
 const DAYS_PER_WEEK = 5 as const;
 
@@ -64,7 +65,11 @@ function ActivityName({
 }
 
 function TypeSpecificInput({ children }: { children: ReactNode }) {
-  return <div className="py-2 px-4 flex bg-gray-50 rounded">{children}</div>;
+  return (
+    <div className="py-2 px-4 flex justify-between bg-gray-50 rounded gap-6">
+      {children}
+    </div>
+  );
 }
 
 function RateWithQuantityAndFrequencyInputGroup({
@@ -189,19 +194,38 @@ function ActivityInputTypeSpecificInputs({
     case "paid":
       return (
         <TypeSpecificInput>
-          <p className="text-gray-600">
-            {t("simulator.inputs.tabs.activities.inputs.paid_placeholder")}
-          </p>
+          <div className="flex gap-4">
+            {" "}
+            <label htmlFor="" className="flex-1 my-auto">
+              {t(
+                "simulator.inputs.tabs.activities.inputs.estimated_monthly_revenue_label",
+              )}
+            </label>
+            <FormInputs.Currency<Inputs>
+              form={form}
+              name={`activities.${activityIndex}.estimated_monthly_revenue`}
+              min={0}
+              max={1000}
+            />
+          </div>
+          <div className="flex gap-4">
+            <label htmlFor="" className="flex-1 my-auto">
+              {t(
+                "simulator.inputs.tabs.activities.inputs.estimated_months_billed_label",
+              )}
+            </label>
+            <FormInputs.Number<Inputs>
+              form={form}
+              name={`activities.${activityIndex}.estimated_months_billed`}
+              min={0}
+              max={12}
+              className="w-[50px]"
+            />
+          </div>
         </TypeSpecificInput>
       );
-    case "free":
-      return (
-        <TypeSpecificInput>
-          <p className="text-gray-600">
-            {t("simulator.inputs.tabs.activities.inputs.free_placeholder")}
-          </p>
-        </TypeSpecificInput>
-      );
+    default:
+      return null;
   }
 }
 
@@ -209,10 +233,14 @@ function ActivityInputSelectType({
   activityIndex,
   form,
   options,
+  selectClassName,
+  iconClassName,
 }: {
   activityIndex: number;
   form: UseFormReturn<Inputs>;
   options: Inputs["activities"][number]["kind"][];
+  selectClassName: string;
+  iconClassName: string;
 }) {
   const { t } = useTranslation();
   const activity = form.watch(`activities.${activityIndex}`);
@@ -227,7 +255,7 @@ function ActivityInputSelectType({
       </label>
       <div className="relative">
         <select
-          className="select w-[120px] pl-10"
+          className={twMerge("select pl-10", selectClassName)}
           {...form.register(`activities.${activityIndex}.kind`)}
         >
           {options.map((option) => {
@@ -237,7 +265,7 @@ function ActivityInputSelectType({
                 <IconComponent
                   width={16}
                   height={16}
-                  className="text-blue-500"
+                  className={iconClassName}
                 />
                 {t(
                   `simulator.inputs.tabs.activities.${option}.select_type_option_label`,
@@ -249,7 +277,10 @@ function ActivityInputSelectType({
         <ActivityIcon
           width={16}
           height={16}
-          className="absolute text-blue-500 top-0 left-4 z-10 h-full my-auto"
+          className={twMerge(
+            "absolute top-0 left-4 z-10 h-full my-auto",
+            iconClassName,
+          )}
         />
       </div>
     </div>
@@ -331,6 +362,10 @@ function ActivityInput({
   removeActivity: UseFieldArrayRemove;
   form: UseFormReturn<Inputs>;
 }) {
+  console.log({
+    enabled: activityWithInputIndex.enabled,
+    index: activityWithInputIndex.inputIndex,
+  });
   return (
     <div className={`collapse bg-white`}>
       <input
@@ -367,7 +402,21 @@ function ActivityInput({
         <ActivityInputSelectType
           form={form}
           activityIndex={activityWithInputIndex.inputIndex}
-          options={["daily_rate", "hourly_rate", "flat_rate"]}
+          options={
+            activityWithInputIndex.type === "mission"
+              ? ["daily_rate", "hourly_rate", "flat_rate"]
+              : ["free", "paid"]
+          }
+          selectClassName={
+            activityWithInputIndex.type === "mission"
+              ? "w-[120px]"
+              : "w-[168px]"
+          }
+          iconClassName={
+            activityWithInputIndex.type === "mission"
+              ? "text-blue-500"
+              : "text-lime-600"
+          }
         />
         <ActivityInputTypeSpecificInputs
           form={form}

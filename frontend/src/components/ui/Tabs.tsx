@@ -38,7 +38,7 @@ function Trigger(props: TabTriggerType) {
   return (
     <label
       className={twMerge(
-        "tab",
+        "tab grow [&:not(:last-child)]:before:hidden",
         isActive ? "tab-active" : "",
         isActive ? props.isActiveClassName : "",
       )}
@@ -62,7 +62,7 @@ function Content(props: TabContentType) {
   return (
     <div
       className={twMerge(
-        "tab-content bg-base-100 border-base-300 p-6",
+        "tab-content bg-base-100 border-base-300 p-6 rounded-t-none",
         props.className,
       )}
     >

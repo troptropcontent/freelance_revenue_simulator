@@ -14,6 +14,8 @@ import { ReactElement, ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormInputs } from "src/components/ui/form/inputs";
 
+const DAYS_PER_WEEK = 5 as const;
+
 const ActivityKindIcons = {
   hourly_rate: Clock,
   daily_rate: CalendarDays,
@@ -267,11 +269,50 @@ function ActivityInputEnjoymentRate({
       >
         {t("simulator.inputs.tabs.activities.inputs.enjoyment_rate_label")}
       </label>
-      <FormInputs.Rating
+      <FormInputs.Rating<Inputs>
         form={form}
         mask="heart"
         max={5}
         name={`activities.${activityIndex}.enjoyment_rate`}
+      />
+    </div>
+  );
+}
+
+function ActivityInputAverageTimeSpent({
+  activityIndex,
+  form,
+}: {
+  activityIndex: number;
+  form: UseFormReturn<Inputs>;
+}) {
+  const { t } = useTranslation();
+  const inputName = `activities.${activityIndex}.average_time_spent` as const;
+  const currentValueString = form.watch(inputName).toString();
+
+  return (
+    <div className="flex p-4 flex-col gap-4">
+      <div className="flex justify-between">
+        <label htmlFor={inputName} className="my-auto">
+          {t(
+            "simulator.inputs.tabs.activities.inputs.average_time_spent_label",
+          )}
+        </label>
+        <p className="text-sm font-bold text-gray-500 my-auto grow text-end">
+          {t(
+            "simulator.inputs.tabs.activities.inputs.average_time_spent_hint",
+            {
+              count: parseInt(currentValueString),
+              max: DAYS_PER_WEEK,
+            },
+          )}
+        </p>
+      </div>
+      <FormInputs.Range<Inputs>
+        form={form}
+        min={0}
+        max={DAYS_PER_WEEK}
+        name={inputName}
       />
     </div>
   );
@@ -322,6 +363,10 @@ function ActivityInput({
           options={["daily_rate", "hourly_rate", "flat_rate"]}
         />
         <ActivityInputTypeSpecificInputs
+          form={form}
+          activityIndex={activityIndex}
+        />
+        <ActivityInputAverageTimeSpent
           form={form}
           activityIndex={activityIndex}
         />

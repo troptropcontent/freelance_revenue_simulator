@@ -111,6 +111,28 @@ function Rating<T extends FieldValues>({
   );
 }
 
-const FormInputs = { Currency, Number, Select, Rating };
+function Range<T extends FieldValues>({
+  form,
+  name,
+  min,
+  max,
+}: {
+  form: UseFormReturn<T>;
+  name: FieldPath<T>;
+  max: number;
+  min: number;
+}) {
+  return (
+    <input
+      type="range"
+      min={min}
+      max={max}
+      {...form.register(name)}
+      className="range w-full text-blue-400 [--range-bg:var(--color-gray-200)] [--range-thumb:white]"
+    />
+  );
+}
+
+const FormInputs = { Currency, Number, Select, Rating, Range };
 
 export { FormInputs };

@@ -18,10 +18,13 @@
     --color-lime-500: oklch(76.8% 0.233 130.85);
     --color-green-400: oklch(79.2% 0.209 151.711);
     --color-blue-200: oklch(88.2% 0.059 254.128);
+    --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-purple-900: oklch(38.1% 0.176 304.987);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
+    --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
@@ -1539,6 +1542,101 @@
       }
     }
   }
+  .range {
+    @layer daisyui.component {
+      appearance: none;
+      webkit-appearance: none;
+      --range-thumb: var(--color-base-100);
+      --range-thumb-size: calc(var(--size-selector, 0.25rem) * 6);
+      --range-progress: currentColor;
+      --range-fill: 1;
+      --range-p: 0.25rem;
+      --range-bg: currentColor;
+      @supports (color: color-mix(in lab, red, red)) {
+        --range-bg: color-mix(in oklab, currentColor 10%, #0000);
+      }
+      cursor: pointer;
+      overflow: hidden;
+      background-color: transparent;
+      vertical-align: middle;
+      width: clamp(3rem, 20rem, 100%);
+      --radius-selector-max: calc(
+      var(--radius-selector) + var(--radius-selector) + var(--radius-selector)
+    );
+      border-radius: calc(var(--radius-selector) + min(var(--range-p), var(--radius-selector-max)));
+      border: none;
+      height: var(--range-thumb-size);
+      [dir="rtl"] & {
+        --range-dir: -1;
+      }
+      &:focus {
+        outline: none;
+      }
+      &:focus-visible {
+        outline: 2px solid;
+        outline-offset: 2px;
+      }
+      &::-webkit-slider-runnable-track {
+        width: 100%;
+        background-color: var(--range-bg);
+        border-radius: var(--radius-selector);
+        height: calc(var(--range-thumb-size) * 0.5);
+      }
+      @media (forced-colors: active) {
+        &::-webkit-slider-runnable-track {
+          border: 1px solid;
+        }
+      }
+      @media (forced-colors: active) {
+        &::-moz-range-track {
+          border: 1px solid;
+        }
+      }
+      &::-webkit-slider-thumb {
+        position: relative;
+        box-sizing: border-box;
+        border-radius: calc(var(--radius-selector) + min(var(--range-p), var(--radius-selector-max)));
+        background-color: currentColor;
+        height: var(--range-thumb-size);
+        width: var(--range-thumb-size);
+        border: var(--range-p) solid;
+        appearance: none;
+        webkit-appearance: none;
+        top: 50%;
+        color: var(--range-progress);
+        transform: translateY(-50%);
+        box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px currentColor, 0 0 0 2rem var(--range-thumb) inset, calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2)) 0 0 calc(100rem * var(--range-fill));
+        @supports (color: color-mix(in lab, red, red)) {
+          box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000), 0 0 0 2rem var(--range-thumb) inset, calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2)) 0 0 calc(100rem * var(--range-fill));
+        }
+      }
+      &::-moz-range-track {
+        width: 100%;
+        background-color: var(--range-bg);
+        border-radius: var(--radius-selector);
+        height: calc(var(--range-thumb-size) * 0.5);
+      }
+      &::-moz-range-thumb {
+        position: relative;
+        box-sizing: border-box;
+        border-radius: calc(var(--radius-selector) + min(var(--range-p), var(--radius-selector-max)));
+        background-color: currentColor;
+        height: var(--range-thumb-size);
+        width: var(--range-thumb-size);
+        border: var(--range-p) solid;
+        top: 50%;
+        color: var(--range-progress);
+        box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px currentColor, 0 0 0 2rem var(--range-thumb) inset, calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2)) 0 0 calc(100rem * var(--range-fill));
+        @supports (color: color-mix(in lab, red, red)) {
+          box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000), 0 0 0 2rem var(--range-thumb) inset, calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2)) 0 0 calc(100rem * var(--range-fill));
+        }
+      }
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 30%;
+      }
+    }
+  }
   .select {
     @layer daisyui.component {
       border: var(--border) solid #0000;
@@ -2583,6 +2681,16 @@
   .gap-x-6 {
     column-gap: calc(var(--spacing) * 6);
   }
+  .gap-x-8 {
+    column-gap: calc(var(--spacing) * 8);
+  }
+  .space-x-8 {
+    :where(& > :not(:last-child)) {
+      --tw-space-x-reverse: 0;
+      margin-inline-start: calc(calc(var(--spacing) * 8) * var(--tw-space-x-reverse));
+      margin-inline-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-x-reverse)));
+    }
+  }
   .btn {
     border-radius: var(--radius-lg);
     --tw-shadow: 0 0 #0000;
@@ -2780,6 +2888,12 @@
   .text-black {
     color: var(--color-black);
   }
+  .text-blue-300 {
+    color: var(--color-blue-300);
+  }
+  .text-blue-400 {
+    color: var(--color-blue-400);
+  }
   .text-blue-500 {
     color: var(--color-blue-500);
   }
@@ -2867,6 +2981,24 @@
       --btn-color: var(--color-primary);
       --btn-fg: var(--color-primary-content);
     }
+  }
+  .\[--range-bg\:gray-200\] {
+    --range-bg: gray-200;
+  }
+  .\[--range-bg\:orange\] {
+    --range-bg: orange;
+  }
+  .\[--range-bg\:var\(--color-gray-200\)\] {
+    --range-bg: var(--color-gray-200);
+  }
+  .\[--range-fill\:0\] {
+    --range-fill: 0;
+  }
+  .\[--range-thumb\:blue\] {
+    --range-thumb: blue;
+  }
+  .\[--range-thumb\:white\] {
+    --range-thumb: white;
   }
   .\[--tab-bg\:var\(--color-blue-200\)\] {
     --tab-bg: var(--color-blue-200);
@@ -3334,6 +3466,11 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-space-x-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
 @property --tw-shadow {
   syntax: "*";
   inherits: false;
@@ -3478,6 +3615,7 @@
       --tw-rotate-z: initial;
       --tw-skew-x: initial;
       --tw-skew-y: initial;
+      --tw-space-x-reverse: 0;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;

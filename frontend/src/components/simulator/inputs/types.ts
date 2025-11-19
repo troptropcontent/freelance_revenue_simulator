@@ -31,7 +31,7 @@ type ProjectPaid = BaseActivity & {
   type: "project";
   kind: "paid";
   estimated_monthly_revenue: number;
-  estilated_months_billed: number;
+  estimated_months_billed: number;
 };
 
 type ProjectFree = BaseActivity & {

@@ -6,6 +6,7 @@ import {
   DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
 } from "../constants";
 import { Inputs } from "../types";
+import { useFieldArray, UseFormReturn } from "react-hook-form";
 
 function useInitialValues(): Inputs {
   const buildDefaultActivityValueForKind =
@@ -15,6 +16,8 @@ function useInitialValues(): Inputs {
       buildDefaultActivityValueForKind("daily_rate"),
       buildDefaultActivityValueForKind("hourly_rate"),
       buildDefaultActivityValueForKind("flat_rate"),
+      buildDefaultActivityValueForKind("free"),
+      buildDefaultActivityValueForKind("paid"),
     ],
     config: {
       number_of_days_off_per_year: DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR,
@@ -22,6 +25,24 @@ function useInitialValues(): Inputs {
       number_of_hours_worked_per_day: DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
     },
   };
+}
+
+function useActivitiesFieldArray(form: UseFormReturn<Inputs>) {
+  const buildDefaultActivityValueForKind =
+    useBuildDefaultActivityValueForKind();
+  const {
+    fields: activities,
+    append,
+    remove,
+  } = useFieldArray({
+    control: form.control,
+    name: "activities",
+  });
+  const appendActivities = (
+    missionKind: Inputs["activities"][number]["kind"],
+  ) => append(buildDefaultActivityValueForKind(missionKind));
+
+  return { activities, appendActivities, removeActivity: remove };
 }
 
 function useBuildDefaultActivityValueForKind() {
@@ -33,4 +54,8 @@ function useBuildDefaultActivityValueForKind() {
   };
 }
 
-export { useInitialValues, useBuildDefaultActivityValueForKind };
+export {
+  useInitialValues,
+  useBuildDefaultActivityValueForKind,
+  useActivitiesFieldArray,
+};

@@ -1,4 +1,8 @@
-import { UseFieldArrayRemove, UseFormReturn } from "react-hook-form";
+import {
+  useFieldArray,
+  UseFieldArrayRemove,
+  UseFormReturn,
+} from "react-hook-form";
 import { Inputs } from "../types";
 import {
   Trash2,
@@ -288,7 +292,7 @@ function ActivityInputAverageTimeSpent({
 }) {
   const { t } = useTranslation();
   const inputName = `activities.${activityIndex}.average_time_spent` as const;
-  const currentValueString = form.watch(inputName).toString();
+  const currentValue = form.watch(inputName);
 
   return (
     <div className="flex p-4 flex-col gap-4">
@@ -302,7 +306,7 @@ function ActivityInputAverageTimeSpent({
           {t(
             "simulator.inputs.tabs.activities.inputs.average_time_spent_hint",
             {
-              count: parseInt(currentValueString),
+              count: currentValue,
               max: DAYS_PER_WEEK,
             },
           )}
@@ -319,37 +323,40 @@ function ActivityInputAverageTimeSpent({
 }
 
 function ActivityInput({
+  activityWithInputIndex,
+  removeActivity,
   form,
-  activityIndex,
-  remove,
 }: {
-  activityIndex: number;
+  activityWithInputIndex: Inputs["activities"][number] & { inputIndex: number };
+  removeActivity: UseFieldArrayRemove;
   form: UseFormReturn<Inputs>;
-  remove: UseFieldArrayRemove;
 }) {
-  const activity = form.watch(`activities.${activityIndex}`);
-
   return (
     <div className={`collapse bg-white`}>
       <input
-        id={`activities.${activityIndex}.collapse`}
+        id={`activities.${activityWithInputIndex.inputIndex}.collapse`}
         type="checkbox"
         className="hidden peer"
-        checked={activity.enabled}
+        checked={activityWithInputIndex.enabled}
         readOnly
       />
       <div className="collapse-title flex items-center gap-6 pointer-events-none pr-4">
         <input
-          id={`activities.${activityIndex}.enabled`}
+          id={`activities.${activityWithInputIndex.inputIndex}.enabled`}
           type="checkbox"
           className="toggle toggle-sm pointer-events-auto"
           aria-label="Toggle activity"
-          {...form.register(`activities.${activityIndex}.enabled`)}
+          {...form.register(
+            `activities.${activityWithInputIndex.inputIndex}.enabled`,
+          )}
         />
-        <ActivityName activityIndex={activityIndex} form={form} />
+        <ActivityName
+          activityIndex={activityWithInputIndex.inputIndex}
+          form={form}
+        />
         <button
           type="button"
-          onClick={() => remove(activityIndex)}
+          onClick={() => removeActivity(activityWithInputIndex.inputIndex)}
           className="pointer-events-auto text-gray-400 hover:text-red-500 transition-colors"
           aria-label="Delete activity"
         >
@@ -359,18 +366,21 @@ function ActivityInput({
       <div className="collapse-content">
         <ActivityInputSelectType
           form={form}
-          activityIndex={activityIndex}
+          activityIndex={activityWithInputIndex.inputIndex}
           options={["daily_rate", "hourly_rate", "flat_rate"]}
         />
         <ActivityInputTypeSpecificInputs
           form={form}
-          activityIndex={activityIndex}
+          activityIndex={activityWithInputIndex.inputIndex}
         />
         <ActivityInputAverageTimeSpent
           form={form}
-          activityIndex={activityIndex}
+          activityIndex={activityWithInputIndex.inputIndex}
         />
-        <ActivityInputEnjoymentRate form={form} activityIndex={activityIndex} />
+        <ActivityInputEnjoymentRate
+          form={form}
+          activityIndex={activityWithInputIndex.inputIndex}
+        />
       </div>
     </div>
   );

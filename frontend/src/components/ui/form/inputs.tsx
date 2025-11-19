@@ -67,7 +67,9 @@ function Select<T extends FieldValues>({
       {...form.register(name)}
     >
       {options.map((option) => (
-        <option value={option.value}>{option.label}</option>
+        <option value={option.value} key={option.value}>
+          {option.label}
+        </option>
       ))}
     </select>
   );
@@ -127,7 +129,7 @@ function Range<T extends FieldValues>({
       type="range"
       min={min}
       max={max}
-      {...form.register(name)}
+      {...form.register(name, { valueAsNumber: true })}
       className="range w-full text-blue-400 [--range-bg:var(--color-gray-200)] [--range-thumb:white]"
     />
   );

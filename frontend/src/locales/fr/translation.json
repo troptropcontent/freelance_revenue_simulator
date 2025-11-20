@@ -5,6 +5,8 @@
         "value_with_unit": {
           "number_of_days_one": "{{count, number(maximumFractionDigits: 2)}} jour",
           "number_of_days_other": "{{count, number(maximumFractionDigits: 2)}} jours",
+           "number_of_weeks_one": "{{count, number(maximumFractionDigits: 2)}} semaine",
+          "number_of_weeks_other": "{{count, number(maximumFractionDigits: 2)}} semaines",
           "number_of_days_per_week_one": "{{count, number(maximumFractionDigits: 2)}} jour / semaine",
           "number_of_days_per_week_other": "{{count, number(maximumFractionDigits: 2)}} jours / semaine",
           "per_month": "{{value, number(maximumFractionDigits: 2)}} / mois"
@@ -18,7 +20,30 @@
           "by_year": "par an"
         },
         "days_one": "{{count, number(maximumFractionDigits: 1)}} jour",
-        "days_other": "{{count, number(maximumFractionDigits: 1)}} jours"
+        "days_other": "{{count, number(maximumFractionDigits: 1)}} jours",
+        "weekdays": {
+          "0": {
+            "label": "M"
+          },
+          "1": {
+            "label": "T"
+          },
+          "2": {
+            "label": "M"
+          },
+          "3": {
+            "label": "J"
+          },
+          "4": {
+            "label": "V"
+          },
+          "5": {
+            "label": "S"
+          },
+          "6": {
+            "label": "D"
+          }
+        }
       },
       "simulator": {
         "inputs": {
@@ -59,7 +84,14 @@
                 "flat_rate_rate_label": "Tarif forfait",
                 "flat_rate_quantity_label": "Forfaits facturés",
                 "estimated_months_billed_label": "Nombre de mois facturés",
-                "estimated_monthly_revenue_label": "Revenu net mensuel estimé"
+                "estimated_monthly_revenue_label": "Revenu net mensuel estimé",
+                "number_of_days_spent_on_admin_tasks_label": "Gestion de l’activité (compta, prospection...)",
+                "number_of_weeks_off_per_year_label": "Vancances par an",
+                "weekdays_worked": "Jours pris en compte par Soloportfolio"
+              },
+              "settings_modal":{
+                "open_btn": "Réglages",
+                "title": "Ajuste tes paramètres"
               }
             },
             "mission":{

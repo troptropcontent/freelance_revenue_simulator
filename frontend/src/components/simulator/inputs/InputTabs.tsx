@@ -2,11 +2,15 @@ import { Tabs } from "src/components/ui/Tabs";
 import { UseFormReturn } from "react-hook-form";
 import { Inputs } from "./types";
 import { useActivitiesFieldArray } from "./shared/hooks";
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, SlidersVertical } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ActivityInput } from "./private/ActivityInput";
 import { twMerge } from "tailwind-merge";
 import { Fragment } from "react";
+import { Modal } from "src/components/ui/Modal";
+import { FormInputs } from "src/components/ui/form/inputs";
+import { InputGroupWithRange } from "./private/InputGroupWithRange";
+import { InputGroupWithWeekdaysPicker } from "./private/InputGroupWithWeekdaysRadio";
 
 function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
   const { t } = useTranslation();
@@ -29,8 +33,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
       contentClassName: "bg-blue-200",
       badgeClassName: "bg-blue-500 border-blue-500 text-white",
       activitiesWithInputIndex: missionsWithInputIndex,
-      addActivityButtonClassName:
-        "btn bg-blue-500 border-blue-500 text-white gap-3",
+      addActivityButtonClassName: "bg-blue-500 border-blue-500 text-white",
       newActivityKind: "hourly_rate",
     },
     {
@@ -39,8 +42,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
       contentClassName: "bg-lime-100",
       badgeClassName: "bg-lime-500 border-lime-500 text-white",
       activitiesWithInputIndex: projectsWithInputIndex,
-      addActivityButtonClassName:
-        "btn bg-lime-600 border-lime-600 text-white gap-3",
+      addActivityButtonClassName: "bg-lime-600 border-lime-600 text-white",
       newActivityKind: "paid",
     },
   ] as const;
@@ -84,14 +86,69 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
                       />
                     ),
                   )}
-                  <button
-                    type="button"
-                    className={tab.addActivityButtonClassName}
-                    onClick={() => appendActivities(tab.newActivityKind)}
-                  >
-                    {t(`simulator.inputs.tabs.${tab.type}.add_button`)}
-                    <CirclePlus size={16} />
-                  </button>
+                  <div className="flex gap-6">
+                    <button
+                      type="button"
+                      className={twMerge(
+                        "btn gap-3 grow",
+                        tab.addActivityButtonClassName,
+                      )}
+                      onClick={() => appendActivities(tab.newActivityKind)}
+                    >
+                      {t(`simulator.inputs.tabs.${tab.type}.add_button`)}
+                      <CirclePlus size={16} />
+                    </button>
+                    <Modal.Root>
+                      <Modal.Trigger>
+                        {t(
+                          `simulator.inputs.tabs.activities.settings_modal.open_btn`,
+                        )}
+                        <SlidersVertical size={16} />
+                      </Modal.Trigger>
+                      <Modal.Content>
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-bold text-center">
+                            {t(
+                              `simulator.inputs.tabs.activities.settings_modal.title`,
+                            )}
+                          </p>
+                          <InputGroupWithRange
+                            form={form}
+                            hint={(currentValue) =>
+                              t("common.value_with_unit.number_of_days", {
+                                count: currentValue,
+                              })
+                            }
+                            inputName={
+                              "config.number_of_days_spent_on_admin_tasks"
+                            }
+                            label={t(
+                              `simulator.inputs.tabs.activities.inputs.number_of_days_spent_on_admin_tasks_label`,
+                            )}
+                            rangeMin={0}
+                            rangeMax={5}
+                            step={0.5}
+                          />
+                          <InputGroupWithRange
+                            form={form}
+                            hint={(currentValue) =>
+                              t("common.value_with_unit.number_of_weeks", {
+                                count: currentValue,
+                              })
+                            }
+                            inputName={"config.number_of_weeks_off_per_year"}
+                            label={t(
+                              `simulator.inputs.tabs.activities.inputs.number_of_weeks_off_per_year_label`,
+                            )}
+                            rangeMin={0}
+                            rangeMax={10}
+                            step={0.5}
+                          />
+                          <InputGroupWithWeekdaysPicker form={form} />
+                        </div>
+                      </Modal.Content>
+                    </Modal.Root>
+                  </div>
                 </div>
               </Tabs.Content>
             </Fragment>

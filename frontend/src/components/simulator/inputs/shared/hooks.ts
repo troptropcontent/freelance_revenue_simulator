@@ -4,9 +4,12 @@ import {
   DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
   DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR,
   DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
+  DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR,
+  DEFAULT_WEEKDAYS_WORKED,
 } from "../constants";
 import { Inputs } from "../types";
 import { useFieldArray, UseFormReturn } from "react-hook-form";
+import { DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK } from "../../constants";
 
 function useInitialValues(): Inputs {
   const buildDefaultActivityValueForKind =
@@ -20,9 +23,10 @@ function useInitialValues(): Inputs {
       buildDefaultActivityValueForKind("free"),
     ],
     config: {
-      number_of_days_off_per_year: DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR,
-      number_of_days_worked_per_week: DEFAULT_NUMBER_DAYS_WORKED_PER_WEEKS,
-      number_of_hours_worked_per_day: DEFAULT_NUMBER_OF_HOURS_WORKED_PER_DAY,
+      number_of_days_spent_on_admin_tasks:
+        DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK,
+      number_of_weeks_off_per_year: DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR,
+      weekdays_worked: DEFAULT_WEEKDAYS_WORKED,
     },
   };
 }

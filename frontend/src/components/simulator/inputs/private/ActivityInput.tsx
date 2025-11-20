@@ -324,6 +324,8 @@ function ActivityInputAverageTimeSpent({
   const { t } = useTranslation();
   const inputName = `activities.${activityIndex}.average_time_spent` as const;
   const currentValue = form.watch(inputName);
+  const numberOfDaysWorkedPerWeek = form.watch("config.weekdays_worked").length;
+  console.log({ numberOfDaysWorkedPerWeek });
 
   return (
     <div className="flex p-4 flex-col gap-4">
@@ -338,7 +340,7 @@ function ActivityInputAverageTimeSpent({
             "simulator.inputs.tabs.activities.inputs.average_time_spent_hint",
             {
               count: currentValue,
-              max: DAYS_PER_WEEK,
+              max: numberOfDaysWorkedPerWeek,
             },
           )}
         </p>
@@ -346,7 +348,7 @@ function ActivityInputAverageTimeSpent({
       <FormInputs.Range<Inputs>
         form={form}
         min={0}
-        max={DAYS_PER_WEEK}
+        max={numberOfDaysWorkedPerWeek}
         name={inputName}
       />
     </div>
@@ -362,10 +364,6 @@ function ActivityInput({
   removeActivity: UseFieldArrayRemove;
   form: UseFormReturn<Inputs>;
 }) {
-  console.log({
-    enabled: activityWithInputIndex.enabled,
-    index: activityWithInputIndex.inputIndex,
-  });
   return (
     <div className={`collapse bg-white`}>
       <input

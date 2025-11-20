@@ -1,3 +1,5 @@
+type Weekday = "0" | "1" | "2" | "3" | "4" | "5" | "6";
+
 type BaseActivity = {
   name: string;
   enabled: boolean;
@@ -49,9 +51,9 @@ type Activity =
 interface Inputs {
   activities: Activity[];
   config: {
-    number_of_days_off_per_year: number;
-    number_of_days_worked_per_week: number;
-    number_of_hours_worked_per_day: number;
+    number_of_days_spent_on_admin_tasks: number;
+    number_of_weeks_off_per_year: number;
+    weekdays_worked: Weekday[];
   };
 }
 

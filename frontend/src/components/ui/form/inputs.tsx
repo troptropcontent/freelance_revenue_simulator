@@ -1,5 +1,10 @@
 import { EuroIcon } from "lucide-react";
-import { FieldPath, FieldValues, UseFormReturn } from "react-hook-form";
+import {
+  Controller,
+  FieldPath,
+  FieldValues,
+  UseFormReturn,
+} from "react-hook-form";
 
 function Currency<T extends FieldValues>({
   form,
@@ -118,19 +123,30 @@ function Range<T extends FieldValues>({
   name,
   min,
   max,
+  step = 1,
 }: {
   form: UseFormReturn<T>;
   name: FieldPath<T>;
   max: number;
   min: number;
+  step?: number;
 }) {
   return (
-    <input
-      type="range"
-      min={min}
-      max={max}
-      {...form.register(name, { valueAsNumber: true })}
-      className="range w-full text-blue-400 [--range-bg:var(--color-gray-200)] [--range-thumb:white]"
+    <Controller
+      name={name}
+      control={form.control}
+      render={({ field }) => (
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          {...field}
+          value={field.value ?? min}
+          onChange={(e) => field.onChange(parseFloat(e.target.value))}
+          className="range w-full text-blue-400 [--range-bg:var(--color-gray-200)] [--range-thumb:white]"
+        />
+      )}
     />
   );
 }

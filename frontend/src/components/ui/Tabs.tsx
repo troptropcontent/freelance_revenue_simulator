@@ -20,7 +20,7 @@ function Root(props: TabRootType) {
   return (
     <TabContext.Provider value={contextValue}>
       <div className="tabs tabs-lift bg-white rounded-box relative">
-        <div className="absolute rounded-box w-full h-full border border-gray-200"></div>
+        <div className="absolute rounded-box w-full h-full border border-gray-200 pointer-events-none"></div>
         {props.children}
       </div>
     </TabContext.Provider>
@@ -65,7 +65,7 @@ function Content(props: TabContentType) {
   return (
     <div
       className={twMerge(
-        "tab-content bg-base-100 p-6 rounded-t-none z-10",
+        "tab-content bg-base-100 p-6 rounded-t-none",
         props.className,
       )}
     >

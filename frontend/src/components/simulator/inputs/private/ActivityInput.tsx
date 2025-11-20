@@ -1,8 +1,4 @@
-import {
-  useFieldArray,
-  UseFieldArrayRemove,
-  UseFormReturn,
-} from "react-hook-form";
+import { UseFieldArrayRemove, UseFormReturn } from "react-hook-form";
 import { Inputs } from "../types";
 import {
   Trash2,
@@ -14,12 +10,10 @@ import {
   HeartHandshake,
   FolderOpen,
 } from "lucide-react";
-import { ReactElement, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormInputs } from "src/components/ui/form/inputs";
 import { twMerge } from "tailwind-merge";
-
-const DAYS_PER_WEEK = 5 as const;
 
 const ActivityKindIcons = {
   hourly_rate: Clock,

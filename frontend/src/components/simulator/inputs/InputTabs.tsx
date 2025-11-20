@@ -8,7 +8,6 @@ import { ActivityInput } from "./private/ActivityInput";
 import { twMerge } from "tailwind-merge";
 import { Fragment } from "react";
 import { Modal } from "src/components/ui/Modal";
-import { FormInputs } from "src/components/ui/form/inputs";
 import { InputGroupWithRange } from "./private/InputGroupWithRange";
 import { InputGroupWithWeekdaysPicker } from "./private/InputGroupWithWeekdaysRadio";
 

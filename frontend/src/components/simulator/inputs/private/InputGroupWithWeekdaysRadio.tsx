@@ -1,6 +1,5 @@
-import { FieldPath, FieldPathValue, UseFormReturn } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 import { Inputs } from "../types";
-import { FormInputs } from "src/components/ui/form/inputs";
 import {
   MONDAY,
   TUESDAY,

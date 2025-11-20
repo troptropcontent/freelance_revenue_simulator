@@ -19,7 +19,10 @@ function Root(props: TabRootType) {
   const contextValue = { activeTab, setActiveTab, tabGroupName };
   return (
     <TabContext.Provider value={contextValue}>
-      <div className="tabs tabs-lift">{props.children}</div>
+      <div className="tabs tabs-lift bg-white rounded-box relative">
+        <div className="absolute rounded-box w-full h-full border border-gray-200"></div>
+        {props.children}
+      </div>
     </TabContext.Provider>
   );
 }
@@ -38,7 +41,7 @@ function Trigger(props: TabTriggerType) {
   return (
     <label
       className={twMerge(
-        "tab grow [&:not(:last-child)]:before:hidden",
+        "tab",
         isActive ? "tab-active" : "",
         isActive ? props.isActiveClassName : "",
       )}

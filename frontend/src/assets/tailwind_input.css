@@ -10,4 +10,10 @@
 @utility btn {
   @apply rounded-lg;
   @apply shadow-none;
+};
+
+@utility tab {
+  --tab-border-color: var(--color-gray-200);
+  @apply grow;
+  @apply [&:not(:last-child)]:before:hidden;
 }

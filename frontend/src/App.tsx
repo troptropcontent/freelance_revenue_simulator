@@ -10,7 +10,7 @@ function App() {
     defaultValues: initialValues,
   });
   return (
-    <form className="container grid grid-cols-3 gap-x-6">
+    <form className="container grid grid-cols-3 gap-x-6 bg-orange-100">
       <div>Simulateur SoloPortfolio</div>
       <div>
         <Button>Partager</Button>

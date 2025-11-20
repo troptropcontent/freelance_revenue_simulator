@@ -87,11 +87,12 @@
                 "estimated_monthly_revenue_label": "Revenu net mensuel estimé",
                 "number_of_days_spent_on_admin_tasks_label": "Gestion de l’activité (compta, prospection...)",
                 "number_of_weeks_off_per_year_label": "Vancances par an",
-                "weekdays_worked": "Jours pris en compte par Soloportfolio"
+                "weekdays_worked_label": "Jours pris en compte par Soloportfolio"
               },
               "settings_modal":{
                 "open_btn": "Réglages",
-                "title": "Ajuste tes paramètres"
+                "title": "Ajuste tes paramètres",
+                "validate": "Valider les paramètres"
               }
             },
             "mission":{

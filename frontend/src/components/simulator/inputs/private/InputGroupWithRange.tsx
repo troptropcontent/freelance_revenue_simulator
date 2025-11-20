@@ -1,6 +1,7 @@
 import { FieldPath, FieldPathValue, UseFormReturn } from "react-hook-form";
 import { Inputs } from "../types";
 import { FormInputs } from "src/components/ui/form/inputs";
+import { twMerge } from "tailwind-merge";
 
 function InputGroupWithRange<TFieldName extends FieldPath<Inputs>>({
   label,
@@ -10,6 +11,7 @@ function InputGroupWithRange<TFieldName extends FieldPath<Inputs>>({
   rangeMin,
   rangeMax,
   step = 1,
+  className,
 }: {
   label: string;
   hint: string | ((currentValue: FieldPathValue<Inputs, TFieldName>) => string);
@@ -18,11 +20,12 @@ function InputGroupWithRange<TFieldName extends FieldPath<Inputs>>({
   rangeMin: number;
   rangeMax: number;
   step?: number;
+  className?: string;
 }) {
   const currentValue = form.watch(inputName);
 
   return (
-    <div className="flex p-4 flex-col gap-4">
+    <div className={twMerge("flex flex-col gap-4", className)}>
       <div className="flex justify-between">
         <label htmlFor={"prout"} className="my-auto">
           {label}

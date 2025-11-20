@@ -106,46 +106,62 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
                         <SlidersVertical size={16} />
                       </Modal.Trigger>
                       <Modal.Content>
-                        <div className="flex flex-col">
-                          <p className="text-2xl font-bold text-center">
-                            {t(
-                              `simulator.inputs.tabs.activities.settings_modal.title`,
-                            )}
-                          </p>
-                          <InputGroupWithRange
-                            form={form}
-                            hint={(currentValue) =>
-                              t("common.value_with_unit.number_of_days", {
-                                count: currentValue,
-                              })
-                            }
-                            inputName={
-                              "config.number_of_days_spent_on_admin_tasks"
-                            }
-                            label={t(
-                              `simulator.inputs.tabs.activities.inputs.number_of_days_spent_on_admin_tasks_label`,
-                            )}
-                            rangeMin={0}
-                            rangeMax={5}
-                            step={0.5}
-                          />
-                          <InputGroupWithRange
-                            form={form}
-                            hint={(currentValue) =>
-                              t("common.value_with_unit.number_of_weeks", {
-                                count: currentValue,
-                              })
-                            }
-                            inputName={"config.number_of_weeks_off_per_year"}
-                            label={t(
-                              `simulator.inputs.tabs.activities.inputs.number_of_weeks_off_per_year_label`,
-                            )}
-                            rangeMin={0}
-                            rangeMax={10}
-                            step={0.5}
-                          />
-                          <InputGroupWithWeekdaysPicker form={form} />
-                        </div>
+                        {(closeModal) => (
+                          <div className="flex flex-col">
+                            <p className="text-2xl font-bold text-center">
+                              {t(
+                                `simulator.inputs.tabs.activities.settings_modal.title`,
+                              )}
+                            </p>
+                            <InputGroupWithRange
+                              form={form}
+                              hint={(currentValue) =>
+                                t("common.value_with_unit.number_of_days", {
+                                  count: currentValue,
+                                })
+                              }
+                              inputName={
+                                "config.number_of_days_spent_on_admin_tasks"
+                              }
+                              label={t(
+                                `simulator.inputs.tabs.activities.inputs.number_of_days_spent_on_admin_tasks_label`,
+                              )}
+                              rangeMin={0}
+                              rangeMax={5}
+                              step={0.5}
+                              className="mt-8"
+                            />
+                            <InputGroupWithRange
+                              form={form}
+                              hint={(currentValue) =>
+                                t("common.value_with_unit.number_of_weeks", {
+                                  count: currentValue,
+                                })
+                              }
+                              inputName={"config.number_of_weeks_off_per_year"}
+                              label={t(
+                                `simulator.inputs.tabs.activities.inputs.number_of_weeks_off_per_year_label`,
+                              )}
+                              rangeMin={0}
+                              rangeMax={10}
+                              step={0.5}
+                              className="mt-6"
+                            />
+                            <InputGroupWithWeekdaysPicker
+                              form={form}
+                              className="mt-8"
+                            />
+                            <button
+                              type="button"
+                              className="btn btn-primary mt-8"
+                              onClick={closeModal}
+                            >
+                              {t(
+                                "simulator.inputs.tabs.activities.settings_modal.validate",
+                              )}
+                            </button>
+                          </div>
+                        )}
                       </Modal.Content>
                     </Modal.Root>
                   </div>

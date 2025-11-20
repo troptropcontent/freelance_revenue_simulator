@@ -30,11 +30,16 @@ function Trigger({ children }: { children: ReactNode }) {
   );
 }
 
-function Content({ children }: { children: ReactNode }) {
+function Content({
+  children,
+}: {
+  children: React.ReactNode | ((closeModal: () => void) => React.ReactNode);
+}) {
   const dialogRef = useContext(ModalContext);
   if (dialogRef === null) {
     throw new Error("Modal.Content must be used within a Modal.Root component");
   }
+  const closeModal = () => dialogRef.current?.close();
 
   return (
     <dialog ref={dialogRef} className="modal p-8">
@@ -42,13 +47,11 @@ function Content({ children }: { children: ReactNode }) {
         <button
           type="button"
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => {
-            dialogRef.current?.close();
-          }}
+          onClick={closeModal}
         >
           ✕
         </button>
-        {children}
+        {typeof children === "function" ? children(closeModal) : children}
       </div>
     </dialog>
   );

@@ -12,6 +12,10 @@
   @apply shadow-none;
 };
 
+@utility btn-link {
+  text-decoration-line: none;
+}
+
 @utility tab {
   --tab-border-color: var(--color-gray-200);
   @apply grow;

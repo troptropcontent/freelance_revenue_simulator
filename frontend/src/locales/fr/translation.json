@@ -47,6 +47,7 @@
       },
       "simulator": {
         "inputs": {
+          "reset": "Réinitialiser ma simulations",
           "tabs":{
             "shared":{
               "step": "Étape {{stepNumber}}"

@@ -2,7 +2,7 @@ import { Tabs } from "src/components/ui/Tabs";
 import { UseFormReturn } from "react-hook-form";
 import { Inputs } from "./types";
 import { useActivitiesFieldArray } from "./shared/hooks";
-import { CirclePlus, SlidersVertical } from "lucide-react";
+import { CirclePlus, RefreshCcw, SlidersVertical } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ActivityInput } from "./private/ActivityInput";
 import { twMerge } from "tailwind-merge";
@@ -171,6 +171,14 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
           );
         })}
       </Tabs.Root>
+      <button
+        type="button"
+        className="flex items-center text-gray-700 border-b border-gray-700 p-0 gap-1 text-sm font-normal mt-3"
+        onClick={() => form.reset()}
+      >
+        <RefreshCcw size="12" />
+        {t("simulator.inputs.reset")}
+      </button>
     </div>
   );
 }

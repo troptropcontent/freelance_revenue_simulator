@@ -65,7 +65,7 @@ function Content(props: TabContentType) {
   return (
     <div
       className={twMerge(
-        "tab-content bg-base-100 border-base-300 p-6 rounded-t-none",
+        "tab-content bg-base-100 p-6 rounded-t-none z-10",
         props.className,
       )}
     >

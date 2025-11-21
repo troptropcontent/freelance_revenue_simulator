@@ -9,13 +9,17 @@
       "Courier New", monospace;
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-orange-100: oklch(95.4% 0.038 75.164);
+    --color-amber-200: oklch(92.4% 0.12 95.746);
     --color-amber-300: oklch(87.9% 0.169 91.605);
     --color-lime-100: oklch(96.7% 0.067 122.328);
     --color-lime-500: oklch(76.8% 0.233 130.85);
     --color-lime-600: oklch(64.8% 0.2 131.684);
+    --color-green-500: oklch(72.3% 0.219 149.579);
+    --color-emerald-300: oklch(84.5% 0.143 164.978);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-500: oklch(62.3% 0.214 259.815);
+    --color-purple-500: oklch(62.7% 0.265 303.9);
     --color-purple-900: oklch(38.1% 0.176 304.987);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
@@ -31,15 +35,20 @@
     --spacing: 0.25rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
     --font-weight-normal: 400;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+    --radius-sm: 0.25rem;
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -2009,6 +2018,55 @@
       }
     }
   }
+  .card {
+    @layer daisyui.component {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-box);
+      outline-width: 2px;
+      transition: outline 0.2s ease-in-out;
+      outline: 0 solid #0000;
+      outline-offset: 2px;
+      &:focus {
+        --tw-outline-style: none;
+        outline-style: none;
+        @media (forced-colors: active) {
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+        }
+      }
+      &:focus-visible {
+        outline-color: currentColor;
+      }
+      :where(figure:first-child) {
+        overflow: hidden;
+        border-start-start-radius: inherit;
+        border-start-end-radius: inherit;
+        border-end-start-radius: unset;
+        border-end-end-radius: unset;
+      }
+      :where(figure:last-child) {
+        overflow: hidden;
+        border-start-start-radius: unset;
+        border-start-end-radius: unset;
+        border-end-start-radius: inherit;
+        border-end-end-radius: inherit;
+      }
+      figure {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &:has(> input:is(input[type="checkbox"], input[type="radio"])) {
+        cursor: pointer;
+        user-select: none;
+      }
+      &:has(> :checked) {
+        outline: 2px solid currentColor;
+      }
+    }
+  }
   .progress {
     @layer daisyui.component {
       position: relative;
@@ -2155,29 +2213,8 @@
       }
     }
   }
-  .-z-10 {
-    z-index: calc(10 * -1);
-  }
-  .z-0 {
-    z-index: 0;
-  }
-  .z-1 {
-    z-index: 1;
-  }
-  .z-2 {
-    z-index: 2;
-  }
-  .z-3 {
-    z-index: 3;
-  }
-  .z-4 {
-    z-index: 4;
-  }
   .z-10 {
     z-index: 10;
-  }
-  .z-20 {
-    z-index: 20;
   }
   .tab-content {
     @layer daisyui.component {
@@ -2341,6 +2378,9 @@
   }
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
+  }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
   }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
@@ -2512,6 +2552,9 @@
       height: var(--size);
     }
   }
+  .h-2 {
+    height: calc(var(--spacing) * 2);
+  }
   .h-12 {
     height: calc(var(--spacing) * 12);
   }
@@ -2678,6 +2721,9 @@
   .rounded-md {
     border-radius: var(--radius-md);
   }
+  .rounded-sm {
+    border-radius: var(--radius-sm);
+  }
   .rounded-t-none {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -2724,6 +2770,9 @@
   .border-t-gray-300 {
     border-top-color: var(--color-gray-300);
   }
+  .bg-amber-200 {
+    background-color: var(--color-amber-200);
+  }
   .bg-amber-300 {
     background-color: var(--color-amber-300);
   }
@@ -2736,11 +2785,17 @@
   .bg-blue-500 {
     background-color: var(--color-blue-500);
   }
+  .bg-emerald-300 {
+    background-color: var(--color-emerald-300);
+  }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
   }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
+  }
+  .bg-green-500 {
+    background-color: var(--color-green-500);
   }
   .bg-lime-100 {
     background-color: var(--color-lime-100);
@@ -2753,6 +2808,15 @@
   }
   .bg-orange-100 {
     background-color: var(--color-orange-100);
+  }
+  .bg-purple-500 {
+    background-color: var(--color-purple-500);
+  }
+  .bg-purple-900 {
+    background-color: var(--color-purple-900);
+  }
+  .bg-red-500 {
+    background-color: var(--color-red-500);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -2832,9 +2896,17 @@
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
+  .text-4xl {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
   .text-6xl {
     font-size: var(--text-6xl);
     line-height: var(--tw-leading, var(--text-6xl--line-height));
+  }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
   }
   .text-sm {
     font-size: var(--text-sm);
@@ -2888,30 +2960,6 @@
   }
   .text-white {
     color: var(--color-white);
-  }
-  .btn-link {
-    @layer daisyui.modifier {
-      text-decoration-line: underline;
-      outline-color: currentcolor;
-      --btn-border: #0000;
-      --btn-bg: #0000;
-      --btn-fg: var(--color-primary);
-      --btn-noise: none;
-      --btn-shadow: "";
-      &:is(.btn-active, :hover, :active:focus, :focus-visible) {
-        text-decoration-line: underline;
-        --btn-border: #0000;
-        --btn-bg: #0000;
-      }
-      @media (hover: none) {
-        &:hover:not(.btn-active, :active, :focus-visible, :disabled, [disabled], .btn-disabled) {
-          text-decoration-line: none;
-        }
-      }
-    }
-  }
-  .btn-link {
-    text-decoration-line: none;
   }
   .no-underline {
     text-decoration-line: none;
@@ -2991,6 +3039,9 @@
   }
   .\[--tab-bg\:var\(--color-lime-100\)\] {
     --tab-bg: var(--color-lime-100);
+  }
+  .card {
+    background: white;
   }
   .toggle-sm {
     @layer daisyui.modifier {

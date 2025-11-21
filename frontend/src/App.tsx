@@ -3,6 +3,7 @@ import { Button } from "./components/ui/Button";
 import { InputTabs } from "./components/simulator/inputs/InputTabs";
 import { Inputs } from "./components/simulator/inputs/types";
 import { useInitialValues } from "./components/simulator/inputs/shared/hooks";
+import { ResultCard } from "./components/simulator/results/ResultsCard";
 
 function App() {
   const initialValues = useInitialValues();
@@ -17,7 +18,7 @@ function App() {
       </div>
 
       <InputTabs form={form} />
-      <div>Results</div>
+      <ResultCard form={form} />
     </form>
   );
 }

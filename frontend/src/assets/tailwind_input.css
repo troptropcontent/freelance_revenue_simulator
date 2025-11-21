@@ -21,3 +21,7 @@
   @apply grow;
   @apply [&:not(:last-child)]:before:hidden;
 }
+
+@utility card {
+  background: white
+}

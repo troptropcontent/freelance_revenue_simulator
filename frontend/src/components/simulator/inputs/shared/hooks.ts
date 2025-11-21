@@ -3,6 +3,7 @@ import {
   DEFAULT_ACTIVITIES,
   DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR,
   DEFAULT_WEEKDAYS_WORKED,
+  NUMBER_OF_HOURS_WORKED_PER_DAY,
 } from "../constants";
 import { Inputs } from "../types";
 import { useFieldArray, UseFormReturn } from "react-hook-form";
@@ -24,6 +25,7 @@ function useInitialValues(): Inputs {
         DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK,
       number_of_weeks_off_per_year: DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR,
       weekdays_worked: DEFAULT_WEEKDAYS_WORKED,
+      number_of_hours_worked_per_day: NUMBER_OF_HOURS_WORKED_PER_DAY,
     },
   };
 }

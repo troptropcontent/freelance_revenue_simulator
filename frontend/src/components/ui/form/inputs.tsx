@@ -112,7 +112,7 @@ function Rating<T extends FieldValues>({
         })}
       </div>
       <p className="text-sm font-bold text-gray-500 my-auto w-[31px] text-end">
-        {Math.round(currentValue``)} / {max}
+        {Math.round(currentValue)} / {max}
       </p>
     </div>
   );

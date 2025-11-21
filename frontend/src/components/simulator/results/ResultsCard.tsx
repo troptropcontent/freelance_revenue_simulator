@@ -7,6 +7,7 @@ import {
   useAvailableDaysPerWeek,
   useAvailableTimePerWeek,
   useAverageEnjoymentRate,
+  useEstimatedGrossAnnualRevenue,
 } from "./shared/hooks";
 import { computeRangeWidthAndColor } from "./shared/utils";
 import { FormInputs } from "src/components/ui/form/inputs";
@@ -26,13 +27,14 @@ function ResultCardCurrency({ value }: { value: number }) {
 }
 
 function EstimatedAnnualTurnover({ form }: { form: UseFormReturn<Inputs> }) {
+  const estimatedGrossAnnualRevenue = useEstimatedGrossAnnualRevenue(form);
   return (
     <div className="flex flex-col">
       <ResultCardDescription>
         Chiffre d’affaires annuel estimé
       </ResultCardDescription>
       <div>
-        <ResultCardCurrency value={200000} />
+        <ResultCardCurrency value={estimatedGrossAnnualRevenue} />
       </div>
     </div>
   );

@@ -95,4 +95,47 @@ function useAvailableDaysPerWeek(form: UseFormReturn<Inputs>) {
   return netAvailableTime;
 }
 
-export { useAvailableDaysPerWeek, useAvailableDaysPerWeek_Old };
+/**
+ * Calculates the weighted average enjoyment rate across all enabled activities.
+ * Each activity's enjoyment_rate is weighted by its average_time_spent.
+ *
+ * Formula: Σ(enjoyment_rate × time_spent) / Σ(time_spent)
+ *
+ * @returns The weighted average enjoyment rate (0-5 scale), or 0 if no activities are enabled
+ */
+function useAverageEnjoymentRate(form: UseFormReturn<Inputs>) {
+  const { activities } = form.watch();
+
+  const enabledActivities = activities.filter((activity) => activity.enabled);
+
+  // If no activities are enabled, return 0
+  if (enabledActivities.length === 0) {
+    return 0;
+  }
+
+  // Calculate weighted sum and total weight
+  const { weightedSum, totalWeight } = enabledActivities.reduce(
+    (acc, activity) => {
+      const weight = activity.average_time_spent;
+      const weightedValue = activity.enjoyment_rate * weight;
+      return {
+        weightedSum: acc.weightedSum + weightedValue,
+        totalWeight: acc.totalWeight + weight,
+      };
+    },
+    { weightedSum: 0, totalWeight: 0 },
+  );
+
+  // Avoid division by zero (though this shouldn't happen if there are enabled activities)
+  if (totalWeight === 0) {
+    return 0;
+  }
+
+  return weightedSum / totalWeight;
+}
+
+export {
+  useAvailableDaysPerWeek,
+  useAvailableDaysPerWeek_Old,
+  useAverageEnjoymentRate,
+};

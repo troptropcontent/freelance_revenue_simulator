@@ -1,4 +1,4 @@
-import { UseFormReturn } from "react-hook-form";
+import { useForm, UseFormReturn } from "react-hook-form";
 import { Inputs } from "../inputs/types";
 import { TrendingUp } from "lucide-react";
 import { ReactNode, useMemo } from "react";
@@ -6,8 +6,10 @@ import { useTranslation } from "react-i18next";
 import {
   useAvailableDaysPerWeek,
   useAvailableTimePerWeek,
+  useAverageEnjoymentRate,
 } from "./shared/hooks";
 import { computeRangeWidthAndColor } from "./shared/utils";
+import { FormInputs } from "src/components/ui/form/inputs";
 
 function ResultCardDescription({ children }: { children: ReactNode }) {
   return <p className="text-base font-normal text-gray-500">{children}</p>;
@@ -48,12 +50,22 @@ function EstimatedMonthlyNetIncome({ form }: { form: UseFormReturn<Inputs> }) {
 }
 
 function AverageEnjoymentRate({ form }: { form: UseFormReturn<Inputs> }) {
+  const averageEnjoymentRate = useAverageEnjoymentRate(form);
+  console.log({ averageEnjoymentRate });
+  const tempForm = useForm({
+    values: { average_enjoyment_rate: averageEnjoymentRate },
+  });
+
+  // Force re-render when value changes by using key
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-3">
       <ResultCardDescription>Niveau de kiff moyen</ResultCardDescription>
-      <div>
-        <ResultCardCurrency value={6000} />
-      </div>
+      <FormInputs.Rating
+        mask="heart"
+        max={5}
+        form={tempForm}
+        name="average_enjoyment_rate"
+      />
     </div>
   );
 }
@@ -106,8 +118,8 @@ function ResultCard({ form }: { form: UseFormReturn<Inputs> }) {
 
           <EstimatedAnnualTurnover form={form} />
           <EstimatedMonthlyNetIncome form={form} />
-          <AverageEnjoymentRate form={form} />
           <AvailableTimePerWeek form={form} />
+          <AverageEnjoymentRate form={form} />
         </div>
       </div>
     </div>

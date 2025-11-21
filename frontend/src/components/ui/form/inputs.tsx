@@ -106,13 +106,13 @@ function Rating<T extends FieldValues>({
               value={i + 1}
               className={`mask bg-amber-300 ${mask == "heart" ? "mask-heart" : ""} ${mask == "star" ? "mask-star" : ""}`}
               aria-label={`${i} ${mask}`}
-              defaultChecked={i + 1 == parseInt(currentValue)}
+              checked={i + 1 == parseInt(currentValue)}
             />
           );
         })}
       </div>
       <p className="text-sm font-bold text-gray-500 my-auto w-[31px] text-end">
-        {currentValue} / {max}
+        {Math.round(currentValue``)} / {max}
       </p>
     </div>
   );

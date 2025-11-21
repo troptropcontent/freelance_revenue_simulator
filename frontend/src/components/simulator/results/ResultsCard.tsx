@@ -1,4 +1,4 @@
-import { useForm, UseFormReturn } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 import { Inputs } from "../inputs/types";
 import { TrendingUp } from "lucide-react";
 import { ReactNode, useMemo } from "react";
@@ -10,7 +10,6 @@ import {
   useEstimatedNetMonthlyIncome,
 } from "./shared/hooks";
 import { computeRangeWidthAndColor } from "./shared/utils";
-import { FormInputs } from "src/components/ui/form/inputs";
 
 function ResultCardDescription({ children }: { children: ReactNode }) {
   return <p className="text-base font-normal text-gray-500">{children}</p>;
@@ -52,23 +51,43 @@ function EstimatedMonthlyNetIncome({ form }: { form: UseFormReturn<Inputs> }) {
   );
 }
 
+function RatingDisplay({
+  value,
+  max,
+  mask,
+}: {
+  value: number;
+  max: number;
+  mask: "heart" | "star";
+}) {
+  return (
+    <div className="flex gap-6">
+      <div className="rating gap-3">
+        {Array.from(Array(max), (_, i) => {
+          return (
+            <div
+              key={i}
+              className={`mask bg-amber-300 ${mask === "heart" ? "mask-heart" : "mask-star"}`}
+              aria-label={`${i + 1} ${mask}`}
+              aria-current={Math.round(value) === i + 1}
+            />
+          );
+        })}
+      </div>
+      <p className="text-sm font-bold text-gray-500 my-auto w-[31px] text-end">
+        {Math.round(value)} / {max}
+      </p>
+    </div>
+  );
+}
+
 function AverageEnjoymentRate({ form }: { form: UseFormReturn<Inputs> }) {
   const averageEnjoymentRate = useAverageEnjoymentRate(form);
-  console.log({ averageEnjoymentRate });
-  const tempForm = useForm({
-    values: { average_enjoyment_rate: averageEnjoymentRate },
-  });
 
-  // Force re-render when value changes by using key
   return (
     <div className="flex flex-col gap-3">
       <ResultCardDescription>Niveau de kiff moyen</ResultCardDescription>
-      <FormInputs.Rating
-        mask="heart"
-        max={5}
-        form={tempForm}
-        name="average_enjoyment_rate"
-      />
+      <RatingDisplay value={averageEnjoymentRate} max={5} mask="heart" />
     </div>
   );
 }

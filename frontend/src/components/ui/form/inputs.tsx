@@ -106,7 +106,7 @@ function Rating<T extends FieldValues>({
               value={i + 1}
               className={`mask bg-amber-300 ${mask == "heart" ? "mask-heart" : ""} ${mask == "star" ? "mask-star" : ""}`}
               aria-label={`${i} ${mask}`}
-              checked={i + 1 == parseInt(currentValue)}
+              defaultChecked={i + 1 == parseInt(currentValue)}
             />
           );
         })}

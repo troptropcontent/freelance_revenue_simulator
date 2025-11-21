@@ -81,6 +81,12 @@ interface Inputs {
     number_of_hours_worked_per_day: number;
     /** Days of the week you work (e.g., Monday-Friday would be ["1", "2", "3", "4", "5"]) */
     weekdays_worked: Weekday[];
+    /** Monthly professional expenses (insurance, software, office, etc.) in currency units */
+    monthly_professional_expense: number;
+    /** Social security contributions rate as a percentage (0-100) */
+    social_contributions_rate: number;
+    /** Income tax rate as a percentage (0-100) */
+    income_tax: number;
   };
 }
 

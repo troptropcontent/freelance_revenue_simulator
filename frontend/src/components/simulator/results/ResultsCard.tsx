@@ -5,9 +5,9 @@ import { ReactNode, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useAvailableDaysPerWeek,
-  useAvailableTimePerWeek,
   useAverageEnjoymentRate,
   useEstimatedGrossAnnualRevenue,
+  useEstimatedNetMonthlyIncome,
 } from "./shared/hooks";
 import { computeRangeWidthAndColor } from "./shared/utils";
 import { FormInputs } from "src/components/ui/form/inputs";
@@ -41,11 +41,12 @@ function EstimatedAnnualTurnover({ form }: { form: UseFormReturn<Inputs> }) {
 }
 
 function EstimatedMonthlyNetIncome({ form }: { form: UseFormReturn<Inputs> }) {
+  const estimatedNetMonthlyIncome = useEstimatedNetMonthlyIncome(form);
   return (
     <div className="flex flex-col">
       <ResultCardDescription>Revenu net mensuel estimé</ResultCardDescription>
       <div>
-        <ResultCardCurrency value={6000} />
+        <ResultCardCurrency value={estimatedNetMonthlyIncome} />
       </div>
     </div>
   );

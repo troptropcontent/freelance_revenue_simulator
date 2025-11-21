@@ -135,17 +135,16 @@ function useAverageEnjoymentRate(form: UseFormReturn<Inputs>) {
 }
 
 /**
- * Calculates the estimated gross annual revenue from all enabled activities.
+ * Calculates the estimated gross annual revenue from missions only.
  * Takes into account vacation time to provide a realistic annual projection.
+ * Projects are excluded as they are handled separately (often already net).
  *
- * Revenue calculation by activity type:
+ * Revenue calculation by mission type:
  * - MissionHourlyRate: (rate × quantity) × 12 months
  * - MissionDailyRate: (rate × days_per_week × weeks_per_year)
  * - MissionFlat: (rate × quantity) × 12 months
- * - ProjectPaid: (estimated_monthly_revenue × estimated_months_billed) annualized
- * - ProjectFree: 0 (no revenue)
  *
- * @returns Estimated gross annual revenue in currency units
+ * @returns Estimated gross annual mission revenue in currency units
  */
 function useEstimatedGrossAnnualRevenue(form: UseFormReturn<Inputs>) {
   const { config, activities } = form.watch();
@@ -155,50 +154,112 @@ function useEstimatedGrossAnnualRevenue(form: UseFormReturn<Inputs>) {
   // Calculate weeks worked per year (accounting for vacation)
   const weeksWorkedPerYear = 52 - config.number_of_weeks_off_per_year;
 
-  const annualRevenue = enabledActivities.reduce((total, activity) => {
+  const annualMissionRevenue = enabledActivities.reduce((total, activity) => {
+    // Only process missions, skip projects
+    if (activity.type !== "mission") {
+      return total;
+    }
+
     let activityRevenue = 0;
 
-    switch (activity.type) {
-      case "mission":
-        switch (activity.kind) {
-          case "hourly_rate":
-            // Hourly rate: rate × hours per month × 12 months
-            activityRevenue = activity.rate * activity.quantity * 12;
-            break;
-
-          case "daily_rate":
-            // Daily rate: rate × days per week × weeks worked per year
-            activityRevenue =
-              activity.rate * activity.average_time_spent * weeksWorkedPerYear;
-            break;
-
-          case "flat_rate":
-            // Flat monthly rate: rate × quantity × 12 months
-            activityRevenue = activity.rate * activity.quantity * 12;
-            break;
-        }
+    switch (activity.kind) {
+      case "hourly_rate":
+        // Hourly rate: rate × hours per month × 12 months
+        activityRevenue = activity.rate * activity.quantity * 12;
         break;
 
-      case "project":
-        if (activity.kind === "paid") {
-          // Paid project: monthly revenue × months billed (already annual value)
-          const totalProjectRevenue =
-            activity.estimated_monthly_revenue *
-            activity.estimated_months_billed;
-          activityRevenue = totalProjectRevenue;
-        }
-        // Free projects contribute 0 revenue
+      case "daily_rate":
+        // Daily rate: rate × days per week × weeks worked per year
+        activityRevenue =
+          activity.rate * activity.average_time_spent * weeksWorkedPerYear;
+        break;
+
+      case "flat_rate":
+        // Flat monthly rate: rate × quantity × 12 months
+        activityRevenue = activity.rate * activity.quantity * 12;
         break;
     }
 
     return total + activityRevenue;
   }, 0);
 
-  return annualRevenue;
+  return annualMissionRevenue;
+}
+
+/**
+ * Calculates the estimated annual revenue from paid projects only.
+ * Project revenue is typically net (after client-side deductions).
+ *
+ * @returns Estimated annual project revenue in currency units
+ */
+function useEstimatedAnnualProjectRevenue(form: UseFormReturn<Inputs>) {
+  const { activities } = form.watch();
+
+  const enabledActivities = activities.filter((activity) => activity.enabled);
+
+  const annualProjectRevenue = enabledActivities.reduce((total, activity) => {
+    // Only process paid projects
+    if (activity.type === "project" && activity.kind === "paid") {
+      const projectRevenue =
+        activity.estimated_monthly_revenue * activity.estimated_months_billed;
+      return total + projectRevenue;
+    }
+    return total;
+  }, 0);
+
+  return annualProjectRevenue;
+}
+
+/**
+ * Calculates the estimated net monthly income after all deductions.
+ *
+ * Calculation flow:
+ * 1. Missions (gross):
+ *    - Start with gross annual mission revenue (from useEstimatedGrossAnnualRevenue)
+ *    - Convert to monthly: gross_annual / 12
+ *    - Subtract professional expenses: monthly_gross - monthly_professional_expense
+ *    - Subtract social contributions: remaining * (1 - social_contributions_rate/100)
+ *    - Subtract income tax: remaining * (1 - income_tax/100)
+ * 2. Projects (net):
+ *    - Get annual project revenue (from useEstimatedAnnualProjectRevenue)
+ *    - Convert to monthly: annual_projects / 12
+ *    - Add directly (no deductions, already net)
+ * 3. Total: net_missions + net_projects
+ *
+ * @returns Estimated net monthly income in currency units
+ */
+function useEstimatedNetMonthlyIncome(form: UseFormReturn<Inputs>) {
+  const { config } = form.watch();
+
+  // 1. Calculate net income from missions (subject to deductions)
+  const grossAnnualMissionRevenue = useEstimatedGrossAnnualRevenue(form);
+  const grossMonthlyMissionRevenue = grossAnnualMissionRevenue / 12;
+
+  // Subtract professional expenses from missions
+  const afterExpenses =
+    grossMonthlyMissionRevenue - config.monthly_professional_expense;
+
+  // Apply social contributions (as a percentage deduction)
+  const afterSocialContributions =
+    afterExpenses * (1 - config.social_contributions_rate / 100);
+
+  // Apply income tax (as a percentage deduction)
+  const netMonthlyMissionIncome =
+    afterSocialContributions * (1 - config.income_tax / 100);
+
+  // 2. Calculate net income from projects (already net, no deductions)
+  const annualProjectRevenue = useEstimatedAnnualProjectRevenue(form);
+  const monthlyProjectRevenue = annualProjectRevenue / 12;
+
+  // 3. Combine both income sources
+  const totalNetMonthlyIncome = netMonthlyMissionIncome + monthlyProjectRevenue;
+
+  return Math.max(0, totalNetMonthlyIncome); // Ensure non-negative
 }
 
 export {
   useAvailableDaysPerWeek,
   useAverageEnjoymentRate,
   useEstimatedGrossAnnualRevenue,
+  useEstimatedNetMonthlyIncome,
 };

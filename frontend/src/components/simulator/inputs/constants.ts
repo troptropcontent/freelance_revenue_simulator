@@ -13,6 +13,9 @@ const DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR =
 const DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR = 5;
 const DEFAULT_NUMBER_OF_DAYS_SPENT_ON_ADMIN_TASKS = 1;
 const NUMBER_OF_HOURS_WORKED_PER_DAY = 8;
+const DEFAULT_MONTHLY_PROFESSIONAL_EXPENSE = 500; // Default: €500/month
+const DEFAULT_SOCIAL_CONTRIBUTIONS_RATE = 22; // Default: 22% (typical French rate)
+const DEFAULT_INCOME_TAX = 11; // Default: 11% (typical French marginal rate)
 const MONDAY = "0" as const;
 const TUESDAY = "1" as const;
 const WEDNESDAY = "2" as const;
@@ -29,7 +32,7 @@ const DEFAULT_MISSION_DAILY_RATE = {
   average_time_spent: 1,
   type: "mission",
   kind: "daily_rate",
-  rate: 0,
+  rate: 600,
 } satisfies Inputs["activities"][number];
 
 const DEFAULT_MISSION_HOURLY_RATE = {
@@ -39,9 +42,9 @@ const DEFAULT_MISSION_HOURLY_RATE = {
   average_time_spent: 1,
   type: "mission",
   kind: "hourly_rate",
-  rate: 0,
+  rate: 100,
   frequency: "monthly",
-  quantity: 0,
+  quantity: 1,
 } satisfies Inputs["activities"][number];
 
 const DEFAULT_MISSION_FLAT_RATE = {
@@ -52,8 +55,8 @@ const DEFAULT_MISSION_FLAT_RATE = {
   type: "mission",
   kind: "flat_rate",
   frequency: "monthly",
-  quantity: 0,
-  rate: 0,
+  quantity: 1,
+  rate: 1000,
 } satisfies Inputs["activities"][number];
 
 const DEFAULT_PROJECT_FREE = {
@@ -109,4 +112,7 @@ export {
   DEFAULT_NUMBER_OF_DAYS_OFF_PER_YEAR,
   DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR,
   DEFAULT_NUMBER_OF_DAYS_SPENT_ON_ADMIN_TASKS,
+  DEFAULT_MONTHLY_PROFESSIONAL_EXPENSE,
+  DEFAULT_SOCIAL_CONTRIBUTIONS_RATE,
+  DEFAULT_INCOME_TAX,
 };

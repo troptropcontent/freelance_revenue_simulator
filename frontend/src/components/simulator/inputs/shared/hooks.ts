@@ -4,6 +4,9 @@ import {
   DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR,
   DEFAULT_WEEKDAYS_WORKED,
   NUMBER_OF_HOURS_WORKED_PER_DAY,
+  DEFAULT_MONTHLY_PROFESSIONAL_EXPENSE,
+  DEFAULT_SOCIAL_CONTRIBUTIONS_RATE,
+  DEFAULT_INCOME_TAX,
 } from "../constants";
 import { Inputs } from "../types";
 import { useFieldArray, UseFormReturn } from "react-hook-form";
@@ -26,6 +29,9 @@ function useInitialValues(): Inputs {
       number_of_weeks_off_per_year: DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR,
       weekdays_worked: DEFAULT_WEEKDAYS_WORKED,
       number_of_hours_worked_per_day: NUMBER_OF_HOURS_WORKED_PER_DAY,
+      monthly_professional_expense: DEFAULT_MONTHLY_PROFESSIONAL_EXPENSE,
+      social_contributions_rate: DEFAULT_SOCIAL_CONTRIBUTIONS_RATE,
+      income_tax: DEFAULT_INCOME_TAX,
     },
   };
 }

@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 const ModalContext = createContext<React.RefObject<HTMLDialogElement> | null>(
   null,
@@ -11,7 +12,13 @@ function Root({ children }: { children: ReactNode }) {
   );
 }
 
-function Trigger({ children }: { children: ReactNode }) {
+function Trigger({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   const dialogRef = useContext(ModalContext);
   if (dialogRef === null) {
     throw new Error("Modal.Trigger must be used within a Modal.Root component");
@@ -20,7 +27,7 @@ function Trigger({ children }: { children: ReactNode }) {
   return (
     <button
       type="button"
-      className="btn"
+      className={twMerge("btn", className)}
       onClick={() => {
         dialogRef.current?.showModal();
       }}

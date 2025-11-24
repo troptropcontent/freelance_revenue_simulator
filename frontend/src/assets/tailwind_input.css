@@ -10,6 +10,10 @@
 @utility btn {
   @apply rounded-lg;
   @apply shadow-none;
+
+  &.btn-circle {
+    @apply rounded-full;
+  }
 };
 
 @utility btn-link {

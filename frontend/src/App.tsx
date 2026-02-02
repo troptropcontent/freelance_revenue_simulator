@@ -21,6 +21,13 @@ function App() {
     form.reset(Models[model].inputs)
   }
 
+  const copyPresetUrlToClipBoard = () => {
+    const inputs = form.getValues()
+    const url = new URL(window.location.href)
+    url.searchParams.set("presets", JSON.stringify(inputs))
+    navigator.clipboard.writeText(url.toString())
+  }
+
   const emptyModelState = () => setModelState(null)
   const shouldDisplayModelCard = model && !form.formState.isDirty
 
@@ -28,7 +35,7 @@ function App() {
     <form className="container grid grid-cols-3 gap-x-6 gap-y-6 bg-orange-100 p-24">
       <div>Simulateur SoloPortfolio</div>
       <div>
-        <Button>Partager</Button>
+        <Button onClick={copyPresetUrlToClipBoard}>Partager</Button>
       </div>
 
       <InputTabs form={form} />

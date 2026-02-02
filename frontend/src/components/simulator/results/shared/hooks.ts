@@ -10,7 +10,6 @@ import { UseFormReturn } from "react-hook-form";
  * Formula: Available = (Working hours - Admin) × Vacation factor - Activities
  */
 function useAvailableDaysPerWeek_Old(form: UseFormReturn<Inputs>) {
-  console.log({ inputs: form.watch() });
   const { config, activities } = form.watch();
 
   // 1. Calculate working days per week
@@ -64,7 +63,6 @@ function useAvailableDaysPerWeek_Old(form: UseFormReturn<Inputs>) {
  * (Admin and vacation should be applied later when calculating actual output/revenue)
  */
 function useAvailableDaysPerWeek(form: UseFormReturn<Inputs>) {
-  console.log({ inputs: form.watch() });
   const { config, activities } = form.watch();
 
   // 1. Calculate working days per week

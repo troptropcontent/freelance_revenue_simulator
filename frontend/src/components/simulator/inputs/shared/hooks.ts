@@ -10,12 +10,14 @@ import {
 } from "../constants";
 import { Inputs } from "../types";
 import { useFieldArray, UseFormReturn } from "react-hook-form";
+import { useMemo } from "react";
 import { DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK } from "../../constants";
 
 function useInitialValues(): Inputs {
   const buildDefaultActivityValueForKind =
     useBuildDefaultActivityValueForKind();
-  return {
+
+  return useMemo(() => ({
     activities: [
       buildDefaultActivityValueForKind("daily_rate"),
       buildDefaultActivityValueForKind("hourly_rate"),
@@ -27,13 +29,14 @@ function useInitialValues(): Inputs {
       number_of_days_spent_on_admin_tasks:
         DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK,
       number_of_weeks_off_per_year: DEFAULT_NUMBER_OF_WEEKS_OFF_PER_YEAR,
-      weekdays_worked: DEFAULT_WEEKDAYS_WORKED,
+      weekdays_worked: [...DEFAULT_WEEKDAYS_WORKED],  // Clone array to avoid reference issues
       number_of_hours_worked_per_day: NUMBER_OF_HOURS_WORKED_PER_DAY,
       monthly_professional_expense: DEFAULT_MONTHLY_PROFESSIONAL_EXPENSE,
       social_contributions_rate: DEFAULT_SOCIAL_CONTRIBUTIONS_RATE,
       income_tax: DEFAULT_INCOME_TAX,
     },
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), []);  // Empty deps: only compute once on mount
 }
 
 function useActivitiesFieldArray(form: UseFormReturn<Inputs>) {
@@ -53,7 +56,7 @@ function useActivitiesFieldArray(form: UseFormReturn<Inputs>) {
 function useBuildDefaultActivityValueForKind() {
   const { t } = useTranslation();
   return (kind: Inputs["activities"][number]["kind"]) => {
-    const defaultValue = DEFAULT_ACTIVITIES[kind];
+    const defaultValue = { ...DEFAULT_ACTIVITIES[kind] };  // Clone to avoid mutating the original
     defaultValue.name = t(`simulator.inputs.tabs.mission.${kind}.default_name`);
     return defaultValue;
   };

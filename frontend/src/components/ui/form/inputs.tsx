@@ -92,29 +92,35 @@ function Rating<T extends FieldValues>({
   mask: "heart" | "star";
   className?: string;
 }) {
-  const currentValue = form.watch(name);
-
   return (
-    <div className="flex gap-6">
-      <div className="rating gap-3">
-        {Array.from(Array(max), (_, i) => {
-          return (
-            <input
-              type="radio"
-              key={`${name}-${i}`}
-              {...form.register(name)}
-              value={i + 1}
-              className={`mask bg-amber-300 ${mask == "heart" ? "mask-heart" : ""} ${mask == "star" ? "mask-star" : ""}`}
-              aria-label={`${i} ${mask}`}
-              defaultChecked={i + 1 == parseInt(currentValue)}
-            />
-          );
-        })}
-      </div>
-      <p className="text-sm font-bold text-gray-500 my-auto w-[31px] text-end">
-        {Math.round(currentValue)} / {max}
-      </p>
-    </div>
+    <Controller
+      name={name}
+      control={form.control}
+      render={({ field }) => (
+        <div className="flex gap-6">
+          <div className="rating gap-3">
+            {Array.from(Array(max), (_, i) => {
+              const ratingValue = i + 1;
+              return (
+                <input
+                  type="radio"
+                  key={`${name}-${i}`}
+                  name={field.name}
+                  value={ratingValue}
+                  className={`mask bg-amber-300 ${mask == "heart" ? "mask-heart" : ""} ${mask == "star" ? "mask-star" : ""}`}
+                  aria-label={`${ratingValue} ${mask}`}
+                  checked={ratingValue === field.value}
+                  onChange={() => field.onChange(ratingValue)}
+                />
+              );
+            })}
+          </div>
+          <p className="text-sm font-bold text-gray-500 my-auto w-[31px] text-end">
+            {Math.round(field.value)} / {max}
+          </p>
+        </div>
+      )}
+    />
   );
 }
 

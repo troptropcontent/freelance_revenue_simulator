@@ -23,7 +23,6 @@ function InputGroupWithWeekdaysPicker({
 }) {
   const { t } = useTranslation();
   const currentValue = form.watch("config.weekdays_worked") || [];
-  console.log({ currentValue });
 
   const handleCheckboxChange = (weekDay: Weekday) => {
     const currentValues = form.getValues("config.weekdays_worked") || [];

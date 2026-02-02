@@ -47,7 +47,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
   ] as const;
 
   return (
-    <div className="col-span-2">
+    <div className="col-span-2 row-span-3">
       <Tabs.Root defaultTab="step_0">
         {tabs.map((tab, index) => {
           return (

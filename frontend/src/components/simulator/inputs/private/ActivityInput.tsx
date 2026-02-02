@@ -319,7 +319,6 @@ function ActivityInputAverageTimeSpent({
   const inputName = `activities.${activityIndex}.average_time_spent` as const;
   const currentValue = form.watch(inputName);
   const numberOfDaysWorkedPerWeek = form.watch("config.weekdays_worked").length;
-  console.log({ numberOfDaysWorkedPerWeek });
 
   return (
     <div className="flex p-4 flex-col gap-4">

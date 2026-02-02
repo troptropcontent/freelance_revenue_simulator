@@ -8,6 +8,7 @@ import { AdviceCard } from "./components/simulator/results/AdviceCard";
 import { useState } from "react";
 import { Models } from "./components/simulator/constants";
 import { ModelCard } from "./components/simulator/results/ModelCard";
+import { NetRevenueRepartition } from "./components/simulator/results/chart_cards/NetRevenueRepartition";
 
 function App() {
   const initialValues = useInitialValues();
@@ -56,7 +57,11 @@ function App() {
           </svg>
           <p className="text-2xl">Récap SoloPortfolio</p>
         </div>
-
+        <div className="grid grid-cols-3 gap-12">
+          <NetRevenueRepartition form={form} />
+          <NetRevenueRepartition form={form} />
+          <NetRevenueRepartition form={form} />
+        </div>
       </div>
     </form>
   );

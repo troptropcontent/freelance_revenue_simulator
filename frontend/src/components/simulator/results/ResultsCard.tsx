@@ -1,6 +1,6 @@
 import { UseFormReturn } from "react-hook-form";
 import { Inputs } from "../inputs/types";
-import { Settings, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import { ReactNode, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {

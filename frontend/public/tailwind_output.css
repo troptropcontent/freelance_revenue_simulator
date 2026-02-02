@@ -2261,6 +2261,9 @@
   .col-span-2 {
     grid-column: span 2 / span 2;
   }
+  .col-span-3 {
+    grid-column: span 3 / span 3;
+  }
   .modal-box {
     @layer daisyui.component {
       grid-column-start: 1;
@@ -2419,9 +2422,6 @@
   }
   .mb-\[174px\] {
     margin-bottom: 174px;
-  }
-  .ml-auto {
-    margin-left: auto;
   }
   .badge {
     @layer daisyui.component {
@@ -2622,6 +2622,9 @@
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
+  .w-\[13px\] {
+    width: 13px;
+  }
   .w-\[31px\] {
     width: 31px;
   }
@@ -2729,6 +2732,12 @@
   .gap-1 {
     gap: calc(var(--spacing) * 1);
   }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+  .gap-2\.5 {
+    gap: calc(var(--spacing) * 2.5);
+  }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
@@ -2777,6 +2786,10 @@
   .rounded-t-none {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+  }
+  .rounded-b-full {
+    border-bottom-right-radius: calc(infinity * 1px);
+    border-bottom-left-radius: calc(infinity * 1px);
   }
   .border {
     border-style: var(--tw-border-style);
@@ -2868,6 +2881,9 @@
   }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .card {
+    background-color: var(--color-gray-50);
   }
   .mask-heart {
     @layer daisyui.modifier {
@@ -3111,9 +3127,6 @@
   }
   .\[--tab-bg\:var\(--color-lime-100\)\] {
     --tab-bg: var(--color-lime-100);
-  }
-  .card {
-    background: white;
   }
   .toggle-sm {
     @layer daisyui.modifier {

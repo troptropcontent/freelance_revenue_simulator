@@ -31,5 +31,5 @@
 }
 
 @utility card {
-  background: white
+  @apply bg-gray-50;
 }

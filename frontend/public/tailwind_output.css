@@ -2442,6 +2442,13 @@
       overscroll-behavior: contain;
     }
   }
+  .drawer-content {
+    @layer daisyui.component {
+      grid-column-start: 2;
+      grid-row-start: 1;
+      min-width: calc(0.25rem * 0);
+    }
+  }
   .row-span-3 {
     grid-row: span 3 / span 3;
   }
@@ -2811,6 +2818,9 @@
   }
   .w-\[168px\] {
     width: 168px;
+  }
+  .w-\[302px\] {
+    width: 302px;
   }
   .w-\[394px\] {
     width: 394px;

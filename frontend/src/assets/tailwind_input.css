@@ -10,7 +10,8 @@
 @utility btn {
   @apply rounded-lg;
   @apply shadow-none;
-  @apply p-4;
+  @apply py-3;
+  @apply px-4;
   @apply font-normal;
   @apply gap-1;
   @apply h-12;

@@ -47,8 +47,8 @@
     <meta property="og:type" content="website" />
   </head>
   <body>
-    <section class="bg-white flex flex-col items-center">
-      <nav class="w-full max-w-[1280px] flex justify-between py-6">
+    <section class="bg-orange-100 flex flex-col items-center">
+      <nav class="w-full max-w-7xl flex justify-between py-6">
         <a href="/" class="flex gap-3">
           <img src="/images/logo_icon.png" alt="Le logo de soloportfolio" />
 
@@ -112,30 +112,401 @@
           </li>
         </ul>
       </nav>
-      <span
-        class="w-full flex bg-gray-100 text-purple-900 p-2 justify-center border-t-2 border-t-gray-300"
-      >
-        <p>Propulsé par <b>Dougs</b>, expert comptable en ligne.</p>
-        <a><b>1 mois offert</b></a>
-      </span>
     </section>
-    <section id="simulator_section" class="py-40">
-      <header class="container flex flex-col gap-8">
-        <h1>Simulateur</h1>
-        <h2 class="text-6xl font-bold">
-          Crée ton quotidien idéal d'indépendant
-        </h2>
-        <p>Revenu mensuel, équilibre pro-perso et kiff !</p>
-      </header>
-      <span class="flex gap-6"
-        ><a class="btn btn-primary">Commencer la simulation</a>
-        <a class="btn">Voir un exemple</a></span
+    <section class="py-40 bg-orange-100">
+      <div
+        class="container max-w-7xl flex flex-col gap-8 py-8 relative mx-auto"
       >
+        <header
+          class="container max-w-2xl flex flex-col justify-between gap-3 h-[212px]"
+        >
+          <h1>Simulateur</h1>
+          <h2 class="text-6xl font-bold">
+            Crée ton quotidien idéal d'indépendant
+          </h2>
+          <p>Revenu mensuel, équilibre pro-perso et kiff !</p>
+        </header>
+        <span class="flex gap-4">
+          <a class="btn btn-primary">Commencer la simulation</a>
+          <a class="btn">Voir un exemple</a>
+        </span>
+        <img
+          src="/images/VISUEL.png"
+          alt=""
+          class="w-[512.73px] h-[514.51px] absolute right-0 bottom-[-100px]"
+        />
+      </div>
     </section>
     <section>
       <div id="root">
         <div class="loading_container">
           <div class="loader"></div>
+        </div>
+      </div>
+    </section>
+    <section class="py-24 bg-orange-200">
+      <div class="container flex flex-col gap-12 mx-auto">
+        <p class="text-4xl font-bold text-center">
+          Comment passer au niveau supérieur ?
+        </p>
+        <div class="flex items-start gap-12 justify-between">
+          <!-- Insight Card 1 -->
+          <div class="card bg-white shadow-lg rounded-lg w-[395px]">
+            <!-- Header fixe -->
+            <div
+              class="collapse-title flex flex-col items-center gap-6 text-center pr-4"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22L10.405 20.6332C4.74 15.7978 1 12.6087 1 8.69482C1 5.50572 3.3157 3 6.7037 3C10.4315 3 12 7.35417 12 7.35417C12 7.35417 13.9083 3 17.2963 3C20.6843 3 23 5.50572 23 8.69482C23 12.6087 19.26 15.7978 13.595 20.6436L12 22Z"
+                  fill="#581C87"
+                />
+              </svg>
+              <p class="text-2xl font-bold">
+                Tu kiffes ton activité, mais ton revenu ne suit pas ?
+              </p>
+              <p>
+                Tu veux des revenus à la hauteur de tes efforts tout en
+                continuant de kiffer
+              </p>
+            </div>
+
+            <!-- Collapse -->
+            <details class="group flex flex-col">
+              <!-- Séparateur -->
+              <div class="mx-6 border-t border-gray-200"></div>
+              <!-- Contenu collapsible (au-dessus du summary grâce à order) -->
+              <div class="px-6 pt-6 flex flex-col gap-4 order-1">
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Valorise mieux ton expertise : revois tes tarifs ou ta
+                    structure de prestations
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>Identifie les clients ou projets les plus rentables.</p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Diminue le temps "non facturable" (administratif,
+                    prospection, etc.).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Chevron toujours en bas -->
+              <summary
+                class="cursor-pointer list-none p-6 flex justify-center order-2"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-400 transition-transform group-open:rotate-180"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"
+                  />
+                </svg>
+              </summary>
+            </details>
+          </div>
+          <!-- Insight Card 2 -->
+          <div class="card bg-white shadow-lg rounded-lg w-[395px]">
+            <!-- Header fixe -->
+            <div
+              class="collapse-title flex flex-col items-center gap-6 text-center pr-4"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22L10.405 20.6332C4.74 15.7978 1 12.6087 1 8.69482C1 5.50572 3.3157 3 6.7037 3C10.4315 3 12 7.35417 12 7.35417C12 7.35417 13.9083 3 17.2963 3C20.6843 3 23 5.50572 23 8.69482C23 12.6087 19.26 15.7978 13.595 20.6436L12 22Z"
+                  fill="#581C87"
+                />
+              </svg>
+              <p class="text-2xl font-bold">
+                Tu gagnes bien ta vie, mais t’es au bout du rouleau ?
+              </p>
+              <p>
+                Tu veux un emploi du temps raisonnable et une vie d’indépendant
+                moins stressante.
+              </p>
+            </div>
+
+            <!-- Collapse -->
+            <details class="group flex flex-col">
+              <!-- Séparateur -->
+              <div class="mx-6 border-t border-gray-200"></div>
+              <!-- Contenu collapsible (au-dessus du summary grâce à order) -->
+              <div class="px-6 pt-6 flex flex-col gap-4 order-1">
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Valorise mieux ton expertise : revois tes tarifs ou ta
+                    structure de prestations
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>Identifie les clients ou projets les plus rentables.</p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Diminue le temps "non facturable" (administratif,
+                    prospection, etc.).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Chevron toujours en bas -->
+              <summary
+                class="cursor-pointer list-none p-6 flex justify-center order-2"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-400 transition-transform group-open:rotate-180"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"
+                  />
+                </svg>
+              </summary>
+            </details>
+          </div>
+          <!-- Insight Card 3 -->
+          <div class="card bg-white shadow-lg rounded-lg w-[395px]">
+            <!-- Header fixe -->
+            <div
+              class="collapse-title flex flex-col items-center gap-6 text-center pr-4"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22L10.405 20.6332C4.74 15.7978 1 12.6087 1 8.69482C1 5.50572 3.3157 3 6.7037 3C10.4315 3 12 7.35417 12 7.35417C12 7.35417 13.9083 3 17.2963 3C20.6843 3 23 5.50572 23 8.69482C23 12.6087 19.26 15.7978 13.595 20.6436L12 22Z"
+                  fill="#581C87"
+                />
+              </svg>
+              <p class="text-2xl font-bold">
+                Tu es stable, mais tu n’es pas heureux pour autant.
+              </p>
+              <p>
+                Tu veux passer au niveau supérieur : plus d’impact, plus de
+                kiff, plus de liberté.
+              </p>
+            </div>
+
+            <!-- Collapse -->
+            <details class="group flex flex-col">
+              <!-- Séparateur -->
+              <div class="mx-6 border-t border-gray-200"></div>
+              <!-- Contenu collapsible (au-dessus du summary grâce à order) -->
+              <div class="px-6 pt-6 flex flex-col gap-4 order-1">
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Valorise mieux ton expertise : revois tes tarifs ou ta
+                    structure de prestations
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>Identifie les clients ou projets les plus rentables.</p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Diminue le temps "non facturable" (administratif,
+                    prospection, etc.).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Chevron toujours en bas -->
+              <summary
+                class="cursor-pointer list-none p-6 flex justify-center order-2"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-400 transition-transform group-open:rotate-180"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"
+                  />
+                </svg>
+              </summary>
+            </details>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <a href="#root" class="btn btn-primary">Retourner au simulateur</a>
         </div>
       </div>
     </section>

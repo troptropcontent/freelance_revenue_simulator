@@ -1,34 +1,11 @@
 import { UseFormReturn } from "react-hook-form";
-import { Box } from "src/components/ui/Box";
 import { PieChart } from "src/components/ui/PieChart";
-import { Text } from "src/components/ui/Text";
 import { Inputs } from "../../inputs/types";
 import { computeNetRevenueByActivityType } from "../shared/utils";
-import { ComponentProps, ReactNode } from "react";
 import { DISABLED_COLOR, MISSION_ACTIVITY_COLOR, MISSION_ACTIVITY_COLOR_DARK, PROJECT_ACTIVITY_COLOR, PROJECT_ACTIVITY_COLOR_DARK } from "../shared/constants";
 import { ActivityIcon, ActivityIcons } from "../../inputs/shared/ActivityIcon";
 import { CollapsibleBadge } from "./private/BadgeCollapsible";
 import { useTranslation } from "react-i18next";
-
-function LabelCard({ color, label, value, children }: { color: string, value: number, label: string, children: ReactNode }) {
-    return (
-        <details className="collapse collapse-arrow p-0">
-            <summary className="collapse-title p-1">
-                <div className="bg-white rounded shadow min-h-12 flex">
-                    <div style={{ backgroundColor: color }} className="w-2 rounded-l"></div>
-                    <div className="grow flex items-center px-3 py-2 gap-3">
-                        <p className="text-xl font-bold">{`${Math.round((value / 1000) * 10) / 10}K€`}</p>
-                        <p>{label}</p>
-                    </div>
-                </div>
-            </summary>
-            <div className="collapse-content">
-                {children}
-            </div>
-        </details>
-
-    )
-}
 
 function CollapsibleBadgeContent({ color, total, value, kind, label }: { color: string, total: number, value: number, kind: string, label: string }) {
     let label_value = Math.round((value / total) * 100);

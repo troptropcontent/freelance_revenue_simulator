@@ -73,4 +73,4 @@ const InputsSchema = z.object({
   }),
 });
 
-export { InputsSchema };
+export { InputsSchema, ActivitySchema };

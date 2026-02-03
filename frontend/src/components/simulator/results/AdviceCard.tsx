@@ -3,14 +3,14 @@ import { Inputs } from "../inputs/types";
 
 import { Separator } from "src/components/ui/Separator";
 import { AdviceCardAvatar } from "./AdviceCardAvatar";
-import { Lightbulb } from "lucide-react";
+
 import { Models } from "../constants";
 
 function ModelText({ model }: { model: keyof typeof Models }) {
     return <p className="avatar-name font-bold text-gray-500 absolute hidden peer-hover:block bottom-[-30px]">{`${Models[model].name}, ${Models[model].description}`}</p>
 }
 
-function AdviceCard({ form, setModel }: { form: UseFormReturn<Inputs>, setModel: (model: keyof typeof Models) => void }) {
+function AdviceCard({ setModel }: { form: UseFormReturn<Inputs>, setModel: (model: keyof typeof Models) => void }) {
     return (
         <div className="card p-8 pb-[54px]">
             <div className="flex flex-col gap-4">

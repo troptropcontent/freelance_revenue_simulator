@@ -1,6 +1,7 @@
 import { z } from "zod";
-import { InputsSchema } from "./schema";
+import { ActivitySchema, InputsSchema } from "./schema";
 
 type Inputs = z.infer<typeof InputsSchema>;
+type Activity = z.infer<typeof ActivitySchema>;
 
-export type { Inputs };
+export type { Inputs, Activity };

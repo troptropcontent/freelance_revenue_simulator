@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { Button } from "./components/ui/Button";
 import { InputTabs } from "./components/simulator/inputs/InputTabs";
 import { Inputs } from "./components/simulator/inputs/types";
 import { useInitialValues } from "./components/simulator/inputs/shared/hooks";
@@ -70,3 +69,7 @@ function App() {
 }
 
 export { App };
+
+// Legacy alias for backwards compatibility
+export type { Inputs as FormValues };
+export type { Activity } from "./components/simulator/inputs/types";

@@ -31,6 +31,7 @@ interface DaySegment {
     name: string;
     percentage: number; // percentage of this day (0-100)
     color: string;
+    borderColor: string;
 }
 
 interface DayColumn {
@@ -105,6 +106,8 @@ function WeekComposition({ form }: { form: UseFormReturn<Inputs> }) {
         });
     }
 
+    console.log({ activityBlocks })
+
     // Now distribute blocks across days sequentially (filling left to right)
     const dayColumns: DayColumn[] = daysWorked.map((day) => ({
         day,
@@ -131,6 +134,7 @@ function WeekComposition({ form }: { form: UseFormReturn<Inputs> }) {
                     name: block.name,
                     percentage: fillAmount * 100,
                     color: block.background,
+                    borderColor: block.type == "available" ? ADMIN_COLOR : block.background
                 });
             }
 
@@ -164,7 +168,7 @@ function WeekComposition({ form }: { form: UseFormReturn<Inputs> }) {
 
                         {/* Stacked bar - segments stack from bottom to top */}
                         <div
-                            className="w-12 rounded-lg overflow-hidden flex flex-col-reverse border border-gray-200"
+                            className="w-12 overflow-hidden flex flex-col-reverse"
                             style={{ height: "160px" }}
                         >
                             {segments.map((segment, idx) => (
@@ -173,8 +177,9 @@ function WeekComposition({ form }: { form: UseFormReturn<Inputs> }) {
                                     style={{
                                         height: `${segment.percentage}%`,
                                         backgroundColor: segment.color,
+                                        borderColor: segment.borderColor,
                                     }}
-                                    className={`w-full rounded shrink-0 ${idx < segments.length - 1 ? "border-t-2 border-white" : ""}`}
+                                    className={`border w-full rounded ${idx < segments.length - 1 ? "mt-1" : ""}`}
                                     title={segment.name}
                                 />
                             ))}

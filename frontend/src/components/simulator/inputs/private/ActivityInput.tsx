@@ -340,6 +340,7 @@ function ActivityInputAverageTimeSpent({
       </div>
       <FormInputs.Range<Inputs>
         form={form}
+        step={0.5}
         min={0}
         max={numberOfDaysWorkedPerWeek}
         name={inputName}

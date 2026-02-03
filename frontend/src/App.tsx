@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Models } from "./components/simulator/constants";
 import { ModelCard } from "./components/simulator/results/ModelCard";
 import { NetRevenueRepartition } from "./components/simulator/results/chart_cards/NetRevenueRepartition";
+import { EnjoymentRateRepartition } from "./components/simulator/results/chart_cards/EnjoymentRateRepartition";
 
 function App() {
   const initialValues = useInitialValues();
@@ -59,7 +60,7 @@ function App() {
         </div>
         <div className="grid grid-cols-3 gap-12">
           <NetRevenueRepartition form={form} />
-          <NetRevenueRepartition form={form} />
+          <EnjoymentRateRepartition form={form} />
           <NetRevenueRepartition form={form} />
         </div>
       </div>

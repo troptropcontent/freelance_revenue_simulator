@@ -393,8 +393,8 @@
               "remaining_days_other": "<b>Il te reste {{count, number(maximumFractionDigits: 1)}} jours disponibles !</b>"
             },
             "enjoyment_ventilation": {
-              "title": "Ton niveau de kiff sur la semaine",
-              "rate_label": "<b>{{days}}</b> à {{rate}} de kiff",
+              "title": "Niveau de kiff sur la semaine",
+              "average": "Moyenne",
               "remaining": "<b>Il te reste {{days}} !</b>"
             },
             "value": {

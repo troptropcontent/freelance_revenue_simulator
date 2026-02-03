@@ -2825,6 +2825,9 @@
   .max-w-\[1320px\] {
     max-width: 1320px;
   }
+  .min-w-9 {
+    min-width: calc(var(--spacing) * 9);
+  }
   .flex-1 {
     flex: 1;
   }

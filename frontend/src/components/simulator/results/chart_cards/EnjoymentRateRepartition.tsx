@@ -140,14 +140,14 @@ function EnjoymentRateRepartition({ form }: { form: UseFormReturn<Inputs> }) {
                 <CollapsibleBadge color={missions.length > 0 ? ENJOYMENT_COLOR : DISABLED_COLOR} title={`${missions_average} / ${5}`} description={t("simulator.inputs.tabs.mission.name")}>
                     {
                         missions.length > 0 && <div className="flex gap-3 flex-col">
-                            {missions.map(({ kind, name, enjoyment_rate }) => <span>{`${enjoyment_rate} / ${5}`}</span>)}
+                            {missions.map(({ kind, name, enjoyment_rate }) => <span className="flex gap-3"><p className="font-bold min-w-9">{`${enjoyment_rate} / ${5}`}</p><p>{name}</p></span>)}
                         </div>
                     }
                 </CollapsibleBadge>
                 <CollapsibleBadge color={projects.length > 0 ? ENJOYMENT_COLOR : DISABLED_COLOR} title={`${projects_average} / ${5}`} description={t("simulator.inputs.tabs.project.name")}>
                     {
                         projects.length > 0 && <div className="flex gap-3 flex-col">
-                            {projects.map(({ kind, name, enjoyment_rate }) => <span>{`${enjoyment_rate} / ${5}`}</span>)}
+                            {projects.map(({ kind, name, enjoyment_rate }) => <span className="flex gap-3"><p className="font-bold min-w-9">{`${enjoyment_rate} / ${5}`}</p><p>{name}</p></span>)}
                         </div>
                     }
                 </CollapsibleBadge>

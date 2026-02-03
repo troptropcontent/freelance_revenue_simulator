@@ -382,6 +382,9 @@
               "title": "Répartition de ton chiffre d’affaires",
               "unstarted_label": "à compléter"
             },
+            "net_revenue_repartition": {
+              "title": "Répartition du revenu net mensuel"
+            },
             "week_ventilation": {
               "title": "Composition de ta semaine type et niveau de kiff",
               "available_time_label": "Temps disponible : ",

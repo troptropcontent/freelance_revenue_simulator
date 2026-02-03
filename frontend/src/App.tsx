@@ -33,7 +33,7 @@ function App() {
   const shouldDisplayModelCard = model && !form.formState.isDirty
 
   return (
-    <form className="container grid grid-cols-3 gap-x-6 gap-y-6 bg-orange-100 p-24">
+    <form className="grid grid-cols-3 gap-x-6 gap-y-6 bg-orange-100 p-24">
       <div className="col-span-2 text-4xl font-bold">Simulateur SoloPortfolio</div>
       <div className="flex flex-row-reverse">
         <button type="button" onClick={copyPresetUrlToClipBoard} className="btn">

@@ -123,14 +123,16 @@
         <header
           class="container max-w-2xl flex flex-col justify-between gap-3 h-[212px]"
         >
-          <h1>Simulateur</h1>
+          <h1 class="font-semibold text-purple-900">SIMULATEUR</h1>
           <h2 class="text-6xl font-bold">
             Crée ton quotidien idéal d'indépendant
           </h2>
-          <p>Revenu mensuel, équilibre pro-perso et kiff !</p>
+          <p class="text-xl text-gray-500">
+            Temps de travail, revenu & équilibre.
+          </p>
         </header>
         <span class="flex gap-4">
-          <a class="btn btn-primary">Commencer la simulation</a>
+          <a class="btn btn-primary" href="#root">Commencer la simulation</a>
           <a class="btn">Voir un exemple</a>
         </span>
         <img
@@ -142,8 +144,8 @@
     </section>
 
     <!-- ==================== SIMULATOR APP (React Root) ==================== -->
-    <section>
-      <div id="root">
+    <section class="bg-orange-100">
+      <div id="root" class="container max-w-7xl mx-auto">
         <div class="loading_container">
           <div class="loader"></div>
         </div>

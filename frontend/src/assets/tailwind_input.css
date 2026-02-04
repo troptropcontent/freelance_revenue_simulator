@@ -1,4 +1,36 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"); */
-/* @tailwind base; */
-/* @tailwind components; */
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: var(--color-purple-900);
+}
+
+@utility btn {
+  @apply rounded-lg;
+  @apply shadow-none;
+  @apply py-3;
+  @apply px-4;
+  @apply font-normal;
+  @apply gap-1;
+  @apply h-12;
+
+  &.btn-circle {
+    @apply rounded-full;
+  }
+};
+
+@utility btn-link {
+  text-decoration-line: none;
+}
+
+@utility tab {
+  --tab-border-color: var(--color-gray-200);
+  @apply grow;
+  @apply [&:not(:last-child)]:before:hidden;
+}
+
+@utility card {
+  @apply bg-gray-50;
+}

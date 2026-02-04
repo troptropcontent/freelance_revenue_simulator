@@ -36,8 +36,7 @@
     </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-    <link rel="stylesheet" href="/index.css" />
-    <link rel="stylesheet" href="/tailwind.css" />
+    <link rel="stylesheet" href="/tailwind_output.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SoloPortfolio</title>
     <meta
@@ -48,316 +47,861 @@
     <meta property="og:type" content="website" />
   </head>
   <body>
-    <nav
-      class="bg-primary-light flex justify-between items-center px-md md:px-[60px] py-[12px] h-[60px]"
-    >
-      <a href="/"
-        ><img
-          src="/logo.png"
-          class="h-[30px] md:h-[40px]"
-          alt="Le logo de soloportfolio"
-      /></a>
-      <label id="hamburger-menu" class="md:hidden" for="menu-open">
-        <input type="checkbox" name="menu-open" id="menu-open" />
-        <svg
-          width="21"
-          height="21"
-          viewBox="0 0 21 21"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M2 4H19"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M2 10H19"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M2 16H19"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg>
+    <!-- ==================== NAVIGATION ==================== -->
+    <section class="bg-orange-100 flex flex-col items-center">
+      <nav class="w-full max-w-7xl flex justify-between py-6">
+        <a href="/" class="flex gap-3">
+          <img src="/images/logo_icon.png" alt="Le logo de soloportfolio" />
 
-        <ul id="hamburger-menu-links" class="py-md">
-          <li class="px-md">
-            <a
-              href="#who_we_are_section"
-              class="text-text_section-small md:text-text_section-normal text-primary-dark"
-              >À propos</a
-            >
+          <img src="/images/logo_name.png" alt="Le logo de soloportfolio" />
+        </a>
+        <label id="hamburger-menu" class="md:hidden" for="menu-open">
+          <input type="checkbox" name="menu-open" id="menu-open" />
+          <svg
+            width="21"
+            height="21"
+            viewBox="0 0 21 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2 4H19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M2 10H19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M2 16H19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+
+          <ul id="hamburger-menu-links" class="py-md">
+            <li class="px-md">
+              <a
+                href="#who_we_are_section"
+                class="text-text_section-small md:text-text_section-normal text-primary-dark"
+                >À propos</a
+              >
+            </li>
+            <li class="px-md">
+              <a
+                href="#share"
+                class="text-text_section-small md:text-text_section-normal text-primary-dark"
+                >Partager le simulateur</a
+              >
+            </li>
+          </ul>
+        </label>
+        <ul class="hidden md:flex gap-8 items-center list-none">
+          <li>
+            <a href="#who_we_are_section">Simulateur</a>
           </li>
-          <li class="px-md">
-            <a
-              href="#share"
-              class="text-text_section-small md:text-text_section-normal text-primary-dark"
-              >Partager le simulateur</a
-            >
+          <li>
+            <a href="#who_we_are_section">Partenaire</a>
+          </li>
+          <li>
+            <a href="#share">À propos</a>
           </li>
         </ul>
-      </label>
-      <ul class="hidden md:flex gap-[40px] items-center list-none">
-        <li>
-          <a
-            href="#who_we_are_section"
-            class="text-text_section-small md:text-text_section-normal no-underline text-primary-dark"
-            >À propos</a
-          >
-        </li>
-        <li>
-          <a
-            href="#share"
-            class="text-text_section-small md:text-text_section-normal no-underline text-primary-dark"
-            >Partager le simulateur</a
-          >
-        </li>
-      </ul>
-    </nav>
-    <section id="simulator_section">
-      <header class="simulator_section-header">
-        <span class="flex flex-col px-[40px] md:px-[60px]">
-          <h1 class="text-hero_title-small md:text-hero_title-normal font-bold">
-            Simulateur
-          </h1>
-          <h2
-            class="text-hero_subtitle-small md:text-hero_subtitle-normal font-bold"
-          >
-            de chiffre d'affaires pour indépendants
-          </h2>
-        </span>
-        <p class="text-hero_text-small md:text-hero_text-normal px-[40px] md:px-[60px]">
-          Compose ton <b>portfolio d'activités</b>, organise ta <b
-            >semaine idéale</b
-          >
-          et découvre ton <b>chiffre d'affaires annuel</b>.
-        </p>
-      </header>
-      <aside class="w-full flex flex-col justify-center items-center pb-xl">
-        <div
-          class="relative flex flex-col items-center max-w-[780px] border-solid border-[1px] border-grey-2 rounded-[13px] mx-[40px] md:mx-[60px]"
+      </nav>
+    </section>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="py-40 bg-orange-100">
+      <div
+        class="container max-w-7xl flex flex-col gap-8 py-8 relative mx-auto"
+      >
+        <header
+          class="container max-w-2xl flex flex-col justify-between gap-3 h-[212px]"
         >
-          <span
-            class="flex flex-col md:flex-row px-[15px] md:px-[50px] pt-[30px] pb-[calc(11px+0.5em+30px)] gap-[12px] md:gap-[25px]"
-          >
-            <div class="flex flex-col items-center md:items-start gap-[5px]">
-              <p
-                class="text-title_n3-small md:text-title_n3-normal text-[#0D3B53] font-bold"
-              >
-                Propulsé par
-              </p>
-              <img
-                src="/images/logosponsor.svg"
-                alt="Le logo de notre sponsor"
-                class="w-[142px] md:w-[181px]"
-              />
-            </div>
-            <div
-              class="hidden md:block before:content-[''] before:flex before:w-[2px] bg-grey-2"
-            ></div>
-            <p
-              class="flex-grow text-text_section-small md:text-text_section-normal text-[#0D3B53] text-center md:text-left"
-            >
-              <b
-                >L’expert-comptable en ligne qui vous simplifie vraiment la
-                vie.</b
-              >
-              Aucune saisie manuelle. Conseils fantastiques. Sans engagement !
-            </p>
-          </span>
-          <a
-            href="https://www.dougs.fr?r=tYbdwtSWeK"
-            target="_blank"
-            class="text-call_to_action-small md:text-call_to_action-normal absolute left-auto right-auto bottom-[calc(-11px-0.5em)] button button--primary bg-[#37AEF1] visited:text-white hover:bg-[#0D3B53] hover:text-zhite"
-          >
-            Profiter d'1 mois offert
-          </a>
-        </div>
-      </aside>
+          <h1>Simulateur</h1>
+          <h2 class="text-6xl font-bold">
+            Crée ton quotidien idéal d'indépendant
+          </h2>
+          <p>Revenu mensuel, équilibre pro-perso et kiff !</p>
+        </header>
+        <span class="flex gap-4">
+          <a class="btn btn-primary">Commencer la simulation</a>
+          <a class="btn">Voir un exemple</a>
+        </span>
+        <img
+          src="/images/VISUEL.png"
+          alt=""
+          class="w-[512.73px] h-[514.51px] absolute right-0 bottom-[-100px]"
+        />
+      </div>
+    </section>
+
+    <!-- ==================== SIMULATOR APP (React Root) ==================== -->
+    <section>
       <div id="root">
         <div class="loading_container">
           <div class="loader"></div>
         </div>
       </div>
     </section>
-    <section
-      class="flex flex-col items-center gap-sm bg-white text-center px-[40px] py-[30px] md:pt-[70px] md:pb-[80px] md:px-[60px]"
-      id="share"
-    >
-      <h3 class="text-title_n1-small md:text-title_n1-normal">
-        Tu kiffes ? 😊
-      </h3>
-      <p class="text-text_section-small md:text-text_section-normal">
-        Partage le simulateur à un pote indépendant en lui envoyant le lien
-      </p>
-      <span class="flex gap-md p-sm"
-        ><span
-          class="border-solid border border-grey-1 px-lg rounded-md flex items-center justify-center"
-        >
-          <p class="text-text-small md:text-text-normal" id="copy_link_target">
-            {{currentUrl}}/?utm_source=partage
-          </p>
-        </span>
-        <div class="flex flex-col justify-center">
-          <button
-            class="button button--primary text-call_to_action-small md:text-call_to_action-normal visited:text-white hover:bg-activity_1 hover:text-primary-dark"
-            id="copy_link_button"
-          >
-            Copier
-          </button>
-        </div></span
-      >
-    </section>
-    <section id="who_we_are_section" class="bg-primary-light flex flex-col gap-[40px] px-[40px] py-[30px] md:pt-[70px] md:pb-[80px] md:px-[60px]">
-      <h2
-        class="text-align-center text-title_n1-small md:text-title_n1-normal"
-      >
-        Ce simulateur est imaginé par
-      </h2>
-      <div class="who_we_are_section-authors max-w-[1320px] mx-auto">
-        <span class="flex flex-wrap gap-[14px] md:gap-[25px]">
-          <div
-            class="who_we_are_section_article_photo tom"
-            style="background-image: url(&quot;/tom.png&quot;)"
-          ></div>
-          <h3
-            id="who_we_are_section_article_1_title"
-            class="who_we_are_section_article_title text-title_n2-small md:text-title_n2-normal text-center"
-          >
-            Tom Ecrepont
-          </h3>
-          <p
-            id="who_we_are_section_article_1_text"
-            class="who_we_are_section_article_text text-text-small md:text-text-normal text-center"
-          >
-            Tom est <b>entrepreneur et développeur freelance</b>. Il se
-            spécialise dans la creation d'outils sur mesure pour générer des
-            leads qualifiés et l'automatisation de process pour gagner en
-            efficacité.
-          </p>
-          <div class="flex" id="who_we_are_section_article_1_link">
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/in/tomecrepont"
-              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark text-wrap text-center text-call_to_action-small md:text-call_to_action-normal"
+
+    <!-- ==================== INSIGHTS CARDS SECTION ==================== -->
+    <section class="py-24 bg-orange-200">
+      <div class="container max-w-7xl flex flex-col gap-12 mx-auto">
+        <p class="text-4xl font-bold text-center">
+          Comment passer au niveau supérieur ?
+        </p>
+        <div class="flex items-start gap-12 justify-between">
+          <!-- Insight Card 1 -->
+          <div class="card bg-white shadow-lg rounded-lg w-[395px]">
+            <!-- Header fixe -->
+            <div
+              class="collapse-title flex flex-col items-center gap-6 text-center pr-4"
             >
-              Le contacter sur Linkedin
-            </a>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22L10.405 20.6332C4.74 15.7978 1 12.6087 1 8.69482C1 5.50572 3.3157 3 6.7037 3C10.4315 3 12 7.35417 12 7.35417C12 7.35417 13.9083 3 17.2963 3C20.6843 3 23 5.50572 23 8.69482C23 12.6087 19.26 15.7978 13.595 20.6436L12 22Z"
+                  fill="#581C87"
+                />
+              </svg>
+              <p class="text-2xl font-bold">
+                Tu kiffes ton activité, mais ton revenu ne suit pas ?
+              </p>
+              <p>
+                Tu veux des revenus à la hauteur de tes efforts tout en
+                continuant de kiffer
+              </p>
+            </div>
+
+            <!-- Collapse -->
+            <details class="group flex flex-col">
+              <!-- Séparateur -->
+              <div class="mx-6 border-t border-gray-200"></div>
+              <!-- Contenu collapsible (au-dessus du summary grâce à order) -->
+              <div class="px-6 pt-6 flex flex-col gap-4 order-1">
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Valorise mieux ton expertise : revois tes tarifs ou ta
+                    structure de prestations
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>Identifie les clients ou projets les plus rentables.</p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Diminue le temps "non facturable" (administratif,
+                    prospection, etc.).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Chevron toujours en bas -->
+              <summary
+                class="cursor-pointer list-none p-6 flex justify-center order-2"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-400 transition-transform group-open:rotate-180"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"
+                  />
+                </svg>
+              </summary>
+            </details>
           </div>
-        </span>
-        <span class="flex flex-wrap gap-[14px] md:gap-[25px]">
-          <div
-            class="who_we_are_section_article_photo pierre"
-            style="background-image: url(&quot;/pierre.jpg&quot;)"
-          ></div>
-          <h3
-            id="who_we_are_section_article_2_title"
-            class="who_we_are_section_article_title text-title_n2-small md:text-title_n2-normal text-center"
-          >
-            Pierre Guilbaud
-          </h3>
-          <p
-            id="who_we_are_section_article_2_text"
-            class="who_we_are_section_article_text text-text-small md:text-text-normal text-center"
-          >
-            Pierre est
-            <b>co-fondateur de Marketing Flow et Freelance Growth for Good</b>
-            depuis 5 ans. Chaque vendredi, il documente ses avancées pour créer
+          <!-- Insight Card 2 -->
+          <div class="card bg-white shadow-lg rounded-lg w-[395px]">
+            <!-- Header fixe -->
+            <div
+              class="collapse-title flex flex-col items-center gap-6 text-center pr-4"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22L10.405 20.6332C4.74 15.7978 1 12.6087 1 8.69482C1 5.50572 3.3157 3 6.7037 3C10.4315 3 12 7.35417 12 7.35417C12 7.35417 13.9083 3 17.2963 3C20.6843 3 23 5.50572 23 8.69482C23 12.6087 19.26 15.7978 13.595 20.6436L12 22Z"
+                  fill="#581C87"
+                />
+              </svg>
+              <p class="text-2xl font-bold">
+                Tu gagnes bien ta vie, mais t’es au bout du rouleau ?
+              </p>
+              <p>
+                Tu veux un emploi du temps raisonnable et une vie d’indépendant
+                moins stressante.
+              </p>
+            </div>
+
+            <!-- Collapse -->
+            <details class="group flex flex-col">
+              <!-- Séparateur -->
+              <div class="mx-6 border-t border-gray-200"></div>
+              <!-- Contenu collapsible (au-dessus du summary grâce à order) -->
+              <div class="px-6 pt-6 flex flex-col gap-4 order-1">
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Valorise mieux ton expertise : revois tes tarifs ou ta
+                    structure de prestations
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>Identifie les clients ou projets les plus rentables.</p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Diminue le temps "non facturable" (administratif,
+                    prospection, etc.).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Chevron toujours en bas -->
+              <summary
+                class="cursor-pointer list-none p-6 flex justify-center order-2"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-400 transition-transform group-open:rotate-180"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"
+                  />
+                </svg>
+              </summary>
+            </details>
+          </div>
+          <!-- Insight Card 3 -->
+          <div class="card bg-white shadow-lg rounded-lg w-[395px]">
+            <!-- Header fixe -->
+            <div
+              class="collapse-title flex flex-col items-center gap-6 text-center pr-4"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22L10.405 20.6332C4.74 15.7978 1 12.6087 1 8.69482C1 5.50572 3.3157 3 6.7037 3C10.4315 3 12 7.35417 12 7.35417C12 7.35417 13.9083 3 17.2963 3C20.6843 3 23 5.50572 23 8.69482C23 12.6087 19.26 15.7978 13.595 20.6436L12 22Z"
+                  fill="#581C87"
+                />
+              </svg>
+              <p class="text-2xl font-bold">
+                Tu es stable, mais tu n’es pas heureux pour autant.
+              </p>
+              <p>
+                Tu veux passer au niveau supérieur : plus d’impact, plus de
+                kiff, plus de liberté.
+              </p>
+            </div>
+
+            <!-- Collapse -->
+            <details class="group flex flex-col">
+              <!-- Séparateur -->
+              <div class="mx-6 border-t border-gray-200"></div>
+              <!-- Contenu collapsible (au-dessus du summary grâce à order) -->
+              <div class="px-6 pt-6 flex flex-col gap-4 order-1">
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Valorise mieux ton expertise : revois tes tarifs ou ta
+                    structure de prestations
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>Identifie les clients ou projets les plus rentables.</p>
+                </div>
+                <div class="flex gap-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="my-auto shrink-0"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.707 6.707C11.8892 6.5184 11.99 6.2658 11.9877 6.0036C11.9854 5.7414 11.8802 5.49059 11.6948 5.30518C11.5094 5.11977 11.2586 5.0146 10.9964 5.01233C10.7342 5.01005 10.4816 5.11084 10.293 5.293L7 8.586L5.707 7.293C5.5184 7.11084 5.2658 7.01005 5.0036 7.01233C4.7414 7.0146 4.49059 7.11977 4.30518 7.30518C4.11977 7.49059 4.0146 7.7414 4.01233 8.0036C4.01005 8.2658 4.11084 8.5184 4.293 8.707L6.293 10.707C6.48053 10.8945 6.73484 10.9998 7 10.9998C7.26516 10.9998 7.51947 10.8945 7.707 10.707L11.707 6.707Z"
+                      fill="#581C87"
+                    />
+                  </svg>
+
+                  <p>
+                    Diminue le temps "non facturable" (administratif,
+                    prospection, etc.).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Chevron toujours en bas -->
+              <summary
+                class="cursor-pointer list-none p-6 flex justify-center order-2"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-400 transition-transform group-open:rotate-180"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"
+                  />
+                </svg>
+              </summary>
+            </details>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <a href="#root" class="btn btn-primary">Retourner au simulateur</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS SECTION ==================== -->
+    <section class="bg-blue-200 py-24">
+      <div class="container max-w-7xl flex flex-col gap-12 mx-auto">
+        <p class="text-4xl font-bold text-center">
+          Ce qu'en pensent les indépendants
+        </p>
+        <div class="flex justify-between gap-12">
+          <!-- Testimonial card 1 -->
+          <div class="card w-[302px] p-8">
+            <div class="flex flex-col gap-6 h-full">
+              <p class="text-xl font-semibold text-center">
+                « L’outil rêvé ! »
+              </p>
+              <p class="text-center text-gray-500 grow">
+                Super concept, on se demande pourquoi ça n'existait pas déjà !
+                Avoir une vision claire de tout son portfolio, en optimisant
+                kiff et revenus, c'est l'outil rêvé pour les indépendants.
+              </p>
+              <div class="flex gap-4 items-center">
+                <img
+                  src="/images/louis_rouzet.png"
+                  alt=""
+                  class="size-14 rounded-full"
+                />
+                <div class="flex flex-col">
+                  <p class="font-bold">Louis Rouzet</p>
+                  <p class="text-sm text-gray-500">
+                    Freelance Career Advisor & entrepeneur
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial card 2 -->
+          <div class="card w-[302px] p-8">
+            <div class="flex flex-col gap-6 h-full">
+              <p class="text-xl font-semibold text-center">
+                « Merci, et bravo ! »
+              </p>
+              <p class="text-center text-gray-500 grow">
+                L’outil est chouette pour prendre du recul sur son modèle, et
+                inclure les temps off et le kiff dans l'équation c'est essentiel
+                ! Merci, et bravo :-)
+              </p>
+              <div class="flex gap-4 items-center">
+                <img
+                  src="/images/anne_sophie_furic.jpg"
+                  alt=""
+                  class="size-14 rounded-full"
+                />
+                <div class="flex flex-col">
+                  <p class="font-bold">Anne-Sophie Furic</p>
+                  <p class="text-sm text-gray-500">
+                    Brand & Communication specialist
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial card 3 -->
+          <div class="card w-[302px] p-8">
+            <div class="flex flex-col gap-6 h-full">
+              <p class="text-xl font-semibold text-center">« Instructif »</p>
+              <p class="text-center text-gray-500 grow">
+                Je me suis rendue compte que je pouvais m'autoriser à facturer
+                du consulting à l'heure, plutôt que d'être en gratuité par
+                défaut. Ca m'a aussi rappelé qu'une semaine ne comportait pas 8
+                jours!
+              </p>
+              <div class="flex gap-4 items-center">
+                <img
+                  src="/images/carine_sit.jpg"
+                  alt=""
+                  class="size-14 rounded-full"
+                />
+                <div class="flex flex-col">
+                  <p class="font-bold">Carine Sit</p>
+                  <p class="text-sm text-gray-500">
+                    Conseil en stratégie et innovation freelance
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial card 4 -->
+          <div class="card w-[302px] p-8">
+            <div class="flex flex-col gap-6 h-full">
+              <p class="text-xl font-semibold text-center">
+                « Simple, visuel »
+              </p>
+              <p class="text-center text-gray-500 grow">
+                C’est simple, amusant, visuel et beaucoup plus fun qu'un
+                business plan !!! Merci pour cette création qui permet de voir
+                quel projet est à prioriser pour obtenir de la rentabilité.
+              </p>
+              <div class="flex gap-4 items-center">
+                <img
+                  src="/images/sylvie_bouthenet.jpg"
+                  alt=""
+                  class="size-14 rounded-full"
+                />
+                <div class="flex flex-col">
+                  <p class="font-bold">Sylvie Bouthenet</p>
+                  <p class="text-sm text-gray-500">
+                    Formatrice et coach de vie freelance
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SHARE CTA SECTION ==================== -->
+    <section class="py-24 gap-10 bg-orange-100">
+      <div
+        class="container flex flex-col gap-6 items-center text-center mx-auto"
+      >
+        <svg
+          width="36"
+          height="32"
+          viewBox="0 0 36 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 32L15.39 29.6981C6.12 21.5542 0 16.1831 0 9.59128C0 4.22016 3.78933 0 9.33333 0C15.4333 0 18 7.33333 18 7.33333C18 7.33333 21.1227 0 26.6667 0C32.2107 0 36 4.22016 36 9.59128C36 16.1831 29.88 21.5542 20.61 29.7155L18 32Z"
+            fill="#581C87"
+          />
+        </svg>
+        <div class="flex flex-col gap-4">
+          <p class="text-4xl font-bold">Tu kiffes SoloPortfolio ?</p>
+          <p class="text-xl text-gray-500">
+            Partage le simulateur à un pote indépendant ou à ta communauté de
+            freelances !
+          </p>
+        </div>
+        <div>
+          <a href="#root" class="btn btn-primary"
+            >Je partage
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="my-auto"
+            >
+              <path
+                d="M4 1.60059C4.21204 1.60068 4.41549 1.68502 4.56543 1.83496C4.71536 1.98494 4.79975 2.18833 4.7998 2.40039C4.7998 2.61243 4.71528 2.81582 4.56543 2.96582C4.41549 3.11576 4.21204 3.2001 4 3.2002H1.59961V9.60059H8V7.2002C8.0001 6.98816 8.08444 6.7847 8.23438 6.63477C8.38438 6.48491 8.58776 6.40039 8.7998 6.40039C9.01186 6.40044 9.21526 6.48485 9.36523 6.63477C9.51517 6.7847 9.59951 6.98816 9.59961 7.2002V9.60059C9.59961 10.0249 9.43092 10.4324 9.13086 10.7324C8.83092 11.0322 8.42407 11.2001 8 11.2002H1.59961C1.1755 11.2002 0.768757 11.0322 0.46875 10.7324C0.168692 10.4324 0 10.0249 0 9.60059V3.2002C0.000103446 2.77599 0.168784 2.3693 0.46875 2.06934C0.768785 1.7694 1.17536 1.60059 1.59961 1.60059H4ZM10.3994 0C10.6116 0 10.8158 0.0843459 10.9658 0.234375C11.1158 0.384401 11.1992 0.588621 11.1992 0.800781V4.80078C11.1991 5.01274 11.1156 5.21627 10.9658 5.36621C10.8158 5.51624 10.6116 5.60059 10.3994 5.60059C10.1873 5.60052 9.98395 5.51617 9.83398 5.36621C9.68402 5.21625 9.59969 5.01285 9.59961 4.80078V2.73145L4.56543 7.76562C4.49166 7.84201 4.40323 7.90339 4.30566 7.94531C4.20815 7.9872 4.10319 8.00978 3.99707 8.01074C3.89085 8.01167 3.78484 7.9914 3.68652 7.95117C3.58828 7.91095 3.4989 7.85143 3.42383 7.77637C3.34877 7.70131 3.28925 7.6119 3.24902 7.51367C3.2088 7.41535 3.18853 7.30935 3.18945 7.20312C3.19041 7.09698 3.21299 6.99206 3.25488 6.89453C3.29678 6.79703 3.35729 6.70851 3.43359 6.63477L8.46875 1.60059H6.39941C6.18734 1.60052 5.98396 1.51617 5.83398 1.36621C5.68402 1.21625 5.59969 1.01285 5.59961 0.800781C5.59961 0.588608 5.68396 0.384404 5.83398 0.234375C5.98394 0.0845413 6.18743 6.23526e-05 6.39941 0H10.3994Z"
+                fill="white"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== NEWSLETTER SECTION ==================== -->
+    <section class="py-24 gap-10 bg-orange-200">
+      <div
+        class="container max-w-7xl flex flex-col gap-6 items-center text-center mx-auto"
+      >
+        <svg
+          width="32"
+          height="24"
+          viewBox="0 0 32 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M32.001 20C32.0008 21.0607 31.5792 22.079 30.8291 22.8291C30.0791 23.579 29.0616 24.0008 28.001 24.001H4C2.93932 24.001 1.92103 23.579 1.1709 22.8291C0.420913 22.0791 0.000129062 21.0607 0 20V8.23633L16 16.2363L32.001 8.23633V20ZM28.001 6.74775e-08C29.0217 -5.25667e-05 30.0046 0.389414 30.7471 1.08984C31.4893 1.79029 31.9359 2.74877 31.9951 3.76758L16 11.7646L0.00585938 3.76758C0.0651336 2.74853 0.511403 1.79033 1.25391 1.08984C1.99647 0.389311 2.97914 -0.000187174 4 6.74775e-08H28.001Z"
+            fill="#581C87"
+          />
+        </svg>
+
+        <div class="flex flex-col gap-4">
+          <p class="text-4xl font-bold">Envie d'aller plus loin ?</p>
+          <p class="text-xl text-gray-500">
+            Chaque vendredi, Pierre Guilbaud documente ses avancées pour créer
             le quotidien d'entrepreneur qui l'épanouit : projets, chiffre
             d'affaires (200k€+), impact positif & équilibre perso.
           </p>
-          <div class="flex" id="who_we_are_section_article_2_link">
-            <a
-              href="https://pierreguilbaud.substack.com/?utm_source=soloportfolio?utm_source=soloportfolio"
-              target="_blank"
-              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark text-wrap text-center text-call_to_action-small md:text-call_to_action-normal"
+        </div>
+        <div>
+          <a href="#root" class="btn btn-primary"
+            >Je m'abonne à la newsletter
+            <svg
+              width="13"
+              height="10"
+              viewBox="0 0 13 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Découvrir sa newsletter
-            </a>
-          </div>
-        </span>
-        <span class="flex flex-wrap gap-[14px] md:gap-[25px]">
-          <div
-            class="who_we_are_section_article_photo lucie"
-            style="background-image: url(&quot;/lucie.jpg&quot;)"
-          ></div>
-          <h3
-            id="who_we_are_section_article_2_title"
-            class="who_we_are_section_article_title text-title_n2-small md:text-title_n2-normal text-center"
-          >
-            Lucie Sevaistre
-          </h3>
-          <p
-            id="who_we_are_section_article_2_text"
-            class="who_we_are_section_article_text text-text-small md:text-text-normal text-center"
-          >
-            Lucie est <b>graphic designer freelance</b>. Elle a créé le Studio
-            Lusse pour aider les entreprises à impact à diffuser leurs messages.
-            En parallèle elle dessine une BD sur l’écologie et mène un projet
-            entrepreneurial “Carnet de Montagnes”.
-          </p>
-          <div class="flex" id="who_we_are_section_article_2_link">
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/in/luciesevaistre/"
-              class="button button--primary visited:text-white hover:bg-activity_1 hover:text-primary-dark text-wrap text-center text-call_to_action-small md:text-call_to_action-normal"
-            >
-              Voir son profil Linkedin
-            </a>
-          </div>
-        </span>
+              <path
+                d="M12.8008 8C12.8007 8.42413 12.6319 8.83092 12.332 9.13086C12.032 9.43092 11.6245 9.59961 11.2002 9.59961H1.60059C1.17624 9.59961 0.768808 9.43092 0.46875 9.13086C0.168931 8.83093 0.000120236 8.42408 0 8V3.29395L6.40039 6.49414L12.8008 3.29395V8ZM11.2002 2.68878e-08C11.6085 -7.48678e-05 12.0018 0.156315 12.2988 0.436523C12.5956 0.71663 12.7741 1.09942 12.7979 1.50684L6.40039 4.70605L0.00292969 1.50684C0.0266887 1.09948 0.205229 0.716621 0.501953 0.436523C0.798969 0.156315 1.19225 -7.48678e-05 1.60059 2.68878e-08H11.2002Z"
+                fill="white"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
-    <section class="flex flex-col items-center gap-[40px] bg-white px-[40px] py-[30px] md:pt-[70px] md:pb-[80px] md:px-[60px]">
-      <h3 class="text-title_n1-small md:text-title_n1-normal text-center">
-        Envie d’aller plus loin ?
-      </h3>
-      <p
-        class="text-text_section-small md:text-text_section-normal w-2/3 text-center"
-      >
-        Chaque vendredi, Pierre documente ses avancées pour créer le quotidien
-        d'entrepreneur qui l'épanouit : projets, chiffre d'affaires (200k€+),
-        impact positif & équilibre perso.
-      </p>
 
-      <a
-        target="_blank"
-        class="button button--primary mt-md visited:text-white hover:bg-activity_1 hover:text-primary-dark text-call_to_action-small md:text-call_to_action-normal"
-        href="https://pierreguilbaud.substack.com/?utm_source=soloportfolio"
+    <!-- ==================== FAQ SECTION ==================== -->
+    <section class="bg-orange-100 py-24 flex flex-col gap-10" id="faq">
+      <div class="container flex flex-col gap-12">
+        <h2 class="text-4xl font-bold text-center">
+          On répond à vos questions
+        </h2>
+
+        <div class="max-w-4xl mx-auto">
+          <!-- Item 1 -->
+          <div
+            class="collapse collapse-arrow border-b border-yellow-400 rounded-none"
+          >
+            <input type="radio" name="faq-accordion" checked="checked" />
+            <div
+              class="collapse-title text-lg font-semibold text-gray-900 px-0"
+            >
+              Qu'est-ce que SoloPortfolio et à qui s'adresse cet outil ?
+            </div>
+            <div class="collapse-content px-0">
+              <p class="text-gray-500">
+                SoloPortfolio est un simulateur conçu pour les freelances,
+                indépendants et créateurs, afin d'estimer facilement leurs
+                revenus, charges et équilibre d'activité en fonction de leurs
+                tarifs, jours travaillés et objectifs.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div
+            class="collapse collapse-arrow border-b border-yellow-400 rounded-none"
+          >
+            <input type="radio" name="faq-accordion" />
+            <div
+              class="collapse-title text-lg font-semibold text-gray-900 px-0"
+            >
+              Comment fonctionne le simulateur et quelles données faut-il
+              renseigner ?
+            </div>
+            <div class="collapse-content px-0">
+              <p class="text-gray-500">Votre contenu ici...</p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div
+            class="collapse collapse-arrow border-b border-yellow-400 rounded-none"
+          >
+            <input type="radio" name="faq-accordion" />
+            <div
+              class="collapse-title text-lg font-semibold text-gray-900 px-0"
+            >
+              Les résultats sont-ils fiables et sur quelles hypothèses
+              reposent-ils ?
+            </div>
+            <div class="collapse-content px-0">
+              <p class="text-gray-500">Votre contenu ici...</p>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div
+            class="collapse collapse-arrow border-b border-yellow-400 rounded-none"
+          >
+            <input type="radio" name="faq-accordion" />
+            <div
+              class="collapse-title text-lg font-semibold text-gray-900 px-0"
+            >
+              Mes données sont-elles sauvegardées ou utilisées d'une quelconque
+              manière ?
+            </div>
+            <div class="collapse-content px-0">
+              <p class="text-gray-500">Votre contenu ici...</p>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div
+            class="collapse collapse-arrow border-b border-yellow-400 rounded-none"
+          >
+            <input type="radio" name="faq-accordion" />
+            <div
+              class="collapse-title text-lg font-semibold text-gray-900 px-0"
+            >
+              Le simulateur est-il gratuit et peut-on exporter ou partager les
+              résultats ?
+            </div>
+            <div class="collapse-content px-0">
+              <p class="text-gray-500">Votre contenu ici...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TEAM SECTION ==================== -->
+    <section class="py-24 gap-10 bg-blue-200">
+      <div
+        class="container max-w-7xl flex flex-col gap-12 items-center text-center mx-auto"
       >
-        Recevoir la newsletter 💌
-      </a>
+        <div class="flex flex-col gap-4">
+          <p class="text-4xl font-bold">Imaginé par des indépendants</p>
+          <p class="text-xl text-gray-500">
+            Nous connaissons les défis des indépendants, parce que ce sont aussi
+            les nôtres ! Nous jonglons tous les trois entre plusieurs activités,
+            il nous manquait juste SoloPortfolio.
+          </p>
+        </div>
+        <div class="flex gap-6">
+          <div class="flex flex-col w-[410px] items-center gap-6">
+            <div class="flex flex-col gap-2 items-center">
+              <img src="/images/tom.png" alt="" class="size-14 rounded-full" />
+              <div class="flex flex-col">
+                <p class="text-xl font-semibold">Tom Ecrepont</p>
+                <p class="text-gray-700">Développeur freelance</p>
+              </div>
+            </div>
+            <div class="h-0.5 w-[200px] bg-gray-900"></div>
+            <p class="text-gray-700">
+              En parallèle, il est entrepreneur et s’est spécialisé sur la
+              création d'outils sur mesure pour automatiser les process pour
+              gagner en efficacité.
+            </p>
+            <div class="flex gap-2">
+              <a href="" class="btn btn-primary btn-sm"> En savoir plus </a>
+              <a href="" class="btn btn-sm">Voir son simulateur</a>
+            </div>
+          </div>
+          <div class="flex flex-col w-[410px] items-center gap-6">
+            <div class="flex flex-col gap-2 items-center">
+              <img
+                src="/images/pierre.jpg"
+                alt=""
+                class="size-14 rounded-full"
+              />
+              <div class="flex flex-col">
+                <p class="text-xl font-semibold">Pierre Guilbaud</p>
+                <p class="text-gray-700">Freelance Growth for Good</p>
+              </div>
+            </div>
+            <div class="h-0.5 w-[200px] bg-gray-900"></div>
+            <p class="text-gray-700">
+              Il est aussi co-fondateur de Marketing Flow et à travers sa
+              newsletter il documente ses avancées pour créer le quotidien
+              d'entrepreneur qui l'épanouit.
+            </p>
+            <div class="flex gap-2">
+              <a href="" class="btn btn-primary btn-sm"> En savoir plus </a>
+              <a href="" class="btn btn-sm">Voir son simulateur</a>
+            </div>
+          </div>
+          <div class="flex flex-col w-[410px] items-center gap-6">
+            <div class="flex flex-col gap-2 items-center">
+              <img
+                src="/images/lucie.jpg"
+                alt=""
+                class="size-14 rounded-full"
+              />
+              <div class="flex flex-col">
+                <p class="text-xl font-semibold">Lucie Sevaistre</p>
+                <p class="text-gray-700">Designer freelance</p>
+              </div>
+            </div>
+            <div class="h-0.5 w-[200px] bg-gray-900"></div>
+            <p class="text-gray-700">
+              En parallèle elle illustre une BD sur l’écologie et mène un projet
+              d’exposition sur les transitions écologiques en montagne “Carnet
+              de Montagnes”.
+            </p>
+            <div class="flex gap-2">
+              <a href="" class="btn btn-primary btn-sm"> En savoir plus </a>
+              <a href="" class="btn btn-sm">Voir son simulateur</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    <section
-      class="flex flex-col items-center gap-md mt-[30px] mb-[174px] md:my-[60px] mx-[40px] md:mx-[60px] border-solid border-0 border-t-2 pt-[30px] border-primary-light"
-    >
-      <div id="wcb" class="carbonbadge"></div>
-      <script
-        src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js"
-        defer
-      ></script>
-      <p class="text-footer-small md:text-footer-normal">
-        Tous les montants de ce simulateur s’entendent Hors Taxes
-      </p>
-      <span class="flex"
-        ><a
-          href="/legal.html"
-          class="text-footer-small md:text-footer-normal text-primary-dark visited:text-primary-dark pr-sm"
-          ><u>Conditions générales d’utilisation</u></a
-        >
-        <p
-          class="text-footer-small md:text-footer-normal border-solid border-0 border-l-2 border-primary-light pl-sm"
-        >
-          <b>© 2024 SoloPortfolio</b>
-        </p>
-      </span>
-    </section>
+
+    <!-- ==================== SCRIPTS ==================== -->
     <script type="module" src="/src/main.tsx"></script>
     <script src="/javascript/index.js"></script>
   </body>

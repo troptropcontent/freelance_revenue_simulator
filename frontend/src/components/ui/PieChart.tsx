@@ -3,6 +3,7 @@ import { Box } from "./Box";
 import { createBorderRadiusStyle, cssVariable } from "../helper";
 import { ColorValueHex } from "../tokens";
 import { ReactNode } from "react";
+import { DISABLED_COLOR } from "../simulator/results/shared/constants";
 
 const LabelCard = styled.div<{
   $color: ColorValueHex;
@@ -49,12 +50,12 @@ const Graph = styled.div<{
     inset: 0;
     background: conic-gradient(
       ${({ $data }) =>
-        $data
-          .map(
-            (data) =>
-              `${data.color} ${data.start_angle}deg ${data.end_angle}deg`,
-          )
-          .join(",")}
+    $data
+      .map(
+        (data) =>
+          `${data.color} ${data.start_angle}deg ${data.end_angle}deg`,
+      )
+      .join(",")}
     );
   }
 
@@ -84,7 +85,6 @@ interface PieChartElement {
 
 const PieChart = ({
   data,
-  labelFormater,
   title,
 }: {
   data: PieChartElement[];
@@ -95,9 +95,6 @@ const PieChart = ({
   title: string;
 }) => {
   const total_value = data.reduce((acc, { value }) => acc + value, 0);
-  if (total_value == 0) {
-    throw new Error("The dataset given to PieChart seems to be empty");
-  }
 
   const computePieAngle = (value: number): number =>
     (value / total_value) * 360;
@@ -106,7 +103,11 @@ const PieChart = ({
     color: ColorValueHex;
     start_angle: number;
     end_angle: number;
-  }[] = [];
+  }[] = total_value != 0 ? [] : [{
+    color: DISABLED_COLOR,
+    start_angle: 0,
+    end_angle: 320,
+  }];
 
   const pie_data = data.reduce((acc, current): typeof initialValue => {
     if (current.value == 0) {
@@ -137,18 +138,8 @@ const PieChart = ({
   return (
     <Box flex flexDirection="column" alignItems="center" gap="lg">
       <Graph $data={pie_data} $title={title} />
-      <Box flex flexWrap="wrap" gap="sm" justifyContent="center">
-        {data.map(
-          (element, i) =>
-            element.value != 0 && (
-              <LabelCard $color={element.color} key={i}>
-                {labelFormater ? labelFormater(element, data) : element.label}
-              </LabelCard>
-            ),
-        )}
-      </Box>
     </Box>
   );
 };
 
-export { PieChart };
+export { PieChart, LabelCard };

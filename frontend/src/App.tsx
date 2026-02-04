@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { InputTabs } from "./components/simulator/inputs/InputTabs";
 import { Inputs } from "./components/simulator/inputs/types";
-import { useInitialValues } from "./components/simulator/inputs/shared/hooks";
+import { useInitialValues, useModelQueryParam } from "./components/simulator/inputs/shared/hooks";
 import { ResultCard } from "./components/simulator/results/ResultsCard";
 import { AdviceCard } from "./components/simulator/results/AdviceCard";
 import { useState } from "react";
@@ -12,12 +12,13 @@ import { EnjoymentRateRepartition } from "./components/simulator/results/chart_c
 import { WeekComposition } from "./components/simulator/results/chart_cards/WeekComposition";
 
 function App() {
+  const modelQueryParam = useModelQueryParam();
   const initialValues = useInitialValues();
   const form = useForm<Inputs>({
     defaultValues: initialValues,
   });
 
-  const [model, setModelState] = useState<keyof typeof Models | null>(null)
+  const [model, setModelState] = useState<keyof typeof Models | null>(modelQueryParam)
   const setModel = (model: keyof typeof Models) => {
     setModelState(model)
     form.reset(Models[model].inputs)
@@ -27,6 +28,7 @@ function App() {
     const inputs = form.getValues()
     const url = new URL(window.location.href)
     url.searchParams.set("presets", JSON.stringify(inputs))
+    url.searchParams.delete("model")
     navigator.clipboard.writeText(url.toString())
   }
 

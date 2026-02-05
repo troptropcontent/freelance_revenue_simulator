@@ -5,6 +5,7 @@
   name: "light";
   default: true;
   --color-primary: var(--color-purple-900);
+  
 }
 
 @utility btn {

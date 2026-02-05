@@ -1,7 +1,7 @@
 import { UseFormReturn } from "react-hook-form";
 import { PieChart } from "src/components/ui/PieChart";
 import { Inputs } from "../../inputs/types";
-import { computeNetRevenueByActivityType } from "../shared/utils";
+import { computeActivitiesMetrics } from "../shared/utils";
 import { DISABLED_COLOR, MISSION_ACTIVITY_COLOR, MISSION_ACTIVITY_COLOR_DARK, PROJECT_ACTIVITY_COLOR, PROJECT_ACTIVITY_COLOR_DARK } from "../shared/constants";
 import { ActivityIcon, ActivityIcons } from "../../inputs/shared/ActivityIcon";
 import { CollapsibleBadge } from "./private/BadgeCollapsible";
@@ -26,21 +26,65 @@ function CollapsibleBadgeContent({ color, total, value, kind, label }: { color: 
 function NetRevenueRepartition({ form }: { form: UseFormReturn<Inputs> }) {
     const { t } = useTranslation()
     const values = form.getValues()
-    const { mission, project, total } = computeNetRevenueByActivityType(values)
+
+    const metrics = computeActivitiesMetrics(values)
+
+    const total = Object.values(metrics).reduce((prev, current) => prev + current.monthlyNetRevenue, 0)
+
+    const missionsTotal = values.activities.reduce((prev, current, index) => {
+        if (current.type != "mission") {
+            return prev
+        }
+        const activityMetrics = metrics[index]
+        return prev + activityMetrics.monthlyNetRevenue
+    }, 0)
+
+    const missionsRepartision = values.activities.reduce<{ name: string, kind: Inputs["activities"][number]["kind"], value: number }[]>((prev, current, index) => {
+        if (!current.enabled || current.type != "mission") {
+            return prev
+        }
+        const activityMetrics = metrics[index]
+        return [...prev, {
+            name: current.name,
+            kind: current.kind,
+            value: activityMetrics.monthlyNetRevenue
+        }]
+    }, [])
+
+    const projectsTotal = values.activities.reduce((prev, current, index) => {
+        if (current.type != "project") {
+            return prev
+        }
+        const activityMetrics = metrics[index]
+        return prev + activityMetrics.monthlyNetRevenue
+    }, 0)
+
+    const projectRepartision = values.activities.reduce<{ name: string, kind: Inputs["activities"][number]["kind"], value: number }[]>((prev, current, index) => {
+        if (!current.enabled || current.type != "project") {
+            return prev
+        }
+        const activityMetrics = metrics[index]
+        return [...prev, {
+            name: current.name,
+            kind: current.kind,
+            value: activityMetrics.monthlyNetRevenue
+        }]
+    }, [])
+
     const data = [
         {
             color: total != 0 ? MISSION_ACTIVITY_COLOR : DISABLED_COLOR,
             color_dark: MISSION_ACTIVITY_COLOR_DARK,
-            value: mission.total,
+            value: missionsTotal,
             label: t("simulator.inputs.tabs.mission.name"),
-            repartition: mission.repartition,
+            repartition: missionsRepartision,
         },
         {
             color: total != 0 ? PROJECT_ACTIVITY_COLOR : DISABLED_COLOR,
             color_dark: PROJECT_ACTIVITY_COLOR_DARK,
-            value: project.total,
+            value: projectsTotal,
             label: t("simulator.inputs.tabs.project.name"),
-            repartition: project.repartition,
+            repartition: projectRepartision,
         }
     ]
 

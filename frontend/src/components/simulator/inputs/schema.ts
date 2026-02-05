@@ -17,7 +17,7 @@ const MissionHourlyRateSchema = BaseActivitySchema.extend({
   kind: z.literal("hourly_rate"),
   rate: z.number(),
   quantity: z.number(),
-  frequency: z.literal("monthly"),
+  frequency: z.enum(["monthly", "yearly"]),
 });
 
 /** Mission billed by daily rate */
@@ -33,7 +33,7 @@ const MissionFlatSchema = BaseActivitySchema.extend({
   kind: z.literal("flat_rate"),
   rate: z.number(),
   quantity: z.number(),
-  frequency: z.literal("monthly"),
+  frequency: z.enum(["monthly", "yearly"]),
 });
 
 /** Paid project with defined revenue expectations */

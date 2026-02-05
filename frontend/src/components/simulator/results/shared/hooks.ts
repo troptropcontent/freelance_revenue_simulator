@@ -123,7 +123,12 @@ function useEstimatedGrossAnnualRevenue(form: UseFormReturn<Inputs>) {
 
       case "flat_rate":
         // Flat monthly rate: rate × quantity × 12 months
-        activityRevenue = activity.rate * activity.quantity * 12;
+
+        activityRevenue =
+          activity.rate *
+          (activity.frequency == "yearly"
+            ? activity.quantity
+            : activity.quantity * 12);
         break;
     }
 
@@ -200,6 +205,11 @@ function useEstimatedNetMonthlyIncome(form: UseFormReturn<Inputs>) {
 
   // 3. Combine both income sources
   const totalNetMonthlyIncome = netMonthlyMissionIncome + monthlyProjectRevenue;
+
+  console.log({
+    totalNetMonthlyIncome,
+    exp: config.monthly_professional_expense,
+  });
 
   return Math.max(0, totalNetMonthlyIncome); // Ensure non-negative
 }

@@ -3,13 +3,7 @@ import { Inputs } from "../inputs/types";
 import { TrendingUp } from "lucide-react";
 import { ReactNode, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  useAvailableDaysPerWeek,
-  useAverageEnjoymentRate,
-  useEstimatedGrossAnnualRevenue,
-  useEstimatedNetMonthlyIncome,
-} from "./shared/hooks";
-import { computeRangeWidthAndColor } from "./shared/utils";
+import { computeActivitiesMetrics, computeRangeWidthAndColor } from "./shared/utils";
 import { Modal } from "src/components/ui/Modal";
 import { InputGroupWithRange } from "../inputs/private/InputGroupWithRange";
 import { InputGroupWithWeekdaysPicker } from "../inputs/private/InputGroupWithWeekdaysRadio";
@@ -26,14 +20,15 @@ function ResultCardCurrency({ value }: { value: number }) {
 }
 
 function EstimatedAnnualTurnover({ form }: { form: UseFormReturn<Inputs> }) {
-  const estimatedGrossAnnualRevenue = useEstimatedGrossAnnualRevenue(form);
+  const metrics = computeActivitiesMetrics(form.getValues())
+  const totalGross = Object.values(metrics).reduce((prev, metric) => prev + metric.monthlyGrossRevenue, 0) * 12
   return (
     <div className="flex flex-col">
       <ResultCardDescription>
         Chiffre d’affaires annuel estimé
       </ResultCardDescription>
       <div>
-        <ResultCardCurrency value={estimatedGrossAnnualRevenue} />
+        <ResultCardCurrency value={totalGross} />
       </div>
     </div>
   );
@@ -41,7 +36,9 @@ function EstimatedAnnualTurnover({ form }: { form: UseFormReturn<Inputs> }) {
 
 function EstimatedMonthlyNetIncome({ form }: { form: UseFormReturn<Inputs> }) {
   const { t } = useTranslation();
-  const estimatedNetMonthlyIncome = useEstimatedNetMonthlyIncome(form);
+  const metrics = computeActivitiesMetrics(form.getValues())
+  const estimatedNetMonthlyIncome = Object.values(metrics).reduce((prev, metric) => prev + metric.monthlyNetRevenue, 0)
+
   return (
     <div className="flex flex-col">
       <ResultCardDescription>Revenu net mensuel estimé</ResultCardDescription>
@@ -141,7 +138,16 @@ function RatingDisplay({
 }
 
 function AverageEnjoymentRate({ form }: { form: UseFormReturn<Inputs> }) {
-  const averageEnjoymentRate = useAverageEnjoymentRate(form);
+  const inputs = form.watch();
+  const metrics = computeActivitiesMetrics(inputs);
+  const totalTimeSpent = Object.values(metrics).reduce(
+    (sum, m) => sum + m.monthlyTimeSpent, 0
+  );
+  const averageEnjoymentRate = totalTimeSpent > 0
+    ? Object.values(metrics).reduce(
+        (sum, m) => sum + m.enjoymentRate * m.monthlyTimeSpent, 0
+      ) / totalTimeSpent
+    : 0;
 
   return (
     <div className="flex flex-col gap-3">
@@ -153,8 +159,13 @@ function AverageEnjoymentRate({ form }: { form: UseFormReturn<Inputs> }) {
 
 function AvailableTimePerWeek({ form }: { form: UseFormReturn<Inputs> }) {
   const { t } = useTranslation();
-  const availableDaysPerWeek = useAvailableDaysPerWeek(form);
-  const daysWorkedPerWeek = form.watch("config.weekdays_worked").length;
+  const inputs = form.watch();
+  const metrics = computeActivitiesMetrics(inputs);
+  const daysWorkedPerWeek = inputs.config.weekdays_worked.length;
+  const totalTimeSpent = Object.values(metrics).reduce(
+    (sum, m) => sum + m.monthlyTimeSpent, 0
+  );
+  const availableDaysPerWeek = daysWorkedPerWeek - totalTimeSpent;
 
   const { rangeWidth, barColor } = useMemo(
     () => computeRangeWidthAndColor(availableDaysPerWeek, daysWorkedPerWeek),

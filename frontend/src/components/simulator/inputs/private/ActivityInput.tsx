@@ -158,6 +158,12 @@ function ActivityInputTypeSpecificInputs({
                   "simulator.inputs.tabs.activities.inputs.frequency_select_monthly_label",
                 ),
               },
+              {
+                value: "yearly",
+                label: t(
+                  "simulator.inputs.tabs.activities.inputs.frequency_select_yearly_label",
+                ),
+              },
             ]}
           />
         </TypeSpecificInput>
@@ -179,6 +185,12 @@ function ActivityInputTypeSpecificInputs({
                 value: "monthly",
                 label: t(
                   "simulator.inputs.tabs.activities.inputs.frequency_select_monthly_label",
+                ),
+              },
+              {
+                value: "yearly",
+                label: t(
+                  "simulator.inputs.tabs.activities.inputs.frequency_select_yearly_label",
                 ),
               },
             ]}

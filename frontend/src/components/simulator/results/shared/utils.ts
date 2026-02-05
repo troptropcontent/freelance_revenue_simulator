@@ -81,7 +81,11 @@ export function computeNetRevenueByActivityType(
             activity.rate * activity.average_time_spent * weeksWorkedPerYear;
           break;
         case "flat_rate":
-          grossRevenue = activity.rate * activity.quantity * 12;
+          grossRevenue =
+            activity.rate *
+            (activity.frequency == "yearly"
+              ? activity.quantity
+              : activity.quantity * 12);
           break;
       }
 
@@ -116,7 +120,9 @@ export function computeNetRevenueByActivityType(
 
   // 4. Calculate project revenues (already net)
   const projectRepartition: RepartitionItem[] = enabledActivities
-    .filter((activity) => activity.type === "project" && activity.kind === "paid")
+    .filter(
+      (activity) => activity.type === "project" && activity.kind === "paid",
+    )
     .map((activity) => ({
       name: activity.name,
       kind: activity.kind,
@@ -142,4 +148,119 @@ export function computeNetRevenueByActivityType(
   };
 }
 
-export type { NetRevenueByActivityType, ActivityTypeBreakdown, RepartitionItem };
+type ActivityData = {
+  monthlyGrossRevenue: number;
+  monthlyNetRevenue: number;
+  monthlyTimeSpent: number;
+  enjoymentRate: number;
+};
+
+export function computeActivitiesMetrics(
+  inputs: Inputs,
+): Record<number, ActivityData> {
+  const { config, activities } = inputs;
+  const weeksWorkedPerYear = 52 - config.number_of_weeks_off_per_year;
+
+  const disabledActivityData: ActivityData = {
+    monthlyGrossRevenue: 0,
+    monthlyNetRevenue: 0,
+    monthlyTimeSpent: 0,
+    enjoymentRate: 0,
+  };
+
+  // First pass: compute monthly gross revenue for each activity
+  const activityGrossRevenues = activities.map((activity, index) => {
+    if (!activity.enabled) {
+      return { index, monthlyGross: 0, type: activity.type };
+    }
+
+    let monthlyGross = 0;
+
+    switch (activity.kind) {
+      case "hourly_rate":
+        monthlyGross =
+          activity.frequency === "yearly"
+            ? (activity.rate * activity.quantity) / 12
+            : activity.rate * activity.quantity;
+
+        console.log({ monthlyGross });
+        break;
+      case "daily_rate":
+        monthlyGross =
+          (activity.rate * activity.average_time_spent * weeksWorkedPerYear) /
+          12;
+        break;
+      case "flat_rate":
+        monthlyGross =
+          activity.frequency === "yearly"
+            ? (activity.rate * activity.quantity) / 12
+            : activity.rate * activity.quantity;
+        break;
+      case "paid":
+        monthlyGross =
+          (activity.estimated_monthly_revenue *
+            activity.estimated_months_billed) /
+          12;
+        break;
+      case "free":
+        monthlyGross = 0;
+        break;
+    }
+
+    return { index, monthlyGross, type: activity.type };
+  });
+
+  // Calculate total gross mission revenue to determine deduction ratio
+  const totalGrossMonthlyMission = activityGrossRevenues
+    .filter((a) => a.type === "mission")
+    .reduce((sum, a) => sum + a.monthlyGross, 0);
+
+  // Apply deductions to get net mission revenue
+  const afterExpenses =
+    totalGrossMonthlyMission - config.monthly_professional_expense;
+  const afterSocial =
+    afterExpenses * (1 - config.social_contributions_rate / 100);
+  const netMonthlyMission = Math.max(
+    0,
+    afterSocial * (1 - config.income_tax / 100),
+  );
+
+  // Deduction ratio for proportional distribution
+  const deductionRatio =
+    totalGrossMonthlyMission > 0
+      ? netMonthlyMission / totalGrossMonthlyMission
+      : 0;
+
+  // Second pass: build the result record
+  const result: Record<number, ActivityData> = {};
+
+  activities.forEach((activity, index) => {
+    if (!activity.enabled) {
+      result[index] = disabledActivityData;
+      return;
+    }
+
+    const grossData = activityGrossRevenues[index];
+
+    // Net revenue: missions use deduction ratio, projects are already net
+    const monthlyNetRevenue =
+      activity.type === "mission"
+        ? grossData.monthlyGross * deductionRatio
+        : grossData.monthlyGross;
+
+    result[index] = {
+      monthlyGrossRevenue: grossData.monthlyGross,
+      monthlyNetRevenue,
+      monthlyTimeSpent: activity.average_time_spent,
+      enjoymentRate: activity.enjoyment_rate,
+    };
+  });
+
+  return result;
+}
+
+export type {
+  NetRevenueByActivityType,
+  ActivityTypeBreakdown,
+  RepartitionItem,
+};

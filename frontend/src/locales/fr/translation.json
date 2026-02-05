@@ -76,6 +76,7 @@
               "inputs": {
                 "daily_rate_rate_label": "Taux Journalier Moyen (TJM)",
                 "frequency_select_monthly_label": "Par mois",
+                "frequency_select_yearly_label": "Par ans",
                 "average_time_spent_label": "Nombre de jours alloués par semaine",
                 "average_time_spent_hint_one": "{{count, number(maximumFractionDigits: 1)}} jour / {{max}}",
                 "average_time_spent_hint_other": "{{count, number(maximumFractionDigits: 1)}} jours / {{max}}",

@@ -23,6 +23,7 @@ function InputGroupWithRange<TFieldName extends FieldPath<Inputs>>({
   className?: string;
 }) {
   const currentValue = form.watch(inputName);
+  console.log({ currentValue, inputName })
 
   return (
     <div className={twMerge("flex flex-col gap-4", className)}>

@@ -6,7 +6,8 @@ import { useTranslation } from "react-i18next";
 import { computeActivitiesMetrics, computeRangeWidthAndColor } from "./shared/utils";
 import { Modal } from "src/components/ui/Modal";
 import { InputGroupWithRange } from "../inputs/private/InputGroupWithRange";
-import { InputGroupWithWeekdaysPicker } from "../inputs/private/InputGroupWithWeekdaysRadio";
+import { FormInputs } from "src/components/ui/form/inputs";
+import { STATUS_CONFIG_DEFAULTS, COMPANY_STATUSES } from "./shared/constants";
 
 function ResultCardDescription({ children }: { children: ReactNode }) {
   return <p className="text-base font-normal text-gray-500">{children}</p>;
@@ -36,6 +37,7 @@ function EstimatedAnnualTurnover({ form }: { form: UseFormReturn<Inputs> }) {
 
 function EstimatedMonthlyNetIncome({ form }: { form: UseFormReturn<Inputs> }) {
   const { t } = useTranslation();
+  console.log({ v: form.getValues() })
   const metrics = computeActivitiesMetrics(form.getValues())
   const estimatedNetMonthlyIncome = Object.values(metrics).reduce((prev, metric) => prev + metric.monthlyNetRevenue, 0)
 
@@ -54,41 +56,68 @@ function EstimatedMonthlyNetIncome({ form }: { form: UseFormReturn<Inputs> }) {
             {(closeModal) => (
               <div className="flex flex-col">
                 <p className="text-2xl font-bold text-center">
-                  {t(`simulator.inputs.tabs.activities.settings_modal.title`)}
+                  {t(`simulator.inputs.tabs.activities.net_revenue_settings_modal.title`)}
                 </p>
+                <p className="text-center mt-3">
+                  {t(`simulator.inputs.tabs.activities.net_revenue_settings_modal.description`)}
+                </p>
+                <div className="flex mt-8">
+                  <label htmlFor="" className="flex-1 my-auto">
+                    {t(`simulator.inputs.tabs.activities.net_revenue_settings_modal.inputs.monthly_professional_expense`)}
+                  </label>
+                  <FormInputs.Currency<Inputs>
+                    form={form}
+                    name={"config.monthly_professional_expense"}
+                    min={0}
+                    max={1000}
+                  />
+                </div>
                 <InputGroupWithRange
                   form={form}
                   hint={(currentValue) =>
-                    t("common.value_with_unit.number_of_days", {
-                      count: currentValue,
-                    })
+                    `${currentValue} %`
                   }
-                  inputName={"config.number_of_days_spent_on_admin_tasks"}
-                  label={t(
-                    `simulator.inputs.tabs.activities.inputs.number_of_days_spent_on_admin_tasks_label`,
-                  )}
+                  inputName={"config.social_contributions_rate"}
+                  label={t(`simulator.inputs.tabs.activities.net_revenue_settings_modal.inputs.social_contributions_rate`)}
                   rangeMin={0}
-                  rangeMax={5}
-                  step={0.5}
-                  className="mt-8"
-                />
-                <InputGroupWithRange
-                  form={form}
-                  hint={(currentValue) =>
-                    t("common.value_with_unit.number_of_weeks", {
-                      count: currentValue,
-                    })
-                  }
-                  inputName={"config.number_of_weeks_off_per_year"}
-                  label={t(
-                    `simulator.inputs.tabs.activities.inputs.number_of_weeks_off_per_year_label`,
-                  )}
-                  rangeMin={0}
-                  rangeMax={10}
-                  step={0.5}
+                  rangeMax={100}
+                  step={0.01}
                   className="mt-6"
                 />
-                <InputGroupWithWeekdaysPicker form={form} className="mt-8" />
+                <InputGroupWithRange
+                  form={form}
+                  hint={(currentValue) =>
+                    `${currentValue} %`
+                  }
+                  inputName={"config.income_tax"}
+                  label={t(`simulator.inputs.tabs.activities.net_revenue_settings_modal.inputs.income_tax`)}
+                  rangeMin={0}
+                  rangeMax={100}
+                  step={0.01}
+                  className="mt-6"
+                />
+                <div className="flex flex-col gap-2 mt-6">
+                  <p className="text-center text-sm text-gray-600">
+                    {t("simulator.inputs.tabs.activities.net_revenue_settings_modal.presets.title")}
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {COMPANY_STATUSES.map((status) => (
+                      <button
+                        key={status}
+                        type="button"
+                        className="badge badge-outline cursor-pointer hover:badge-primary"
+                        onClick={() => {
+                          const defaults = STATUS_CONFIG_DEFAULTS[status];
+                          form.setValue("config.social_contributions_rate", defaults.social_contributions_rate);
+                          form.setValue("config.income_tax", defaults.income_tax);
+                          form.setValue("config.monthly_professional_expense", defaults.monthly_professional_expense);
+                        }}
+                      >
+                        {t(`simulator.inputs.tabs.activities.net_revenue_settings_modal.presets.${status}`)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
                 <button
                   type="button"
                   className="btn btn-primary mt-8"
@@ -145,8 +174,8 @@ function AverageEnjoymentRate({ form }: { form: UseFormReturn<Inputs> }) {
   );
   const averageEnjoymentRate = totalTimeSpent > 0
     ? Object.values(metrics).reduce(
-        (sum, m) => sum + m.enjoymentRate * m.monthlyTimeSpent, 0
-      ) / totalTimeSpent
+      (sum, m) => sum + m.enjoymentRate * m.monthlyTimeSpent, 0
+    ) / totalTimeSpent
     : 0;
 
   return (

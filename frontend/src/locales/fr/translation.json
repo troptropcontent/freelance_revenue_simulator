@@ -95,6 +95,24 @@
                 "open_btn": "Réglages",
                 "title": "Ajuste tes paramètres",
                 "validate": "Valider les paramètres"
+              },
+              "net_revenue_settings_modal":{
+                "title": "Configure tes données",
+                "description": "Adapte SoloPortfolio pour qu’il soit le plus représentatif de tes frais, cotisations et imposition.",
+                "inputs": {
+                  "monthly_professional_expense": "Frais professionnels par mois",
+                  "social_contributions_rate": "Cotisation sociales mensuelles (en %)",
+                  "income_tax": "Taux d’imposition (en %)"
+                },
+                "presets": {
+                  "title": "Estimations selon ton statut :",
+                  "bnc": "Microentreprise BNC",
+                  "bic": "Microentreprise BIC",
+                  "eurl": "EURL",
+                  "sasu": "SASU",
+                  "artist": "Artiste Auteur"
+                },
+                "validate": "Valider les paramètres"
               }
             },
             "mission":{

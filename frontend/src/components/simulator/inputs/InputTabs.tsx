@@ -65,7 +65,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
                   </b>
                   <p>{t(`simulator.inputs.tabs.${tab.type}.name`)}</p>
                   <div
-                    className={twMerge("badge badge-xs", tab.badgeClassName)}
+                    className={twMerge("badge badge-xs size-[20px] rounded-full", tab.badgeClassName)}
                   >
                     {tab.activitiesWithInputIndex.filter(p => p.enabled).length}
                   </div>

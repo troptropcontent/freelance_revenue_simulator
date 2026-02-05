@@ -368,14 +368,11 @@ function ActivityInput({
         readOnly
       />
       <div className="collapse-title flex items-center gap-6 pointer-events-none pr-4">
-        <input
-          id={`activities.${activityWithInputIndex.inputIndex}.enabled`}
-          type="checkbox"
-          className="toggle toggle-sm pointer-events-auto"
-          aria-label="Toggle activity"
-          {...form.register(
-            `activities.${activityWithInputIndex.inputIndex}.enabled`,
-          )}
+        <FormInputs.Toggle<Inputs>
+          form={form}
+          name={`activities.${activityWithInputIndex.inputIndex}.enabled`}
+          className="pointer-events-auto"
+          ariaLabel="Toggle activity"
         />
         <ActivityName
           activityIndex={activityWithInputIndex.inputIndex}

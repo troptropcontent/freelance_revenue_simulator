@@ -157,6 +157,37 @@ function Range<T extends FieldValues>({
   );
 }
 
-const FormInputs = { Currency, Number, Select, Rating, Range };
+function Toggle<T extends FieldValues>({
+  form,
+  name,
+  className,
+  ariaLabel,
+}: {
+  form: UseFormReturn<T>;
+  name: FieldPath<T>;
+  className?: string;
+  ariaLabel?: string;
+}) {
+  return (
+    <Controller
+      name={name}
+      control={form.control}
+      render={({ field }) => (
+        <label className={`relative inline-flex items-center cursor-pointer ${className ?? ""}`}>
+          <input
+            type="checkbox"
+            className="sr-only peer"
+            checked={field.value}
+            onChange={field.onChange}
+            aria-label={ariaLabel}
+          />
+          <div className="w-11 h-6 bg-gray-200 border border-gray-300 rounded-full peer peer-checked:bg-gray-400 peer-checked:border-gray-500 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border after:border-gray-200 peer-checked:after:border-gray-400 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5" />
+        </label>
+      )}
+    />
+  );
+}
+
+const FormInputs = { Currency, Number, Select, Rating, Range, Toggle };
 
 export { FormInputs };

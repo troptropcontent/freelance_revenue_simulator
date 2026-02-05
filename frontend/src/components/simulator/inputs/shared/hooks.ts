@@ -34,17 +34,6 @@ function getPresetsFromUrl(): Inputs | null {
   return null;
 }
 
-function getPresetsFromModelFromUrl(): Inputs | null {
-  const model = new URL(window.location.href).searchParams.get("model");
-  if (!model) return null;
-
-  const isModelValid = model in Models;
-
-  if (isModelValid) return Models[model as keyof typeof Models].inputs;
-
-  return null;
-}
-
 function useModelQueryParam(): keyof typeof Models | null {
   const model = new URL(window.location.href).searchParams.get("model");
   if (!model) return null;

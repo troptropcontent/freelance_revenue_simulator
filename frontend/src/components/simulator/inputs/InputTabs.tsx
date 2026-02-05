@@ -30,7 +30,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
       type: "mission",
       triggerIsActiveClassName: "[--tab-bg:var(--color-blue-200)]",
       contentClassName: "bg-blue-200",
-      badgeClassName: "bg-blue-500 border-blue-500 text-white",
+      badgeClassName: twMerge("text-white", missionsWithInputIndex.filter(p => p.enabled).length > 0 ? "bg-blue-500 border-blue-500" : "bg-gray-400 border-gray-400"),
       activitiesWithInputIndex: missionsWithInputIndex,
       addActivityButtonClassName: "bg-blue-500 border-blue-500 text-white",
       newActivityKind: "hourly_rate",
@@ -39,7 +39,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
       type: "project",
       triggerIsActiveClassName: "[--tab-bg:var(--color-lime-100)]",
       contentClassName: "bg-lime-100",
-      badgeClassName: "bg-lime-500 border-lime-500 text-white",
+      badgeClassName: twMerge("text-white", projectsWithInputIndex.filter(p => p.enabled).length > 0 ? "bg-lime-500 border-lime-500 " : "bg-gray-400 border-gray-400"),
       activitiesWithInputIndex: projectsWithInputIndex,
       addActivityButtonClassName: "bg-lime-600 border-lime-600 text-white",
       newActivityKind: "paid",
@@ -55,6 +55,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
               <Tabs.Trigger
                 name={`step_${index}`}
                 isActiveClassName={tab.triggerIsActiveClassName}
+                className={"py-6 px-2 h-auto"}
               >
                 <span className="flex gap-4 items-center">
                   <b>
@@ -66,7 +67,7 @@ function InputTabs({ form }: { form: UseFormReturn<Inputs> }) {
                   <div
                     className={twMerge("badge badge-xs", tab.badgeClassName)}
                   >
-                    {tab.activitiesWithInputIndex.length}
+                    {tab.activitiesWithInputIndex.filter(p => p.enabled).length}
                   </div>
                 </span>
               </Tabs.Trigger>

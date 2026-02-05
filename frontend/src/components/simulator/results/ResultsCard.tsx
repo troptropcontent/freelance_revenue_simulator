@@ -20,8 +20,9 @@ function ResultCardDescription({ children }: { children: ReactNode }) {
 }
 
 function ResultCardCurrency({ value }: { value: number }) {
+  const { t } = useTranslation()
   return (
-    <AnimatedNumber value={value} className="text-4xl font-bold" unit="€" />
+    <p className="text-4xl font-bold">{t("common.currency.EUR", { value })}</p>
   );
 }
 

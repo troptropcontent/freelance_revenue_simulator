@@ -31,6 +31,7 @@ interface TabTriggerType {
   name: string;
   children: ReactNode;
   isActiveClassName?: string;
+  className?: string
 }
 function Trigger(props: TabTriggerType) {
   const context = useContext(TabContext);
@@ -42,6 +43,7 @@ function Trigger(props: TabTriggerType) {
     <label
       className={twMerge(
         "tab",
+        props.className,
         isActive ? "tab-active" : "",
         isActive ? props.isActiveClassName : "",
       )}

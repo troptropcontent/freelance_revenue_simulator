@@ -13,7 +13,6 @@ import { computeRangeWidthAndColor } from "./shared/utils";
 import { Modal } from "src/components/ui/Modal";
 import { InputGroupWithRange } from "../inputs/private/InputGroupWithRange";
 import { InputGroupWithWeekdaysPicker } from "../inputs/private/InputGroupWithWeekdaysRadio";
-import { AnimatedNumber } from "./private/AnimatedNumber";
 
 function ResultCardDescription({ children }: { children: ReactNode }) {
   return <p className="text-base font-normal text-gray-500">{children}</p>;

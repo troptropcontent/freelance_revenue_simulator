@@ -12,10 +12,15 @@ import { Inputs } from "../types";
 import { InputsSchema } from "../schema";
 import { useFieldArray, UseFormReturn } from "react-hook-form";
 import { useMemo } from "react";
-import { DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK } from "../../constants";
+import {
+  DEFAULT_NUMBER_OF_HOURS_SPENT_ON_ADMIN_TASKS_PER_WEEK,
+  Models,
+} from "../../constants";
 
 function getPresetsFromUrl(): Inputs | null {
-  const presetsParam = new URL(window.location.href).searchParams.get("presets");
+  const presetsParam = new URL(window.location.href).searchParams.get(
+    "presets",
+  );
   if (!presetsParam) return null;
 
   try {
@@ -29,11 +34,24 @@ function getPresetsFromUrl(): Inputs | null {
   return null;
 }
 
+function useModelQueryParam(): keyof typeof Models | null {
+  const model = new URL(window.location.href).searchParams.get("model");
+  if (!model) return null;
+
+  const isModelValid = model in Models;
+
+  return isModelValid ? (model as keyof typeof Models) : null;
+}
+
 function useInitialValues(): Inputs {
   const buildDefaultActivityValueForKind =
     useBuildDefaultActivityValueForKind();
 
+  const model = useModelQueryParam();
+
   return useMemo(() => {
+    if (model) return Models[model].inputs;
+
     const presets = getPresetsFromUrl();
     if (presets) return presets;
 
@@ -56,7 +74,7 @@ function useInitialValues(): Inputs {
         income_tax: DEFAULT_INCOME_TAX,
       },
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }
 
@@ -77,13 +95,14 @@ function useActivitiesFieldArray(form: UseFormReturn<Inputs>) {
 function useBuildDefaultActivityValueForKind() {
   const { t } = useTranslation();
   return (kind: Inputs["activities"][number]["kind"]) => {
-    const defaultValue = { ...DEFAULT_ACTIVITIES[kind] };  // Clone to avoid mutating the original
+    const defaultValue = { ...DEFAULT_ACTIVITIES[kind] }; // Clone to avoid mutating the original
     defaultValue.name = t(`simulator.inputs.tabs.mission.${kind}.default_name`);
     return defaultValue;
   };
 }
 
 export {
+  useModelQueryParam,
   useInitialValues,
   useBuildDefaultActivityValueForKind,
   useActivitiesFieldArray,

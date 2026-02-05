@@ -2465,6 +2465,9 @@
   .bg-center {
     background-position: center;
   }
+  .object-cover {
+    object-fit: cover;
+  }
   .p-0 {
     padding: calc(var(--spacing) * 0);
   }
@@ -2479,9 +2482,6 @@
   }
   .p-8 {
     padding: calc(var(--spacing) * 8);
-  }
-  .p-24 {
-    padding: calc(var(--spacing) * 24);
   }
   .badge-xs {
     @layer daisyui.modifier {

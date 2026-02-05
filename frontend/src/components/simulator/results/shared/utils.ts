@@ -65,6 +65,7 @@ export function computeNetRevenueByActivityType(
 
   const enabledActivities = activities.filter((activity) => activity.enabled);
   const weeksWorkedPerYear = 52 - config.number_of_weeks_off_per_year;
+  const monthsWorkedPerYear = weeksWorkedPerYear / (52 / 12);
 
   // 1. Calculate gross revenue for each mission
   const missionGrossRevenues = enabledActivities
@@ -74,7 +75,10 @@ export function computeNetRevenueByActivityType(
 
       switch (activity.kind) {
         case "hourly_rate":
-          grossRevenue = activity.rate * activity.quantity * 12;
+          grossRevenue =
+            activity.rate *
+            activity.quantity *
+            (activity.frequency === "yearly" ? 1 : monthsWorkedPerYear);
           break;
         case "daily_rate":
           grossRevenue =
@@ -83,9 +87,8 @@ export function computeNetRevenueByActivityType(
         case "flat_rate":
           grossRevenue =
             activity.rate *
-            (activity.frequency == "yearly"
-              ? activity.quantity
-              : activity.quantity * 12);
+            activity.quantity *
+            (activity.frequency === "yearly" ? 1 : monthsWorkedPerYear);
           break;
       }
 
@@ -160,6 +163,7 @@ export function computeActivitiesMetrics(
 ): Record<number, ActivityData> {
   const { config, activities } = inputs;
   const weeksWorkedPerYear = 52 - config.number_of_weeks_off_per_year;
+  const monthsWorkedPerYear = weeksWorkedPerYear / (52 / 12);
 
   const disabledActivityData: ActivityData = {
     monthlyGrossRevenue: 0,
@@ -181,9 +185,7 @@ export function computeActivitiesMetrics(
         monthlyGross =
           activity.frequency === "yearly"
             ? (activity.rate * activity.quantity) / 12
-            : activity.rate * activity.quantity;
-
-        console.log({ monthlyGross });
+            : (activity.rate * activity.quantity * monthsWorkedPerYear) / 12;
         break;
       case "daily_rate":
         monthlyGross =
@@ -194,7 +196,7 @@ export function computeActivitiesMetrics(
         monthlyGross =
           activity.frequency === "yearly"
             ? (activity.rate * activity.quantity) / 12
-            : activity.rate * activity.quantity;
+            : (activity.rate * activity.quantity * monthsWorkedPerYear) / 12;
         break;
       case "paid":
         monthlyGross =

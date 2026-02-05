@@ -100,6 +100,7 @@ function useEstimatedGrossAnnualRevenue(form: UseFormReturn<Inputs>) {
 
   // Calculate weeks worked per year (accounting for vacation)
   const weeksWorkedPerYear = 52 - config.number_of_weeks_off_per_year;
+  const monthsWorkedPerYear = weeksWorkedPerYear / (52 / 12);
 
   const annualMissionRevenue = enabledActivities.reduce((total, activity) => {
     // Only process missions, skip projects
@@ -111,8 +112,11 @@ function useEstimatedGrossAnnualRevenue(form: UseFormReturn<Inputs>) {
 
     switch (activity.kind) {
       case "hourly_rate":
-        // Hourly rate: rate × hours per month × 12 months
-        activityRevenue = activity.rate * activity.quantity * 12;
+        // Hourly rate: rate × hours per month × months worked per year
+        activityRevenue =
+          activity.rate *
+          activity.quantity *
+          (activity.frequency === "yearly" ? 1 : monthsWorkedPerYear);
         break;
 
       case "daily_rate":
@@ -122,13 +126,11 @@ function useEstimatedGrossAnnualRevenue(form: UseFormReturn<Inputs>) {
         break;
 
       case "flat_rate":
-        // Flat monthly rate: rate × quantity × 12 months
-
+        // Flat monthly rate: rate × quantity × months worked per year
         activityRevenue =
           activity.rate *
-          (activity.frequency == "yearly"
-            ? activity.quantity
-            : activity.quantity * 12);
+          activity.quantity *
+          (activity.frequency === "yearly" ? 1 : monthsWorkedPerYear);
         break;
     }
 

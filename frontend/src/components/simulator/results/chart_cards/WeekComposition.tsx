@@ -1,7 +1,6 @@
 import { UseFormReturn } from "react-hook-form";
 import { Inputs } from "../../inputs/types";
 import { useTranslation } from "react-i18next";
-import { MISSION_ACTIVITY_COLOR, MISSION_ACTIVITY_COLOR_DARK, PROJECT_ACTIVITY_COLOR, PROJECT_ACTIVITY_COLOR_DARK } from "../shared/constants";
 import { ActivityIcon, ActivityIcons } from "../../inputs/shared/ActivityIcon";
 
 // Days of the week labels (French: L=Lundi, M=Mardi, M=Mercredi, J=Jeudi, V=Vendredi, S=Samedi, D=Dimanche)
@@ -14,6 +13,16 @@ const DAY_LABELS: Record<string, string> = {
     "5": "S",
     "6": "D",
 };
+
+const BG_COLORS = {
+    mission: ["#BFDBFE", "#93C5FD", "#60A5FA", "#3B82F6", "#2563EB", "#1D4ED8"],
+    project: ["#D9F99D", "#BEF264", "#A3E635", "#84CC16", "#65A30D", "#4D7C0F"],
+} as const;
+
+const TEXT_COLORS = {
+    mission: ["#1E40AF", "#1E40AF", "#1E3A8A", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
+    project: ["#365314", "#365314", "#365314", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
+} as const
 
 const ADMIN_COLOR = "#E5E7EB" as const;
 const AVAILABLE_COLOR = "#FFFFFF" as const;
@@ -65,9 +74,15 @@ function WeekComposition({ form }: { form: UseFormReturn<Inputs> }) {
     const adminDaysPerWeek = adminDaysPerMonth / 4;
 
     // Build list of activity blocks with their day durations
+    // Track index per type to assign gradient colors (bright to dark)
+    const typeIndex: Record<string, number> = { mission: 0, project: 0 };
     const activityBlocks: ActivityBlock[] = enabledActivities.map((activity) => {
-        const color = activity.type === "mission" ? MISSION_ACTIVITY_COLOR_DARK : PROJECT_ACTIVITY_COLOR_DARK;
-        const background = activity.type === "mission" ? MISSION_ACTIVITY_COLOR : PROJECT_ACTIVITY_COLOR;
+        const idx = typeIndex[activity.type] ?? 0;
+        const colors = BG_COLORS[activity.type];
+        const textColors = TEXT_COLORS[activity.type];
+        const background = colors[Math.min(idx, colors.length - 1)];
+        const color = textColors[Math.min(idx, textColors.length - 1)];
+        typeIndex[activity.type] = idx + 1;
         return {
             name: activity.name,
             kind: activity.kind,

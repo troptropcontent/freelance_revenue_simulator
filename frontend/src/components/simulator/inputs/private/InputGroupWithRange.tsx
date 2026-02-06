@@ -49,7 +49,7 @@ function InputGroupWithRange<TFieldName extends FieldPath<Inputs>>({
                   step={step}
                   value={Number(field.value)}
                   onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                  className="input input-sm w-20 pr-7 text-right font-bold text-gray-500"
+                  className="input w-20 pr-7 text-right font-bold text-gray-500"
                 />
                 <span className="absolute right-2 top-0 h-full flex items-center text-sm text-gray-400 pointer-events-none">
                   {unit}

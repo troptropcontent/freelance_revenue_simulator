@@ -41,7 +41,7 @@ function InputGroupWithRange<TFieldName extends FieldPath<Inputs>>({
             name={inputName}
             control={form.control}
             render={({ field }) => (
-              <label className="relative flex">
+              <label className="flex relative">
                 <input
                   type="number"
                   min={rangeMin}
@@ -49,9 +49,9 @@ function InputGroupWithRange<TFieldName extends FieldPath<Inputs>>({
                   step={step}
                   value={Number(field.value)}
                   onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                  className="input w-20 pr-7 text-right font-bold text-gray-500"
+                  className="input w-[120px]"
                 />
-                <span className="absolute right-2 top-0 h-full flex items-center text-sm text-gray-400 pointer-events-none">
+                <span className="absolute right-5 top-0 h-full flex items-center text-sm text-gray-400 pointer-events-none z-10">
                   {unit}
                 </span>
               </label>

@@ -2,6 +2,10 @@
   "fr": {
     "translation": {
       "common": {
+        "units": {
+          "days": "jours",
+          "weeks": "semaines"
+        },
         "value_with_unit": {
           "number_of_days_one": "{{count, number(maximumFractionDigits: 2)}} jour",
           "number_of_days_other": "{{count, number(maximumFractionDigits: 2)}} jours",

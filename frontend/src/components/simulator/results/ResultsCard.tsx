@@ -74,26 +74,22 @@ function EstimatedMonthlyNetIncome({ form }: { form: UseFormReturn<Inputs> }) {
                 </div>
                 <InputGroupWithRange
                   form={form}
-                  hint={(currentValue) =>
-                    `${currentValue} %`
-                  }
+                  unit="%"
                   inputName={"config.social_contributions_rate"}
                   label={t(`simulator.inputs.tabs.activities.net_revenue_settings_modal.inputs.social_contributions_rate`)}
                   rangeMin={0}
                   rangeMax={100}
-                  step={0.01}
+                  step={0.5}
                   className="mt-6"
                 />
                 <InputGroupWithRange
                   form={form}
-                  hint={(currentValue) =>
-                    `${currentValue} %`
-                  }
+                  unit="%"
                   inputName={"config.income_tax"}
                   label={t(`simulator.inputs.tabs.activities.net_revenue_settings_modal.inputs.income_tax`)}
                   rangeMin={0}
                   rangeMax={100}
-                  step={0.01}
+                  step={0.5}
                   className="mt-6"
                 />
                 <div className="flex flex-col gap-2 mt-6">

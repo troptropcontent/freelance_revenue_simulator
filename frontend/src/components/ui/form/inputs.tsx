@@ -141,18 +141,22 @@ function Range<T extends FieldValues>({
     <Controller
       name={name}
       control={form.control}
-      render={({ field }) => (
-        <input
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          {...field}
-          value={field.value ?? min}
-          onChange={(e) => field.onChange(parseFloat(e.target.value))}
-          className="range w-full text-blue-400 [--range-bg:var(--color-gray-200)] [--range-thumb:white]"
-        />
-      )}
+      render={({ field }) => {
+        const pct = ((+(field.value ?? min) - min) / (max - min)) * 100;
+        return (
+          <input
+            type="range"
+            min={min}
+            max={max}
+            step={step}
+            {...field}
+            value={field.value ?? min}
+            onChange={(e) => field.onChange(parseFloat(e.target.value))}
+            className="custom-range w-full"
+            style={{ "--range-fill": `${pct}%` } as React.CSSProperties}
+          />
+        );
+      }}
     />
   );
 }

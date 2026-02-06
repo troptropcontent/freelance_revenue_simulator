@@ -35,3 +35,44 @@
 @utility card {
   @apply bg-gray-50;
 }
+
+/* Custom range slider: thin track + circle thumb */
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 1.5rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.custom-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--color-blue-400) var(--range-fill, 0%), var(--color-gray-200) var(--range-fill, 0%));
+}
+
+.custom-range::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--color-blue-400) var(--range-fill, 0%), var(--color-gray-200) var(--range-fill, 0%));
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--color-gray-300);
+  margin-top: -8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.custom-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--color-gray-300);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
